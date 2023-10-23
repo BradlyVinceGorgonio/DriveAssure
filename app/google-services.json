@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "300322429654",
+    "project_id": "driveassure-c5cf1",
+    "storage_bucket": "driveassure-c5cf1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:300322429654:android:2c7f207d8b741e12914777",
+        "android_client_info": {
+          "package_name": "com.example.driveassure"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAG86CV3IX53czK9o8RiBCWRAN_qkbtM4E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
