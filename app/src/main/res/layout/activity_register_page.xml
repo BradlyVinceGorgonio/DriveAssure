@@ -47,7 +47,7 @@
         app:layout_constraintVertical_bias="0.053" />
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/contactRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -61,7 +61,7 @@
         app:layout_constraintVertical_bias="0.052" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/passwordRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -71,11 +71,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber"
+        app:layout_constraintTop_toBottomOf="@+id/contactRegister"
         app:layout_constraintVertical_bias="0.105" />
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
+        android:id="@+id/confirmPassRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -85,7 +85,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+        app:layout_constraintTop_toBottomOf="@+id/passwordRegister"
         app:layout_constraintVertical_bias="0.123" />
 
     <Button
@@ -95,7 +95,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2"
+        app:layout_constraintTop_toBottomOf="@+id/confirmPassRegister"
         app:layout_constraintVertical_bias="0.203"
         tools:text="NEXT" />
 </androidx.constraintlayout.widget.ConstraintLayout>
