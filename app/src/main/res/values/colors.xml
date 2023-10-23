@@ -5,4 +5,7 @@
     <color name="blue">#92D7FF</color>
     <color name="greyish">#2F2F38</color>
 
+    <color name="primary">#FFFFFF</color>
+    <color name="textviewcolor">#FF0000</color>
+    <color name="buttoncolor">#00FF00</color>
 </resources>
