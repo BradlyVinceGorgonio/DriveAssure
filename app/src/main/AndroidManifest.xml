@@ -13,6 +13,21 @@
         android:theme="@style/Theme.DriveAssure"
         tools:targetApi="31">
         <activity
+            android:name=".UploadDriversLicense"
+            android:exported="false" />
+        <activity
+            android:name=".VerifiedSuccess"
+            android:exported="false" />
+        <activity
+            android:name=".FaceVerification"
+            android:exported="false" />
+        <activity
+            android:name=".IdentityVerification2"
+            android:exported="false" />
+        <activity
+            android:name=".IdentityVerification"
+            android:exported="false" />
+        <activity
             android:name=".RegisterPage"
             android:exported="false" />
         <activity
