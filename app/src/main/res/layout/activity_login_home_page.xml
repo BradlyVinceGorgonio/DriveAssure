@@ -21,6 +21,7 @@
         app:layout_constraintVertical_bias="0.122"></TextView>
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,6 +54,7 @@
         android:id="@+id/loginEmail"
         android:layout_width="303dp"
         android:layout_height="49dp"
+        android:textColorHint="@color/grey"
         android:background="@drawable/text_border"
         android:drawableLeft="@drawable/email_205"
         android:ems="10"
@@ -76,6 +78,7 @@
         android:drawableRight="@drawable/hide_12"
         android:ems="10"
         android:hint="Password:"
+        android:textColorHint="@color/grey"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:paddingLeft="5dp"
@@ -91,6 +94,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Remember password"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.224"
