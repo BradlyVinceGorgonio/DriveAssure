@@ -5,5 +5,10 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+    <style name="BlueButton" parent="Widget.AppCompat.Button">
+
+        <item name="android:textColor">@android:color/holo_blue_light</item>
+    </style>
+
     <style name="Theme.DriveAssure" parent="Base.Theme.DriveAssure" />
 </resources>
