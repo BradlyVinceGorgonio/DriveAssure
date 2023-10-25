@@ -35,6 +35,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="-90dp"
+            android:textStyle="bold"
             android:text="Identity Verification"
             android:textColor="@color/black"
             android:textSize="20dp"></TextView>
@@ -105,7 +106,7 @@
             android:layout_width="253dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
-            android:layout_marginTop="265dp"
+            android:layout_marginTop="260dp"
             android:layout_marginRight="20dp"
             android:text="2. Please do not cover your face with hair, glasses, headscarf or any accessories."
             android:textColor="@color/black"></TextView>
@@ -142,5 +143,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView3"
         app:layout_constraintVertical_bias="0.9" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

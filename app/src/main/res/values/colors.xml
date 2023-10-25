@@ -5,6 +5,7 @@
     <color name="blue">#92D7FF</color>
     <color name="greyish">#2F2F38</color>
     <color name="grey"> #808080</color>
+    <color name="darkgrey">#5A5A5A</color>
     <color name="darkblue">#1E80C1</color>
     <color name="primary">#FFFFFF</color>
     <color name="textviewcolor">#FF0000</color>
