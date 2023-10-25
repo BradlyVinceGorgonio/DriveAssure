@@ -65,7 +65,7 @@
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:layout_marginTop="-90dp"
-            android:background="@color/blue"
+            android:background="@drawable/circle_border"
             app:civ_border_overlay="true"
             app:civ_border_width="2dp" />
 
