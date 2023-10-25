@@ -89,7 +89,7 @@
             android:textColor="@color/white"></Button>
 
         <Button
-            android:id="@+id/submiteBtn"
+            android:id="@+id/submitBtn"
             android:layout_width="100dp"
             android:layout_height="60dp"
             android:layout_marginLeft="240dp"
