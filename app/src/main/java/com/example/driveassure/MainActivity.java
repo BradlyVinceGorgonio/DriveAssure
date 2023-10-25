@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(MainActivity.this, FaceVerification.class);
+        Intent intent = new Intent(MainActivity.this, LoginHomePage.class);
         startActivity(intent);
     }
 }
