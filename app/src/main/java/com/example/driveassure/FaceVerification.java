@@ -83,12 +83,13 @@ public class FaceVerification extends AppCompatActivity {
 
 
         surfaceView = findViewById(R.id.surfaceView);
-        //imageViewer = findViewById(R.id.imageViewer);
+        imageViewer = findViewById(R.id.imageViewer);
 
         ImageButton captureButton = findViewById(R.id.captureButton);
         captureButton.setOnClickListener(v -> {
             // Capture image here
-            //captureImage();
+            surfaceView.setVisibility(View.INVISIBLE);
+            captureImage();
         });
 
         // Check and request camera permission
