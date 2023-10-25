@@ -37,7 +37,7 @@
     </TextView>
 
     <ImageButton
-        android:id="@+id/button3"
+        android:id="@+id/backbutton"
         android:layout_width="56dp"
         android:layout_height="49dp"
         android:background="@drawable/back_26"
