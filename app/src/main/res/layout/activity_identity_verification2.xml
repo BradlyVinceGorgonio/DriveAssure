@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <ImageButton
-            android:id="@+id/backButton"
+            android:id="@+id/backButton2"
             android:layout_width="72dp"
             android:layout_height="55dp"
             android:layout_marginLeft="20dp"
@@ -75,13 +75,14 @@
             android:layout_marginTop="45dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:text="Facial Verification\n\nYour Information will be secured under the Terms of Services and Privacy Policy of each respective party and to comply with the regulations of the relevant authority"
+            android:text="Facial Verification\n\nYour Information will be secured under the Terms of Services and Privacy Policy of each respective party and to comply with the regulations of the relevant authority"></TextView>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="170dp"
             android:layout_marginLeft="20dp"
+            android:contentDescription="view"
             android:background="@drawable/face_kernel_1">
         </ImageView>
 
@@ -99,6 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="250dp"
             android:layout_marginLeft="20dp"
+            android:contentDescription="view"
             android:background="@drawable/face_recognition_9">
         </ImageView>
 
@@ -116,6 +118,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="330dp"
             android:layout_marginLeft="20dp"
+            android:contentDescription="view"
             android:background="@drawable/face_coding">
         </ImageView>
 
@@ -137,6 +140,8 @@
         android:backgroundTint="@color/blue"
         android:text="Start facial Verification"
         android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
