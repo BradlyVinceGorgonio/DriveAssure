@@ -88,7 +88,8 @@
  \n2.  Service and system development"
             android:textColor="@color/black"
             android:textSize="12dp"
-            tools:ignore="TextSizeCheck"></TextView
+            tools:ignore="TextSizeCheck"></TextView>
+
 
         <TextView
             android:layout_width="wrap_content"
