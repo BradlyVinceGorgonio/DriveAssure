@@ -66,6 +66,7 @@ public class FaceVerification extends AppCompatActivity {
 
     ImageView imageViewer;
     private ImageReader imageReader;
+    ImageButton captureButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,9 +110,11 @@ public class FaceVerification extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                captureButton.setClickable(true);
                 closeCamera();
                 surfaceView.setVisibility(View.VISIBLE);
                 openCamera();
+
 
             }
         });
@@ -123,11 +126,11 @@ public class FaceVerification extends AppCompatActivity {
         surfaceView = findViewById(R.id.surfaceView);
         imageViewer = findViewById(R.id.imageViewer);
 
-        ImageButton captureButton = findViewById(R.id.captureButton);
+        captureButton = findViewById(R.id.captureButton);
         captureButton.setOnClickListener(v -> {
-            // Capture image here
             surfaceView.setVisibility(View.INVISIBLE);
-            Log.e("CAMERAPOPERS", "bago mag captuer image");
+            captureButton.setClickable(false);
+
             captureImage();
 
         });
