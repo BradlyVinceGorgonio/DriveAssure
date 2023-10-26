@@ -98,6 +98,7 @@ public class FaceVerification extends AppCompatActivity {
             public void onClick(View view) {
                 captureButton.setClickable(true);
                 closeCamera();
+                deleteImageFile();
                 surfaceView.setVisibility(View.VISIBLE);
                 openCamera();
             }
@@ -129,6 +130,7 @@ public class FaceVerification extends AppCompatActivity {
                 String Password = intent.getStringExtra("password");
                 String RePassword = intent.getStringExtra("repassword");
 
+                closeCamera();
                 Intent intents = new Intent(FaceVerification.this, UploadDriversLicense.class);
                 intents.putExtra("name", Name);
                 intents.putExtra("email", Email);
@@ -163,7 +165,7 @@ public class FaceVerification extends AppCompatActivity {
             cameraDevice.close();
             cameraDevice = null;
         }
-        deleteImageFile();
+
     }
 
     // Function to delete the captured image file
