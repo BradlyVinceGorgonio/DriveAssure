@@ -110,8 +110,9 @@ public class FaceVerification extends AppCompatActivity {
             public void onClick(View view) {
 
                 closeCamera();
-                openCamera();
                 surfaceView.setVisibility(View.VISIBLE);
+                openCamera();
+
             }
         });
 
@@ -273,7 +274,6 @@ public class FaceVerification extends AppCompatActivity {
             }
 
         }
-
         // Create the file in the app directory
         File imageFile = new File(appDirectory, "captured_image.jpg");
 
@@ -294,15 +294,10 @@ public class FaceVerification extends AppCompatActivity {
         MediaScannerConnection.scanFile(this, new String[]{imageFile.getPath()}, null, null);
 
         String imagePath = imageFile.getPath();
-        Toast.makeText(this, "Image saved to Downloads folder: " + imagePath, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Image saved to Downloads folder: " + imagePath, Toast.LENGTH_SHORT).show();
 
         return imagePath;
     }
-
-
-
-
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -315,8 +310,6 @@ public class FaceVerification extends AppCompatActivity {
             }
         }
     }
-
-
 
     private void openCamera() {
         cameraManager = (CameraManager) getSystemService(CAMERA_SERVICE);
@@ -347,8 +340,6 @@ public class FaceVerification extends AppCompatActivity {
             Log.e("CAMERAPOPERS", "CameraAccessException: " + e.getMessage());
         }
     }
-
-
 
     private final CameraDevice.StateCallback cameraStateCallback = new CameraDevice.StateCallback() {
         @Override
