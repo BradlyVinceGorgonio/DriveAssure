@@ -3,8 +3,16 @@ package com.example.driveassure;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.ImageFormat;
 import android.hardware.camera2.CameraCharacteristics;
+import android.hardware.camera2.TotalCaptureResult;
+import android.media.Image;
+import android.media.ImageReader;
+import android.media.MediaScannerConnection;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
@@ -24,6 +32,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.view.Surface;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +40,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.util.Arrays;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -44,14 +57,18 @@ public class FaceVerification extends AppCompatActivity {
     private CaptureRequest.Builder captureRequestBuilder;
     private CameraCaptureSession captureSession;
     private SurfaceView surfaceView;
-    private CircleImageView imageViewer;
+    //private CircleImageView imageViewer;
+
+    ImageView imageViewer;
+    private ImageReader imageReader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_face_verification);
 
-
+        imageReader = ImageReader.newInstance(
+                /* width */ 640, /* height */ 480, ImageFormat.JPEG, /* maxImages */ 1);
 
 
 
@@ -89,7 +106,9 @@ public class FaceVerification extends AppCompatActivity {
         captureButton.setOnClickListener(v -> {
             // Capture image here
             surfaceView.setVisibility(View.INVISIBLE);
+            Log.e("CAMERAPOPERS", "bago mag captuer image");
             captureImage();
+
         });
 
         // Check and request camera permission
@@ -100,6 +119,113 @@ public class FaceVerification extends AppCompatActivity {
         }
 
     }
+
+    private void captureImage() {
+        if (cameraDevice == null) {
+            Log.e("CAMERAPOPERS", "CameraDevice is null");
+            return;
+        }
+
+        try {
+            CaptureRequest.Builder captureRequestBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);
+            captureRequestBuilder.addTarget(imageReader.getSurface());
+
+            // Create a CameraCaptureSession
+            cameraDevice.createCaptureSession(Arrays.asList(imageReader.getSurface()), new CameraCaptureSession.StateCallback() {
+                @Override
+                public void onConfigured(@NonNull CameraCaptureSession session) {
+                    captureSession = session;
+                    try {
+                        captureSession.capture(captureRequestBuilder.build(), new CameraCaptureSession.CaptureCallback() {
+                            @Override
+                            public void onCaptureCompleted(@NonNull CameraCaptureSession session, @NonNull CaptureRequest request, @NonNull TotalCaptureResult result) {
+                                super.onCaptureCompleted(session, request, result);
+
+                                Log.e("CAMERAPOPERS", "loob ng capturesession");
+                                // Image capture completed, you can save the image here
+                                String fileName = saveImage(imageReader.acquireNextImage());
+
+                                // DITO MAG DISPLAY SA IMAGEVIEW
+                                // Java
+                                ImageView imageView = findViewById(R.id.imageViewer);
+                                String imagePath = fileName;
+                                Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+                                imageView.setImageBitmap(bitmap);
+
+
+                            }
+                        }, null);
+                    } catch (CameraAccessException e) {
+                        e.printStackTrace();
+                        Log.e("CAMERAPOPERS", "CameraAccessException: " + e.getMessage());
+                    }
+                }
+
+                @Override
+                public void onConfigureFailed(@NonNull CameraCaptureSession session) {
+                    Log.e("CAMERAPOPERS", "CaptureSession configuration failed");
+                }
+            }, null);
+
+        } catch (CameraAccessException e) {
+            e.printStackTrace();
+
+        }
+    }
+
+
+
+
+
+    private String saveImage(Image image) {
+        if (image == null) {
+            Log.e("CAMERAPOPERS", "Image is null");
+            return null;
+        }
+
+        // Specify the Downloads folder as the parent directory
+        File downloadsDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+
+        // Create a subdirectory for your app if needed
+        File appDirectory = new File(downloadsDirectory, "YourAppName");
+        if (!appDirectory.exists()) {
+            if (!appDirectory.mkdirs()) {
+                Log.e("CAMERAPOPERS", "Failed to create app directory");
+                return null;
+            }
+
+        }
+
+        // Create the file in the app directory
+        File imageFile = new File(appDirectory, "captured_image.jpg");
+
+        try (FileOutputStream output = new FileOutputStream(imageFile)) {
+            ByteBuffer buffer = image.getPlanes()[0].getBuffer();
+            byte[] bytes = new byte[buffer.remaining()];
+            buffer.get(bytes);
+            output.write(bytes);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("CAMERAPOPERS", "IOException: " + e.getMessage());
+            return null;
+        } finally {
+            image.close();
+        }
+
+        // Notify the MediaScanner to refresh the gallery with the newly captured image
+        MediaScannerConnection.scanFile(this, new String[]{imageFile.getPath()}, null, null);
+
+        String imagePath = imageFile.getPath();
+        Toast.makeText(this, "Image saved to Downloads folder: " + imagePath, Toast.LENGTH_SHORT).show();
+
+        return imagePath;
+    }
+
+
+
+
+
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -135,13 +261,15 @@ public class FaceVerification extends AppCompatActivity {
                     ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_REQUEST_CODE);
                 }
             } else {
-                // Handle the case where a front camera is not available on the device.
+                Log.e("CAMERAPOPERS", "Front camera not available on this device.");
                 Toast.makeText(this, "Front camera not available on this device.", Toast.LENGTH_SHORT).show();
             }
         } catch (CameraAccessException e) {
             e.printStackTrace();
+            Log.e("CAMERAPOPERS", "CameraAccessException: " + e.getMessage());
         }
     }
+
 
 
     private final CameraDevice.StateCallback cameraStateCallback = new CameraDevice.StateCallback() {
