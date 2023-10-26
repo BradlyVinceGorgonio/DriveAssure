@@ -67,21 +67,55 @@ public class FaceVerification extends AppCompatActivity {
     ImageView imageViewer;
     private ImageReader imageReader;
     ImageButton captureButton;
+    Button buttonSubmit;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_face_verification);
 
-        imageReader = ImageReader.newInstance(
-                /* width */ 640, /* height */ 480, ImageFormat.JPEG, /* maxImages */ 1);
+        buttonSubmit = findViewById(R.id.submitBtn);
 
 
+        imageReader = ImageReader.newInstance(/* width */ 640, /* height */ 480, ImageFormat.JPEG, /* maxImages */ 1);
+
+        ImageButton backButton3 = findViewById(R.id.backButton3);
+        backButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FaceVerification.this, IdentityVerification2.class);
+                startActivity(intent);
+            }
+        });
+
+        // Now you have access to the data in the new activity.
+
+        Button retakeBtn = findViewById(R.id.retakeBtn);
+        retakeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                captureButton.setClickable(true);
+                closeCamera();
+                surfaceView.setVisibility(View.VISIBLE);
+                openCamera();
+            }
+        });
+
+        surfaceView = findViewById(R.id.surfaceView);
+        imageViewer = findViewById(R.id.imageViewer);
+
+        captureButton = findViewById(R.id.captureButton);
+        captureButton.setOnClickListener(v -> {
+            surfaceView.setVisibility(View.INVISIBLE);
 
 
-// Now you have access to the data in the new activity.
+            captureButton.setClickable(false);
 
-        Button buttonSubmit = findViewById(R.id.submitBtn);
+            captureImage();
+            buttonSubmit.setClickable(true);
+
+        });
 
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,36 +138,7 @@ public class FaceVerification extends AppCompatActivity {
             }
         });
 
-        Button retakeBtn = findViewById(R.id.retakeBtn);
 
-        retakeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                captureButton.setClickable(true);
-                closeCamera();
-                surfaceView.setVisibility(View.VISIBLE);
-                openCamera();
-
-
-            }
-        });
-
-
-
-
-
-        surfaceView = findViewById(R.id.surfaceView);
-        imageViewer = findViewById(R.id.imageViewer);
-
-        captureButton = findViewById(R.id.captureButton);
-        captureButton.setOnClickListener(v -> {
-            surfaceView.setVisibility(View.INVISIBLE);
-            captureButton.setClickable(false);
-
-            captureImage();
-
-        });
 
         // Check and request camera permission
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {

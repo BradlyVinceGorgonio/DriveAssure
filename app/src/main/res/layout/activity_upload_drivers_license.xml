@@ -38,7 +38,7 @@
 
 
     <ImageButton
-        android:id="@+id/backButton1"
+        android:id="@+id/backButton12s"
         android:layout_width="72dp"
         android:layout_height="55dp"
         android:background="@drawable/back_26"

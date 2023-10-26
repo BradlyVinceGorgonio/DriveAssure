@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 public class RegisterPage extends AppCompatActivity {
 
@@ -32,6 +33,14 @@ public class RegisterPage extends AppCompatActivity {
         password = findViewById(R.id.passwordRegister);
         rePassword = findViewById(R.id.confirmPassRegister);
 
+        ImageButton back = findViewById(R.id.backbutton);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterPage.this, LoginHomePage.class);
+                startActivity(intent);
+            }
+        });
 
 
 

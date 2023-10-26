@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class IdentityVerification extends AppCompatActivity {
 
@@ -15,6 +16,14 @@ public class IdentityVerification extends AppCompatActivity {
         setContentView(R.layout.activity_identity_verification);
 
 
+        ImageButton backButton = findViewById(R.id.backButton1);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(IdentityVerification.this, RegisterPage.class);
+                startActivity(intent);
+            }
+        });
 
 
         Button next = findViewById(R.id.nextVerificationBtn);
