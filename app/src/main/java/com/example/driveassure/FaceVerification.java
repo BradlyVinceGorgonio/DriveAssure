@@ -68,6 +68,7 @@ public class FaceVerification extends AppCompatActivity {
     private ImageReader imageReader;
     ImageButton captureButton;
     Button buttonSubmit;
+    ImageButton backButton3;
 
 
     @Override
@@ -80,7 +81,7 @@ public class FaceVerification extends AppCompatActivity {
 
         imageReader = ImageReader.newInstance(/* width */ 640, /* height */ 480, ImageFormat.JPEG, /* maxImages */ 1);
 
-        ImageButton backButton3 = findViewById(R.id.backButton3);
+        backButton3 = findViewById(R.id.backButton3);
         backButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
