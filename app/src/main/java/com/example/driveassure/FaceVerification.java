@@ -80,9 +80,9 @@ public class FaceVerification extends AppCompatActivity {
 
 // Now you have access to the data in the new activity.
 
-        Button button = findViewById(R.id.submitBtn);
+        Button buttonSubmit = findViewById(R.id.submitBtn);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = getIntent();
@@ -102,6 +102,21 @@ public class FaceVerification extends AppCompatActivity {
                 startActivity(intents);
             }
         });
+
+        Button retakeBtn = findViewById(R.id.retakeBtn);
+
+        retakeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                closeCamera();
+                openCamera();
+                surfaceView.setVisibility(View.VISIBLE);
+            }
+        });
+
+
+
 
 
         surfaceView = findViewById(R.id.surfaceView);
@@ -123,6 +138,38 @@ public class FaceVerification extends AppCompatActivity {
             openCamera();
         }
 
+    }
+
+
+
+    // Function to close the camera
+    private void closeCamera() {
+        if (captureSession != null) {
+            captureSession.close();
+            captureSession = null;
+        }
+
+        if (cameraDevice != null) {
+            cameraDevice.close();
+            cameraDevice = null;
+        }
+        deleteImageFile();
+    }
+
+    // Function to delete the captured image file
+    private void deleteImageFile() {
+        // Construct the path to the captured image file based on your directory structure
+        File downloadsDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        File appDirectory = new File(downloadsDirectory, "YourAppName");
+        File imageFile = new File(appDirectory, "captured_image.jpg");
+
+        if (imageFile.exists()) {
+            if (imageFile.delete()) {
+                Log.d("CAMERAPOPERS", "Image file deleted.");
+            } else {
+                Log.e("CAMERAPOPERS", "Failed to delete image file.");
+            }
+        }
     }
 
     private void captureImage() {
@@ -152,7 +199,7 @@ public class FaceVerification extends AppCompatActivity {
 
                                 // Apply brightness adjustment to the image
                                 Bitmap bitmap = BitmapFactory.decodeFile(fileName);
-                                Bitmap adjustedBitmap = adjustBrightnessAndRotate(bitmap, 3F,-90); // Adjust brightness factor as needed
+                                Bitmap adjustedBitmap = adjustBrightnessAndRotate(bitmap, 1F,-90); // Adjust brightness factor as needed
 
                                 // DITO MAG DISPLAY SA IMAGEVIEW
                                 // Java
