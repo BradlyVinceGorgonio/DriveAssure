@@ -5,7 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.ImageFormat;
+import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.TotalCaptureResult;
 import android.media.Image;
@@ -145,13 +150,14 @@ public class FaceVerification extends AppCompatActivity {
                                 // Image capture completed, you can save the image here
                                 String fileName = saveImage(imageReader.acquireNextImage());
 
+                                // Apply brightness adjustment to the image
+                                Bitmap bitmap = BitmapFactory.decodeFile(fileName);
+                                Bitmap adjustedBitmap = adjustBrightnessAndRotate(bitmap, 3F,-90); // Adjust brightness factor as needed
+
                                 // DITO MAG DISPLAY SA IMAGEVIEW
                                 // Java
                                 ImageView imageView = findViewById(R.id.imageViewer);
-                                String imagePath = fileName;
-                                Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
-                                imageView.setImageBitmap(bitmap);
-
+                                imageView.setImageBitmap(adjustedBitmap);
 
                             }
                         }, null);
@@ -169,8 +175,33 @@ public class FaceVerification extends AppCompatActivity {
 
         } catch (CameraAccessException e) {
             e.printStackTrace();
-
         }
+    }
+
+    // Function to adjust image brightness
+    private Bitmap adjustBrightnessAndRotate(Bitmap bitmap, float brightnessFactor, float rotationAngle) {
+        // Apply brightness adjustment
+        ColorMatrix cm = new ColorMatrix();
+        cm.set(new float[] {
+                brightnessFactor, 0, 0, 0, 0,  // Red
+                0, brightnessFactor, 0, 0, 0,  // Green
+                0, 0, brightnessFactor, 0, 0,  // Blue
+                0, 0, 0, 1, 0                // Alpha
+        });
+
+        ColorMatrixColorFilter filter = new ColorMatrixColorFilter(cm);
+        Paint paint = new Paint();
+        paint.setColorFilter(filter);
+
+        Bitmap adjustedBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
+        Canvas canvas = new Canvas(adjustedBitmap);
+        canvas.drawBitmap(bitmap, 0, 0, paint);
+
+        // Rotate the image
+        Matrix matrix = new Matrix();
+        matrix.postRotate(rotationAngle);
+
+        return Bitmap.createBitmap(adjustedBitmap, 0, 0, adjustedBitmap.getWidth(), adjustedBitmap.getHeight(), matrix, true);
     }
 
 
