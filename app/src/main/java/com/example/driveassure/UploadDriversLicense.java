@@ -6,12 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 
@@ -20,11 +23,14 @@ public class UploadDriversLicense extends AppCompatActivity {
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_IMAGE_PICK = 2;
-    private Button addImageBtn;
+
+
+    ImageView frontPhotoLicense;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_drivers_license);
+
 
 
 
@@ -69,13 +75,30 @@ public class UploadDriversLicense extends AppCompatActivity {
 
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == REQUEST_IMAGE_PICK) {
-                // Handle the selected image from the gallery or camera here
-                // The selected image will be in the 'data' intent
-                // You can use data.getData() to get the image URI
-                Toast.makeText(this, "Image selected", Toast.LENGTH_SHORT).show();
+                // Handle the selected image from the gallery here
+                if (data != null) {
+                    Uri imageUri = data.getData();
+                    frontPhotoLicense = findViewById(R.id.frontPhotoLicense);
+                    frontPhotoLicense.setImageURI(imageUri);
+                    Log.d("NUYON", "onActivityResult: " + imageUri);
+                    // You can also save the image if needed, e.g., to a file
+                    // The image data is now accessible via the 'imageUri'
+                }
+            } else if (requestCode == REQUEST_IMAGE_CAPTURE) {
+                // Handle the image captured from the camera here
+                // The captured image will be in the 'data' intent
+                Bitmap imageBitmap = (Bitmap) data.getExtras().get("data");
+                Log.d("NUYON", "onActivityResult: " + imageBitmap);
+
+                // Set the image bitmap to the ImageView
+                frontPhotoLicense = findViewById(R.id.frontPhotoLicense);
+                frontPhotoLicense.setImageBitmap(imageBitmap);
+
+                // You can also save the image if needed
             }
         }
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
