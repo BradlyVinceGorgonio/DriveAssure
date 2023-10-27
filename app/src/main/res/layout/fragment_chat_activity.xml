@@ -9,15 +9,18 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:background="@drawable/toolbar_background">
+        android:background="@drawable/toolbar_background" />
 
     <ImageButton
         android:id="@+id/backButton"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:contentDescription="Back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:src="@drawable/resource__"
-        android:background="@color/light_blue" />
+        android:contentDescription="Back"
+        android:background="@color/light_blue"
+        android:scaleType="fitCenter"
+        android:layout_gravity="center_vertical" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/messageRecyclerView"
@@ -53,7 +56,6 @@
             android:id="@+id/sendImageButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/attach_file_1"
             android:contentDescription="Send Image"
             android:background="@color/light_blue" />
 
