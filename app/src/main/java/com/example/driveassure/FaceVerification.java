@@ -56,6 +56,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class FaceVerification extends AppCompatActivity {
 
     private static final int CAMERA_REQUEST_CODE = 100;
+    private static final int WRITE_EXTERNAL_STORAGE_REQUEST_CODE = 101; // You can use any valid request code you prefer
+
     private CameraManager cameraManager;
     private String cameraId;
     private CameraDevice cameraDevice;
@@ -138,12 +140,13 @@ public class FaceVerification extends AppCompatActivity {
 
 
 
-        // Check and request camera permission
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_REQUEST_CODE);
+        // Check and request external storage (write) permission
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
         } else {
             openCamera();
         }
+
 
     }
 
