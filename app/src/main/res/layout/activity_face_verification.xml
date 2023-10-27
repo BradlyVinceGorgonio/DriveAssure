@@ -101,7 +101,6 @@
 
         <Button
             android:id="@+id/submitBtn"
-            android:clickable="false"
             android:layout_width="100dp"
             android:layout_height="60dp"
             android:layout_marginLeft="240dp"

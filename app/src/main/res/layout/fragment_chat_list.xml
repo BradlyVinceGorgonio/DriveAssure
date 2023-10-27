@@ -28,7 +28,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/user_image"
+        android:src="@drawable/user_circle"
         android:contentDescription="User Image"/>
         </androidx.appcompat.widget.Toolbar>
 

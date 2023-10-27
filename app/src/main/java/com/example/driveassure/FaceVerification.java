@@ -68,7 +68,7 @@ public class FaceVerification extends AppCompatActivity {
     private ImageReader imageReader;
     ImageButton captureButton;
     Button buttonSubmit;
-    ImageButton backButton3;
+
 
 
     @Override
@@ -81,7 +81,7 @@ public class FaceVerification extends AppCompatActivity {
 
         imageReader = ImageReader.newInstance(/* width */ 640, /* height */ 480, ImageFormat.JPEG, /* maxImages */ 1);
 
-        backButton3 = findViewById(R.id.backButton3);
+        ImageButton backButton3 = findViewById(R.id.backButton3);
         backButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,11 +96,10 @@ public class FaceVerification extends AppCompatActivity {
         retakeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                captureButton.setClickable(true);
+
                 closeCamera();
-                deleteImageFile();
-                surfaceView.setVisibility(View.VISIBLE);
                 openCamera();
+                surfaceView.setVisibility(View.VISIBLE);
             }
         });
 
@@ -111,11 +110,7 @@ public class FaceVerification extends AppCompatActivity {
         captureButton.setOnClickListener(v -> {
             surfaceView.setVisibility(View.INVISIBLE);
 
-
-            captureButton.setClickable(false);
-
             captureImage();
-            buttonSubmit.setClickable(true);
 
         });
 
@@ -165,7 +160,7 @@ public class FaceVerification extends AppCompatActivity {
             cameraDevice.close();
             cameraDevice = null;
         }
-
+        deleteImageFile();
     }
 
     // Function to delete the captured image file
