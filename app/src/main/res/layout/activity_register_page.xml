@@ -65,6 +65,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
+        android:textColor="@color/black"
         android:layout_width="350dp"
         android:layout_height="450dp"
         app:cardBackgroundColor="@android:color/white"
@@ -79,28 +80,29 @@
         app:layout_constraintVertical_bias="0.655"> <!-- Background color of the CardView -->
 
 
-
-        <!-- EditText Widgets -->
-
         <Button
             android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/blue"
             android:layout_marginTop="380dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
            android:gravity="center"
+          android:text="Next"
             android:layout_marginLeft="135dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/confirmPassRegister"
             app:layout_constraintVertical_bias="0.203"
-            tools:text="NEXT" />
+             />
 
 
         <EditText
             android:textColorHint="@color/grey"
             android:id="@+id/nameRegister"
+            android:textColor="@color/black"
             android:layout_width="280dp"
             android:layout_height="48dp"
             android:background="@drawable/text_border"
@@ -118,6 +120,7 @@
 
         <EditText
             android:id="@+id/emailRegister"
+            android:textColor="@color/black"
             android:layout_width="280dp"
             android:layout_height="48dp"
             android:background="@drawable/text_border"
@@ -137,6 +140,7 @@
             android:layout_width="280dp"
             android:layout_height="48dp"
             android:layout_marginLeft="35dp"
+            android:textColor="@color/black"
             android:layout_marginTop="170dp"
             android:background="@drawable/text_border"
             android:drawableLeft="@drawable/phone_90"
@@ -154,6 +158,7 @@
             android:layout_width="280dp"
             android:layout_height="48dp"
             android:layout_marginLeft="35dp"
+            android:textColor="@color/black"
             android:layout_marginTop="240dp"
             android:background="@drawable/text_border"
             android:drawableLeft="@drawable/password_152"
@@ -174,6 +179,7 @@
             android:layout_width="280dp"
             android:layout_height="48dp"
             android:background="@drawable/text_border"
+            android:textColor="@color/black"
             android:layout_marginLeft="35dp"
             android:layout_marginTop="310dp"
             android:ems="10"
