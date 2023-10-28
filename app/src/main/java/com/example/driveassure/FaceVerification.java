@@ -76,6 +76,8 @@ public class FaceVerification extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        deleteImageFolder();
         setContentView(R.layout.activity_face_verification);
 
         buttonSubmit = findViewById(R.id.submitBtn);
@@ -100,6 +102,7 @@ public class FaceVerification extends AppCompatActivity {
             public void onClick(View view) {
 
                 closeCamera();
+                deleteImageFile();
                 openCamera();
                 surfaceView.setVisibility(View.VISIBLE);
             }
@@ -127,7 +130,6 @@ public class FaceVerification extends AppCompatActivity {
                 String Password = intent.getStringExtra("password");
                 String RePassword = intent.getStringExtra("repassword");
 
-                closeCamera();
                 Intent intents = new Intent(FaceVerification.this, UploadDriversLicense.class);
                 intents.putExtra("name", Name);
                 intents.putExtra("email", Email);
@@ -163,8 +165,37 @@ public class FaceVerification extends AppCompatActivity {
             cameraDevice.close();
             cameraDevice = null;
         }
-        deleteImageFile();
+
     }
+    private void deleteImageFolder() {
+        // Construct the path to the folder based on your directory structure
+        File downloadsDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        File appDirectory = new File(downloadsDirectory, "YourAppName");
+
+        if (appDirectory.exists() && appDirectory.isDirectory()) {
+            // Delete all files within the directory
+            File[] files = appDirectory.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    if (file.isFile()) {
+                        if (file.delete()) {
+                            Log.d("CAMERAPOPERS", "File dasdasdeleted: " + file.getAbsolutePath());
+                        } else {
+                            Log.e("CAMERAPOPERS", "Faileasdadd to delete file: " + file.getAbsolutePath());
+                        }
+                    }
+                }
+            }
+
+            // Delete the directory itself
+            if (appDirectory.delete()) {
+                Log.d("CAMERAPOPERS", "Folder deletedsasd: " + appDirectory.getAbsolutePath());
+            } else {
+                Log.e("CAMERAPOPERS", "Failed to delete asdasdfolder: " + appDirectory.getAbsolutePath());
+            }
+        }
+    }
+
 
     // Function to delete the captured image file
     private void deleteImageFile() {

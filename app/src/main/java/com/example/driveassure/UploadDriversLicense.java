@@ -29,7 +29,9 @@ public class UploadDriversLicense extends AppCompatActivity {
 
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int REQUEST_IMAGE_CAPTUREBACK = 3;
     private static final int REQUEST_IMAGE_PICK = 2;
+    private static final int REQUEST_IMAGE_PICKBACK = 4;
 
 
     ImageView frontPhotoLicense;
@@ -39,7 +41,7 @@ public class UploadDriversLicense extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_drivers_license);
 
-
+        deleteLicenseDirectory();
 
 
         Intent intents = getIntent();
@@ -67,7 +69,7 @@ public class UploadDriversLicense extends AppCompatActivity {
         backlicense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openImageDialog();
+                openBackImageDialog();
             }
         });
     }
@@ -91,10 +93,27 @@ public class UploadDriversLicense extends AppCompatActivity {
         });
         builder.show();
     }
-    
 
-
-
+    private void openBackImageDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Select Image Source");
+        builder.setItems(new CharSequence[]{"Camera", "Gallery"}, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (which == 0) {
+                    // User chose Camera
+                    Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTUREBACK); // Use REQUEST_IMAGE_CAPTUREBACK here
+                } else {
+                    // User chose Gallery
+                    Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                    galleryIntent.setType("image/*");
+                    startActivityForResult(galleryIntent, REQUEST_IMAGE_PICKBACK); // Use REQUEST_IMAGE_PICKBACK here
+                }
+            }
+        });
+        builder.show();
+    }
 
 
 
@@ -141,6 +160,38 @@ public class UploadDriversLicense extends AppCompatActivity {
                     }
                 }
             }
+            else if (requestCode == REQUEST_IMAGE_CAPTUREBACK)
+            {
+                // Handle the image captured from the camera here for the backLicense
+                Bitmap imageBitmap = (Bitmap) data.getExtras().get("data");
+                if (imageBitmap != null) {
+                    // Set the image bitmap to the backLicense ImageView
+                    backPhotoLicense = findViewById(R.id.backPhotoLicense);
+                    backPhotoLicense.setImageBitmap(imageBitmap);
+
+                    // You can also save the image with a different filename if needed
+                    saveImageToDownloads(imageBitmap, "back.jpg");
+                } else {
+                    Log.d("NUYON", "onActivityResult: Image Bitmap is null for backLicense");
+                }
+
+            }
+            else if(requestCode == REQUEST_IMAGE_PICKBACK)
+            {
+                // Handle the selected image from the gallery here for the backLicense
+                if (data != null) {
+                    Uri imageUri = data.getData();
+                    backPhotoLicense = findViewById(R.id.backPhotoLicense);
+                    backPhotoLicense.setImageURI(imageUri);
+
+                    // You can also save the image with a different filename if needed
+                    Bitmap selectedImage = getImageFromUri(imageUri);
+                    if (selectedImage != null) {
+                        saveImageToDownloads(selectedImage, "back.jpg");
+                    }
+                }
+
+            }
             else
             {
                 Log.d("NUYON", "onActivityResult:  Wala nangyari");
@@ -174,6 +225,42 @@ public class UploadDriversLicense extends AppCompatActivity {
             Log.d("NUYON", "Image saved to: " + imageFile.getAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void deleteLicenseDirectory() {
+        // Get the Downloads directory
+        File downloadsDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+
+        // Create a subdirectory named "license" if it doesn't exist
+        File licenseDirectory = new File(downloadsDirectory, "license");
+
+        if (licenseDirectory.exists() && licenseDirectory.isDirectory()) {
+            deleteDirectory(licenseDirectory);
+        }
+    }
+    // Function to delete a directory and its contents
+    private void deleteDirectory(File directory) {
+        if (directory.isDirectory()) {
+            File[] files = directory.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    if (file.isDirectory()) {
+                        deleteDirectory(file);
+                    } else {
+                        if (file.delete()) {
+                            Log.d("NUYON", "File deleted: " + file.getAbsolutePath());
+                        } else {
+                            Log.e("NUYON", "Failed to delete file: " + file.getAbsolutePath());
+                        }
+                    }
+                }
+            }
+        }
+        if (directory.delete()) {
+            Log.d("NUYON", "Folder deleted: " + directory.getAbsolutePath());
+        } else {
+            Log.e("NUYON", "Failed to delete folder: " + directory.getAbsolutePath());
         }
     }
 
