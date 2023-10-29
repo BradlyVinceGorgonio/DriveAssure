@@ -21,8 +21,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -56,7 +54,8 @@ public class LoginHomePage extends AppCompatActivity {
                 }
                 else
                 {
-                    signIn(Semail, Spass);
+                    checkEmailInAdminCollection(Semail, Spass);
+                    //signIn(Semail, Spass);
                 }
             }
         });
@@ -85,33 +84,9 @@ public class LoginHomePage extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            Intent intent = new Intent(LoginHomePage.this, userHome.class);
+                            startActivity(intent);
 
-                            // Check if the user document exists in the "users" collection
-                            FirebaseFirestore db = FirebaseFirestore.getInstance();
-                            String uid = user.getUid();
-                            DocumentReference userRef = db.collection("users").document(uid);
-
-                            userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                    if (task.isSuccessful()) {
-                                        DocumentSnapshot document = task.getResult();
-                                        if (document.exists()) {
-                                            // The user document exists, navigate to the normal intent
-                                            Intent intent = new Intent(LoginHomePage.this, userHome.class);
-                                            startActivity(intent);
-                                        } else {
-                                            // The user document does not exist, navigate to a different intent
-                                            Intent intent = new Intent(LoginHomePage.this, WaitingActivity.class);
-                                            startActivity(intent);
-                                        }
-                                    } else {
-                                        // Handle Firestore query failure
-                                        Log.w(TAG, "Error getting user document", task.getException());
-                                        Toast.makeText(LoginHomePage.this, "Error checking user document", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -121,6 +96,41 @@ public class LoginHomePage extends AppCompatActivity {
                     }
                 });
     }
+
+    private void checkEmailInAdminCollection(String emailToCheck, String password) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference adminCollection = db.collection("admin");
+
+        // Perform a query to check if the email exists in any document
+        adminCollection.whereEqualTo("email", emailToCheck)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            QuerySnapshot querySnapshot = task.getResult();
+                            if (querySnapshot != null && !querySnapshot.isEmpty()) {
+                                // Email exists in the "admin" collection
+                                // You can perform the desired action here
+                                // For example, show an error message or take appropriate action
+                                Log.d(TAG, "Email exists in 'admin' collection");
+                                Intent intent = new Intent(LoginHomePage.this, WaitingActivity.class);
+                                startActivity(intent);
+                            } else {
+                                // Email does not exist in the "admin" collection
+                                // You can proceed with your desired logic here
+                                Log.d(TAG, "Email does not exist in 'admin' collection");
+                                signIn(emailToCheck, password);
+                            }
+                        } else {
+                            // Handle the query failure
+                            Log.w(TAG, "Error checking email in 'admin' collection", task.getException());
+                            // You can display an error message or handle the error accordingly
+                        }
+                    }
+                });
+    }
+
 
 
     @Override
