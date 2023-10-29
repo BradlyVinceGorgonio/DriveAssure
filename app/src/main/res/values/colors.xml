@@ -7,6 +7,7 @@
     <color name="grey"> #808080</color>
     <color name="darkgrey">#5A5A5A</color>
     <color name="darkblue">#1E80C1</color>
+    <color name="red">#FF0000</color>
     <color name="primary">#FFFFFF</color>
     <color name="textviewcolor">#FF0000</color>
     <color name="buttoncolor">#00FF00</color>

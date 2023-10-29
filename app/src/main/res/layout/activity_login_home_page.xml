@@ -37,6 +37,7 @@
     </TextView>
 
     <TextView
+        android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LOGIN"
@@ -50,46 +51,6 @@
         app:layout_constraintVertical_bias="0.319"
         tools:ignore="MissingConstraints"></TextView>
 
-    <EditText
-        android:id="@+id/loginEmail"
-        android:layout_width="303dp"
-        android:layout_height="49dp"
-        android:textColorHint="@color/grey"
-        android:background="@drawable/text_border"
-        android:drawableLeft="@drawable/email_205"
-        android:ems="10"
-        android:hint="Email:"
-        android:textColor="@color/black"
-        android:inputType="textEmailAddress"
-        android:minHeight="48dp"
-        android:paddingLeft="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.448" />
-
-
-    <EditText
-        android:id="@+id/loginPassword"
-        android:layout_width="303dp"
-        android:layout_height="50dp"
-        android:background="@drawable/text_border"
-        android:drawableLeft="@drawable/password_153"
-        android:drawableRight="@drawable/hide_12"
-        android:ems="10"
-        android:hint="Password:"
-        android:textColor="@color/black"
-        android:textColorHint="@color/grey"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginEmail"
-        app:layout_constraintVertical_bias="0.098" />
 
     <CheckBox
         android:id="@+id/rememberPass"
@@ -99,10 +60,10 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.224"
+        app:layout_constraintHorizontal_bias="0.163"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginPassword"
-        app:layout_constraintVertical_bias="0.065" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
+        app:layout_constraintVertical_bias="0.081" />
 
     <Button
         android:id="@+id/button2"
@@ -115,10 +76,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintCircleRadius="-50dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.525"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginPassword"
-        app:layout_constraintVertical_bias="0.333" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
+        app:layout_constraintVertical_bias="0.491" />
 
     <TextView
         android:id="@+id/registerTextView"
@@ -148,5 +109,66 @@
         app:layout_constraintTop_toBottomOf="@+id/button2"
         app:layout_constraintVertical_bias="0.626" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:hint=" Email"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        app:counterEnabled="true"
+        app:counterMaxLength="30"
+        app:helperText="Required"
+        app:endIconMode="clear_text"
+        app:helperTextTextColor="@color/red"
+        app:startIconDrawable="@drawable/email_205"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16"
+        app:layout_constraintVertical_bias="0.145">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginEmail"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:maxLength="30"
+         />
+    </com.google.android.material.textfield.TextInputLayout>
 
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:hint=" Password"
+        android:textColorHint="@color/grey"
+        app:counterEnabled="true"
+        app:counterMaxLength="30"
+        app:endIconMode="password_toggle"
+        app:helperText="Required"
+        app:startIconDrawable="@drawable/password_153"
+        app:helperTextTextColor="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        app:layout_constraintVertical_bias="0.059">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginPassword"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:inputType="textPassword"
+            android:maxLength="30" />
+    </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
