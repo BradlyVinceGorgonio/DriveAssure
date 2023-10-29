@@ -16,13 +16,29 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class UploadDriversLicense extends AppCompatActivity {
@@ -36,28 +52,32 @@ public class UploadDriversLicense extends AppCompatActivity {
 
     ImageView frontPhotoLicense;
     ImageView backPhotoLicense;
+    Button frontImage;
+    Button backlicense;
+    CheckBox registerCheck;
+    Button registrationBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_drivers_license);
 
+        // Initials
         deleteLicenseDirectory();
 
 
-        Intent intents = getIntent();
+        registrationBtn = findViewById(R.id.registrationBtn);
+        registrationBtn.setBackgroundColor(getResources().getColor(R.color.disabledGrey));
 
-        String Name = intents.getStringExtra("name");
-        String Email = intents.getStringExtra("email");
-        String Number = intents.getStringExtra("number");
-        String Password = intents.getStringExtra("password");
-        String RePassword = intents.getStringExtra("repassword");
 
-        // Now you have access to the data in the new activity.
-        Log.d("TAEBRADLY", "Name " + Name + " Email " + Email  + " Number " + Number + " Password " + Password + " RePassword " + RePassword  ) ;
+        // Assuming you have Firebase initialized
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
 
-        Button frontImage = findViewById(R.id.frontlicense);
+        registerCheck = findViewById(R.id.registerCheck);
+
+        frontImage = findViewById(R.id.frontlicense);
         frontImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,14 +85,180 @@ public class UploadDriversLicense extends AppCompatActivity {
             }
         });
 
-        Button backlicense = findViewById(R.id.backlicense);
+        backlicense = findViewById(R.id.backlicense);
         backlicense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openBackImageDialog();
             }
         });
+
+        frontPhotoLicense = findViewById(R.id.frontPhotoLicense);
+        backPhotoLicense = findViewById(R.id.backPhotoLicense);
+        // Set up a listener to check for changes in the image views and the checkbox
+        View.OnClickListener updateSubmitButtonState = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Check if both image views have images and the checkbox is checked
+                boolean image1HasImage = frontPhotoLicense.getDrawable() != null;
+                boolean image2HasImage = backPhotoLicense.getDrawable() != null;
+                boolean isChecked = registerCheck.isChecked();
+
+                if (image1HasImage && image2HasImage && isChecked) {
+                    // If all conditions are met, set the submit button to blue and enable it
+                    registrationBtn.setBackgroundColor(getResources().getColor(R.color.blue));
+                    registrationBtn.setEnabled(true);
+                } else {
+                    // Otherwise, set the submit button back to disabledGrey and disable it
+                    registrationBtn.setBackgroundColor(getResources().getColor(R.color.disabledGrey));
+                    registrationBtn.setEnabled(false);
+                }
+            }
+        };
+
+        frontPhotoLicense.setOnClickListener(updateSubmitButtonState);
+        backPhotoLicense.setOnClickListener(updateSubmitButtonState);
+        registerCheck.setOnClickListener(updateSubmitButtonState);
+
+
+        registrationBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intents = getIntent();
+
+                String Name = intents.getStringExtra("name");
+                String Email = intents.getStringExtra("email");
+                String Number = intents.getStringExtra("number");
+                String Password = intents.getStringExtra("password");
+                String RePassword = intents.getStringExtra("repassword");
+
+                // Now you have access to the data in the new activity.
+                Log.d("TAEBRADLY", "Name " + Name + " Email " + Email  + " Number " + Number + " Password " + Password + " RePassword " + RePassword  ) ;
+
+                uploadCredentialsToFireStoreAndPictures(Name, Email, Number, Password);
+
+            }
+        });
+
+
     }
+
+
+    private void uploadCredentialsToFireStoreAndPictures(String Name, String Email, String Number, String Password)
+    {
+        // Assuming you have Firebase initialized
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // Step 1: Create a user in Firebase Authentication
+        mAuth.createUserWithEmailAndPassword(Email, Password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            if (user != null) {
+                                // Step 2: Get the UID and add data to Firestore
+                                String uid = user.getUid();
+
+                                // Create a map with the user data
+                                Map<String, Object> userMap = new HashMap<>();
+                                userMap.put("name", Name);
+                                userMap.put("email", Email);
+                                userMap.put("contact number", Number);
+
+                                // Add the user data to the Firestore "users" collection with the UID as the document name
+                                db.collection("users")
+                                        .document(uid)
+                                        .set(userMap)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                // Document added successfully
+                                                // Handle success as needed
+
+                                                uploadPicturesToStorage(uid);
+
+                                                Intent intent = new Intent(UploadDriversLicense.this, userHome.class);
+                                                startActivity(intent);
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                // Handle errors if the document could not be added
+                                            }
+                                        });
+                            }
+                        }
+                        else {
+                            // Check if the error indicates that the email is already registered
+                            if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                // Email is already registered
+
+                                Toast.makeText(getApplicationContext(), "Email is already registered.", Toast.LENGTH_SHORT).show();
+                            } else {
+                                // Handle other registration errors
+                                // For example, invalid email format or weak password
+
+                                Toast.makeText(getApplicationContext(), "Registration failed. Please check your email and password.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                });
+
+    }
+
+    private void uploadPicturesToStorage(String uid) {
+        // Create Firebase Storage reference
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+
+        // Create references for the back and front images in the "users/UID/" folder
+        StorageReference backImageRef = storageRef.child("users/" + uid + "/back.jpg");
+        StorageReference frontImageRef = storageRef.child("users/" + uid + "/front.jpg");
+
+        // Create File objects for the "back.jpg" and "front.jpg" files
+        File downloadsDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        File licenseDirectory = new File(downloadsDirectory, "license");
+        File backJpgFile = new File(licenseDirectory, "back.jpg");
+        File frontJpgFile = new File(licenseDirectory, "front.jpg");
+
+        // Upload back image to Firebase Storage
+        Uri backImageUri = Uri.fromFile(backJpgFile);
+        backImageRef.putFile(backImageUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // Handle successful upload of the back image
+                        // You can do something here, like updating the UI or database
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Handle the failure of the upload
+                    }
+                });
+
+        // Upload front image to Firebase Storage
+        Uri frontImageUri = Uri.fromFile(frontJpgFile);
+        frontImageRef.putFile(frontImageUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // Handle successful upload of the front image
+                        // You can do something here, like updating the UI or database
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Handle the failure of the upload
+                    }
+                });
+    }
+
     private void openImageDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Select Image Source");
@@ -190,7 +376,6 @@ public class UploadDriversLicense extends AppCompatActivity {
                         saveImageToDownloads(selectedImage, "back.jpg");
                     }
                 }
-
             }
             else
             {

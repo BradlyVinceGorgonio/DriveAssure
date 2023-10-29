@@ -70,6 +70,7 @@ public class FaceVerification extends AppCompatActivity {
     private ImageReader imageReader;
     ImageButton captureButton;
     Button buttonSubmit;
+    Button retakeBtn;
 
 
 
@@ -81,6 +82,8 @@ public class FaceVerification extends AppCompatActivity {
         setContentView(R.layout.activity_face_verification);
 
         buttonSubmit = findViewById(R.id.submitBtn);
+        buttonSubmit.setBackgroundColor(getResources().getColor(R.color.disabledGrey));
+        buttonSubmit.setEnabled(false);
 
 
         imageReader = ImageReader.newInstance(/* width */ 640, /* height */ 480, ImageFormat.JPEG, /* maxImages */ 1);
@@ -96,11 +99,13 @@ public class FaceVerification extends AppCompatActivity {
 
         // Now you have access to the data in the new activity.
 
-        Button retakeBtn = findViewById(R.id.retakeBtn);
+        retakeBtn = findViewById(R.id.retakeBtn);
         retakeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                buttonSubmit.setBackgroundColor(getResources().getColor(R.color.disabledGrey));
+                buttonSubmit.setEnabled(false);
                 closeCamera();
                 deleteImageFile();
                 openCamera();
@@ -113,8 +118,9 @@ public class FaceVerification extends AppCompatActivity {
 
         captureButton = findViewById(R.id.captureButton);
         captureButton.setOnClickListener(v -> {
+            buttonSubmit.setBackgroundColor(getResources().getColor(R.color.blue));
+            buttonSubmit.setEnabled(true);
             surfaceView.setVisibility(View.INVISIBLE);
-
             captureImage();
 
         });

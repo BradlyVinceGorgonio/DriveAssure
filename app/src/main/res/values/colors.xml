@@ -10,4 +10,5 @@
     <color name="primary">#FFFFFF</color>
     <color name="textviewcolor">#FF0000</color>
     <color name="buttoncolor">#00FF00</color>
+    <color name="disabledGrey">#D3D3D3</color>
 </resources>
