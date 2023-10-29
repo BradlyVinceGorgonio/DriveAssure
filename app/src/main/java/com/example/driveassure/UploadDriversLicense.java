@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -55,6 +56,9 @@ public class UploadDriversLicense extends AppCompatActivity {
     ImageView backPhotoLicense;
     Button frontImage;
     Button backlicense;
+
+    EditText licenseNumber;
+    EditText licenseExpiryDate;
     CheckBox registerCheck;
     Button registrationBtn;
     @Override
@@ -66,8 +70,7 @@ public class UploadDriversLicense extends AppCompatActivity {
         deleteLicenseDirectory();
 
 
-        registrationBtn = findViewById(R.id.registrationBtn);
-        registrationBtn.setBackgroundColor(getResources().getColor(R.color.disabledGrey));
+
 
 
         // Assuming you have Firebase initialized
@@ -75,7 +78,11 @@ public class UploadDriversLicense extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
+        licenseNumber = findViewById(R.id.licenseNumber);
+        licenseExpiryDate = findViewById(R.id.licenseExpiryDate);
 
+        registrationBtn = findViewById(R.id.registrationBtn);
+        registrationBtn.setBackgroundColor(getResources().getColor(R.color.disabledGrey));
         registerCheck = findViewById(R.id.registerCheck);
 
         frontImage = findViewById(R.id.frontlicense);
