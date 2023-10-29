@@ -186,7 +186,9 @@ public class UploadDriversLicense extends AppCompatActivity {
                 // Now you have access to the data in the new activity.
                 Log.d("TAEBRADLY", "Name " + Name + " Email " + Email  + " Number " + Number + " Password " + Password + " RePassword " + RePassword  ) ;
 
-                uploadCredentialsToFireStoreAndPictures(Name, Email, Number, Password);
+                String LicenseNumber = licenseNumber.getText().toString();
+                String licenseExp = licenseExpiryDate.getText().toString();
+                uploadCredentialsToFireStoreAndPictures(Name, Email, Number, Password, LicenseNumber, licenseExp);
 
             }
         });
@@ -214,7 +216,7 @@ public class UploadDriversLicense extends AppCompatActivity {
     }
 
 
-    private void uploadCredentialsToFireStoreAndPictures(String Name, String Email, String Number, String Password)
+    private void uploadCredentialsToFireStoreAndPictures(String Name, String Email, String Number, String Password, String licenseNum, String licenseDate)
     {
         // Assuming you have Firebase initialized
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -236,9 +238,11 @@ public class UploadDriversLicense extends AppCompatActivity {
                                 userMap.put("name", Name);
                                 userMap.put("email", Email);
                                 userMap.put("contact number", Number);
+                                userMap.put("license num", licenseNum);
+                                userMap.put("license exp", licenseDate);
 
                                 // Add the user data to the Firestore "users" collection with the UID as the document name
-                                db.collection("users")
+                                db.collection("admin")
                                         .document(uid)
                                         .set(userMap)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -286,6 +290,9 @@ public class UploadDriversLicense extends AppCompatActivity {
         // Create references for the back and front images in the "users/UID/" folder
         StorageReference backImageRef = storageRef.child("users/" + uid + "/back.jpg");
         StorageReference frontImageRef = storageRef.child("users/" + uid + "/front.jpg");
+        StorageReference faceImageRef = storageRef.child("users/" + uid + "/face.jpg");
+
+
 
         // Create File objects for the "back.jpg" and "front.jpg" files
         File downloadsDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
@@ -293,8 +300,40 @@ public class UploadDriversLicense extends AppCompatActivity {
         File backJpgFile = new File(licenseDirectory, "back.jpg");
         File frontJpgFile = new File(licenseDirectory, "front.jpg");
 
+        File faceDirectory = new File(downloadsDirectory, "YourAppName");
+        File faceJpgFile = new File(faceDirectory, "captured_image.jpg");
+
+
+
         // Counter to track the number of successful uploads
         AtomicInteger successfulUploadCount = new AtomicInteger(0);
+
+        // Upload face image to Firebase Storage
+        Uri frontUri = Uri.fromFile(faceJpgFile);
+        faceImageRef.putFile(frontUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // Handle successful upload of the back image
+                        // You can do something here, like updating the UI or database
+
+                        // Increase the successful upload count
+                        successfulUploadCount.incrementAndGet();
+
+                        // Check if both images are successfully uploaded
+                        if (successfulUploadCount.get() == 3) {
+                            // Both images are uploaded, trigger the next steps
+                            performNextSteps();
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Handle the failure of the upload
+                    }
+                });
+
 
         // Upload back image to Firebase Storage
         Uri backImageUri = Uri.fromFile(backJpgFile);
@@ -309,7 +348,7 @@ public class UploadDriversLicense extends AppCompatActivity {
                         successfulUploadCount.incrementAndGet();
 
                         // Check if both images are successfully uploaded
-                        if (successfulUploadCount.get() == 2) {
+                        if (successfulUploadCount.get() == 3) {
                             // Both images are uploaded, trigger the next steps
                             performNextSteps();
                         }
@@ -335,7 +374,7 @@ public class UploadDriversLicense extends AppCompatActivity {
                         successfulUploadCount.incrementAndGet();
 
                         // Check if both images are successfully uploaded
-                        if (successfulUploadCount.get() == 2) {
+                        if (successfulUploadCount.get() == 3) {
                             // Both images are uploaded, trigger the next steps
                             performNextSteps();
                         }
