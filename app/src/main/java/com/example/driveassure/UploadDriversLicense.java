@@ -39,6 +39,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class UploadDriversLicense extends AppCompatActivity {
@@ -179,8 +180,7 @@ public class UploadDriversLicense extends AppCompatActivity {
 
                                                 uploadPicturesToStorage(uid);
 
-                                                Intent intent = new Intent(UploadDriversLicense.this, userHome.class);
-                                                startActivity(intent);
+
                                             }
                                         })
                                         .addOnFailureListener(new OnFailureListener() {
@@ -224,6 +224,9 @@ public class UploadDriversLicense extends AppCompatActivity {
         File backJpgFile = new File(licenseDirectory, "back.jpg");
         File frontJpgFile = new File(licenseDirectory, "front.jpg");
 
+        // Counter to track the number of successful uploads
+        AtomicInteger successfulUploadCount = new AtomicInteger(0);
+
         // Upload back image to Firebase Storage
         Uri backImageUri = Uri.fromFile(backJpgFile);
         backImageRef.putFile(backImageUri)
@@ -232,6 +235,15 @@ public class UploadDriversLicense extends AppCompatActivity {
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         // Handle successful upload of the back image
                         // You can do something here, like updating the UI or database
+
+                        // Increase the successful upload count
+                        successfulUploadCount.incrementAndGet();
+
+                        // Check if both images are successfully uploaded
+                        if (successfulUploadCount.get() == 2) {
+                            // Both images are uploaded, trigger the next steps
+                            performNextSteps();
+                        }
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -249,6 +261,15 @@ public class UploadDriversLicense extends AppCompatActivity {
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         // Handle successful upload of the front image
                         // You can do something here, like updating the UI or database
+
+                        // Increase the successful upload count
+                        successfulUploadCount.incrementAndGet();
+
+                        // Check if both images are successfully uploaded
+                        if (successfulUploadCount.get() == 2) {
+                            // Both images are uploaded, trigger the next steps
+                            performNextSteps();
+                        }
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -258,6 +279,14 @@ public class UploadDriversLicense extends AppCompatActivity {
                     }
                 });
     }
+
+    private void performNextSteps() {
+        // Implement the next steps after both images are uploaded
+        // This can include updating the UI, saving data to Firestore, etc.
+        Intent intent = new Intent(UploadDriversLicense.this, userHome.class);
+        startActivity(intent);
+    }
+
 
     private void openImageDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
