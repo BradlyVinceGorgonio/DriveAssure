@@ -49,8 +49,8 @@ public class LoginHomePage extends AppCompatActivity {
 
                 if(Semail.equals("admin") && Spass.equals("admin"))
                 {
-                    //Intent intent = new Intent(loginP.this, AdminModeActivity.class);
-                    //startActivity(intent);
+                    Intent intent = new Intent(LoginHomePage.this, AdminHome.class);
+                    startActivity(intent);
                 }
                 else
                 {
