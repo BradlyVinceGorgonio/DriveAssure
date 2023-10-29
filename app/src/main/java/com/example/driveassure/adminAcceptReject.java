@@ -111,7 +111,7 @@ public class adminAcceptReject extends AppCompatActivity {
                             });
 
                             // Fetch the Document URL from Firebase Storage
-                            String imagePathDoc = "applying_trainer_images/" + uid + "/front.jpg";
+                            String imagePathDoc = "users/" + uid + "/front.jpg";
                             StorageReference storageRefDoc = FirebaseStorage.getInstance().getReference().child(imagePathDoc);
 
                             storageRefDoc.getDownloadUrl().addOnSuccessListener(uri -> {
