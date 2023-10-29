@@ -109,7 +109,6 @@ public class adminAcceptReject extends AppCompatActivity {
                             }).addOnFailureListener(exception -> {
                                 // Handle the failure scenario
                             });
-
                             // Fetch the Document URL from Firebase Storage
                             String imagePathDoc = "users/" + uid + "/front.jpg";
                             StorageReference storageRefDoc = FirebaseStorage.getInstance().getReference().child(imagePathDoc);
