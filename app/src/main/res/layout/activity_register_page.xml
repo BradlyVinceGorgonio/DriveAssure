@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.084"></TextView>
+        app:layout_constraintVertical_bias="0.023"></TextView>
 
     <TextView
         android:id="@+id/textView3"
@@ -47,7 +47,7 @@
         app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.259" />
+        app:layout_constraintVertical_bias="0.2" />
 
     <TextView
         android:id="@+id/textView"
@@ -61,138 +61,179 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.256" />
+        app:layout_constraintVertical_bias="0.198" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="135dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/blue"
+        android:gravity="center"
+        android:text="Next"
         android:textColor="@color/black"
-        android:layout_width="350dp"
-        android:layout_height="450dp"
-        app:cardBackgroundColor="@android:color/white"
-        app:cardCornerRadius="10dp"
-        android:layout_marginTop="160dp"
-        app:cardElevation="15dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.145"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout10"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="440dp"
+        android:hint=" Fullname"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        app:endIconMode="clear_text"
+        app:helperText="Required"
+        app:helperTextTextColor="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.655">
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.25"
+        app:startIconDrawable="@drawable/profile"
+        app:startIconTint="@color/blue">
 
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/blue"
-            android:layout_marginTop="380dp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-           android:gravity="center"
-          android:text="Next"
-            android:layout_marginLeft="135dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/confirmPassRegister"
-            app:layout_constraintVertical_bias="0.203"
-             />
-
-
-        <EditText
-            android:textColorHint="@color/grey"
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/nameRegister"
-            android:textColor="@color/black"
-            android:layout_width="280dp"
-            android:layout_height="48dp"
-            android:background="@drawable/text_border"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="30dp"
-            android:hint="Name:"
-            android:drawableLeft="@drawable/profile_39"
-            android:inputType="text"
-            android:paddingLeft="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="DuplicateClickableBoundsCheck" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:maxLength="30"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="356dp"
+        android:hint=" Email"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        app:endIconMode="clear_text"
+        app:helperText="Required"
+        app:helperTextTextColor="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout10"
+        app:startIconDrawable="@drawable/email_205"
+        app:startIconTint="@color/blue">
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailRegister"
-            android:textColor="@color/black"
-            android:layout_width="280dp"
-            android:layout_height="48dp"
-            android:background="@drawable/text_border"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="100dp"
-            android:hint="Email:"
-            android:textColorHint="@color/grey"
-            android:drawableLeft="@drawable/email_205"
-            android:inputType="textEmailAddress"
-            android:paddingLeft="5dp"
-            app:layout_constraintTop_toBottomOf="@+id/nameRegister"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:maxLength="30"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout4"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="272dp"
+        android:hint=" Phone number"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        app:counterEnabled="true"
+        app:counterMaxLength="10"
+        app:endIconMode="clear_text"
+        app:helperText="Required"
+        app:helperTextTextColor="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        app:layout_constraintVertical_bias="0.8"
+        app:prefixText="+63 "
+        app:prefixTextColor="@color/blue"
+        app:startIconDrawable="@drawable/phone"
+        app:startIconTint="@color/blue">
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/contactRegister"
-            android:layout_width="280dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="35dp"
-            android:textColor="@color/black"
-            android:layout_marginTop="170dp"
-            android:background="@drawable/text_border"
-            android:drawableLeft="@drawable/phone_90"
-            android:ems="11"
-            android:hint="Contact Number:"
-            android:textColorHint="@color/grey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:inputType="number"
-            android:paddingLeft="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailRegister" />
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout5"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:hint=" Password"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        app:endIconMode="password_toggle"
+        app:helperText="Required"
+        app:helperTextTextColor="@color/red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4"
+        app:startIconDrawable="@drawable/password_153"
+        app:startIconTint="@color/blue">
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordRegister"
-            android:layout_width="280dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="35dp"
-            android:textColor="@color/black"
-            android:layout_marginTop="240dp"
-            android:background="@drawable/text_border"
-            android:drawableLeft="@drawable/password_152"
-            android:drawableRight="@drawable/hide_12"
-            android:ems="10"
-            android:hint="Password:"
-            android:textColorHint="@color/grey"
-            android:longClickable="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:inputType="textPassword"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/contactRegister" />
+            android:maxLength="30"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:hint=" Confirm password"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        app:endIconMode="password_toggle"
+        app:helperText="Required"
+        app:helperTextTextColor="@color/red"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout5"
+        app:startIconDrawable="@drawable/password_152"
+        app:startIconTint="@color/blue">
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/confirmPassRegister"
-            android:layout_width="280dp"
-            android:layout_height="48dp"
-            android:background="@drawable/text_border"
-            android:textColor="@color/black"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="310dp"
-            android:ems="10"
-            android:hint="Confirm Password:"
-            android:textColorHint="@color/grey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:inputType="textPassword"
-            android:paddingLeft="5dp"
-            android:drawableLeft="@drawable/password_153"
-            android:drawableRight="@drawable/hide_12"
-            android:paddingRight="5dp"
-            app:layout_constraintTop_toBottomOf="@+id/passwordRegister"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-    </androidx.cardview.widget.CardView>
+            android:maxLength="30"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
