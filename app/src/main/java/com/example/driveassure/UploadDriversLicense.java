@@ -391,7 +391,7 @@ public class UploadDriversLicense extends AppCompatActivity {
     private void performNextSteps() {
         // Implement the next steps after both images are uploaded
         // This can include updating the UI, saving data to Firestore, etc.
-        Intent intent = new Intent(UploadDriversLicense.this, userHome.class);
+        Intent intent = new Intent(UploadDriversLicense.this, WaitingActivity.class);
         startActivity(intent);
     }
 
