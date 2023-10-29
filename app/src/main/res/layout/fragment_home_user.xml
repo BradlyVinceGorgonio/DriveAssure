@@ -83,13 +83,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/blue"
+            android:background="@color/white"
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/filterAll"
                 android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:backgroundTint="@color/black"
                 app:cardBackgroundColor="@android:color/white"
@@ -98,14 +98,15 @@
                 tools:layout_editor_absoluteX="11dp"
                 tools:layout_editor_absoluteY="251dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="20dp"
-               android:layout_gravity="center"
-                android:text="All"></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="All"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    tools:ignore="TextSizeCheck"></TextView>
 
 
             </androidx.cardview.widget.CardView>
@@ -113,7 +114,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/filterJeepney"
                 android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:backgroundTint="@color/black"
                 app:cardBackgroundColor="@android:color/white"
@@ -125,17 +126,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textSize="20dp"
                     android:layout_gravity="center"
-                    android:text="Jeepney"></TextView>
+                    android:text="Jeepney"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    tools:ignore="TextSizeCheck"></TextView>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/filterSUV"
                 android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:backgroundTint="@color/black"
                 app:cardBackgroundColor="@android:color/white"
@@ -147,18 +149,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textSize="20dp"
                     android:layout_gravity="center"
-                    android:text="SUV"></TextView>
+                    android:text="SUV"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    tools:ignore="TextSizeCheck"></TextView>
             </androidx.cardview.widget.CardView>
 
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/filterToyota"
                 android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:backgroundTint="@color/black"
                 app:cardBackgroundColor="@android:color/white"
@@ -170,17 +173,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textSize="20dp"
                     android:layout_gravity="center"
-                    android:text="Toyota"></TextView>
+                    android:text="Toyota"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    tools:ignore="TextSizeCheck"></TextView>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/filterHonda"
                 android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:backgroundTint="@color/black"
                 app:cardBackgroundColor="@android:color/white"
@@ -194,7 +198,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:textStyle="bold"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:layout_gravity="center"
                     android:text="Honda"></TextView>
             </androidx.cardview.widget.CardView>
