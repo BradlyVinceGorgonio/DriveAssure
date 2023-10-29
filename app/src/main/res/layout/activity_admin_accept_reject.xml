@@ -9,26 +9,26 @@
 
     <ImageView
         android:id="@+id/licenseNumberImage"
-        android:layout_width="82dp"
-        android:layout_height="96dp"
+        android:layout_width="110dp"
+        android:layout_height="154dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.258"
+        app:layout_constraintHorizontal_bias="0.096"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.113"
+        app:layout_constraintVertical_bias="0.275"
         app:srcCompat="@drawable/contract" />
 
     <ImageView
         android:id="@+id/licenseExpiryImage"
-        android:layout_width="77dp"
-        android:layout_height="90dp"
+        android:layout_width="120dp"
+        android:layout_height="152dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.694"
+        app:layout_constraintHorizontal_bias="0.821"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.121"
+        app:layout_constraintVertical_bias="0.29"
         app:srcCompat="@drawable/agreement_1" />
 
     <TextView
@@ -40,10 +40,9 @@
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.544"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/licenseNumberImage"
-        app:layout_constraintVertical_bias="0.059" />
+        app:layout_constraintVertical_bias="0.061" />
 
     <TextView
         android:id="@+id/displayEmail"
@@ -56,7 +55,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/displayUserName"
-        app:layout_constraintVertical_bias="0.049" />
+        app:layout_constraintVertical_bias="0.06" />
 
     <TextView
         android:id="@+id/displayContact"
@@ -67,24 +66,24 @@
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/displayEmail"
-        app:layout_constraintVertical_bias="0.069" />
+        app:layout_constraintVertical_bias="0.089" />
 
     <TextView
         android:id="@+id/displayLicenseNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="License Number: "
+        android:text="License Number: N03-12-523232"
         android:textColor="@color/black"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/displayContact"
-        app:layout_constraintVertical_bias="0.103" />
+        app:layout_constraintVertical_bias="0.115" />
 
     <TextView
         android:id="@+id/displayLicenseExp"
@@ -95,12 +94,13 @@
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/displayLicenseNum"
-        app:layout_constraintVertical_bias="0.069" />
+        app:layout_constraintVertical_bias="0.09" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/userReject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/textviewcolor"
@@ -115,7 +115,7 @@
         app:layout_constraintVertical_bias="0.476" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/userAccept"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/blue"
@@ -128,5 +128,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/displayLicenseExp"
         app:layout_constraintVertical_bias="0.476" />
+
+    <ImageView
+        android:id="@+id/ProfileDisplayImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/licenseNumberImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
