@@ -240,6 +240,7 @@ public class UploadDriversLicense extends AppCompatActivity {
                                 userMap.put("contact number", Number);
                                 userMap.put("license num", licenseNum);
                                 userMap.put("license exp", licenseDate);
+                                userMap.put("uid",uid);
 
                                 // Add the user data to the Firestore "users" collection with the UID as the document name
                                 db.collection("admin")
