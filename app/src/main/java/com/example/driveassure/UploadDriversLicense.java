@@ -13,10 +13,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -103,30 +107,69 @@ public class UploadDriversLicense extends AppCompatActivity {
 
         frontPhotoLicense = findViewById(R.id.frontPhotoLicense);
         backPhotoLicense = findViewById(R.id.backPhotoLicense);
-        // Set up a listener to check for changes in the image views and the checkbox
-        View.OnClickListener updateSubmitButtonState = new View.OnClickListener() {
+
+
+        // Set an OnTextChangedListener for licenseNumber EditText
+        licenseNumber.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                // Check if both image views have images and the checkbox is checked
-                boolean image1HasImage = frontPhotoLicense.getDrawable() != null;
-                boolean image2HasImage = backPhotoLicense.getDrawable() != null;
-                boolean isChecked = registerCheck.isChecked();
-
-                if (image1HasImage && image2HasImage && isChecked) {
-                    // If all conditions are met, set the submit button to blue and enable it
-                    registrationBtn.setBackgroundColor(getResources().getColor(R.color.blue));
-                    registrationBtn.setEnabled(true);
-                } else {
-                    // Otherwise, set the submit button back to disabledGrey and disable it
-                    registrationBtn.setBackgroundColor(getResources().getColor(R.color.disabledGrey));
-                    registrationBtn.setEnabled(false);
-                }
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
-        };
 
-        frontPhotoLicense.setOnClickListener(updateSubmitButtonState);
-        backPhotoLicense.setOnClickListener(updateSubmitButtonState);
-        registerCheck.setOnClickListener(updateSubmitButtonState);
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                updateSubmitButtonState();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+
+        // Set an OnTextChangedListener for licenseExpiryDate EditText
+        licenseExpiryDate.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                updateSubmitButtonState();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+
+        // Set an OnCheckedChangeListener for the checkbox
+        registerCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                updateSubmitButtonState();
+            }
+        });
+
+        // Set an OnClickListener for the front image view
+        frontPhotoLicense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Add your logic for selecting an image for frontPhotoLicense
+                updateSubmitButtonState();
+            }
+        });
+
+        // Set an OnClickListener for the back image view
+        backPhotoLicense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Add your logic for selecting an image for backPhotoLicense
+                updateSubmitButtonState();
+            }
+        });
+
+
+
+
 
 
         registrationBtn.setOnClickListener(new View.OnClickListener() {
@@ -149,6 +192,25 @@ public class UploadDriversLicense extends AppCompatActivity {
         });
 
 
+    }
+    private boolean hasImage(ImageView imageView) {
+        return imageView.getDrawable() != null;
+    }
+
+    private void updateSubmitButtonState() {
+        boolean image1HasImage = hasImage(frontPhotoLicense);
+        boolean image2HasImage = hasImage(backPhotoLicense);
+        boolean isChecked = registerCheck.isChecked();
+        boolean hasLicenseNumber = !TextUtils.isEmpty(licenseNumber.getText().toString());
+        boolean hasExpiryDate = !TextUtils.isEmpty(licenseExpiryDate.getText().toString());
+
+        if (image1HasImage && image2HasImage && isChecked && hasLicenseNumber && hasExpiryDate) {
+            registrationBtn.setBackgroundColor(getResources().getColor(R.color.blue));
+            registrationBtn.setEnabled(true);
+        } else {
+            registrationBtn.setBackgroundColor(getResources().getColor(R.color.disabledGrey));
+            registrationBtn.setEnabled(false);
+        }
     }
 
 
@@ -390,7 +452,7 @@ public class UploadDriversLicense extends AppCompatActivity {
                     // Set the image bitmap to the backLicense ImageView
                     backPhotoLicense = findViewById(R.id.backPhotoLicense);
                     backPhotoLicense.setImageBitmap(imageBitmap);
-
+                    updateSubmitButtonState();
                     // You can also save the image with a different filename if needed
                     saveImageToDownloads(imageBitmap, "back.jpg");
                 } else {
@@ -405,6 +467,7 @@ public class UploadDriversLicense extends AppCompatActivity {
                     Uri imageUri = data.getData();
                     backPhotoLicense = findViewById(R.id.backPhotoLicense);
                     backPhotoLicense.setImageURI(imageUri);
+                    updateSubmitButtonState();
 
                     // You can also save the image with a different filename if needed
                     Bitmap selectedImage = getImageFromUri(imageUri);
