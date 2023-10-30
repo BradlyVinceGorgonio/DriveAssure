@@ -74,6 +74,7 @@
         android:id="@+id/cardView"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:clickable="true"
         android:layout_gravity="center"
         android:layout_marginTop="28dp"
         android:foregroundGravity="center"
@@ -122,6 +123,7 @@
         android:layout_height="200dp"
         android:layout_marginBottom="112dp"
         app:cardCornerRadius="8dp"
+        android:clickable="true"
         app:cardElevation="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -145,6 +147,7 @@
             android:layout_width="121dp"
             android:layout_height="120dp"
             android:layout_gravity="center"
+
             android:layout_marginTop="-20dp"
             android:background="@drawable/motorcycle_21"
             ></ImageView>
