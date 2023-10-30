@@ -11,6 +11,29 @@
         android:layout_height="120dp"
         android:background="@drawable/toolbar_background" />
 
+    <TextView
+        android:id="@+id/messageTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="600dp"
+        />
+
+
+    <ImageView
+        android:id="@+id/userImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="User Image"
+        android:src="@drawable/user_circle" />
+
     <ImageButton
         android:id="@+id/backButton"
         android:layout_width="50dp"
@@ -19,14 +42,14 @@
         android:contentDescription="Back"
         android:background="@color/light_blue"
         android:scaleType="fitCenter"
-        android:layout_gravity="center_vertical" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp" />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/messageRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:background="#FFFFFF"
         android:layout_below="@+id/messageInputLayout"
         android:padding="8dp"

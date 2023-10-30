@@ -11,7 +11,7 @@
         android:layout_height="120dp"
         android:background= "@drawable/toolbar_background">
 
-    <!-- Back button on the left side -->
+        <!-- Back button on the left side -->
         <ImageButton
             android:id="@+id/backButton"
             android:layout_width="50dp"
@@ -21,22 +21,22 @@
             android:background="@color/light_blue"
             android:scaleType="fitCenter" />
 
+        <ImageView
+            android:id="@+id/userImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="User Image"
+            android:src="@drawable/user_circle" />
 
-        <!-- User image at the center-top inside the header -->
-    <ImageView
-        android:id="@+id/userImage"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/user_circle"
-        android:contentDescription="User Image"/>
-        </androidx.appcompat.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
     <!-- Message list using a RecyclerView -->
-        <androidx.recyclerview.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/messageRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar"/>
 
-    </RelativeLayout>
+</RelativeLayout>
