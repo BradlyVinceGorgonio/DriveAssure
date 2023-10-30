@@ -1,0 +1,13 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background with a dirty white color -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#E6E6E6" />
+        </shape>
+    </item>
+
+
+    <item android:gravity="end">
+        <bitmap android:src="@drawable/icon_base_drug_down" />
+    </item>
+</layer-list>
