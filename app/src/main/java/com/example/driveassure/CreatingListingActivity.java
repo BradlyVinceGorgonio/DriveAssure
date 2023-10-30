@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -54,8 +55,6 @@ public class CreatingListingActivity extends AppCompatActivity {
             "Toyota", "Tesla", "UAZ", "Volkswagen", "Volvo", "Wuling", "Xpeng", "Yugo", "Zenos"
     };
 
-    RelativeLayout PickImageButton;
-
     String[] fuelTypes = {"Gasoline", "Diesel", "Electric", "Hybrid", "Other"};
 
     String[] conditions = {"Brand new", "Good as new", "Good", "Used"};
@@ -65,6 +64,14 @@ public class CreatingListingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creating_listing);
+
+        // Retrieve the string from the intent
+        Intent intent = getIntent();
+        String message = intent.getStringExtra("EXTRA_MESSAGE");
+        // Vehicle Type
+        Log.d("POWERPOWER", "Message: " + message);
+
+        Log.d("POWERPOWER", "Message:");
 
         Spinner motorcycleBrandsSpinner = findViewById(R.id.motorcycleBrandsSpinner);
         Spinner carBrandsSpinner = findViewById(R.id.carBrandsSpinner);
@@ -234,5 +241,4 @@ public class CreatingListingActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 }
