@@ -18,6 +18,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.tabs.TabLayout;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -164,6 +166,14 @@ public class CreatingListingActivity extends AppCompatActivity {
                 openGallery();
             }
         });
+
+        TabLayout tabLayout = findViewById(R.id.tabLayout);
+        imageSlider = findViewById(R.id.imageSlider);
+
+        imageSlider.setAdapter(imagePagerAdapter);
+
+// Attach the TabLayout to the ViewPager
+        tabLayout.setupWithViewPager(imageSlider, true);
 
 
     }
