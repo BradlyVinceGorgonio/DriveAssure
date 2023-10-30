@@ -16,17 +16,6 @@ public class homeUserFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_home_user, container, false);
-
-
-        Button button = view.findViewById(R.id.chatMsg);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
         return view;
     }
 }
