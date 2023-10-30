@@ -76,6 +76,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="28dp"
             android:clickable="true"
+
             android:foregroundGravity="center"
             app:cardCornerRadius="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -87,6 +88,7 @@
             tools:ignore="DuplicateClickableBoundsCheck">
 
             <Button
+                android:id="@+id/fourButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?android:attr/selectableItemBackground"
@@ -108,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="150dp"
-                android:text="Four wheels"
+                android:text="Car"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="20dp"
@@ -135,6 +137,7 @@
             tools:ignore="DuplicateClickableBoundsCheck">
 
             <Button
+                android:id="@+id/motorButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?android:attr/selectableItemBackground"
