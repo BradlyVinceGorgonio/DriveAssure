@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -19,7 +20,10 @@ Button confirmAgreeBtn;
         setContentView(R.layout.activity_terms_and_agreement);
 
 
-
+        Intent intent = getIntent();
+        String message = intent.getStringExtra("EXTRA_MESSAGE");
+        // Vehicle Type
+        Log.d("POWERPOWER", "onClick Kaka access lang ng terms and agreement : " + message);
         
 
         AgreeTermsandAgreement = findViewById(R.id.AgreeTermsandAgreement);
@@ -51,14 +55,15 @@ Button confirmAgreeBtn;
                 Intent intent = getIntent();
                 String message = intent.getStringExtra("EXTRA_MESSAGE");
                 // Vehicle Type
+                Log.d("POWERPOWER", "onClick Pag pindot ng confirm sa terms : " + message);
 
-                Intent intents = new Intent(terms_and_agreement.this, CreatingListingActivity.class);
-                startActivity(intents);
+
+
 
                 // Add the string as an extra
-
-                intent.putExtra("EXTRA_MESSAGE", message);
-
+                Intent intents = new Intent(terms_and_agreement.this, CreatingListingActivity.class);
+                intents.putExtra("EXTRA_MESSAGE", message);
+                Log.d("POWERPOWER", "onClick: 2" + message);
                 // Start the receiver activity
                 startActivity(intents);
             }

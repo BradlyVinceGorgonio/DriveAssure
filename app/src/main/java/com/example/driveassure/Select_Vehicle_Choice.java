@@ -5,6 +5,7 @@ import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -33,7 +34,7 @@ public class Select_Vehicle_Choice extends AppCompatActivity {
                 // Add the string as an extra
                 String message = "Car";
                 intent.putExtra("EXTRA_MESSAGE", message);
-
+                Log.d("POWERPOWER", "onClick: Selection muna" + message);
                 // Start the receiver activity
                 startActivity(intent);
             }
@@ -48,6 +49,7 @@ public class Select_Vehicle_Choice extends AppCompatActivity {
                 // Add the string as an extra
                 String message = "Motorcycle";
                 intent.putExtra("EXTRA_MESSAGE", message);
+                Log.d("POWERPOWER", "onClick: Selection muna " + message);
 
                 // Start the receiver activity
                 startActivity(intent);

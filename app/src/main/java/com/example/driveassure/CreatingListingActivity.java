@@ -69,9 +69,8 @@ public class CreatingListingActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String message = intent.getStringExtra("EXTRA_MESSAGE");
         // Vehicle Type
-        Log.d("POWERPOWER", "Message: " + message);
+        Log.d("POWERPOWER", "Message nasa listing act na: " + message);
 
-        Log.d("POWERPOWER", "Message:");
 
         Spinner motorcycleBrandsSpinner = findViewById(R.id.motorcycleBrandsSpinner);
         Spinner carBrandsSpinner = findViewById(R.id.carBrandsSpinner);
