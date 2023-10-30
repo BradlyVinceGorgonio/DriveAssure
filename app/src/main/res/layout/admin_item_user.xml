@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="@drawable/border_item"
         >
 
         <ImageView
@@ -21,6 +22,7 @@
             android:layout_height="120dp"
             android:src="@drawable/personvector"
             android:background="@drawable/border_item"
+
             />
 
         <LinearLayout
@@ -37,7 +39,8 @@
                 android:textColor="@color/black"
                 android:textSize="30sp"
                 android:text="Name"
-                android:background="@drawable/border_item"
+                android:layout_marginLeft="5dp"
+
                 />
 
             <TextView
@@ -47,7 +50,8 @@
 
                 android:id="@+id/userDisplayLicenseNum"
                 android:textColor="#D9512C"
-                android:background="@drawable/border_item"/>
+                android:layout_marginLeft="5dp"
+           />
 
             <TextView
                 android:layout_width="match_parent"
@@ -56,15 +60,17 @@
                 android:textColor="@color/black"
                 android:text="03/21/2024"
                 android:textSize="16dp"
-                android:background="@drawable/border_item"/>
+                android:layout_marginLeft="5dp"
+               />
             <TextView
                 android:id="@+id/userDisplayNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:text="09391920816"
+                android:layout_marginLeft="5dp"
                 android:textSize="14sp"
-                android:background="@drawable/border_item"
+
                 />
 
         </LinearLayout>

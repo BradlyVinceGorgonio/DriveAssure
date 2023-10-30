@@ -7,34 +7,7 @@
     android:background="@color/white"
     tools:context=".profileUserFragment"
 >
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello there!,"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.101"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.056" />
 
-    <TextView
-        android:id="@+id/firstName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bradly"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.056" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -43,50 +16,23 @@
         android:background="@drawable/user_circle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.55"
-        app:layout_constraintStart_toEndOf="@+id/firstName"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="View Profile"
-        android:textColor="@color/black"
-        android:textSize="13dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.81"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="TextSizeCheck"></TextView>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.024" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="564dp"
         android:background="@drawable/heart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.469"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstName"
-        app:layout_constraintVertical_bias="0.092"></ImageView>
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="524dp"
-        android:background="@drawable/car_key_1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.447"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
-        app:layout_constraintVertical_bias="0.58"></ImageView>
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.392"></ImageView>
 
     <TextView
         android:id="@+id/textView13"
@@ -97,7 +43,7 @@
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textView11"
-        app:layout_constraintHorizontal_bias="0.439"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4"
         app:layout_constraintVertical_bias="0.0"
@@ -112,38 +58,10 @@
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.468"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.001"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="TextSizeCheck"></TextView>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Chat"
-        android:textColor="@color/black"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.474"
-        app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.001"
-        tools:ignore="TextSizeCheck"></TextView>
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/message_more"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView12"
-        app:layout_constraintVertical_bias="0.04"></ImageView>
-
 
     <TextView
         android:id="@+id/textView14"
@@ -155,130 +73,41 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13"
-        app:layout_constraintVertical_bias="0.038"></TextView>
+        app:layout_constraintVertical_bias="0.036"></TextView>
 
-    <Button
-        android:id="@+id/contractBtn"
-        android:layout_width="380dp"
-        android:layout_height="43dp"
-        android:backgroundTint="@color/white"
-        android:drawableLeft="@drawable/contract"
-        android:drawableRight="@drawable/forwardarrow"
-        android:gravity="start|center_vertical"
-        android:text="Contract"
-        android:textColor="@color/black"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.419"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userAgreementBtn"
-        app:layout_constraintVertical_bias="0.038"
-        tools:ignore="TextSizeCheck,TouchTargetSizeCheck"></Button>
-
-    <Button
-        android:id="@+id/vehicleDocumentBtn"
-        android:layout_width="380dp"
-        android:layout_height="43dp"
-        android:backgroundTint="@color/white"
-        android:drawableLeft="@drawable/vehicledocuments"
-        android:drawableRight="@drawable/forwardarrow"
-        android:gravity="start|center_vertical"
-        android:text="Vehicle Documents"
-        android:textColor="@color/black"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.419"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rentalHistoryBtn"
-        app:layout_constraintVertical_bias="0.08"
-        tools:ignore="TextSizeCheck,TouchTargetSizeCheck"></Button>
-
-    <Button
-        android:id="@+id/userAgreementBtn"
-        android:layout_width="380dp"
-        android:layout_height="43dp"
-        android:backgroundTint="@color/white"
-        android:drawableLeft="@drawable/agreement_1"
-        android:drawableRight="@drawable/forwardarrow"
-        android:gravity="start|center_vertical"
-        android:text="User Agreement"
-        android:textColor="@color/black"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.419"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
-        app:layout_constraintVertical_bias="0.092"
-        tools:ignore="TextSizeCheck,TouchTargetSizeCheck"></Button>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/some_id"
-        android:layout_width="250dp"
-        android:layout_height="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/paymentBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.54"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileBtn"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Button
-        android:id="@+id/notificationBtn"
-        android:layout_width="380dp"
-        android:layout_height="43dp"
-        android:backgroundTint="@color/white"
-        android:drawableLeft="@drawable/notification_3"
-        android:drawableRight="@drawable/forwardarrow"
-        android:gravity="start|center_vertical"
-        android:text="Notification"
-        android:textColor="@color/black"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.419"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/paymentBtn"
-        app:layout_constraintVertical_bias="0.005"
-        tools:ignore="TextSizeCheck,TouchTargetSizeCheck"></Button>
-
-    <Button
+    <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
-        android:text="LOG OUT"
-        android:textColor="@color/white"
-        android:textStyle="bold"
+        android:background="@drawable/message_more"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vehicleDocumentBtn"
-        app:layout_constraintVertical_bias="0.407" />
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.018"></ImageView>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="250dp"
-        android:layout_height="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/notificationBtn"
+    <Button
+        android:id="@+id/profileBtn"
+        android:layout_width="380dp"
+        android:layout_height="43dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/user"
+        android:drawableRight="@drawable/forwardarrow"
+        android:gravity="start|center_vertical"
+        android:text="Profile"
+        android:textColor="@color/black"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/paymentBtn"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="250dp"
-        android:layout_height="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/rentalHistoryBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contractBtn"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView14"
+        app:layout_constraintVertical_bias="0.023"
+        tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/paymentBtn"
@@ -293,11 +122,45 @@
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.419"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileBtn"
-        app:layout_constraintVertical_bias="0.01"
+        app:layout_constraintVertical_bias="0.011"
         tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contract Details"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.057"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notificationBtn"
+        app:layout_constraintVertical_bias="0.031"></TextView>
+
+    <Button
+        android:id="@+id/userAgreementBtn"
+        android:layout_width="380dp"
+        android:layout_height="43dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/agreement_1"
+        android:drawableRight="@drawable/forwardarrow"
+        android:gravity="start|center_vertical"
+        android:text="User Agreement"
+        android:textColor="@color/black"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintVertical_bias="0.051"
+        tools:ignore="TextSizeCheck,TouchTargetSizeCheck"></Button>
 
     <androidx.cardview.widget.CardView
 
@@ -305,20 +168,9 @@
         android:layout_height="1dp"
         app:layout_constraintBottom_toTopOf="@+id/vehicleDocumentBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintHorizontal_bias="0.552"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rentalHistoryBtn"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView4"
-        android:layout_width="250dp"
-        android:layout_height="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/contractBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.54"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userAgreementBtn"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
@@ -334,45 +186,151 @@
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.419"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contractBtn"
-        app:layout_constraintVertical_bias="0.053"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="TextSizeCheck,TouchTargetSizeCheck"></Button>
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Contract Details"
-        android:textColor="@color/black"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.07"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notificationBtn"
-        app:layout_constraintVertical_bias="0.057"></TextView>
-
     <Button
-        android:id="@+id/profileBtn"
+        android:id="@+id/vehicleDocumentBtn"
         android:layout_width="380dp"
         android:layout_height="43dp"
         android:backgroundTint="@color/white"
-        android:drawableLeft="@drawable/user"
+        android:drawableLeft="@drawable/vehicledocuments"
         android:drawableRight="@drawable/forwardarrow"
         android:gravity="start|center_vertical"
-        android:text="Profile"
+        android:text="Vehicle Documents"
         android:textColor="@color/black"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.419"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14"
-        app:layout_constraintVertical_bias="0.045"
-        tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/rentalHistoryBtn"
+        app:layout_constraintVertical_bias="0.027"
+        tools:ignore="TextSizeCheck,TouchTargetSizeCheck"></Button>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:text="LOG OUT"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vehicleDocumentBtn"
+        app:layout_constraintVertical_bias="0.09" />
+
+    <Button
+        android:id="@+id/contractBtn"
+        android:layout_width="380dp"
+        android:layout_height="43dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/contract"
+        android:drawableRight="@drawable/forwardarrow"
+        android:gravity="start|center_vertical"
+        android:text="Contract"
+        android:textColor="@color/black"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userAgreementBtn"
+        app:layout_constraintVertical_bias="0.008"
+        tools:ignore="TextSizeCheck,TouchTargetSizeCheck"></Button>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="250dp"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/rentalHistoryBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.534"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contractBtn"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView4"
+        android:layout_width="250dp"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/contractBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.534"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userAgreementBtn"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/notificationBtn"
+        android:layout_width="380dp"
+        android:layout_height="43dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/notification_3"
+        android:drawableRight="@drawable/forwardarrow"
+        android:gravity="start|center_vertical"
+        android:text="Notification"
+        android:textColor="@color/black"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/paymentBtn"
+        app:layout_constraintVertical_bias="0.002"
+        tools:ignore="TextSizeCheck,TouchTargetSizeCheck"></Button>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/some_id"
+        android:layout_width="250dp"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/paymentBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.552"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileBtn"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="250dp"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/notificationBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.552"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/paymentBtn"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Message"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.451"
+        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.001"
+        tools:ignore="TextSizeCheck"></TextView>
+
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="560dp"
+        android:background="@drawable/car_key_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.35"></ImageView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
