@@ -1,13 +1,22 @@
 package com.example.driveassure;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+
+import javax.annotation.Nullable;
 
 public class CreatingListingActivity extends AppCompatActivity {
 
@@ -28,14 +37,29 @@ public class CreatingListingActivity extends AppCompatActivity {
             "Quattroporte (Maserati)", "Rolls-Royce", "Renault", "Subaru", "Skoda", "Suzuki", "Scion",
             "Toyota", "Tesla", "UAZ", "Volkswagen", "Volvo", "Wuling", "Xpeng", "Yugo", "Zenos"
     };
+
+    RelativeLayout PickImageButton;
+
     String[] fuelTypes = {"Gasoline", "Diesel", "Electric", "Hybrid", "Other"};
 
     String[] conditions = {"Brand new", "Good as new", "Good", "Used"};
     String[] transmissions = {"Automatic", "Manual"};
+
+  //  Uri Imageuri;
+  //  ArrayList<Uri> ChooseImageList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creating_listing);
+        //  PickImageButton = findViewById(R.id.ChooseImage);
+     //   ChooseImageList=new ArrayList<>();
+     //   View ViewPager = findViewById(R.id.viewPager);
+      //  PickImageButton.setOnClickListener(new View.OnClickListener() {
+          //  @Override
+           // public void onClick(View v) {
+              //  PickImageFromgallry();
+           // }
+       // });
 
         Spinner motorcycleBrandsSpinner = findViewById(R.id.motorcycleBrandsSpinner);
         Spinner carBrandsSpinner = findViewById(R.id.carBrandsSpinner);
@@ -127,4 +151,32 @@ public class CreatingListingActivity extends AppCompatActivity {
 
 
     }
+
+   // private void PickImageFromgallry() {
+      //  Intent intent = new Intent();
+      //  intent.setType("image/*");
+     //   intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
+     //   intent.setAction(Intent.ACTION_GET_CONTENT);
+      //  startActivityForResult(intent, 1);
+
+    //}
+
+   // @Override
+   // protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    //    super.onActivityResult(requestCode, resultCode, data);
+      //  if(requestCode==1 && requestCode==RESULT_OK && data!=null && data.getClipData() !=null){
+      //    //  int count =data.getClipData().getItemCount();
+          //  for (int i=0;i<count;i++){
+             //   Imageuri=data.getClipData().getItemAt(i).getUri();
+           // ChooseImageList.add(Imageuri);
+           // SetAdapter();
+
+
+           // }
+       // }
+   // }
+
+   // private void SetAdapter() {
+
+   // }
 }
