@@ -1,5 +1,6 @@
 package com.example.driveassure;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -19,7 +20,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -27,6 +35,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Nullable;
 
@@ -60,10 +70,19 @@ public class CreatingListingActivity extends AppCompatActivity {
     String[] conditions = {"Brand new", "Good as new", "Good", "Used"};
     String[] transmissions = {"Automatic", "Manual"};
 
+    String selectedMotorcycleBrand;
+    String selectedCarBrand;
+    String selectedTransmission;
+    String selectedFuelType;
+    String selectedCondition;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creating_listing);
+
+        // Add this to your onCreate method or the Application class
+        FirebaseApp.initializeApp(this);
+
 
         // Retrieve the string from the intent
         Intent intent = getIntent();
@@ -102,7 +121,7 @@ public class CreatingListingActivity extends AppCompatActivity {
         motorcycleBrandsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                String selectedMotorcycleBrand = motorcycleBrands[position];
+                selectedMotorcycleBrand = motorcycleBrands[position];
                 Toast.makeText(CreatingListingActivity.this, "Selected Motorcycle Brand: " + selectedMotorcycleBrand, Toast.LENGTH_LONG).show();
             }
 
@@ -114,7 +133,7 @@ public class CreatingListingActivity extends AppCompatActivity {
         carBrandsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                String selectedCarBrand = carBrands[position];
+                selectedCarBrand = carBrands[position];
                 Toast.makeText(CreatingListingActivity.this, "Selected Car Brand: " + selectedCarBrand, Toast.LENGTH_LONG).show();
             }
 
@@ -126,7 +145,7 @@ public class CreatingListingActivity extends AppCompatActivity {
         transmissionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                String selectedTransmission = transmissions[position];
+                selectedTransmission = transmissions[position];
                 Toast.makeText(CreatingListingActivity.this, "Selected Transmission: " + selectedTransmission, Toast.LENGTH_LONG).show();
             }
 
@@ -139,7 +158,7 @@ public class CreatingListingActivity extends AppCompatActivity {
         fuelTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                String selectedFuelType = fuelTypes[position];
+                selectedFuelType = fuelTypes[position];
                 Toast.makeText(CreatingListingActivity.this, "Selected Fuel Type: " + selectedFuelType, Toast.LENGTH_LONG).show();
             }
 
@@ -151,7 +170,7 @@ public class CreatingListingActivity extends AppCompatActivity {
         conditionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                String selectedCondition = conditions[position];
+                selectedCondition = conditions[position];
                 Toast.makeText(CreatingListingActivity.this, "Selected Condition: " + selectedCondition, Toast.LENGTH_LONG).show();
             }
 
@@ -240,4 +259,71 @@ public class CreatingListingActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    private void uploadImagesAndFieldsToFirebase()
+    {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
+        // Retrieve the string from the intent
+        Intent intent = getIntent();
+        String carType= intent.getStringExtra("EXTRA_MESSAGE");
+        // Car Type ^^
+
+        Map<String, Object> carData = new HashMap<>();
+        carData.put("vehicle type", carType);
+        carData.put("selectedMotorcycleBrand", selectedMotorcycleBrand);
+        carData.put("selectedCarBrand", selectedCarBrand);
+        carData.put("selectedTransmission", selectedTransmission);
+        carData.put("selectedFuelType", selectedFuelType);
+        carData.put("selectedCondition", selectedCondition);
+
+
+        DocumentReference carPostDocument = db.collection("car-posts").document(); // Automatically generates a unique ID
+        String carPostId = carPostDocument.getId(); // Get the ID
+
+        carPostDocument.set(carData)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Car-post document added successfully
+                        // You have the carPostId as the document's ID
+                        // Now create a subcollection with the same ID
+                        createSubcollectionWithSameId(db, carPostId, carData);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Handle errors
+                    }
+                });
+    }
+    private void createSubcollectionWithSameId(FirebaseFirestore db, String carPostId, Map<String, Object> carData) {
+
+        // Initialize Firebase Authentication
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+        // Check if the user is signed in (authenticated)
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String userId = currentUser.getUid();
+        db.collection("users")
+                .document(userId)
+                .collection("vehicle listings")
+                .document(carPostId) // Set the same document ID as the car-post document
+                .set(carData)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Subcollection document added successfully with the same ID
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Handle errors
+                    }
+                });
+    }
+
 }
