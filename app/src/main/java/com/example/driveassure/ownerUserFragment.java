@@ -20,16 +20,12 @@ public class ownerUserFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_owner_user, container, false);
 
+        addCarBtn = view.findViewById(R.id.addCarBtn);
         addCarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                create_new_listing fragment2 = new create_new_listing();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.pagerMain, fragment2);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+
 
             }
         });

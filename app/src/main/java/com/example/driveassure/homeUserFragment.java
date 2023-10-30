@@ -26,13 +26,7 @@ public class homeUserFragment extends Fragment {
         chatMsg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Create a new instance of the fragment you want to navigate to
-                ChatList fragment2 = new ChatList();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.pagerMain, fragment2);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+
             }
         });
 
