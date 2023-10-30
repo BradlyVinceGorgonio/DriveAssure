@@ -6,9 +6,12 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -19,6 +22,11 @@ import java.util.ArrayList;
 import javax.annotation.Nullable;
 
 public class CreatingListingActivity extends AppCompatActivity {
+
+    private static final int REQUEST_CODE = 101;
+    private ViewPager imageSlider;
+    private ImagePagerAdapter imagePagerAdapter;
+    private ArrayList<Uri> selectedImageUris;
 
     String[] motorcycleBrands = {
             "Aprilia", "Benelli", "Bimota", "BMW", "Buell", "Cagiva", "Can-Am",
@@ -45,21 +53,10 @@ public class CreatingListingActivity extends AppCompatActivity {
     String[] conditions = {"Brand new", "Good as new", "Good", "Used"};
     String[] transmissions = {"Automatic", "Manual"};
 
-  //  Uri Imageuri;
-  //  ArrayList<Uri> ChooseImageList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creating_listing);
-        //  PickImageButton = findViewById(R.id.ChooseImage);
-     //   ChooseImageList=new ArrayList<>();
-     //   View ViewPager = findViewById(R.id.viewPager);
-      //  PickImageButton.setOnClickListener(new View.OnClickListener() {
-          //  @Override
-           // public void onClick(View v) {
-              //  PickImageFromgallry();
-           // }
-       // });
 
         Spinner motorcycleBrandsSpinner = findViewById(R.id.motorcycleBrandsSpinner);
         Spinner carBrandsSpinner = findViewById(R.id.carBrandsSpinner);
@@ -149,34 +146,48 @@ public class CreatingListingActivity extends AppCompatActivity {
             }
         });
 
+        Button selectImagesButton = findViewById(R.id.selectImagesButton);
+        imageSlider = findViewById(R.id.imageSlider);
+        selectedImageUris = new ArrayList<>();
+        imagePagerAdapter = new ImagePagerAdapter(this, selectedImageUris);
+        imageSlider.setAdapter(imagePagerAdapter);
+
+        selectImagesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGallery();
+            }
+        });
+
 
     }
+    private void openGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        intent.setType("image/*");
+        startActivityForResult(intent, REQUEST_CODE);
+    }
 
-   // private void PickImageFromgallry() {
-      //  Intent intent = new Intent();
-      //  intent.setType("image/*");
-     //   intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
-     //   intent.setAction(Intent.ACTION_GET_CONTENT);
-      //  startActivityForResult(intent, 1);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-    //}
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            if (data != null) {
+                if (data.getClipData() != null) {
+                    int itemCount = data.getClipData().getItemCount();
+                    for (int i = 0; i < itemCount; i++) {
+                        Uri imageUri = data.getClipData().getItemAt(i).getUri();
+                        selectedImageUris.add(imageUri);
+                    }
+                } else if (data.getData() != null) {
+                    Uri imageUri = data.getData();
+                    selectedImageUris.add(imageUri);
+                }
 
-   // @Override
-   // protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    //    super.onActivityResult(requestCode, resultCode, data);
-      //  if(requestCode==1 && requestCode==RESULT_OK && data!=null && data.getClipData() !=null){
-      //    //  int count =data.getClipData().getItemCount();
-          //  for (int i=0;i<count;i++){
-             //   Imageuri=data.getClipData().getItemAt(i).getUri();
-           // ChooseImageList.add(Imageuri);
-           // SetAdapter();
+                imagePagerAdapter.notifyDataSetChanged();
+            }
+        }
+    }
 
-
-           // }
-       // }
-   // }
-
-   // private void SetAdapter() {
-
-   // }
 }
