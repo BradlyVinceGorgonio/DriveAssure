@@ -6,6 +6,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,6 +18,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 import javax.annotation.Nullable;
@@ -178,15 +184,44 @@ public class CreatingListingActivity extends AppCompatActivity {
                     int itemCount = data.getClipData().getItemCount();
                     for (int i = 0; i < itemCount; i++) {
                         Uri imageUri = data.getClipData().getItemAt(i).getUri();
+                        saveImageToDownloads(imageUri);
                         selectedImageUris.add(imageUri);
                     }
                 } else if (data.getData() != null) {
                     Uri imageUri = data.getData();
+                    saveImageToDownloads(imageUri);
                     selectedImageUris.add(imageUri);
                 }
 
                 imagePagerAdapter.notifyDataSetChanged();
             }
+        }
+    }
+    private void saveImageToDownloads(Uri imageUri) {
+        try {
+            String fileName = "carPics_" + System.currentTimeMillis() + ".jpg";
+            File downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+            File carPicsDir = new File(downloadsDir, "carPics");
+
+            if (!carPicsDir.exists()) {
+                carPicsDir.mkdirs();
+            }
+
+            File outputFile = new File(carPicsDir, fileName);
+
+            InputStream inputStream = getContentResolver().openInputStream(imageUri);
+            OutputStream outputStream = new FileOutputStream(outputFile);
+
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
+            }
+
+            inputStream.close();
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
