@@ -25,7 +25,8 @@ public class ownerUserFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-
+                Intent intent = new Intent(getContext(), Select_Vehicle_Choice.class);
+                startActivity(intent);
 
             }
         });

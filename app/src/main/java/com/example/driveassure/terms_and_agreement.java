@@ -18,10 +18,7 @@ Button confirmAgreeBtn;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_terms_and_agreement);
 
-        // Retrieve the string from the intent
-        Intent intent = getIntent();
-        String message = intent.getStringExtra("EXTRA_MESSAGE");
-        // Vehicle Type
+
 
         
 
@@ -50,8 +47,20 @@ Button confirmAgreeBtn;
         confirmAgreeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(terms_and_agreement.this, CreatingListingActivity.class);
-                startActivity(intent);
+                // Retrieve the string from the intent
+                Intent intent = getIntent();
+                String message = intent.getStringExtra("EXTRA_MESSAGE");
+                // Vehicle Type
+
+                Intent intents = new Intent(terms_and_agreement.this, CreatingListingActivity.class);
+                startActivity(intents);
+
+                // Add the string as an extra
+
+                intent.putExtra("EXTRA_MESSAGE", message);
+
+                // Start the receiver activity
+                startActivity(intents);
             }
         });
 
