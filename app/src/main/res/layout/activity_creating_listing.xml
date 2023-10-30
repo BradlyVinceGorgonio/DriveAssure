@@ -6,12 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".CreatingListingActivity">
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="135dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_margin="10dp"
+            android:background="@color/blue">
+
+            <View
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/camera_220"></View>
+        </RelativeLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+
+    </LinearLayout>
+
+
+
+
     <Spinner
         android:id="@+id/motorcycleBrandsSpinner"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="200dp"
         android:backgroundTint="@color/black"
         android:gravity="center"
         android:textAlignment="center"
@@ -24,10 +58,12 @@
         app:layout_constraintVertical_bias="0.033">
     </Spinner>
 
+
     <TextView
         android:id="@+id/select"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
         android:clickable="true"
         android:focusable="true"
         android:text="MotorCycle"
@@ -36,9 +72,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.134"
+        app:layout_constraintVertical_bias="0.209"
         tools:ignore="TouchTargetSizeCheck" />
-
 
     <Spinner
         android:id="@+id/carBrandsSpinner"
@@ -52,6 +87,7 @@
         app:layout_constraintTop_toBottomOf="@+id/motorcycleBrandsSpinner"
         app:layout_constraintVertical_bias="0.058" />
 
+
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
@@ -62,8 +98,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/select"
-        app:layout_constraintVertical_bias="0.108" />
-
+        app:layout_constraintVertical_bias="0.167" />
 
     <Spinner
         android:id="@+id/transmissionSpinner"
@@ -135,6 +170,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView18"
         app:layout_constraintVertical_bias="0.163"></TextView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:hint=" Address"
+        app:startIconTint="@color/blue"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        app:helperText="Required"
+        app:endIconMode="clear_text"
+        app:helperTextTextColor="@color/red"
+        app:startIconDrawable="@drawable/address"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/conditionSpinner">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
