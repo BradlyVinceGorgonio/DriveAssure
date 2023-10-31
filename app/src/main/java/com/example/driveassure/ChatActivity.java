@@ -1,19 +1,18 @@
 package com.example.driveassure;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class ChatActivity extends Fragment {
+public class ChatActivity extends AppCompatActivity {
 
     private EditText messageEditText;
     private Button sendButton;
@@ -26,12 +25,13 @@ public class ChatActivity extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_chat_activity, container, false);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_chat); // Set the layout XML for this activity
 
-        messageEditText = view.findViewById(R.id.messageEditText);
-        sendButton = view.findViewById(R.id.sendButton);
-        messageTextView = view.findViewById(R.id.messageTextView);
+        messageEditText = messageEditText.findViewById(R.id.messageEditText);
+        sendButton = sendButton.findViewById(R.id.sendButton);
+        messageTextView = messageTextView.findViewById(R.id.messageTextView);
 
         // Initialize Firebase (Make sure you have already set up Firebase in your project)
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -43,8 +43,6 @@ public class ChatActivity extends Fragment {
                 sendMessage();
             }
         });
-
-        return view;
     }
 
     private void sendMessage() {

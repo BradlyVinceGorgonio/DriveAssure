@@ -30,14 +30,14 @@
             android:textStyle="bold|italic"></TextView>
 
         <ImageButton
-            android:id="@+id/chatMsg"
+            android:id="@+id/chatoMsg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="360dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/message_more"
             android:contentDescription="chat"
-            tools:ignore="TouchTargetSizeCheck"></ImageButton>
+            tools:ignore="TouchTargetSizeCheck" />
 
         <EditText
             android:id="@+id/searchBar"
