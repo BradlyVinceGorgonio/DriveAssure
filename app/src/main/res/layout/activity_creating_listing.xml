@@ -13,7 +13,12 @@
         android:id="@+id/imageSliderContainer"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
         android:orientation="vertical"
+        android:background="@drawable/text_border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -21,13 +26,18 @@
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/imageSlider"
             android:layout_width="match_parent"
-            android:layout_height="192dp"
+            android:layout_height="190dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
-            android:layout_height="8dp"
+            android:layout_height="5dp"
+            android:layout_marginTop="-10dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
             android:layout_alignParentBottom="true"
             app:tabGravity="fill"
             app:tabIndicatorColor="@color/blue"
@@ -58,7 +68,11 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="240dp">
+        android:layout_marginTop="240dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <LinearLayout
@@ -72,14 +86,14 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="330dp"
                 android:layout_height="wrap_content"
-                android:hint=" Title"
+                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
+                android:hint=" Title"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
                 app:endIconMode="clear_text"
                 app:helperText="Required"
                 app:helperTextTextColor="@color/red"
-                android:layout_gravity="center"
                 app:startIconDrawable="@drawable/cars"
                 app:startIconTint="@color/blue">
 
@@ -94,49 +108,58 @@
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutCarBrand"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
-                android:text="Car Brand"
-                android:layout_marginLeft="-128dp"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:hint=" Car Brand"
+                android:textColorHint="@color/grey"
+                app:endIconMode="dropdown_menu"
+                app:helperText="Required"
+                app:helperTextTextColor="@color/red"
+                app:startIconTint="@color/blue">
 
-            <Spinner
-                android:id="@+id/carBrandsSpinner"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_marginLeft="-100dp"
-                android:layout_gravity="center" />
+                <AutoCompleteTextView
+                    android:id="@+id/carBrandSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:inputType="none"
+                    android:paddingLeft="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-            <TextView
-                android:id="@+id/select"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutMotorCycle"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:text="MotorCycle"
-                android:layout_marginLeft="-123dp"
-                android:layout_marginTop="-70dp"
                 android:layout_gravity="center"
-                tools:ignore="TouchTargetSizeCheck"
-                />
+                android:layout_marginTop="15dp"
+                android:hint=" MotorCycle"
+                android:textColorHint="@color/grey"
+                app:endIconMode="dropdown_menu"
+                app:helperText="Required"
+                app:helperTextTextColor="@color/red"
+                app:startIconTint="@color/blue">
 
-
-            <Spinner
-                android:id="@+id/motorcycleBrandsSpinner"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:backgroundTint="@color/black"
-                android:gravity="center"
-                android:layout_marginLeft="-100dp"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                ></Spinner>
-
+                <AutoCompleteTextView
+                    android:id="@+id/motorcycleBrandSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:inputType="none"
+                    android:paddingLeft="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -144,13 +167,13 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="330dp"
                 android:layout_height="wrap_content"
-                android:hint=" Vehicle Model"
+                android:layout_gravity="center"
                 android:layout_marginTop="15dp"
+                android:hint=" Vehicle Model"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
                 app:endIconMode="clear_text"
                 app:helperText="Required"
-                android:layout_gravity="center"
                 app:helperTextTextColor="@color/red"
                 app:startIconDrawable="@drawable/address"
                 app:startIconTint="@color/blue">
@@ -167,117 +190,20 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <TextView
-                android:id="@+id/textView17"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Vehicle Transmission"
-                android:layout_marginLeft="-92dp"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center"
-                />
-
-            <Spinner
-                android:id="@+id/transmissionSpinner"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_marginLeft="-100dp"
-                android:layout_gravity="center"
-                />
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout5"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="330dp"
-                android:layout_height="wrap_content"
-                android:hint=" Vehicle Seat Count"
-                android:layout_marginTop="15dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/grey"
-                app:endIconMode="clear_text"
-                app:helperText="Required"
-                android:layout_gravity="center"
-                app:helperTextTextColor="@color/red"
-                app:startIconDrawable="@drawable/address"
-                app:startIconTint="@color/blue">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/vehicleSeatCount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:inputType="number"
-                    android:textColor="@color/black"
-
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout6"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="330dp"
-                android:layout_height="wrap_content"
-                android:hint=" Vehicle Colour"
-                android:layout_marginTop="15dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/grey"
-                app:endIconMode="clear_text"
-                app:helperText="Required"
-                android:layout_gravity="center"
-                app:helperTextTextColor="@color/red"
-                app:startIconDrawable="@drawable/address"
-                app:startIconTint="@color/blue">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/vehicleColour"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:inputType="text"
-                    android:textColor="@color/black"
-
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <TextView
-                android:id="@+id/textView18"
-                android:layout_width="64dp"
-                android:layout_height="19dp"
-                android:text="Fuel Type"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="-125dp"
-                android:layout_gravity="center"
-
-                />
-
-            <Spinner
-                android:id="@+id/fuelTypeSpinner"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_marginLeft="-100dp"
-                android:layout_gravity="center"
-                />
-
-
-
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout4"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="330dp"
                 android:layout_height="wrap_content"
-                android:hint=" Vehicle Release Date"
+                android:layout_gravity="center"
                 android:layout_marginTop="15dp"
+                android:hint=" Vehicle Year Model"
+                app:counterEnabled="true"
+                app:counterMaxLength="4"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
                 app:endIconMode="clear_text"
                 app:helperText="Required"
-                android:layout_gravity="center"
                 app:helperTextTextColor="@color/red"
                 app:startIconDrawable="@drawable/address"
                 app:startIconTint="@color/blue">
@@ -295,7 +221,119 @@
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutTransmission"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:hint=" Vehicle Transmission"
+                android:textColorHint="@color/grey"
+                app:endIconMode="dropdown_menu"
+                app:helperText="Required"
+                app:helperTextTextColor="@color/red"
+                app:startIconTint="@color/blue">
 
+                <AutoCompleteTextView
+                    android:id="@+id/transmissionSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:inputType="none"
+                    android:paddingLeft="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout5"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:hint=" Vehicle Seat Count"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
+                app:endIconMode="clear_text"
+                app:helperText="Required"
+                app:counterEnabled="true"
+                app:counterMaxLength="2"
+                app:helperTextTextColor="@color/red"
+                app:startIconDrawable="@drawable/address"
+                app:startIconTint="@color/blue">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/vehicleSeatCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:textColor="@color/black"
+
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout6"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:hint=" Vehicle Colour"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
+                app:endIconMode="clear_text"
+                app:helperText="Required"
+                app:helperTextTextColor="@color/red"
+                app:startIconDrawable="@drawable/address"
+                app:startIconTint="@color/blue">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/vehicleColour"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutFuelType"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:hint=" Fuel Type"
+                android:textColorHint="@color/grey"
+                app:endIconMode="dropdown_menu"
+                app:helperText="Required"
+                app:helperTextTextColor="@color/red"
+                app:startIconTint="@color/blue">
+
+                <AutoCompleteTextView
+                    android:id="@+id/fuelTypeSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:inputType="none"
+                    android:paddingLeft="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    tools:ignore="TextSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
 
@@ -305,13 +343,13 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="330dp"
                 android:layout_height="wrap_content"
-                android:hint=" Vehicle Kilometer Run"
+                android:layout_gravity="center"
                 android:layout_marginTop="15dp"
+                android:hint=" Vehicle Kilometer Run"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
                 app:endIconMode="clear_text"
                 app:helperText="Required"
-                android:layout_gravity="center"
                 app:helperTextTextColor="@color/red"
                 app:startIconDrawable="@drawable/address"
                 app:startIconTint="@color/blue">
@@ -328,7 +366,33 @@
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutCondition"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:hint=" Vehicle Condition"
+                android:longClickable="false"
+                android:textColorHint="@color/grey"
+                app:endIconMode="dropdown_menu"
+                app:helperText="Required"
+                app:helperTextTextColor="@color/red"
+                app:startIconTint="@color/blue">
 
+                <AutoCompleteTextView
+                    android:id="@+id/conditionSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:inputType="none"
+                    android:paddingLeft="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    tools:ignore="TextSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -336,13 +400,13 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="330dp"
                 android:layout_height="wrap_content"
-                android:hint=" Address"
+                android:layout_gravity="center"
                 android:layout_marginTop="15dp"
+                android:hint=" Car Address Location"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
                 app:endIconMode="clear_text"
                 app:helperText="Required"
-                android:layout_gravity="center"
                 app:helperTextTextColor="@color/red"
                 app:startIconDrawable="@drawable/address"
                 app:startIconTint="@color/blue">
@@ -364,13 +428,13 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="330dp"
                 android:layout_height="wrap_content"
-                android:hint=" Include Description"
+                android:layout_gravity="center"
                 android:layout_marginTop="15dp"
+                android:hint=" Include Description"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
                 app:endIconMode="clear_text"
                 app:helperText="Required"
-                android:layout_gravity="center"
                 app:helperTextTextColor="@color/red"
                 app:startIconDrawable="@drawable/address"
                 app:startIconTint="@color/blue">
@@ -389,47 +453,17 @@
 
 
 
-
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Vehicle Condition"
-                android:layout_marginTop="40dp"
-                android:layout_marginLeft="-100dp"
-                android:layout_gravity="center"
-                ></TextView>
-
-            <Spinner
-                android:id="@+id/conditionSpinner"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_marginLeft="-100dp"
-                android:layout_gravity="center"
-                />
-
-
-
-
-
-
-
-
-
-
             <Button
                 android:id="@+id/submitBtn"
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
-                android:backgroundTint="@color/blue"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:layout_marginTop="40dp"
                 android:layout_gravity="center"
-                android:text="Submit"></Button>
-
+                android:layout_marginTop="40dp"
+                android:backgroundTint="@color/blue"
+                android:text="Submit"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold"></Button>
 
 
         </LinearLayout>

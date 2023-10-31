@@ -3,7 +3,8 @@ package com.example.driveassure;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
-
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.textfield.TextInputEditText;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -75,6 +77,8 @@ public class CreatingListingActivity extends AppCompatActivity {
     String selectedTransmission;
     String selectedFuelType;
     String selectedCondition;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,93 +95,171 @@ public class CreatingListingActivity extends AppCompatActivity {
         Log.d("POWERPOWER", "Message nasa listing act na: " + message);
 
 
-        Spinner motorcycleBrandsSpinner = findViewById(R.id.motorcycleBrandsSpinner);
-        Spinner carBrandsSpinner = findViewById(R.id.carBrandsSpinner);
-        Spinner transmissionSpinner = findViewById(R.id.transmissionSpinner);
-        Spinner fuelTypeSpinner = findViewById(R.id.fuelTypeSpinner);
-        Spinner conditionSpinner = findViewById(R.id.conditionSpinner);
-
-        ArrayAdapter<String> motorcycleSpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, motorcycleBrands);
-        motorcycleSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        motorcycleBrandsSpinner.setAdapter(motorcycleSpinnerAdapter);
-
-        ArrayAdapter<String> carSpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, carBrands);
-        carSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        carBrandsSpinner.setAdapter(carSpinnerAdapter);
-
-        ArrayAdapter<String> transmissionSpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, transmissions);
-        transmissionSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        transmissionSpinner.setAdapter(transmissionSpinnerAdapter);
-
-        ArrayAdapter<String> fuelTypeSpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, fuelTypes);
-        fuelTypeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        fuelTypeSpinner.setAdapter(fuelTypeSpinnerAdapter);
-
-        ArrayAdapter<String> conditionSpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, conditions);
-        conditionSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        conditionSpinner.setAdapter(conditionSpinnerAdapter);
 
 
-        motorcycleBrandsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        TextInputLayout conditionTextInputLayout = findViewById(R.id.textInputLayoutCondition);
+        AutoCompleteTextView conditionAutoComplete = findViewById(R.id.conditionSpinner);
+
+
+        ArrayAdapter<String> conditionAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, conditions);
+        conditionAutoComplete.setAdapter(conditionAdapter);
+
+        conditionAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                selectedMotorcycleBrand = motorcycleBrands[position];
-                Toast.makeText(CreatingListingActivity.this, "Selected Motorcycle Brand: " + selectedMotorcycleBrand, Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-        carBrandsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                selectedCarBrand = carBrands[position];
-                Toast.makeText(CreatingListingActivity.this, "Selected Car Brand: " + selectedCarBrand, Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-        transmissionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                selectedTransmission = transmissions[position];
-                Toast.makeText(CreatingListingActivity.this, "Selected Transmission: " + selectedTransmission, Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedCondition = (String) parent.getItemAtPosition(position);
+               // Toast.makeText(CreatingListingActivity.this, "Selected Condition: " + selectedCondition, Toast.LENGTH_LONG).show();
             }
         });
 
 
-        fuelTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                selectedFuelType = fuelTypes[position];
-                Toast.makeText(CreatingListingActivity.this, "Selected Fuel Type: " + selectedFuelType, Toast.LENGTH_LONG).show();
-            }
+        TextInputLayout fuelTypeTextInputLayout = findViewById(R.id.textInputLayoutFuelType);
+        AutoCompleteTextView fuelTypeAutoComplete = findViewById(R.id.fuelTypeSpinner);
 
+
+        ArrayAdapter<String> fuelTypeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, fuelTypes);
+        fuelTypeAutoComplete.setAdapter(fuelTypeAdapter);
+
+        fuelTypeAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedFuelType = (String) parent.getItemAtPosition(position);
+
             }
         });
 
-        conditionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                selectedCondition = conditions[position];
-                Toast.makeText(CreatingListingActivity.this, "Selected Condition: " + selectedCondition, Toast.LENGTH_LONG).show();
-            }
+        TextInputLayout transmissionTextInputLayout = findViewById(R.id.textInputLayoutTransmission);
+        AutoCompleteTextView transmissionAutoComplete = findViewById(R.id.transmissionSpinner);
 
+        ArrayAdapter<String> transmissionAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, transmissions);
+        transmissionAutoComplete.setAdapter(transmissionAdapter);
+        transmissionAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedTransmission = (String) parent.getItemAtPosition(position);
+
             }
         });
+
+
+        TextInputLayout carBrandTextInputLayout = findViewById(R.id.textInputLayoutCarBrand);
+        AutoCompleteTextView carBrandAutoComplete = findViewById(R.id.carBrandSpinner);
+
+        ArrayAdapter<String> carBrandsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, carBrands);
+        carBrandAutoComplete.setAdapter(carBrandsAdapter);
+
+
+        carBrandAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedCarBrand = (String) parent.getItemAtPosition(position);
+                // Handle the selection as needed
+            }
+        });
+
+
+        TextInputLayout motorCycleTextInputLayout = findViewById(R.id.textInputLayoutMotorCycle);
+        AutoCompleteTextView motorCycleAutoComplete = findViewById(R.id.motorcycleBrandSpinner);
+
+        ArrayAdapter<String> motorCycleAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, motorcycleBrands);
+        motorCycleAutoComplete.setAdapter(motorCycleAdapter);
+
+        motorCycleAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedMotorCycleBrand = (String) parent.getItemAtPosition(position);
+
+            }
+        });
+
+
+       // Spinner motorcycleBrandsSpinner = findViewById(R.id.motorcycleBrandsSpinner);
+       // Spinner carBrandsSpinner = findViewById(R.id.carBrandsSpinner);
+      //  Spinner transmissionSpinner = findViewById(R.id.transmissionSpinner);
+     //   Spinner fuelTypeSpinner = findViewById(R.id.fuelTypeSpinner);
+      //  Spinner conditionSpinner = findViewById(R.id.conditionSpinner);
+
+       // ArrayAdapter<String> motorcycleSpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, motorcycleBrands);
+        //motorcycleSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+       // motorcycleBrandsSpinner.setAdapter(motorcycleSpinnerAdapter);
+
+      //  ArrayAdapter<String> carSpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, carBrands);
+    //    carSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+     //   carBrandsSpinner.setAdapter(carSpinnerAdapter);
+
+      //  ArrayAdapter<String> transmissionSpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, transmissions);
+      //  transmissionSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+      //  transmissionSpinner.setAdapter(transmissionSpinnerAdapter);
+
+      //  ArrayAdapter<String> fuelTypeSpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, fuelTypes);
+      //  fuelTypeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+       // fuelTypeSpinner.setAdapter(fuelTypeSpinnerAdapter);
+
+       // ArrayAdapter<String> conditionSpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, conditions);
+       // conditionSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+       // conditionSpinner.setAdapter(conditionSpinnerAdapter);
+
+
+       // motorcycleBrandsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+          //  @Override
+           // public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                //selectedMotorcycleBrand = motorcycleBrands[position];
+               // Toast.makeText(CreatingListingActivity.this, "Selected Motorcycle Brand: " + selectedMotorcycleBrand, Toast.LENGTH_LONG).show();
+           // }
+
+           // @Override
+           // public void onNothingSelected(AdapterView<?> parent) {
+           // }
+        //});
+
+     //   carBrandsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+          //  @Override
+          //  public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+             //   selectedCarBrand = carBrands[position];
+               // Toast.makeText(CreatingListingActivity.this, "Selected Car Brand: " + selectedCarBrand, Toast.LENGTH_LONG).show();
+          //  }
+
+          //  @Override
+           // public void onNothingSelected(AdapterView<?> parent) {
+         //   }
+     //   });
+
+       // transmissionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+          //  @Override
+           // public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+               // selectedTransmission = transmissions[position];
+                //Toast.makeText(CreatingListingActivity.this, "Selected Transmission: " + selectedTransmission, Toast.LENGTH_LONG).show();
+          //  }
+
+          //  @Override
+          //  public void onNothingSelected(AdapterView<?> parent) {
+         //   }
+     //   });
+
+
+     //   fuelTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+         //   @Override
+         //   public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+          //      selectedFuelType = fuelTypes[position];
+            //    Toast.makeText(CreatingListingActivity.this, "Selected Fuel Type: " + selectedFuelType, Toast.LENGTH_LONG).show();
+         //   }
+
+          //  @Override
+           // public void onNothingSelected(AdapterView<?> parent) {
+         //   }
+       // });
+
+     //   conditionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+          //  @Override
+          //  public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+          //      selectedCondition = conditions[position];
+           //     Toast.makeText(CreatingListingActivity.this, "Selected Condition: " + selectedCondition, Toast.LENGTH_LONG).show();
+          //  }
+
+       //     @Override
+          //  public void onNothingSelected(AdapterView<?> parent) {
+          //  }
+       // });
 
         Button selectImagesButton = findViewById(R.id.selectImagesButton);
         imageSlider = findViewById(R.id.imageSlider);
