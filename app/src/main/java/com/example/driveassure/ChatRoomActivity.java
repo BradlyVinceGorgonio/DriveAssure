@@ -1,72 +1,99 @@
 package com.example.driveassure;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import android.content.Intent;
-// ...
 
 public class ChatRoomActivity extends AppCompatActivity {
 
     private ListView messageListView;
     private EditText messageEditText;
     private ImageButton sendButton;
-    private ImageButton backButton; // Added line
+    private ImageButton backButton;
     private MessageAdapter messageAdapter;
     private List<MessageAdapter.Message> messageList;
+
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
 
-        // Find views
+
         messageListView = findViewById(R.id.messageListView);
         messageEditText = findViewById(R.id.messageEditText);
         sendButton = findViewById(R.id.sendButton);
-        backButton = findViewById(R.id.backButton); // Added line
+        backButton = findViewById(R.id.backButton);
 
-        // Initialize message list
         messageList = new ArrayList<>();
 
-        // Create and set adapter
         messageAdapter = new MessageAdapter(this, messageList);
         messageListView.setAdapter(messageAdapter);
 
-        // Set click listener for send button
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String messageContent = messageEditText.getText().toString();
-                if (!messageContent.isEmpty()) {
-                    // Create a new message object
-                    MessageAdapter.Message message = new MessageAdapter.Message("Me", messageContent, true);
+                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                if (currentUser != null) {
+                    String userId = currentUser.getUid();
+                    String messageContent = messageEditText.getText().toString();
+                    if (!messageContent.isEmpty()) {
 
-                    // Add the message to the list
-                    messageList.add(message);
-                    messageAdapter.notifyDataSetChanged();
+                        MessageAdapter.Message message = new MessageAdapter.Message(userId, messageContent, true);
 
-                    // Clear the message input
-                    messageEditText.setText("");
+                        messageList.add(message);
+                        messageAdapter.notifyDataSetChanged();
+
+                        messageEditText.setText("");
+
+                        DatabaseReference userMessagesRef = databaseReference.child("user_messages").child(userId);
+                        DatabaseReference newMessageRef = userMessagesRef.push(); // Generate a unique key for the message
+                        newMessageRef.setValue(message);
+                    }
                 }
             }
         });
 
-        // Set click listener for back button
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Finish the current activity and navigate back to the previous activity
                 finish();
             }
         });
+
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+            DatabaseReference userMessagesRef = databaseReference.child("user_messages").child(userId);
+
+            userMessagesRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    messageList.clear();
+                    for (DataSnapshot messageSnapshot : dataSnapshot.getChildren()) {
+                        MessageAdapter.Message message = messageSnapshot.getValue(MessageAdapter.Message.class);
+                        messageList.add(message);
+                    }
+                    messageAdapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                }
+            });
+        }
     }
 }
+
