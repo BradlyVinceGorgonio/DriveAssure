@@ -63,6 +63,13 @@
         <activity
             android:name=".userHome"
             android:exported="false" />
+
+        <activity android:name=".ChatListActivity"
+            android:exported="true"/>
+
+        <activity android:name=".ChatRoomActivity"
+            android:exported="true" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

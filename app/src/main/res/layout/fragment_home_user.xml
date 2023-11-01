@@ -30,7 +30,7 @@
             android:textStyle="bold|italic"></TextView>
 
         <ImageButton
-            android:id="@+id/chatoMsg"
+            android:id="@+id/chatMsg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="360dp"
@@ -38,6 +38,12 @@
             android:background="@drawable/message_more"
             android:contentDescription="chat"
             tools:ignore="TouchTargetSizeCheck" />
+
+        <FrameLayout
+            android:id="@+id/fragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/pagerMain"/>
 
         <EditText
             android:id="@+id/searchBar"
