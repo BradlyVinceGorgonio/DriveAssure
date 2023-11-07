@@ -1,47 +1,88 @@
 package com.example.driveassure;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageViewHolder> {
+public class MessageAdapter extends BaseAdapter {
+    private Context mContext;
+    private List<Message> mMessageList;
 
-    private List<String> messages;
-
-    public MessageAdapter(List<String> messages) {
-        this.messages = messages;
-    }
-
-    @NonNull
-    @Override
-    public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message, parent, false);
-        return new MessageViewHolder(view);
+    public MessageAdapter(Context context, List<Message> messageList) {
+        mContext = context;
+        mMessageList = messageList;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
-        String message = messages.get(position);
-        holder.messageTextView.setText(message);
+    public int getCount() {
+        return mMessageList.size();
     }
 
     @Override
-    public int getItemCount() {
-        return messages.size();
+    public Object getItem(int position) {
+        return mMessageList.get(position);
     }
 
-    public class MessageViewHolder extends RecyclerView.ViewHolder {
-        TextView messageTextView;
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 
-        public MessageViewHolder(@NonNull View itemView) {
-            super(itemView);
-            messageTextView = itemView.findViewById(R.id.messageTextView);
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        if (convertView == null) {
+            LayoutInflater inflater = LayoutInflater.from(mContext);
+            convertView = inflater.inflate(R.layout.message_bubble, parent, false);
+        }
+
+        TextView senderTextView = convertView.findViewById(R.id.senderTextView);
+        TextView messageTextView = convertView.findViewById(R.id.messageTextView);
+
+        Message message = mMessageList.get(position);
+        senderTextView.setText(message.getSenderName());
+        messageTextView.setText(message.getMessageText());
+
+        // Change the alignment of the message bubble based on sender
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) messageTextView.getLayoutParams();
+        if (message.isSentByMe()) {
+            params.addRule(RelativeLayout.ALIGN_PARENT_END);
+            messageTextView.setBackgroundResource(R.drawable.message_bubble_sent);
+        } else {
+            params.addRule(RelativeLayout.ALIGN_PARENT_START);
+            messageTextView.setBackgroundResource(R.drawable.message_bubble_received);
+        }
+        messageTextView.setLayoutParams(params);
+
+        return convertView;
+    }
+
+    public static class Message {
+        private String senderName;
+        private String messageText;
+        private boolean sentByMe;
+
+        public Message(String senderName, String messageText, boolean sentByMe) {
+            this.senderName = senderName;
+            this.messageText = messageText;
+            this.sentByMe = sentByMe;
+        }
+
+        public String getSenderName() {
+            return senderName;
+        }
+
+        public String getMessageText() {
+            return messageText;
+        }
+
+        public boolean isSentByMe() {
+            return sentByMe;
         }
     }
 }

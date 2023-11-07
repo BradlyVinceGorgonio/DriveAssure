@@ -1,42 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ChatListFragment">
 
-    <!-- Toolbar for the header -->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:background= "@drawable/toolbar_background">
-
-        <!-- Back button on the left side -->
-        <ImageButton
-            android:id="@+id/backButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/resource__"
-            android:contentDescription="Back"
-            android:background="@color/light_blue"
-            android:scaleType="fitCenter" />
-
-        <ImageView
-            android:id="@+id/userImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="10dp"
-            android:contentDescription="User Image"
-            android:src="@drawable/user_circle" />
-
-    </androidx.appcompat.widget.Toolbar>
-
-    <!-- Message list using a RecyclerView -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/messageRecyclerView"
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"/>
+        android:text="@string/hello_blank_fragment" />
 
-</RelativeLayout>
+</FrameLayout>
