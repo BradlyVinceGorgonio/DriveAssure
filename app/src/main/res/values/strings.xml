@@ -3,5 +3,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="register_link_text"><a href="http://example.com">Register Now</a></string>
+    <string name="send_button_content_description" />
+    <string name="back_button_content_description" />
 
 </resources>

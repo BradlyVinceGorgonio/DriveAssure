@@ -3,6 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="dirtywhite">#e8e4c9</color>
+    <color name="my_primary">#00B7CF</color>
+    <color name="my_secondary">#FFE74C</color>
     <color name="blue">#92D7FF</color>
     <color name="greyish">#2F2F38</color>
     <color name="grey"> #808080</color>
