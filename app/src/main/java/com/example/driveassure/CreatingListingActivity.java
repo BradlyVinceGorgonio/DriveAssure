@@ -499,7 +499,7 @@ public class CreatingListingActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         Log.d("PANOKOTOGA", "Image uploaded successfully");
-                        Intent intent = new Intent(CreatingListingActivity.this, userHome.class)
+                        Intent intent = new Intent(CreatingListingActivity.this, userHome.class);
                     }
                 });
             }
