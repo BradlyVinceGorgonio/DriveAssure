@@ -120,7 +120,7 @@ public class ownerUserFragment extends Fragment implements OwnerListingCarAdapte
 
             Log.d("BITCHNIGGA", "LOOB NAKO NIGGER: " +  tempProfilePictureUrl[0]);
             // Create a TrainerClass instance with the retrieved data
-            OwnerListingsClass history = new OwnerListingsClass(tempProfilePictureUrl[0], name, uid, Price, Address, Transmission, carPostUID);
+            OwnerListingsClass history = new OwnerListingsClass(tempProfilePictureUrl[0], name, uid, "₱ "+Price + " /day", Address, Transmission, carPostUID);
 
             HistoryList.add(history);
 
