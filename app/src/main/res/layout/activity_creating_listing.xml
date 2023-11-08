@@ -10,7 +10,6 @@
 
 
 
-
     <LinearLayout
         android:id="@+id/imageSliderContainer"
         android:layout_width="match_parent"
@@ -406,13 +405,12 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout8"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
-                android:hint=" Include Description"
+                android:hint=" Renting Price"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
                 app:endIconMode="clear_text"
@@ -422,7 +420,7 @@
                 app:startIconTint="@color/blue">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/vehicleDescription"
+                    android:id="@+id/vehiclePrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
@@ -432,6 +430,46 @@
 
                     />
             </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout8"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="330dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="30dp"
+                android:hint=" Vechicle Description"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
+                app:endIconMode="clear_text"
+                app:helperText="Required"
+                app:helperTextTextColor="@color/red"
+                app:startIconTint="@color/blue">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/vehicleDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:inputType="textMultiLine"
+                    android:gravity="top"
+                    android:lines="9"
+                    android:scrollbars="vertical"
+                    android:overScrollMode="always"
+                    android:scrollbarStyle="insideInset"
+                    android:scrollHorizontally="false"
+                    android:textColor="@color/black"
+
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
 
 
             <ProgressBar

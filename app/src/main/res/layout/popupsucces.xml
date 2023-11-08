@@ -21,24 +21,23 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
 
-
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideeline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0" />
+        app:layout_constraintGuide_begin="0dp" />
 
     <Button
         android:id="@+id/okayPopupButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Return to Home Page"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         android:layout_marginRight="80dp"
         android:layout_marginLeft="80dp"
-        android:background="#787878"
+        android:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideeline"
