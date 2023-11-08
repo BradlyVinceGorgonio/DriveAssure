@@ -63,17 +63,19 @@ public class ownerUserFragment extends Fragment implements OwnerListingCarAdapte
     @Override
     public void onItemClick(OwnerListingsClass history) {
 
-        /*
-        String historyUid = history.getUid(); // Assuming TrainerClass has a getId() method to retrieve the document ID
-        String CarpostUID = history.getCarpostUID();
-        EnforcerDetailedHistory enforcerDetailedHistory = EnforcerDetailedHistory.newInstance(historyUid, CarpostUID);
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.enforcer_frame_layout, enforcerDetailedHistory);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
 
-         */
+        String historyUid = history.getUid(); // Assuming TrainerClass has a getUid() method
+        String CarpostUID = history.getCarpostUID();
+
+        Intent intent = new Intent(getContext(), DetailedCarOwnerListingsActivity.class);
+
+        // Pass data as extras in the intent
+        intent.putExtra("historyUid", historyUid);
+        intent.putExtra("CarpostUID", CarpostUID);
+
+        startActivity(intent); 
+
+
     }
 
     private void fetchDataFromFirestore() {
