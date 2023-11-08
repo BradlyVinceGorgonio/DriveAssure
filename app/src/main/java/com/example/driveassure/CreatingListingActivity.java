@@ -8,6 +8,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -340,13 +341,19 @@ public class CreatingListingActivity extends AppCompatActivity {
     }
     private void saveImageToDownloads(Uri imageUri) {
         try {
-            String fileName = "carPics_" + System.currentTimeMillis() + ".jpg";
             File downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
             File carPicsDir = new File(downloadsDir, "carPics");
 
             if (!carPicsDir.exists()) {
                 carPicsDir.mkdirs();
             }
+
+            // List all files in the carPics directory to count the existing files
+            String[] files = carPicsDir.list();
+            int imageCount = files != null ? files.length : 0;
+
+            // Generate the file name
+            String fileName = "carpic" + (imageCount + 1) + ".jpg";
 
             File outputFile = new File(carPicsDir, fileName);
 
@@ -365,6 +372,8 @@ public class CreatingListingActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
 
     private void uploadImagesAndFieldsToFirebase()
     {
@@ -391,6 +400,9 @@ public class CreatingListingActivity extends AppCompatActivity {
 
         TextInputEditText vehicleDescription = findViewById(R.id.vehicleDescription);
         String vehicleDescriptionText = vehicleDescription.getText().toString();
+
+        TextInputEditText vehiclePrice = findViewById(R.id.vehiclePrice);
+        String vehiclePriceText = vehiclePrice.getText().toString();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -425,6 +437,8 @@ public class CreatingListingActivity extends AppCompatActivity {
         carData.put("Vehicle Kilometer", vehicleKilometerRunText);
         carData.put("Vehicle Address", vehicleAddressText);
         carData.put("Vehicle Description", vehicleDescriptionText);
+        carData.put("Vehicle Price", vehiclePriceText);
+
         carData.put("uid",uid );
 
 
