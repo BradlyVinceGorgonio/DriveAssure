@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import java.util.List;
 
 public class MessageAdapter extends BaseAdapter {
@@ -67,7 +66,7 @@ public class MessageAdapter extends BaseAdapter {
         private String messageText;
         private boolean sentByMe;
 
-        public Message(String senderName, String messageText, boolean sentByMe) {
+        public Message(String senderName, String messageText, String messageContent, boolean sentByMe) {
             this.senderName = senderName;
             this.messageText = messageText;
             this.sentByMe = sentByMe;

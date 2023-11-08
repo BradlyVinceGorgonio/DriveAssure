@@ -16,6 +16,14 @@ public class ChatItem {
     public String getSender() {
         return sender;
     }
+
+    public boolean getReceiver() {
+        return false;
+    }
+
+    public boolean getUsername() {
+        return false;
+    }
 }
 
 

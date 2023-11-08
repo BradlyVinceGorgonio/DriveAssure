@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChatListActivity extends AppCompatActivity {
-    private RecyclerView messageRecyclerView;
+    private RecyclerView chatRecyclerView;
     private ChatListAdapter chatListAdapter;
     private List<ChatItem> chatItems;
 
@@ -24,17 +24,17 @@ public class ChatListActivity extends AppCompatActivity {
         chatItems.add(new ChatItem("Hello, how are you?", "John"));
         chatItems.add(new ChatItem("I'm good, thanks!", "Alice"));
 
-        messageRecyclerView = findViewById(R.id.messageRecyclerView);
-        messageRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        chatRecyclerView = findViewById(R.id.chatRecyclerView);
+        chatRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         chatListAdapter = new ChatListAdapter(chatItems);
-        messageRecyclerView.setAdapter(chatListAdapter);
+        chatRecyclerView.setAdapter(chatListAdapter);
 
         chatListAdapter.setOnItemClickListener(new ChatListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(ChatItem chatItem) {
                 Intent intent = new Intent(ChatListActivity.this, ChatRoomActivity.class);
-                intent.putExtra("senderName", chatItem.getSender());
+                intent.putExtra("receiverUsername", chatItem.getReceiver());
                 startActivity(intent);
             }
         });
@@ -48,3 +48,4 @@ public class ChatListActivity extends AppCompatActivity {
         });
     }
 }
+
