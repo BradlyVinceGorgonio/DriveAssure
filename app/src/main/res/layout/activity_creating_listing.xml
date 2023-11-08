@@ -9,6 +9,8 @@
     tools:layout_editor_absoluteY="24dp">
 
 
+
+
     <LinearLayout
         android:id="@+id/imageSliderContainer"
         android:layout_width="match_parent"
@@ -46,6 +48,8 @@
             tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>
 
+
+
     <Button
         android:id="@+id/selectImagesButton"
         android:layout_width="150dp"
@@ -63,6 +67,8 @@
         app:layout_constraintTop_toBottomOf="@+id/imageSliderContainer"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="TouchTargetSizeCheck" />
+
+
 
 
     <ScrollView
@@ -428,12 +434,25 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_marginTop="30dp"
+                android:layout_width="300dp"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:max="100"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <Button
                 android:id="@+id/submitBtn"
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_marginTop="40dp"
                 android:backgroundTint="@color/blue"
                 android:text="Submit"
                 android:textColor="@color/black"

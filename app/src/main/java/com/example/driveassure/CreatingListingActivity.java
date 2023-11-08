@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textfield.TextInputEditText;
+
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -31,6 +34,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -82,6 +86,8 @@ public class CreatingListingActivity extends AppCompatActivity {
     String selectedFuelType;
     String selectedCondition;
 
+    ProgressBar progressBar;
+
 
 
 
@@ -102,7 +108,7 @@ public class CreatingListingActivity extends AppCompatActivity {
         Log.d("POWERPOWER", "Message nasa listing act na: " + message);
 
 
-
+        progressBar = findViewById(R.id.progressBar);
 
 
         TextInputLayout conditionTextInputLayout = findViewById(R.id.textInputLayoutCondition);
@@ -292,6 +298,10 @@ public class CreatingListingActivity extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                progressBar.setVisibility(View.VISIBLE);
+                submitBtn.setEnabled(false);
+                submitBtn.setBackgroundColor(getResources().getColor(R.color.disabledGrey));
                 uploadImagesAndFieldsToFirebase();
             }
         });
@@ -472,6 +482,8 @@ public class CreatingListingActivity extends AppCompatActivity {
     private static final String TAG = "ImageUploader";
 
     public void uploadImagesToFirebaseStorage(String uid) {
+
+
         File downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
         File carPicsDir = new File(downloadsDir, "carPics");
 
@@ -495,11 +507,39 @@ public class CreatingListingActivity extends AppCompatActivity {
 
                 UploadTask uploadTask = imageRef.putFile(imageUri);
 
+
+
+
+                uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                        // Calculate the upload progress as a percentage
+                        double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                        progressBar.setProgress((int) progress);
+                    }
+                });
+
+
                 uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         Log.d("PANOKOTOGA", "Image uploaded successfully");
-                        Intent intent = new Intent(CreatingListingActivity.this, userHome.class);
+
+                        Dialog dialog = new Dialog(CreatingListingActivity.this);
+                        dialog.setContentView(R.layout.popupsucces);
+                        dialog.setCancelable(false);
+                        dialog.show();
+
+                        // Find the 'YES' button in the dialog layout
+                        Button yesButton = dialog.findViewById(R.id.okayPopupButton);
+                        yesButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                dialog.dismiss(); // Close the dialog if needed
+                                Intent intent = new Intent(CreatingListingActivity.this, userHome.class);
+                                startActivity(intent);
+                            }
+                        });
                     }
                 });
             }
