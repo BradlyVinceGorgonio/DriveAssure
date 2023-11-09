@@ -1,13 +1,19 @@
 <!-- item_user.xml -->
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ownerListingsItems"
     android:layout_width="160dp"
-    android:layout_height="250dp"
+    android:layout_height="wrap_content"
     android:layout_marginTop="10sp"
+<<<<<<< Updated upstream
     android:layout_marginLeft="20dp"
 
+=======
+    android:layout_marginLeft="3dp"
+>>>>>>> Stashed changes
     android:layout_marginBottom="10sp"
+    app:cardElevation="35dp"
+    app:cardCornerRadius="15dp"
     android:background="@drawable/textview_border">
 
     <LinearLayout
@@ -22,46 +28,48 @@
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:src="@drawable/carvector"
-            android:background="@drawable/textview_border"
             />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@color/blue">
 
             <TextView
                 android:id="@+id/carNameDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
+                android:textSize="14sp"
+                android:layout_margin="5dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:text="TOYOTA HONDA CIVIC"
-                android:background="@drawable/textview_border"
                 />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="₱ 5000 /day"
+                android:layout_margin="5dp"
                 android:id="@+id/carPriceDisplay"
-                android:textColor="#D9512C"
-                android:background="@drawable/textview_border"/>
+                android:textColor="#D9512C"></TextView>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/carLocationDisplay"
-                android:text="McKinley Hill Village, Upper McKinley Road, Taguig, Metro Manila"
-                android:textSize="16dp"
-                android:background="@drawable/textview_border"/>
+                android:text="Taguig City"
+                android:layout_margin="5dp"
+                android:textSize="16dp"></TextView>
 
             <TextView
                 android:id="@+id/carTransmissionDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Transmission: Manual"
-                android:textSize="14sp"
-                android:background="@drawable/textview_border" />
+                android:layout_margin="5dp"
+                android:textSize="14sp"></TextView>
 
         </LinearLayout>
     </LinearLayout>
