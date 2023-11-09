@@ -242,7 +242,9 @@
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TextSizeCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+
+
+    <androidx.cardview.widget.CardView
         android:layout_width="382dp"
         android:layout_height="218dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -250,7 +252,21 @@
         app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutLocation"
-        app:layout_constraintVertical_bias="0.07" />
+        app:layout_constraintVertical_bias="0.07">
+
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/progressBarID2"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/homeRecyclerView"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            />
+    </androidx.cardview.widget.CardView>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
