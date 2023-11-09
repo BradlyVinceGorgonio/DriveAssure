@@ -117,7 +117,6 @@
     </androidx.cardview.widget.CardView>
 
 
-
     <TextView
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
@@ -128,33 +127,33 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintHorizontal_bias="0.022"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/carsFilter"
-        app:layout_constraintVertical_bias="0.049" />
+        app:layout_constraintVertical_bias="0.041" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutPriceRange"
+        android:id="@+id/textInputLayoutVehicleType"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="115dp"
+        android:layout_width="130dp"
         android:layout_height="40dp"
-        android:contentDescription="price"
-        android:hint=" Price"
-        android:layout_marginLeft="5dp"
+        android:layout_marginTop="-66dp"
+        android:contentDescription="vehicletype"
+        android:hint=" Vehicle"
         app:endIconMode="dropdown_menu"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textInputLayoutLocation"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toEndOf="@+id/textInputLayoutLocation"
         app:layout_constraintTop_toBottomOf="@+id/textView18"
-        app:layout_constraintVertical_bias="0.045">
+        app:layout_constraintVertical_bias="0.162">
 
         <AutoCompleteTextView
-            android:id="@+id/priceRangeSpinner"
+            android:id="@+id/vehicleTypeSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:inputType="none"
+            android:textColor="@color/black"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -163,23 +162,23 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="150dp"
         android:layout_height="40dp"
+        android:layout_marginLeft="5dp"
         android:contentDescription="location"
         android:hint=" Location"
-        android:layout_marginLeft="5dp"
         app:endIconMode="dropdown_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.46"
+        app:layout_constraintHorizontal_bias="0.471"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView18"
-        app:layout_constraintVertical_bias="0.045">
+        app:layout_constraintVertical_bias="0.0">
 
         <AutoCompleteTextView
             android:id="@+id/locationSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:inputType="none"
+            android:textColor="@color/black"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -188,16 +187,18 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="130dp"
         android:layout_height="40dp"
-        app:helperText="Required"
+        android:layout_marginTop="-15dp"
         android:contentDescription="cartype"
-        app:helperTextTextColor="@color/red"
         android:hint=" Car"
         app:endIconMode="dropdown_menu"
+        app:helperText="Required"
+        app:helperTextTextColor="@color/red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toEndOf="@+id/textInputLayoutLocation"
         app:layout_constraintTop_toBottomOf="@+id/textView18"
-        app:layout_constraintVertical_bias="0.045">
+        app:layout_constraintVertical_bias="0.044">
 
         <AutoCompleteTextView
             android:id="@+id/carTypeSpinner"
@@ -209,26 +210,39 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutVehicleType"
+        android:id="@+id/textInputLayoutPriceRange"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="130dp"
+        android:layout_width="115dp"
         android:layout_height="40dp"
-        android:hint=" Vehicle"
-        android:layout_marginTop="-48dp"
-        android:contentDescription="vehicletype"
+        android:layout_marginLeft="5dp"
+        android:contentDescription="price"
+        android:hint=" Price"
         app:endIconMode="dropdown_menu"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textInputLayoutLocation"
+        app:layout_constraintEnd_toStartOf="@+id/textInputLayoutLocation"
+        app:layout_constraintHorizontal_bias="0.727"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView18"
-        app:layout_constraintVertical_bias="0.166">
+        app:layout_constraintVertical_bias="0.0">
 
         <AutoCompleteTextView
-            android:id="@+id/vehicleTypeSpinner"
+            android:id="@+id/priceRangeSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:inputType="none"
+            android:textColor="@color/black"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="382dp"
+        android:layout_height="218dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutLocation"
+        app:layout_constraintVertical_bias="0.07" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
