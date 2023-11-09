@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
@@ -31,11 +32,15 @@ public class ownerUserFragment extends Fragment implements OwnerListingCarAdapte
     private List<OwnerListingsClass> HistoryList;
     private OwnerListingCarAdapter ownerListingCarAdapter;
 
+    ProgressBar progressBarID;
+
     Button addCarBtn;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_owner_user, container, false);
+
+        progressBarID = view.findViewById(R.id.progressBarID);
 
         addCarBtn = view.findViewById(R.id.addCarBtn);
         addCarBtn.setOnClickListener(new View.OnClickListener() {
@@ -128,7 +133,11 @@ public class ownerUserFragment extends Fragment implements OwnerListingCarAdapte
 
             // Notify the adapter that data has changed
             // Notify the adapter that data has changed
+
             ownerListingCarAdapter.notifyDataSetChanged();
+
+
+            progressBarID.setVisibility(View.GONE);
 
         }).addOnFailureListener(e -> {
             // Handle any errors that occur while fetching the profile picture URL

@@ -109,6 +109,12 @@
             android:textSize="18dp"
             android:textStyle="bold"></TextView>
 
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/progressBarID"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/addcarListingsRecyclerView"
             android:layout_width="match_parent"
