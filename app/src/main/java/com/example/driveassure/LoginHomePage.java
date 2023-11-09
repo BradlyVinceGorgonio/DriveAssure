@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,10 +30,13 @@ public class LoginHomePage extends AppCompatActivity {
 
     EditText loginEmail;
     EditText loginPassword;
+    ProgressBar loginLoading;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_home_page);
+
+        loginLoading = findViewById(R.id.loginLoading);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -54,6 +58,7 @@ public class LoginHomePage extends AppCompatActivity {
                 }
                 else
                 {
+                    loginLoading.setVisibility(View.VISIBLE);
                     checkEmailInAdminCollection(Semail, Spass);
                     //signIn(Semail, Spass);
                 }
@@ -80,6 +85,7 @@ public class LoginHomePage extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
@@ -107,6 +113,7 @@ public class LoginHomePage extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        loginLoading.setVisibility(View.GONE);
                         if (task.isSuccessful()) {
                             QuerySnapshot querySnapshot = task.getResult();
                             if (querySnapshot != null && !querySnapshot.isEmpty()) {
