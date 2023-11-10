@@ -20,5 +20,11 @@ public class DetailedCarOwnerListingsActivity extends AppCompatActivity {
 
         TextView uid = findViewById(R.id.deleteME);
         uid.setText(historyUid + " \n" + CarpostUID);
+
+
+        //USE public class ImageSliderAdapter for loading the image
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        //USE homepagelistings.java AS Reference
+        //^^^^^^^^^^^^^^
     }
 }
