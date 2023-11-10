@@ -1,5 +1,7 @@
 package com.example.driveassure;
 
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_STATIC_DP;
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -22,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +46,11 @@ public class ownerUserFragment extends Fragment implements OwnerListingCarAdapte
         progressBarID = view.findViewById(R.id.progressBarID);
 
         addCarBtn = view.findViewById(R.id.addCarBtn);
+
+
+        PushDownAnim.setPushDownAnimTo(addCarBtn).setScale(MODE_STATIC_DP, 8 );
+
+
         addCarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -10,7 +10,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="200dp"
         android:background="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,10 +17,46 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="vertical"
+                android:background="@drawable/text_border">
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/imageSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="190dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_marginTop="-10dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_alignParentBottom="true"
+                    app:tabGravity="fill"
+                    app:tabIndicatorColor="@color/blue"
+                    app:tabMode="fixed"
+                    app:tabTextAppearance="@color/black"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </LinearLayout>
+
 
             <TextView
                 android:id="@+id/title"
