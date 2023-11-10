@@ -104,10 +104,26 @@ public class homeUserFragment extends Fragment implements HomeListingCarAdapter.
         compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
             @Override
             public void transformPage(@NonNull View page, float position) {
-            float r = 1- Math.abs(position);
-            page.setScaleY(1.25f + r*0.15f);
+                float r = 1 - Math.abs(position);
+                float scaleFactor = 1f + r * 0.15f;
+
+                // Adjust the scale based on the image dimensions
+                int pageWidth = page.getWidth();
+                int pageHeight = page.getHeight();
+
+                // Assuming 1080x720 dimensions for the images
+                float targetWidth = 1920f;
+                float targetHeight = 1080f;
+
+                float scaleX = targetWidth / pageWidth;
+                float scaleY = targetHeight / pageHeight;
+
+                // Apply the scale to the page
+                page.setScaleX(scaleX * scaleFactor);
+                page.setScaleY(scaleY * scaleFactor);
             }
         });
+
 
         viewpager2.setPageTransformer(compositePageTransformer);
         viewpager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -115,7 +131,7 @@ public class homeUserFragment extends Fragment implements HomeListingCarAdapter.
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 slideHandler.removeCallbacks(sliderRunnable);
-                slideHandler.postDelayed(sliderRunnable, 2000);
+                slideHandler.postDelayed(sliderRunnable, 3500);
             }
         });
 
