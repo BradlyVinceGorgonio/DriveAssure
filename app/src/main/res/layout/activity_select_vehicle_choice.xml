@@ -76,7 +76,6 @@
             android:layout_gravity="center"
             android:layout_marginTop="28dp"
             android:clickable="true"
-
             android:foregroundGravity="center"
             app:cardCornerRadius="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -100,23 +99,13 @@
                 android:textColor="@android:color/white"></Button>
 
             <ImageView
-                android:layout_width="121dp"
-                android:layout_height="120dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="-20dp"
-                android:background="@drawable/sports_car_3"></ImageView>
-
-            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="150dp"
-                android:text="Car"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:textStyle="bold">
+                android:layout_gravity="center"
+                android:background="@drawable/carsfilter">
 
-            </TextView>
+            </ImageView>
+
 
         </androidx.cardview.widget.CardView>
 
@@ -149,24 +138,13 @@
                 android:textColor="@android:color/white"></Button>
 
             <ImageView
-                android:layout_width="121dp"
-                android:layout_height="120dp"
-                android:layout_gravity="center"
-
-                android:layout_marginTop="-20dp"
-                android:background="@drawable/motorcycle_21"></ImageView>
-
-            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="150dp"
-                android:text="Motorcycle"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:textStyle="bold">
+                android:layout_gravity="center"
+                android:background="@drawable/motorfilter"></ImageView>
 
-            </TextView>
+
+
 
         </androidx.cardview.widget.CardView>
 

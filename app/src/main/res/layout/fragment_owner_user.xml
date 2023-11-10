@@ -6,52 +6,100 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".ownerUserFragment"
-    android:backgroundTint="@color/blue">
-
-
-    <ImageView
-        android:id="@+id/profileUser"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/user_circle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/cardView8"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.025"></ImageView>
-
+   >
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView8"
-        android:layout_width="287dp"
-        android:layout_height="70dp"
-        app:cardCornerRadius="50dp"
+        android:id="@+id/cardView5"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.87"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.042">
+        app:layout_constraintVertical_bias="0.0">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chat"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="357dp"
+        android:layout_marginTop="55dp"></TextView>
 
-        <TextView
-            android:id="@+id/fullnameUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="-15dp"
-            android:text="Bradly Vince Gorgonio"
-            android:textSize="15dp"
-            tools:ignore="TextSizeCheck"></TextView>
+    <ImageView
+        android:id="@+id/message"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="350dp"
+        android:background="@drawable/message_more"
+        ></ImageView>
 
-        <TextView
-            android:id="@+id/emailUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="330dp"
+            android:layout_height="80dp"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:text="gorgoniobradlyvince@gmail.com"
-            android:textSize="13dp"
-            tools:ignore="TextSizeCheck"></TextView>
+            android:layout_marginLeft="-30dp"
+            app:cardCornerRadius="10dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name:"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                ></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bradly Vince Gorgonio"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="5dp"
+                ></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contact:"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="5dp"></TextView>
+
+
+            <TextView
+                android:id="@+id/contactNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="-60dp"
+                android:layout_marginTop="0dp"
+                android:text="09532165243"
+                tools:ignore="TouchTargetSizeCheck"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="53dp"
+                android:layout_marginLeft="5dp"
+                android:text="Address:"></TextView>
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="53dp"
+                android:layout_marginLeft="65dp"
+                android:text="Taguig Pinagsama Phase 2 Area"
+                ></TextView>
+        </androidx.cardview.widget.CardView>
+
+
+
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -60,11 +108,12 @@
         android:layout_height="250dp"
         android:layout_gravity="center"
         app:cardCornerRadius="20dp"
+        app:cardElevation="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView8"
+        app:layout_constraintTop_toBottomOf="@+id/cardView5"
         app:layout_constraintVertical_bias="0.075">
 
         <TextView
@@ -93,6 +142,7 @@
         android:layout_height="250dp"
         android:layout_gravity="center"
         app:cardCornerRadius="20dp"
+        app:cardElevation="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
