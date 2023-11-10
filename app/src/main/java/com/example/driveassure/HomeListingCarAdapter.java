@@ -1,5 +1,7 @@
 package com.example.driveassure;
 
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_STATIC_DP;
+
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.List;
 
@@ -47,6 +50,8 @@ public class HomeListingCarAdapter extends RecyclerView.Adapter<HomeListingCarAd
         holder.carPrice.setText(admin.getCarPrice());
         holder.carLocation.setText(admin.getCarLocation());
         holder.carTransmission.setText(admin.getCarTransmission());
+
+        PushDownAnim.setPushDownAnimTo(holder.cardView).setScale(MODE_STATIC_DP, 8 );
 
         Log.d("BITCHNIGGA", "INSIDE OF ADAPTER " + admin.getProfilePictureUrl());
         // Load the profile picture using Glide
