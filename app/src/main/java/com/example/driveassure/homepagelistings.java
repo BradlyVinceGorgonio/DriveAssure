@@ -1,5 +1,7 @@
 package com.example.driveassure;
 
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_STATIC_DP;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -20,6 +22,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -88,6 +91,7 @@ public class homepagelistings extends AppCompatActivity {
         fetchDataFromFirestore(CarpostUID, historyUid);
 
         inquireButton = findViewById(R.id.inquireButton);
+        PushDownAnim.setPushDownAnimTo(inquireButton).setScale(MODE_STATIC_DP, 8 );
         inquireButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,6 +99,7 @@ public class homepagelistings extends AppCompatActivity {
             }
         });
         messageCarOwner = findViewById(R.id.messageCarOwner);
+        PushDownAnim.setPushDownAnimTo(messageCarOwner).setScale(MODE_STATIC_DP, 8 );
         messageCarOwner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

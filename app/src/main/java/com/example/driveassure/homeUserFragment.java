@@ -1,6 +1,8 @@
 package com.example.driveassure;
 
 // homeUserFragment
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_STATIC_DP;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -40,12 +42,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class homeUserFragment extends Fragment implements HomeListingCarAdapter.OnItemClickListener {
     ImageButton chatMsg;
+    ImageButton filterSearch;
     private Button filterButton;
    String selectedCarType;
     String selectedLocation;
@@ -174,10 +178,18 @@ public class homeUserFragment extends Fragment implements HomeListingCarAdapter.
             }
         });
 
+        filterSearch = view.findViewById(R.id.filterSearch);
+        PushDownAnim.setPushDownAnimTo(filterSearch).setScale(MODE_STATIC_DP, 8 );
+        filterSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+            }
+        });
 
 
         chatMsg = view.findViewById(R.id.chatMsg);
+        PushDownAnim.setPushDownAnimTo(chatMsg).setScale(MODE_STATIC_DP, 8 );
         chatMsg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
