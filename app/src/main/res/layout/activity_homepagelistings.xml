@@ -24,7 +24,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="5dp"
@@ -32,7 +32,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="5dp"
                 android:orientation="vertical"
-                android:background="@drawable/text_border">
+                android:background="@color/white">
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/imageSlider"
                     android:layout_width="match_parent"
@@ -40,6 +40,13 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     tools:ignore="SpeakableTextPresentCheck" />
+                <ProgressBar
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/homelistingLoading"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone"
+                    android:layout_gravity="center"/>
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabLayout"
@@ -55,7 +62,7 @@
                     app:tabTextAppearance="@color/black"
                     tools:ignore="SpeakableTextPresentCheck" />
 
-            </LinearLayout>
+            </RelativeLayout>
 
 
             <TextView

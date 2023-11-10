@@ -181,99 +181,10 @@ public class CreatingListingActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-       // Spinner motorcycleBrandsSpinner = findViewById(R.id.motorcycleBrandsSpinner);
-       // Spinner carBrandsSpinner = findViewById(R.id.carBrandsSpinner);
-      //  Spinner transmissionSpinner = findViewById(R.id.transmissionSpinner);
-     //   Spinner fuelTypeSpinner = findViewById(R.id.fuelTypeSpinner);
-      //  Spinner conditionSpinner = findViewById(R.id.conditionSpinner);
-
-       // ArrayAdapter<String> motorcycleSpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, motorcycleBrands);
-        //motorcycleSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-       // motorcycleBrandsSpinner.setAdapter(motorcycleSpinnerAdapter);
-
-      //  ArrayAdapter<String> carSpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, carBrands);
-    //    carSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-     //   carBrandsSpinner.setAdapter(carSpinnerAdapter);
-
-      //  ArrayAdapter<String> transmissionSpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, transmissions);
-      //  transmissionSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-      //  transmissionSpinner.setAdapter(transmissionSpinnerAdapter);
-
-      //  ArrayAdapter<String> fuelTypeSpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, fuelTypes);
-      //  fuelTypeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-       // fuelTypeSpinner.setAdapter(fuelTypeSpinnerAdapter);
-
-       // ArrayAdapter<String> conditionSpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, conditions);
-       // conditionSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-       // conditionSpinner.setAdapter(conditionSpinnerAdapter);
-
-
-       // motorcycleBrandsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-          //  @Override
-           // public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                //selectedMotorcycleBrand = motorcycleBrands[position];
-               // Toast.makeText(CreatingListingActivity.this, "Selected Motorcycle Brand: " + selectedMotorcycleBrand, Toast.LENGTH_LONG).show();
-           // }
-
-           // @Override
-           // public void onNothingSelected(AdapterView<?> parent) {
-           // }
-        //});
-
-     //   carBrandsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-          //  @Override
-          //  public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-             //   selectedCarBrand = carBrands[position];
-               // Toast.makeText(CreatingListingActivity.this, "Selected Car Brand: " + selectedCarBrand, Toast.LENGTH_LONG).show();
-          //  }
-
-          //  @Override
-           // public void onNothingSelected(AdapterView<?> parent) {
-         //   }
-     //   });
-
-       // transmissionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-          //  @Override
-           // public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-               // selectedTransmission = transmissions[position];
-                //Toast.makeText(CreatingListingActivity.this, "Selected Transmission: " + selectedTransmission, Toast.LENGTH_LONG).show();
-          //  }
-
-          //  @Override
-          //  public void onNothingSelected(AdapterView<?> parent) {
-         //   }
-     //   });
-
-
-     //   fuelTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-         //   @Override
-         //   public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-          //      selectedFuelType = fuelTypes[position];
-            //    Toast.makeText(CreatingListingActivity.this, "Selected Fuel Type: " + selectedFuelType, Toast.LENGTH_LONG).show();
-         //   }
-
-          //  @Override
-           // public void onNothingSelected(AdapterView<?> parent) {
-         //   }
-       // });
-
-     //   conditionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-          //  @Override
-          //  public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-          //      selectedCondition = conditions[position];
-           //     Toast.makeText(CreatingListingActivity.this, "Selected Condition: " + selectedCondition, Toast.LENGTH_LONG).show();
-          //  }
-
-       //     @Override
-          //  public void onNothingSelected(AdapterView<?> parent) {
-          //  }
-       // });
-
         Button selectImagesButton = findViewById(R.id.selectImagesButton);
+
+
+
         imageSlider = findViewById(R.id.imageSlider);
         selectedImageUris = new ArrayList<>();
         imagePagerAdapter = new ImagePagerAdapter(this, selectedImageUris);
@@ -286,12 +197,10 @@ public class CreatingListingActivity extends AppCompatActivity {
             }
         });
 
+
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         imageSlider = findViewById(R.id.imageSlider);
-
         imageSlider.setAdapter(imagePagerAdapter);
-
-// Attach the TabLayout to the ViewPager
         tabLayout.setupWithViewPager(imageSlider, true);
 
 
