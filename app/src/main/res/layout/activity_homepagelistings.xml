@@ -415,6 +415,7 @@
                     android:contentDescription="owner profile"></de.hdodenhof.circleimageview.CircleImageView>
 
                 <TextView
+                    android:id="@+id/carOwnerName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="100dp"
@@ -429,16 +430,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="115dp"
-                    android:text="Location:"
+                    android:text="Email:"
                     android:textSize="17dp"></TextView>
 
                 <TextView
-                    android:id="@+id/carOwnerLocation"
+                    android:id="@+id/carEmailAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="95dp"
                     android:layout_marginTop="115dp"
-                    android:text="Makati, National Capital Region"
+                    android:text="kolasmarkets@gmail.com"
                     android:textSize="17dp"></TextView>
 
 
@@ -474,6 +475,7 @@
             </androidx.cardview.widget.CardView>
 
             <Button
+                android:id="@+id/inquireButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

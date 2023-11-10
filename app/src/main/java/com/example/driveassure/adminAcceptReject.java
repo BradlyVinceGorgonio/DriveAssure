@@ -152,8 +152,8 @@ public class adminAcceptReject extends AppCompatActivity {
 
                                                     Map<String, Object> data = new HashMap<>();
                                                     data.put("uid", uid);
-                                                    data.put("license num", name);
-                                                    data.put("age", licenseNumber);
+                                                    data.put("license num", licenseNumber);
+                                                    data.put("name", name );
                                                     data.put("email", email);
                                                     data.put("license exp", licenseExpiry);
                                                     data.put("contact number", contactnumber);
