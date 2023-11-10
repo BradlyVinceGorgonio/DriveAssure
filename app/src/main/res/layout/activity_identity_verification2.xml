@@ -20,12 +20,13 @@
 
         <ImageButton
             android:id="@+id/backButton2"
-            android:layout_width="72dp"
-            android:layout_height="55dp"
+            android:layout_width="50dp"
+            android:layout_height="45dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/back_26"
             android:contentDescription="backtoLogin"
+            tools:ignore="TouchTargetSizeCheck"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="16dp"></ImageButton>
 

@@ -99,7 +99,7 @@
                 app:endIconMode="clear_text"
                 app:helperText="Required"
                 app:helperTextTextColor="@color/red"
-                app:startIconDrawable="@drawable/cars"
+                app:startIconDrawable="@drawable/wheel"
                 app:startIconTint="@color/blue">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -156,7 +156,7 @@
                 app:endIconMode="clear_text"
                 app:helperText="Required"
                 app:helperTextTextColor="@color/red"
-                app:startIconDrawable="@drawable/address"
+                app:startIconDrawable="@drawable/cars"
                 app:startIconTint="@color/blue">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -186,7 +186,7 @@
                 app:endIconMode="clear_text"
                 app:helperText="Required"
                 app:helperTextTextColor="@color/red"
-                app:startIconDrawable="@drawable/address"
+                app:startIconDrawable="@drawable/calendar_week"
                 app:startIconTint="@color/blue">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -243,7 +243,7 @@
                 app:counterEnabled="true"
                 app:counterMaxLength="2"
                 app:helperTextTextColor="@color/red"
-                app:startIconDrawable="@drawable/address"
+                app:startIconDrawable="@drawable/carseat"
                 app:startIconTint="@color/blue">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -273,7 +273,7 @@
                 app:endIconMode="clear_text"
                 app:helperText="Required"
                 app:helperTextTextColor="@color/red"
-                app:startIconDrawable="@drawable/address"
+                app:startIconDrawable="@drawable/vehiclecolor"
                 app:startIconTint="@color/blue">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -332,7 +332,7 @@
                 app:endIconMode="clear_text"
                 app:helperText="Required"
                 app:helperTextTextColor="@color/red"
-                app:startIconDrawable="@drawable/address"
+                app:startIconDrawable="@drawable/kmtire1"
                 app:startIconTint="@color/blue">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -416,7 +416,7 @@
                 app:endIconMode="clear_text"
                 app:helperText="Required"
                 app:helperTextTextColor="@color/red"
-                app:startIconDrawable="@drawable/address"
+                app:startIconDrawable="@drawable/philippine_peso"
                 app:startIconTint="@color/blue">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -425,7 +425,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:textColor="@color/black"
 
                     />
@@ -493,6 +493,7 @@
                 android:layout_gravity="center"
                 android:backgroundTint="@color/blue"
                 android:text="Submit"
+                android:layout_marginBottom="20dp"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold"></Button>

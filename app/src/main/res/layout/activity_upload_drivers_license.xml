@@ -52,43 +52,85 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3"
         app:layout_constraintVertical_bias="0.047"></TextView>
 
-    <EditText
-        android:id="@+id/licenseNumber"
+
+    <ImageButton
+        android:id="@+id/backButton6"
+        android:layout_width="50dp"
+        android:layout_height="45dp"
+        android:background="@drawable/back_26"
+        android:contentDescription="backtoLogin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        tools:ignore="TouchTargetSizeCheck"></ImageButton>
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:id="@+id/textInputLayout11"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="350dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="435dp"
+        android:hint=" Driver’s License"
         android:textColor="@color/black"
-        android:background="@drawable/text_border"
-        android:drawableLeft="@drawable/driving_license_2"
-        android:hint=" Driver's License:"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:paddingLeft="5dp"
         android:textColorHint="@color/grey"
+        app:endIconMode="clear_text"
+        app:helperText="Required"
+        app:helperTextTextColor="@color/red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintVertical_bias="0.428"
+        app:startIconDrawable="@drawable/license"
+        app:startIconTint="@color/blue">
 
-    <EditText
-        android:id="@+id/licenseExpiryDate"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/licenseNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:maxLength="30"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:id="@+id/textInputLayout12"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:background="@drawable/text_border"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="435dp"
+        android:hint=" License Expiry Date"
         android:textColor="@color/black"
-        android:drawableLeft="@drawable/renewal"
-        android:hint=" License Expiry Date:"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:paddingLeft="5dp"
         android:textColorHint="@color/grey"
+        app:endIconMode="clear_text"
+        app:helperTextTextColor="@color/red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/licenseNumber"
-        app:layout_constraintVertical_bias="0.044" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout11"
+        app:helperText="Required"
+        app:layout_constraintVertical_bias="0.0"
+        app:startIconDrawable="@drawable/renewal"
+        app:startIconTint="@color/blue">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/licenseExpiryDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:maxLength="30"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/textView8"
@@ -102,7 +144,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/licenseExpiryDate"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout12"
         app:layout_constraintVertical_bias="0.057">
 
     </TextView>
@@ -170,10 +212,10 @@
         android:id="@+id/registerCheck"
         android:layout_width="321dp"
         android:layout_height="59dp"
-        android:layout_marginStart="36dp"
         android:text="By creating account you agree to our terms &amp; conditions and privacy policy"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frontlicense"
         app:layout_constraintVertical_bias="0.108" />
@@ -190,10 +232,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintCircleRadius="-50dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.546"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerCheck"
-        app:layout_constraintVertical_bias="0.333" />
+        app:layout_constraintVertical_bias="0.591" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
