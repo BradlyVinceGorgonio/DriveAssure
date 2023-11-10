@@ -128,6 +128,7 @@ public class FaceVerification extends AppCompatActivity {
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                rotateImage90Degrees();
                 Intent intent = getIntent();
 
                 String Name = intent.getStringExtra("name");
@@ -298,6 +299,32 @@ public class FaceVerification extends AppCompatActivity {
         return Bitmap.createBitmap(adjustedBitmap, 0, 0, adjustedBitmap.getWidth(), adjustedBitmap.getHeight(), matrix, true);
     }
 
+    public static void rotateImage90Degrees() {
+        File downloadsDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        File appDirectory = new File(downloadsDirectory, "YourAppName");
+        File imageFile = new File(appDirectory, "captured_image.jpg");
+
+        try {
+            // Decode the input image file into a Bitmap
+            Bitmap originalBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
+
+            // Rotate the bitmap 90 degrees
+            Matrix matrix = new Matrix();
+            matrix.postRotate(-90);
+            Bitmap rotatedBitmap = Bitmap.createBitmap(originalBitmap, 0, 0, originalBitmap.getWidth(), originalBitmap.getHeight(), matrix, true);
+
+            // Save the rotated bitmap back to the original image file
+            try (FileOutputStream outputStream = new FileOutputStream(imageFile)) {
+                rotatedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+            }
+
+            Log.i("ImageUtils", "Image rotated and saved successfully");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("ImageUtils", "Error rotating image: " + e.getMessage());
+        }
+    }
 
 
 
