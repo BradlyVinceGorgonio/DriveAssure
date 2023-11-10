@@ -10,7 +10,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView5"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="65dp"
         android:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="13dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="5dp"
             android:text="Your location"
             android:textColor="@color/black"
             android:textSize="15dp"
@@ -35,85 +35,38 @@
             android:layout_width="43dp"
             android:layout_height="45dp"
             android:layout_marginLeft="355dp"
-            android:layout_marginTop="43dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/message_more"
+            android:contentDescription="chat"
+            tools:ignore="TouchTargetSizeCheck" />
+
+
+        <ImageButton
+            android:id="@+id/filterSearch"
+            android:layout_width="43dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="305dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/filter_10"
             android:contentDescription="chat"
             tools:ignore="TouchTargetSizeCheck" />
 
 
         <TextView
             android:id="@+id/searchBar"
-            android:layout_width="340dp"
-            android:layout_height="45dp"
+            android:layout_width="290dp"
+            android:layout_height="33dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="-25dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginLeft="-50dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/edit_textround_radius"
             android:drawableLeft="@drawable/address"
             android:gravity="start|center_vertical"
             android:hint="143 Taguig City Pinagsama Village"
             android:paddingLeft="10dp"
             android:textColor="@color/black"
-            tools:ignore="TouchTargetSizeCheck"></TextView>
-    </androidx.cardview.widget.CardView>
-
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Choose your Category:"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView5"
-        app:layout_constraintVertical_bias="0.021"></TextView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/carsFilter"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_margin="5dp"
-        app:cardBackgroundColor="@android:color/white"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="80dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.153"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15"
-        app:layout_constraintVertical_bias="0.037"
-        tools:ignore="MissingConstraints">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/carsfilter">
-</LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/filterMotorcycle"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_margin="5dp"
-        app:cardBackgroundColor="@android:color/white"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="80dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.27"
-        app:layout_constraintStart_toEndOf="@+id/carsFilter"
-        app:layout_constraintTop_toBottomOf="@+id/textView15"
-        app:layout_constraintVertical_bias="0.041"
-        tools:ignore="MissingConstraints">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/motorfilter"></LinearLayout>
-
-
+            android:textSize="13dp"
+            tools:ignore="TouchTargetSizeCheck,TextSizeCheck"></TextView>
     </androidx.cardview.widget.CardView>
 
 
@@ -127,18 +80,18 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.022"
+        app:layout_constraintHorizontal_bias="0.036"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/carsFilter"
-        app:layout_constraintVertical_bias="0.041" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView5"
+        app:layout_constraintVertical_bias="0.269" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutVehicleType"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="130dp"
         android:layout_height="40dp"
-        android:layout_marginTop="-66dp"
-        android:layout_marginRight="-15dp"
+        android:layout_marginTop="-110dp"
+        android:layout_marginRight="5dp"
         android:contentDescription="vehicletype"
         android:hint=" Vehicle"
         app:endIconMode="dropdown_menu"
@@ -157,6 +110,37 @@
             android:textColor="@color/black"
             android:textSize="13dp"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TextSizeCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutCarType"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="-15dp"
+        android:layout_marginRight="-15dp"
+        android:contentDescription="cartype"
+        android:hint=" Car"
+        app:endIconMode="dropdown_menu"
+        app:helperText="Required"
+        app:helperTextTextColor="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintStart_toEndOf="@+id/textInputLayoutLocation"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:layout_constraintVertical_bias="0.024">
+
+        <AutoCompleteTextView
+            android:id="@+id/carTypeSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:textColor="@color/black"
+            android:textSize="13dp"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TextSizeCheck" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -186,35 +170,6 @@
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TextSizeCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutCarType"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="130dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="-15dp"
-        android:layout_marginRight="-15dp"
-        android:contentDescription="cartype"
-        android:hint=" Car"
-        app:endIconMode="dropdown_menu"
-        app:helperText="Required"
-        app:helperTextTextColor="@color/red"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toEndOf="@+id/textInputLayoutLocation"
-        app:layout_constraintTop_toBottomOf="@+id/textView18"
-        app:layout_constraintVertical_bias="0.044">
-
-        <AutoCompleteTextView
-            android:id="@+id/carTypeSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="none"
-            android:textColor="@color/black"
-            android:textSize="13dp"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TextSizeCheck" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutPriceRange"
@@ -243,10 +198,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        tools:ignore="MissingConstraints"
+      ></androidx.viewpager2.widget.ViewPager2>
 
     <androidx.cardview.widget.CardView
         android:layout_width="382dp"
         android:layout_height="218dp"
+        android:layout_marginTop="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.448"
@@ -262,9 +224,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/homeRecyclerView"
-            android:layout_height="match_parent"
             android:layout_width="match_parent"
-            />
+            android:layout_height="match_parent" />
     </androidx.cardview.widget.CardView>
 
 
