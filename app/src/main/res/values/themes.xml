@@ -11,4 +11,9 @@
     </style>
 
     <style name="Theme.DriveAssure" parent="Base.Theme.DriveAssure" />
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_out</item>
+    </style>
 </resources>

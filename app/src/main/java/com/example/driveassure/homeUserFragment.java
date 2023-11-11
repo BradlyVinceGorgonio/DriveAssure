@@ -3,18 +3,24 @@ package com.example.driveassure;
 // homeUserFragment
 import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_STATIC_DP;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.transition.Slide;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -112,17 +118,21 @@ public class homeUserFragment extends Fragment implements HomeListingCarAdapter.
                 int pageHeight = page.getHeight();
 
                 // Assuming 1080x720 dimensions for the images
-                float targetWidth = 1920f;
-                float targetHeight = 1080f;
+                float targetWidth = 1080f;
+                float targetHeight = 720f;
 
                 float scaleX = targetWidth / pageWidth;
                 float scaleY = targetHeight / pageHeight;
 
-                // Apply the scale to the page
-                page.setScaleX(scaleX * scaleFactor);
+                // Limit the scale based on the target width
+                float maxScaleX = targetWidth / pageWidth;
+
+                // Apply the scale to the page, ensuring it doesn't exceed the maximum width
+                page.setScaleX(Math.min(scaleX * scaleFactor, maxScaleX));
                 page.setScaleY(scaleY * scaleFactor);
             }
         });
+
 
 
         viewpager2.setPageTransformer(compositePageTransformer);
@@ -137,69 +147,69 @@ public class homeUserFragment extends Fragment implements HomeListingCarAdapter.
 
         progressBarID2 = view.findViewById(R.id.progressBarID2);
 
-        TextInputLayout locationTextInputLayout = view.findViewById(R.id.textInputLayoutLocation);
-        AutoCompleteTextView locationAutoComplete = view.findViewById(R.id.locationSpinner);
-
-        ArrayAdapter<String> locationAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, locationRanges);
-        locationAutoComplete.setAdapter(locationAdapter);
-
-        locationAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedLocation = (String) parent.getItemAtPosition(position);
-                // Handle the selected location as needed
-            }
-        });
-
-
-        TextInputLayout priceRangeTextInputLayout = view.findViewById(R.id.textInputLayoutPriceRange);
-        AutoCompleteTextView priceRangeAutoComplete = view.findViewById(R.id.priceRangeSpinner);
-
-        ArrayAdapter<String> priceRangeAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, priceRanges);
-        priceRangeAutoComplete.setAdapter(priceRangeAdapter);
-
-        priceRangeAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedPriceRange = (String) parent.getItemAtPosition(position);
-                // Handle the selected price range as needed
-            }
-        });
-
-        TextInputLayout vehicleTypeTextInputLayout = view.findViewById(R.id.textInputLayoutVehicleType);
-        AutoCompleteTextView vehicleTypeAutoComplete = view.findViewById(R.id.vehicleTypeSpinner);
-
-        ArrayAdapter<String> vehicleTypeAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, motorcycleTypes);
-        vehicleTypeAutoComplete.setAdapter(vehicleTypeAdapter);
-
-        vehicleTypeAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedVehicleType = (String) parent.getItemAtPosition(position);
-                // Handle the selected vehicle type as needed
-            }
-        });
-
-        TextInputLayout carTypeTextInputLayout = view.findViewById(R.id.textInputLayoutCarType);
-        AutoCompleteTextView carTypeAutoComplete = view.findViewById(R.id.carTypeSpinner);
-
-        ArrayAdapter<String> carTypeAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, carTypes);
-        carTypeAutoComplete.setAdapter(carTypeAdapter);
-
-        carTypeAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedCarType = (String) parent.getItemAtPosition(position);
-                // Handle the selected car type as needed
-            }
-        });
+//        TextInputLayout locationTextInputLayout = view.findViewById(R.id.textInputLayoutLocation);
+//        AutoCompleteTextView locationAutoComplete = view.findViewById(R.id.locationSpinner);
+//
+//        ArrayAdapter<String> locationAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, locationRanges);
+//        locationAutoComplete.setAdapter(locationAdapter);
+//
+//        locationAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                selectedLocation = (String) parent.getItemAtPosition(position);
+//                // Handle the selected location as needed
+//            }
+//        });
+//
+//
+//        TextInputLayout priceRangeTextInputLayout = view.findViewById(R.id.textInputLayoutPriceRange);
+//        AutoCompleteTextView priceRangeAutoComplete = view.findViewById(R.id.priceRangeSpinner);
+//
+//        ArrayAdapter<String> priceRangeAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, priceRanges);
+//        priceRangeAutoComplete.setAdapter(priceRangeAdapter);
+//
+//        priceRangeAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                selectedPriceRange = (String) parent.getItemAtPosition(position);
+//                // Handle the selected price range as needed
+//            }
+//        });
+//
+//        TextInputLayout vehicleTypeTextInputLayout = view.findViewById(R.id.textInputLayoutVehicleType);
+//        AutoCompleteTextView vehicleTypeAutoComplete = view.findViewById(R.id.vehicleTypeSpinner);
+//
+//        ArrayAdapter<String> vehicleTypeAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, motorcycleTypes);
+//        vehicleTypeAutoComplete.setAdapter(vehicleTypeAdapter);
+//
+//        vehicleTypeAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                selectedVehicleType = (String) parent.getItemAtPosition(position);
+//                // Handle the selected vehicle type as needed
+//            }
+//        });
+//
+//        TextInputLayout carTypeTextInputLayout = view.findViewById(R.id.textInputLayoutCarType);
+//        AutoCompleteTextView carTypeAutoComplete = view.findViewById(R.id.carTypeSpinner);
+//
+//        ArrayAdapter<String> carTypeAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, carTypes);
+//        carTypeAutoComplete.setAdapter(carTypeAdapter);
+//
+//        carTypeAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                selectedCarType = (String) parent.getItemAtPosition(position);
+//                // Handle the selected car type as needed
+//            }
+//        });
 
         filterSearch = view.findViewById(R.id.filterSearch);
         PushDownAnim.setPushDownAnimTo(filterSearch).setScale(MODE_STATIC_DP, 8 );
         filterSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                showDialog();
             }
         });
 
@@ -223,7 +233,81 @@ public class homeUserFragment extends Fragment implements HomeListingCarAdapter.
         fetchDataFromFirestore();
 
 
+
+
         return view;
+    }
+    private void showDialog()
+    {
+        final Dialog dialog = new Dialog(getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.bottomsheetlayout);
+
+        TextInputLayout locationTextInputLayout = dialog.findViewById(R.id.textInputLayoutLocation);
+        AutoCompleteTextView locationAutoComplete = dialog.findViewById(R.id.locationSpinner);
+
+        ArrayAdapter<String> locationAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, locationRanges);
+        locationAutoComplete.setAdapter(locationAdapter);
+
+        locationAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedLocation = (String) parent.getItemAtPosition(position);
+                // Handle the selected location as needed
+            }
+        });
+
+
+        TextInputLayout priceRangeTextInputLayout = dialog.findViewById(R.id.textInputLayoutPriceRange);
+        AutoCompleteTextView priceRangeAutoComplete = dialog.findViewById(R.id.priceRangeSpinner);
+
+        ArrayAdapter<String> priceRangeAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, priceRanges);
+        priceRangeAutoComplete.setAdapter(priceRangeAdapter);
+
+        priceRangeAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedPriceRange = (String) parent.getItemAtPosition(position);
+                // Handle the selected price range as needed
+            }
+        });
+
+        TextInputLayout vehicleTypeTextInputLayout = dialog.findViewById(R.id.textInputLayoutVehicleType);
+        AutoCompleteTextView vehicleTypeAutoComplete = dialog.findViewById(R.id.vehicleTypeSpinner);
+
+        ArrayAdapter<String> vehicleTypeAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, motorcycleTypes);
+        vehicleTypeAutoComplete.setAdapter(vehicleTypeAdapter);
+
+        vehicleTypeAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedVehicleType = (String) parent.getItemAtPosition(position);
+                // Handle the selected vehicle type as needed
+            }
+        });
+
+        TextInputLayout carTypeTextInputLayout = dialog.findViewById(R.id.textInputLayoutCarType);
+        AutoCompleteTextView carTypeAutoComplete = dialog.findViewById(R.id.carTypeSpinner);
+
+        ArrayAdapter<String> carTypeAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, carTypes);
+        carTypeAutoComplete.setAdapter(carTypeAdapter);
+
+        carTypeAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedCarType = (String) parent.getItemAtPosition(position);
+                // Handle the selected car type as needed
+            }
+        });
+
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
+
+
+
     }
 
 
