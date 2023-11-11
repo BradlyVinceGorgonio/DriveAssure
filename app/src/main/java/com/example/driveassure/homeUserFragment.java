@@ -134,7 +134,6 @@ public class homeUserFragment extends Fragment implements HomeListingCarAdapter.
         });
 
 
-
         viewpager2.setPageTransformer(compositePageTransformer);
         viewpager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -174,6 +173,8 @@ public class homeUserFragment extends Fragment implements HomeListingCarAdapter.
         homeListingCarAdapter = new HomeListingCarAdapter(getContext(), HistoryList, this);
         recyclerView.setAdapter(homeListingCarAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+
+
         fetchDataFromFirestore();
 
 
