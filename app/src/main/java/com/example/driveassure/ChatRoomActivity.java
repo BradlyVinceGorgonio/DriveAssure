@@ -7,12 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
-import com.example.driveassure.R;
-
 
 public class ChatRoomActivity extends AppCompatActivity {
 
@@ -53,7 +50,8 @@ public class ChatRoomActivity extends AppCompatActivity {
         messageRunnable = new Runnable() {
             @Override
             public void run() {
-                receiveMessage("New message");
+                // Simulate receiving new messages
+                receiveMessage("New message from OtherUser");
                 messageHandler.postDelayed(this, 3000);
             }
         };
