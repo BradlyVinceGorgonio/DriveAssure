@@ -48,4 +48,3 @@ public class ChatListActivity extends AppCompatActivity {
         });
     }
 }
-

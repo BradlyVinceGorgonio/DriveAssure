@@ -5,5 +5,6 @@
     <string name="register_link_text"><a href="http://example.com">Register Now</a></string>
     <string name="send_button_content_description" />
     <string name="back_button_content_description" />
+    <string name="upload_button_content_description" />
 
 </resources>
