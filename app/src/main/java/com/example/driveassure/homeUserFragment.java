@@ -102,7 +102,7 @@ public class homeUserFragment extends Fragment implements HomeListingCarAdapter.
 
         viewpager2.setClipToPadding(false);
         viewpager2.setClipChildren(false);
-        viewpager2.setOffscreenPageLimit(5);
+        viewpager2.setOffscreenPageLimit(1);
         viewpager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
 
         CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
