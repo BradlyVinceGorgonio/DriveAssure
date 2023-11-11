@@ -201,7 +201,6 @@ public class homeUserFragment extends Fragment implements HomeListingCarAdapter.
             }
         });
 
-
         TextInputLayout priceRangeTextInputLayout = dialog.findViewById(R.id.textInputLayoutPriceRange);
         AutoCompleteTextView priceRangeAutoComplete = dialog.findViewById(R.id.priceRangeSpinner);
 
