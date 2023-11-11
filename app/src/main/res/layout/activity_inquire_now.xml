@@ -25,282 +25,256 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/patuaoneregular"
-        android:text="RESERVATION FORM"
+        android:text="Reservation Form"
         android:textColor="@color/black"
         android:textSize="30dp"
         android:layout_gravity="center"></TextView>
 
     </androidx.cardview.widget.CardView>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout14"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint=" Pick-up Location"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        app:endIconMode="clear_text"
+        app:helperText="Required"
+        app:helperTextTextColor="@color/red"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="50dp"
-        app:layout_constraintTop_toBottomOf="@+id/cardView5">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout17"
+        app:layout_constraintVertical_bias="0.044"
+        app:startIconDrawable="@drawable/address"
+        app:startIconTint="@color/black">
 
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pickUpLocation"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:textColor="@color/black"
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Reservation Details"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_marginTop="35dp"
-                android:layout_marginLeft="20dp"
-                android:textSize="25dp"></TextView>
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout18"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint=" Return Location"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        app:endIconMode="clear_text"
+        app:helperText="Required"
+        app:helperTextTextColor="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout16"
+        app:layout_constraintVertical_bias="0.141"
+        app:startIconDrawable="@drawable/address"
+        app:startIconTint="@color/black">
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="175dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:hint=" Pick-up Date"
-                android:textColor="@color/black"
-                android:textColorHint="@color/grey"
-                app:endIconMode="clear_text"
-                app:helperText="Required"
-                app:helperTextTextColor="@color/red"
-                android:layout_marginStart="-95dp"
-                android:layout_marginTop="20dp"
-                app:startIconDrawable="@drawable/calendar"
-                app:startIconTint="@color/black">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/returnLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:textColor="@color/black"
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/pickUpDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:inputType="date"
-                    android:textColor="@color/black"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/black"
+        android:text="Submit Reservation"
+        android:textColor="@color/white"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout18"
+        app:layout_constraintVertical_bias="0.679" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout13"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="175dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:hint=" Pick-up Time"
-                android:textColor="@color/black"
-                android:textColorHint="@color/grey"
-                app:endIconMode="clear_text"
-                app:helperText="Required"
-                app:helperTextTextColor="@color/red"
-                android:layout_marginStart="95dp"
-                android:layout_marginTop="-82dp"
-                app:startIconDrawable="@drawable/clock_191"
-                app:startIconTint="@color/black">
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout16"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint=" Return Date"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        app:endIconMode="clear_text"
+        app:helperText="Required"
+        app:helperTextTextColor="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.069"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView7"
+        app:layout_constraintVertical_bias="0.154"
+        app:startIconDrawable="@drawable/calendar"
+        app:startIconTint="@color/black">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/pickUpTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:textColor="@color/black"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/returnDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:inputType="date"
+            android:textColor="@color/black"
 
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout13"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="-5dp"
+        android:hint=" Pick-up Time"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        app:endIconMode="clear_text"
+        app:helperText="Required"
+        app:helperTextTextColor="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.93"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:layout_constraintVertical_bias="0.048"
+        app:startIconDrawable="@drawable/clock_191"
+        app:startIconTint="@color/black">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pickUpTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:textColor="@color/black"
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout14"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="363dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:hint=" Pick-up Location"
-                android:textColor="@color/black"
-                android:textColorHint="@color/grey"
-                app:endIconMode="clear_text"
-                app:helperText="Required"
-                app:helperTextTextColor="@color/red"
-                android:layout_marginTop="20dp"
-                app:startIconDrawable="@drawable/address"
-                app:startIconTint="@color/black">
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/pickUpLocation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:textColor="@color/black"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout15"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint=" Return Time"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        app:endIconMode="clear_text"
+        app:helperText="Required"
+        app:helperTextTextColor="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.93"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView7"
+        app:layout_constraintVertical_bias="0.154"
+        app:startIconDrawable="@drawable/clock_191"
+        app:startIconTint="@color/black">
 
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/returnTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:textColor="@color/black"
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView7"
-                android:layout_width="370dp"
-                android:layout_height="1dp"
-                android:layout_gravity="center"
-                android:backgroundTint="@color/black"
-                android:layout_marginTop="23dp"
-                android:layout_marginBottom="23dp"></androidx.cardview.widget.CardView>
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout16"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="175dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:hint=" Return Date"
-                android:textColor="@color/black"
-                android:textColorHint="@color/grey"
-                app:endIconMode="clear_text"
-                app:helperText="Required"
-                app:helperTextTextColor="@color/red"
-                android:layout_marginStart="-95dp"
-                app:startIconDrawable="@drawable/calendar"
-                app:startIconTint="@color/black">
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/patuaoneregular"
+        android:text="Reservation Details"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.102"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView5"
+        app:layout_constraintVertical_bias="0.055" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/returnDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:inputType="date"
-                    android:textColor="@color/black"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout17"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="-5dp"
+        android:hint=" Pick-up Date"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        app:endIconMode="clear_text"
+        app:helperText="Required"
+        app:helperTextTextColor="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.069"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:layout_constraintVertical_bias="0.048"
+        app:startIconDrawable="@drawable/calendar"
+        app:startIconTint="@color/black">
 
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pickUpDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:inputType="date"
+            android:textColor="@color/black"
 
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout15"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="175dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:hint=" Return Time"
-                android:textColor="@color/black"
-                android:textColorHint="@color/grey"
-                app:endIconMode="clear_text"
-                app:helperText="Required"
-                app:helperTextTextColor="@color/red"
-                android:layout_marginStart="95dp"
-                android:layout_marginTop="-82dp"
-                app:startIconDrawable="@drawable/clock_191"
-                app:startIconTint="@color/black">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/returnTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:textColor="@color/black"
-
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="363dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:hint=" Return Location"
-                android:textColor="@color/black"
-                android:textColorHint="@color/grey"
-                app:endIconMode="clear_text"
-                app:helperText="Required"
-                app:helperTextTextColor="@color/red"
-                android:layout_marginTop="20dp"
-                app:startIconDrawable="@drawable/address"
-                app:startIconTint="@color/black">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/returnLocation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:textColor="@color/black"
-
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="ID Verification List"
-    android:textColor="@color/black"
-    android:textStyle="bold"
-    android:layout_marginTop="45dp"
-    android:layout_marginLeft="20dp"
-    android:textSize="25dp"></TextView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="380dp"
-                android:layout_height="300dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                app:cardElevation="45dp"
-                app:cardCornerRadius="15dp">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:textColor="@color/black"
-                    android:text="Under the Law, acceptable Valid IDs or any similar form of documents with photo that will verify the identity of the end-users include, but are not limited to, the following:\n\n
-1. Passport;\n
-2. Philippine Identification;\n
-3. Social Security System ID;\n
-4. Government Service Insurance System E-Card;\n
-5. Driver's License;\n
-6. National Bureau of Investigation Clearance;\n
-7. Police Clearance;\n
-8. Firearms' License to Own and Possess ID;\n
-9. Professional Regulation Commission ID;\n
-10. Integrated Bar of the Philippines ID;\n
-11. Overseas Workers Welfare Administration ID;\n
-12. Bureau of Internal Revenue ID;\n
-13. Voter's ID;\n
-14. Citizen's Card;\n
-15. Unified Multi-purpose Identification Card;\n
-16. Person with Disabilities Card; or\n
-17. Other valid government-issued ID with Photo\n
-"></TextView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView7"
+        android:layout_width="385dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.384"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout14"
+        app:layout_constraintVertical_bias="0.089"></androidx.cardview.widget.CardView>
 
 
-            </androidx.cardview.widget.CardView>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Upload Valid ID"
-                android:backgroundTint="@color/blue"
-                android:textSize="17dp"
-                android:textStyle="normal"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-                android:textColor="@color/black"></Button>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="45dp"
-                android:layout_marginBottom="25dp"
-                android:layout_gravity="center"
-                android:backgroundTint="@color/black"
-                android:textSize="22dp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:text="Submit reservation" />
-
-        </LinearLayout>
-    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
