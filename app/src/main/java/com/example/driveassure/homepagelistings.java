@@ -95,7 +95,8 @@ public class homepagelistings extends AppCompatActivity {
         inquireButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(homepagelistings.this, InquireNowActivity.class);
+                startActivity(intent);
             }
         });
         messageCarOwner = findViewById(R.id.messageCarOwner);
@@ -106,9 +107,7 @@ public class homepagelistings extends AppCompatActivity {
 
             }
         });
-
     }
-
     private void fetchDataFromFirestore(String CarID, String UID)
     {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
