@@ -6,13 +6,9 @@
 
     <RelativeLayout
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
+        android:layout_width="500dp"
         android:layout_height="70dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
-        android:background="@color/my_primary"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp">
+        android:background="@color/my_primary" >
 
         <ImageButton
             android:id="@+id/backButton"

@@ -1,5 +1,6 @@
 package com.example.driveassure;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -10,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
+import com.example.driveassure.R;
+
 
 public class ChatRoomActivity extends AppCompatActivity {
 
@@ -21,6 +24,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     private Handler messageHandler;
     private Runnable messageRunnable;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +49,6 @@ public class ChatRoomActivity extends AppCompatActivity {
             }
         });
 
-        // Simulate receiving a new message every 3 seconds
         messageHandler = new Handler();
         messageRunnable = new Runnable() {
             @Override
@@ -58,17 +61,21 @@ public class ChatRoomActivity extends AppCompatActivity {
     }
 
     private void sendMessage(String messageText) {
-        Message message = new Message("You", messageText);
-        messageList.add(message);
-        messageAdapter.notifyDataSetChanged();
-        scrollToBottom();
+        if (messageList != null && messageAdapter != null) {
+            Message message = new Message("You", messageText);
+            messageList.add(message);
+            messageAdapter.notifyDataSetChanged();
+            scrollToBottom();
+        }
     }
 
     private void receiveMessage(String messageText) {
-        Message message = new Message("OtherUser", messageText);
-        messageList.add(message);
-        messageAdapter.notifyDataSetChanged();
-        scrollToBottom();
+        if (messageList != null && messageAdapter != null) {
+            Message message = new Message("OtherUser", messageText);
+            messageList.add(message);
+            messageAdapter.notifyDataSetChanged();
+            scrollToBottom();
+        }
     }
 
     private void scrollToBottom() {
