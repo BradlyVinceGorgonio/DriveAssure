@@ -109,11 +109,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ProgressBar
-            android:id="@+id/progressBarID2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+        
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/homeRecyclerView"
