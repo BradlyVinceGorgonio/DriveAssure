@@ -8,6 +8,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -109,10 +110,9 @@ public class homepagelistings extends AppCompatActivity {
                 String currentUserUid = getCurrentUserUid();
                 String postOwnerUid = getPostOwnerUid();
 
-                if (!currentUserUid.isEmpty() && !postOwnerUid.isEmpty()) {
-                    Intent intent = new Intent(homepagelistings.this, ChatRoomActivity.class);
+                if (!TextUtils.isEmpty(currentUserUid) && !TextUtils.isEmpty(postOwnerUid)) {
+                    Intent intent = new Intent(getApplication(), ChatRoomActivity.class);
 
-                    // Pass necessary data to ChatRoomActivity
                     intent.putExtra("currentUserUid", currentUserUid);
                     intent.putExtra("postOwnerUid", postOwnerUid);
                     startActivity(intent);
