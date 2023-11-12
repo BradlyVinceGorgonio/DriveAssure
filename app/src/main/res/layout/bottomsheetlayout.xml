@@ -8,26 +8,25 @@
     android:layout_height="match_parent">
 
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutVehicleType"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="130dp"
             android:layout_height="40dp"
-            android:layout_marginRight="5dp"
             android:contentDescription="vehicletype"
             android:hint=" Vehicle"
             app:endIconMode="dropdown_menu"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.2"
-            app:layout_constraintStart_toEndOf="@+id/textInputLayoutLocation"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCarType"
-            app:layout_constraintVertical_bias="0.162">
+            app:layout_constraintHorizontal_bias="0.782"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutLocation"
+            app:layout_constraintVertical_bias="0.016">
 
             <AutoCompleteTextView
                 android:id="@+id/vehicleTypeSpinner"
@@ -35,18 +34,15 @@
                 android:layout_height="wrap_content"
                 android:inputType="none"
                 android:textColor="@color/black"
-                android:textSize="13dp"
+                android:textSize="12dp"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TextSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutCarType"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="130dp"
             android:layout_height="40dp"
-            android:layout_marginTop="-15dp"
-            android:layout_marginRight="-15dp"
             android:contentDescription="cartype"
             android:hint=" Car"
             app:endIconMode="dropdown_menu"
@@ -54,10 +50,10 @@
             app:helperTextTextColor="@color/red"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.111"
-            app:layout_constraintStart_toEndOf="@+id/textInputLayoutLocation"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.024">
+            app:layout_constraintHorizontal_bias="0.11"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPriceRange"
+            app:layout_constraintVertical_bias="0.017">
 
             <AutoCompleteTextView
                 android:id="@+id/carTypeSpinner"
@@ -65,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="none"
                 android:textColor="@color/black"
-                android:textSize="13dp"
+                android:textSize="12dp"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TextSizeCheck" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -82,11 +78,11 @@
             app:endIconMode="dropdown_menu"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.471"
+            app:layout_constraintHorizontal_bias="0.82"
             app:layout_constraintStart_toStartOf="parent"
 
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintVertical_bias="0.023">
 
             <AutoCompleteTextView
                 android:id="@+id/locationSpinner"
@@ -94,26 +90,24 @@
                 android:layout_height="wrap_content"
                 android:inputType="none"
                 android:textColor="@color/black"
-                android:textSize="13dp"
+                android:textSize="12dp"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TextSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutPriceRange"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="115dp"
+            android:layout_width="130dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="-15dp"
             android:contentDescription="price"
             android:hint=" Price"
             app:endIconMode="dropdown_menu"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textInputLayoutLocation"
-            app:layout_constraintHorizontal_bias="0.727"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.11"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintVertical_bias="0.023">
 
             <AutoCompleteTextView
                 android:id="@+id/priceRangeSpinner"
@@ -121,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="none"
                 android:textColor="@color/black"
-                android:textSize="13dp"
+                android:textSize="12dp"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TextSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

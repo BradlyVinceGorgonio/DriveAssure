@@ -1,66 +1,97 @@
             <!-- item_user.xml -->
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ownerListingsItems"
-    android:layout_width="match_parent"
-    android:layout_height="120dp"
-    android:layout_marginTop="10sp"
-    android:layout_marginBottom="10sp"
-    android:background="@drawable/textview_border">
+            <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/ownerListingsItems"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="10sp"
+                android:layout_marginBottom="10sp"
+                android:background="@drawable/textview_border">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:elevation="25dp"
+            app:cardCornerRadius="15dp"
+            >
+
         <ImageView
             android:id="@+id/carImageDisplay"
-            android:layout_width="120dp"
+            android:layout_width="110dp"
             android:layout_gravity="center"
-
-            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_height="110dp"
             android:src="@drawable/carvector"
-            android:background="@drawable/textview_border"
             />
-
+        </androidx.cardview.widget.CardView>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:elevation="25dp"
+                app:cardCornerRadius="15dp"
+                android:backgroundTint="@color/blue"
+                >
 
             <TextView
                 android:id="@+id/carNameDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
+                android:layout_marginTop="-44dp"
                 android:text="TOYOTA HONDA CIVIC"
-                android:background="@drawable/textview_border"
+                android:fontFamily="@font/patuaoneregular"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+
                 />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="₱ 5000 /day"
+                android:layout_marginTop="-18dp"
                 android:id="@+id/carPriceDisplay"
+                android:layout_gravity="center"
                 android:textColor="#D9512C"
-                android:background="@drawable/textview_border"/>
+                android:layout_marginLeft="5dp"
+                />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/carLocationDisplay"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="14dp"
+                android:layout_gravity="center"
                 android:text="McKinley Hill Village, Upper McKinley Road, Taguig, Metro Manila"
                 android:textSize="16dp"
-                android:background="@drawable/textview_border"/>
+               />
 
             <TextView
                 android:id="@+id/carTransmissionDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="Transmission: Manual"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="45dp"
                 android:textSize="14sp"
-                android:background="@drawable/textview_border" />
-
+                />
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
     </LinearLayout>
 
