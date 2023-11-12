@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".BookmarkArea">
 
     <TextView
@@ -32,6 +33,36 @@
         app:layout_constraintTop_toBottomOf="@+id/textView15"
         app:layout_constraintVertical_bias="0.142" >
 
+        <LinearLayout
+            android:id="@+id/displayNoBookmarks"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:elevation="3dp"
+            android:visibility="gone"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/bigIconImageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/heart_full"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"  />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You have no likes"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:layout_gravity="center"/>
+
+
+        </LinearLayout>
+
+
+
         <ProgressBar
             android:id="@+id/ProgressBarBookMark"
             android:layout_width="wrap_content"
@@ -42,7 +73,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/bookmarkRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@android:color/white"
             android:elevation="1dp" />
     </androidx.cardview.widget.CardView>

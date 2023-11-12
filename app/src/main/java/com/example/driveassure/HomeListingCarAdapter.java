@@ -86,7 +86,6 @@ public class HomeListingCarAdapter extends RecyclerView.Adapter<HomeListingCarAd
                 // Handle ToggleButton state change action
                 if (isChecked) {
                     // The ToggleButton is checked
-                    Toast.makeText(buttonView.getContext(), "Checked" + admin.getCarpostUID(), Toast.LENGTH_SHORT).show();
                     // Initialize Firebase components
 
                     addWordToVehicleLikes(admin.getCarpostUID());
@@ -95,7 +94,6 @@ public class HomeListingCarAdapter extends RecyclerView.Adapter<HomeListingCarAd
 
                 } else {
                     // The ToggleButton is unchecked
-                    Toast.makeText(buttonView.getContext(), "Unchecked", Toast.LENGTH_SHORT).show();
                     removeWordFromVehicleLikes(admin.getCarpostUID());
                 }
 

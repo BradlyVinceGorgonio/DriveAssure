@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -92,7 +93,7 @@ public class BookmarkArea extends AppCompatActivity implements OwnerListingCarAd
                         if (documentSnapshot.exists()) {
                             // Get the array contents directly as List<String>
                             List<String> vehicleLikesList = (List<String>) documentSnapshot.get("vehicle likes");
-                            if (vehicleLikesList != null) {
+                            if (vehicleLikesList != null && !vehicleLikesList.isEmpty()) {
                                 // Process the contents of the "vehicleLikes" array
                                 HistoryList.clear();
                                 for (String vehicleLike : vehicleLikesList) {
@@ -136,6 +137,9 @@ public class BookmarkArea extends AppCompatActivity implements OwnerListingCarAd
                             } else {
                                 // Log if the "vehicleLikes" array is null
                                 Log.d("FETCH_VEHICLE_LIKE", "vehicleLikesList is null");
+                                progressBarID.setVisibility(View.GONE);
+                                LinearLayout displayNoBookmarks = findViewById(R.id.displayNoBookmarks);
+                                displayNoBookmarks.setVisibility(View.VISIBLE);
                             }
                         } else {
                             // Log if the user document doesn't exist
