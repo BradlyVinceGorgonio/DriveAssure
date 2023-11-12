@@ -23,6 +23,18 @@
         android:theme="@style/Theme.DriveAssure"
         tools:targetApi="31">
         <activity
+            android:name=".SuccessfullPayment"
+            android:exported="false" />
+        <activity
+            android:name=".PaymentAndSignature"
+            android:exported="false" />
+        <activity
+            android:name=".DownloadDocumentContract"
+            android:exported="false" />
+        <activity
+            android:name=".IdVerification"
+            android:exported="false" />
+        <activity
             android:name=".BookmarkArea"
             android:exported="false" />
         <activity
