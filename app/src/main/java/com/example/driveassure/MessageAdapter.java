@@ -21,6 +21,9 @@ public class MessageAdapter extends BaseAdapter {
     public MessageAdapter(ChatRoomActivity context, List<com.example.driveassure.Message> messageList) {
     }
 
+    public MessageAdapter(ChatRoomOwner chatRoomOwner, List<com.example.driveassure.Message> messageList) {
+    }
+
     @Override
     public int getCount() {
         return mMessageList.size();
