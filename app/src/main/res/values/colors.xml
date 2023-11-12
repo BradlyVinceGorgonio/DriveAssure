@@ -16,4 +16,5 @@
     <color name="buttoncolor">#00FF00</color>
     <color name="disabledGrey">#D3D3D3</color>
     <color name="lightgreen"> #90EE90</color>
+    <color name="backgroundlightblue">#ADD8E6</color>
 </resources>
