@@ -33,7 +33,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView10"
         android:layout_width="350dp"
-        android:layout_height="270dp"
+        android:layout_height="275dp"
         android:layout_gravity="center"
         app:cardCornerRadius="20dp"
         app:cardElevation="30dp"
@@ -68,7 +68,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView9"
         android:layout_width="350dp"
-        android:layout_height="270dp"
+        android:layout_height="275dp"
         android:layout_gravity="center"
         app:cardCornerRadius="20dp"
         app:cardElevation="30dp"
