@@ -12,7 +12,7 @@ import android.widget.TimePicker;
 
 public class InquireNowActivity extends AppCompatActivity {
 
-    Button datePickerButton;
+
     Button timeStartedFrom;
     Button timeFinishedFrom;
     Button datePickerFromButton;
@@ -75,7 +75,7 @@ public class InquireNowActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         // Format the selected date as a string (YEAR/MONTH/DAY)
                         selectedDateFrom = String.format("%04d/%02d/%02d", year, monthOfYear + 1, dayOfMonth);
-                        datePickerButton.setText(selectedDateFrom); // Display the selected date on the button
+                        datePickerFromButton.setText(selectedDateFrom); // Display the selected date on the button
                     }
                 },
                 datePicker.getYear(),
@@ -95,7 +95,7 @@ public class InquireNowActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         // Format the selected date as a string (YEAR/MONTH/DAY)
                         selectedDateUntil = String.format("%04d/%02d/%02d", year, monthOfYear + 1, dayOfMonth);
-                        datePickerButton.setText(selectedDateUntil); // Display the selected date on the button
+                        datePickerUntilButton.setText(selectedDateUntil); // Display the selected date on the button
                     }
                 },
                 datePicker.getYear(),
