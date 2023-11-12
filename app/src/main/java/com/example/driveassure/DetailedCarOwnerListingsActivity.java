@@ -18,8 +18,8 @@ public class DetailedCarOwnerListingsActivity extends AppCompatActivity {
 
         // Now you have the data in historyUid and CarpostUID
 
-        TextView uid = findViewById(R.id.deleteME);
-        uid.setText(historyUid + " \n" + CarpostUID);
+        //TextView uid = findViewById(R.id.deleteME);
+       // uid.setText(historyUid + " \n" + CarpostUID);
 
 
         //USE public class ImageSliderAdapter for loading the image
