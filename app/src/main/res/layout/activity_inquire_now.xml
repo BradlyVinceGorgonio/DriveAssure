@@ -49,7 +49,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout17"
+        app:layout_constraintTop_toBottomOf="@+id/datePickerFromButton"
         app:layout_constraintVertical_bias="0.044"
         app:startIconDrawable="@drawable/address"
         app:startIconTint="@color/black">
@@ -81,7 +81,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout16"
+        app:layout_constraintTop_toBottomOf="@+id/datePickerUntilButton"
         app:layout_constraintVertical_bias="0.141"
         app:startIconDrawable="@drawable/address"
         app:startIconTint="@color/black">
@@ -114,8 +114,8 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout18"
         app:layout_constraintVertical_bias="0.679" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout16"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/datePickerUntilButton"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
@@ -135,21 +135,10 @@
         app:startIconDrawable="@drawable/calendar"
         app:startIconTint="@color/black">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/returnDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:inputType="date"
-            android:textColor="@color/black"
+    </androidx.appcompat.widget.AppCompatButton>
 
-            />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout13"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/timeStartedFrom"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -169,19 +158,10 @@
         app:startIconDrawable="@drawable/clock_191"
         app:startIconTint="@color/black">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/pickUpTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:textColor="@color/black"
+    </androidx.appcompat.widget.AppCompatButton>
 
-            />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout15"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/timeFinishedFrom"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
@@ -201,16 +181,7 @@
         app:startIconDrawable="@drawable/clock_191"
         app:startIconTint="@color/black">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/returnTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:textColor="@color/black"
-
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+    </androidx.appcompat.widget.AppCompatButton>
 
     <TextView
         android:id="@+id/textView18"
@@ -228,19 +199,14 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView5"
         app:layout_constraintVertical_bias="0.055" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout17"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/datePickerFromButton"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="-5dp"
         android:hint=" Pick-up Date"
         android:textColor="@color/black"
-        android:textColorHint="@color/grey"
-        app:endIconMode="clear_text"
-        app:helperText="Required"
-        app:helperTextTextColor="@color/red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.069"
@@ -250,17 +216,7 @@
         app:startIconDrawable="@drawable/calendar"
         app:startIconTint="@color/black">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/pickUpDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:inputType="date"
-            android:textColor="@color/black"
-
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+    </androidx.appcompat.widget.AppCompatButton>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView7"
