@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -22,6 +23,7 @@ public class InquireNowActivity extends AppCompatActivity {
     String selectedDateUntil;
     String startedTime;
     String finishedTime;
+    Button submitBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +62,17 @@ public class InquireNowActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showTimePickerDialog1();
+            }
+        });
+
+        submitBtn = findViewById(R.id.submitBtn);
+        submitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("ANOORAS", "started: " + startedTime);
+                Log.d("ANOORAS", "finished: " + finishedTime);
+                Log.d("ANOORAS", "selected Date From : " + selectedDateFrom);
+                Log.d("ANOORAS", "selected Date Until : " + selectedDateUntil);
             }
         });
 
@@ -150,5 +163,7 @@ public class InquireNowActivity extends AppCompatActivity {
                 true // Use 24-hour format
         );
         timePickerDialog.show();
+
+
     }
 }
