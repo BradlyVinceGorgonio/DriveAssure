@@ -99,9 +99,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/addcarListingsRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="185dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="35dp"
             android:layout_marginRight="5dp" />
 
         <Button
@@ -109,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="110dp"
             android:backgroundTint="@color/blue"
             android:drawableLeft="@drawable/plussign"
             android:text="Create new listings"

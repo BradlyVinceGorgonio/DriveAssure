@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".homeUserFragment">
 
     <androidx.cardview.widget.CardView
@@ -49,7 +48,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="-40dp"
             android:background="@drawable/edit_textround_radius"
-            android:drawableStart="@drawable/address"
+            android:drawableStart="@drawable/locationred"
             android:gravity="start|center_vertical"
             android:hint="McKinley Pkwy, Taguig, Metro Manila"
             android:textColor="@color/black"
