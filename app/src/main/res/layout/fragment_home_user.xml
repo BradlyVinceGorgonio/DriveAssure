@@ -51,7 +51,7 @@
             android:background="@drawable/edit_textround_radius"
             android:drawableStart="@drawable/address"
             android:gravity="start|center_vertical"
-            android:hint="143 Taguig City Pinagsama Village"
+            android:hint="McKinley Pkwy, Taguig, Metro Manila"
             android:textColor="@color/black"
             android:textSize="13dp"
             tools:ignore="TouchTargetSizeCheck,TextSizeCheck"></TextView>
