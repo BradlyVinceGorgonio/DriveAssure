@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -104,9 +106,24 @@ public class homepagelistings extends AppCompatActivity {
         messageCarOwner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String currentUserUid = getCurrentUserUid();
+                String postOwnerUid = getPostOwnerUid();
 
+                if (!currentUserUid.isEmpty() && !postOwnerUid.isEmpty()) {
+                    Intent intent = new Intent(homepagelistings.this, ChatRoomActivity.class);
+
+                    // Pass necessary data to ChatRoomActivity
+                    intent.putExtra("currentUserUid", currentUserUid);
+                    intent.putExtra("postOwnerUid", postOwnerUid);
+                    startActivity(intent);
+                } else {
+                    Log.e("homepagelistings", "currentUserUid or postOwnerUid is empty");
+                    // Handle the case where UIDs are empty (e.g., show an error message, log, etc.)
+                }
             }
         });
+
+
     }
     private void fetchDataFromFirestore(String CarID, String UID)
     {
@@ -221,6 +238,24 @@ public class homepagelistings extends AppCompatActivity {
                         // Handle the failure scenario
                     }
                 });
+    }
+
+    private String getCurrentUserUid() {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+        if (user != null) {
+            return user.getUid();
+        } else {
+            // Handle the case where the user is not authenticated.
+            // You might redirect to the login screen or take appropriate action.
+            return "";
+        }
+    }
+
+    private String getPostOwnerUid() {
+        // For this example, I'm assuming you have the post owner's UID stored in a variable.
+        // Replace this with your actual logic to get the post owner's UID.
+        return "post_owner_uid_placeholder";
     }
 
     private void loadImagesFromFirebase() {
