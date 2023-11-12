@@ -102,6 +102,13 @@ public class InquireNowActivity extends AppCompatActivity {
                 Log.d("ANOORAS", "Return Location : " + returnArea);
 
                 Intent intent = new Intent(InquireNowActivity.this, IdVerification.class);
+                // Add the data to the intent
+                intent.putExtra("SELECTED_DATE_FROM", selectedDateFrom);
+                intent.putExtra("SELECTED_DATE_UNTIL", selectedDateUntil);
+                intent.putExtra("STARTED_TIME", startedTime);
+                intent.putExtra("FINISHED_TIME", finishedTime);
+                intent.putExtra("PICK_UP_AREA", pickUpArea);
+                intent.putExtra("RETURN_AREA", returnArea);
                 startActivity(intent);
 
             }
@@ -148,12 +155,8 @@ public class InquireNowActivity extends AppCompatActivity {
         if(allFieldsFilled)
         {
             submitBtn.setBackgroundColor(getResources().getColor(R.color.blue));
-
         }
-
     }
-
-
     private void showDatePickerDialog() {
         final DatePicker datePicker = new DatePicker(this);
 

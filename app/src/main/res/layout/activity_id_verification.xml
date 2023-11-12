@@ -21,11 +21,11 @@
         app:layout_constraintVertical_bias="0.143"></TextView>
 
     <Button
-        android:id="@+id/uploadvalidID"
+        android:id="@+id/uploadvalidFrontID"
         android:layout_width="290dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/darkblue"
-        android:text="Upload ID"
+        android:text="Upload ID FRONT"
         android:textColor="@color/white"
         android:textSize="18dp"
         android:textStyle="bold"
@@ -35,6 +35,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView15"
         app:layout_constraintVertical_bias="0.103" />
+
+    <Button
+        android:id="@+id/uploadvalidBackID"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/darkblue"
+        android:text="Upload ID BACK"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uploadvalidFrontID"
+        app:layout_constraintVertical_bias="0.071" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView15"
@@ -73,7 +89,18 @@
 17. Other valid government-issued ID with Photo\n
 "
             android:textColor="@color/black"></TextView>
+
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/NextButton"
+        android:layout_width="139dp"
+        android:layout_height="60dp"
+        android:text="NEXT"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uploadvalidBackID" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
