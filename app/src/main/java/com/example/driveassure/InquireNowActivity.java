@@ -35,6 +35,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
 import com.google.firebase.firestore.FieldValue;
 
 public class InquireNowActivity extends AppCompatActivity {
@@ -114,6 +116,10 @@ public class InquireNowActivity extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                String randomUid = UUID.randomUUID().toString();
+
+
                 loginLoading.setVisibility(View.VISIBLE);
                 // Receive data from the Intent
                 Intent intent = getIntent();
@@ -146,13 +152,13 @@ public class InquireNowActivity extends AppCompatActivity {
                 CollectionReference usersCollection = db.collection("users");
 
                 // Reference to the "tae" document inside the "users" collection
-                DocumentReference taeDocument = usersCollection.document(ownerUserUid);
+                DocumentReference taeDocument = usersCollection.document(userId);
 
                 // Reference to the "vehicle-request" subcollection inside the "tae" document
                 CollectionReference vehicleRequestCollection = taeDocument.collection("vehicle-request");
 
                 // Create a document with the current user's UID
-                DocumentReference userDocument = vehicleRequestCollection.document(userId);
+                DocumentReference userDocument = vehicleRequestCollection.document(randomUid);
 
                 // Create a data object with the "name" field using a HashMap
                 Map<String, Object> requestData = new HashMap<>();
@@ -164,6 +170,8 @@ public class InquireNowActivity extends AppCompatActivity {
                 requestData.put("Date End", selectedDateUntil);
                 requestData.put("Pickup Location", pickUpArea);
                 requestData.put("Return Location", returnArea);
+                requestData.put("Request Id", randomUid);
+                requestData.put("Car Owner uid", ownerUserUid);
 
                 String carPostUids = intent.getStringExtra("CarpostUID");
                 // Set the data to the document
@@ -176,14 +184,26 @@ public class InquireNowActivity extends AppCompatActivity {
                             CollectionReference usersCollections = db.collection("users");
 
                             // Reference to the current user's document using their UID
-                            DocumentReference userDocuments = usersCollections.document(userId);
+                            DocumentReference userDocuments = usersCollections.document(ownerUserUid);
+                            // Reference to the "vehicle-request" subcollection inside the "tae" document
+                            CollectionReference rentRequestCollection = userDocuments.collection("owner-view-rent-request");
+                            DocumentReference requestDocument = rentRequestCollection.document(randomUid);
 
                             // Create a data object with the array field update
                             Map<String, Object> updateData = new HashMap<>();
-                            updateData.put("Rent Requests", FieldValue.arrayUnion(carPostUids));
+                            updateData.put("Request Id", randomUid);
+                            updateData.put("uid ", userId);
+                            updateData.put("Car To Request", carPostUid);
+                            updateData.put("Time Start", startedTime);
+                            updateData.put("Time End", finishedTime);
+                            updateData.put("Date Start", selectedDateFrom);
+                            updateData.put("Date End", selectedDateUntil);
+                            updateData.put("Pickup Location", pickUpArea);
+                            updateData.put("Return Location", returnArea);
+                            updateData.put("Car Owner uid", ownerUserUid);
 
                             // Update the document with the new data
-                            userDocuments.update(updateData)
+                            requestDocument.set(updateData)
                                     .addOnSuccessListener(aVoids -> {
                                         loginLoading.setVisibility(View.GONE);
                                         showCustomDialog();

@@ -17,8 +17,10 @@ import android.widget.ProgressBar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -80,74 +82,69 @@ public class renterUserFragment extends Fragment implements OwnerListingCarAdapt
             // Get the current user's UID
             String uid = auth.getCurrentUser().getUid();
 
-            // Reference to the "users" collection and the document with the user's UID
-            DocumentReference userDocRef = db.collection("users").document(uid);
+            // Reference to the "vehicle-request" subcollection under the user's document
+            CollectionReference vehicleRequestRef = db.collection("users").document(uid).collection("vehicle-request");
 
-            // Fetch the "vehicleLikes" array from the user's document
-            userDocRef.get()
-                    .addOnSuccessListener(documentSnapshot -> {
-                        if (documentSnapshot.exists()) {
-                            // Get the array contents directly as List<String>
-                            List<String> vehicleLikesList = (List<String>) documentSnapshot.get("Rent Requests");
-                            if (vehicleLikesList != null && !vehicleLikesList.isEmpty()) {
-                                // Process the contents of the "vehicleLikes" array
-                                HistoryList.clear();
-                                for (String vehicleLike : vehicleLikesList) {
-                                    // Log document ID being fetched
-                                    Log.d("FETCH_VEHICLE_LIKE", "Fetching document with ID: " + vehicleLike);
+            // Fetch the documents from the "vehicle-request" subcollection
+            vehicleRequestRef.get()
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                        // Check if there are any documents in the subcollection
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            HistoryList.clear();
+                            for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                                // Get the "Car To Request" field value from the subcollection document
+                                String vehicleLike = documentSnapshot.getString("Car To Request");
 
-                                    // Reference to a document in "car-posts"
-                                    DocumentReference carPostDocRef = db.collection("car-posts").document(vehicleLike);
+                                // Log "Car To Request" value being fetched
+                                Log.d("FETCH_VEHICLE_LIKE", "Fetching document with Car To Request: " + vehicleLike);
 
-                                    carPostDocRef.get()
-                                            .addOnSuccessListener(carPostDocumentSnapshot -> {
-                                                if (carPostDocumentSnapshot.exists()) {
-                                                    // Log data from "car-posts" document
-                                                    Log.d("FETCH_VEHICLE_LIKE", "Document data: " + carPostDocumentSnapshot.getData());
+                                // Reference to a document in "car-posts"
+                                DocumentReference carPostDocRef = db.collection("car-posts").document(vehicleLike);
 
+                                carPostDocRef.get()
+                                        .addOnSuccessListener(carPostDocumentSnapshot -> {
+                                            if (carPostDocumentSnapshot.exists()) {
+                                                // Log data from "car-posts" document
+                                                Log.d("FETCH_VEHICLE_LIKE", "Document data: " + carPostDocumentSnapshot.getData());
 
+                                                // Process the data from the "car-posts" document
+                                                // Example: String carModel = carPostDocumentSnapshot.getString("model");
+                                                // Do something with the car data...
 
-                                                    // Process the data from the "car-posts" document
-                                                    // Example: String carModel = carPostDocumentSnapshot.getString("model");
-                                                    // Do something with the car data...
+                                                String name = carPostDocumentSnapshot.getString("Vehicle Title");
+                                                String carPostUID = carPostDocumentSnapshot.getString("Vehicle post-id");
+                                                String uids = carPostDocumentSnapshot.getString("uid");
+                                                String Address = carPostDocumentSnapshot.getString("Vehicle Address");
+                                                String Price = carPostDocumentSnapshot.getString("Vehicle Price");
+                                                String Transmission = carPostDocumentSnapshot.getString("Vehicle Transmission");
 
-                                                    String name = carPostDocumentSnapshot.getString("Vehicle Title");
-                                                    String carPostUID = carPostDocumentSnapshot.getString("Vehicle post-id");
-                                                    String uids = carPostDocumentSnapshot.getString("uid");
-                                                    String Address = carPostDocumentSnapshot.getString("Vehicle Address");
-                                                    String Price = carPostDocumentSnapshot.getString("Vehicle Price");
-                                                    String Transmission = carPostDocumentSnapshot.getString("Vehicle Transmission");
+                                                fetchProfilePictureUrl(name, Price, Address, uids, "/carpic1.jpg", Transmission, carPostUID);
 
-                                                    fetchProfilePictureUrl(name, Price, Address, uids, "/carpic1.jpg", Transmission, carPostUID);
-
-                                                } else {
-                                                    // Log if the document doesn't exist
-                                                    Log.d("FETCH_VEHICLE_LIKE", "Document does not exist");
-                                                }
-                                            })
-                                            .addOnFailureListener(e -> {
-                                                // Log if there is an error fetching the document
-                                                Log.e("FETCH_VEHICLE_LIKE", "Error fetching document: " + e.getMessage());
-                                            });
-                                }
-                            } else {
-                                // Log if the "vehicleLikes" array is null
-                                Log.d("FETCH_VEHICLE_LIKE", "vehicleLikesList is null");
-                                progressBarID1.setVisibility(View.GONE);
-
-                                displayNoBookmarks.setVisibility(View.VISIBLE);
+                                            } else {
+                                                // Log if the document doesn't exist
+                                                Log.d("FETCH_VEHICLE_LIKE", "Document does not exist");
+                                            }
+                                        })
+                                        .addOnFailureListener(e -> {
+                                            // Log if there is an error fetching the document
+                                            Log.e("FETCH_VEHICLE_LIKE", "Error fetching document: " + e.getMessage());
+                                        });
                             }
                         } else {
-                            // Log if the user document doesn't exist
-                            Log.d("FETCH_VEHICLE_LIKE", "User document does not exist");
+                            // Log if the subcollection is empty
+                            Log.d("FETCH_VEHICLE_LIKE", "Subcollection is empty");
+                            progressBarID1.setVisibility(View.GONE);
+                            displayNoBookmarks.setVisibility(View.VISIBLE);
                         }
                     })
                     .addOnFailureListener(e -> {
-                        // Log if there is an error fetching the user document
-                        Log.e("FETCH_VEHICLE_LIKE", "Error fetching user document: " + e.getMessage());
+                        // Log if there is an error fetching the subcollection documents
+                        Log.e("FETCH_VEHICLE_LIKE", "Error fetching subcollection documents: " + e.getMessage());
                     });
         }
     }
+
+
     private void fetchProfilePictureUrl(String name, String Price, String Address, String uid, String profilePictureUrl, String Transmission, String carPostUID) {
         StorageReference storageRef= FirebaseStorage.getInstance().getReference().child( "carposts/"+ carPostUID+ "/" +"carpic1.jpg");
 
