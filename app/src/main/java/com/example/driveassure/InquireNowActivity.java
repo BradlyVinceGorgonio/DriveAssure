@@ -23,6 +23,9 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,6 +39,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 import com.google.firebase.firestore.FieldValue;
 
@@ -57,6 +61,7 @@ public class InquireNowActivity extends AppCompatActivity {
 
     EditText pickUpLocation;
     EditText returnLocation;
+    String remainingDays;
 
     ProgressBar loginLoading;
 
@@ -140,6 +145,33 @@ public class InquireNowActivity extends AppCompatActivity {
                 Log.d("ANOORAS", "Pickup Location : " + pickUpArea);
                 Log.d("ANOORAS", "Return Location : " + returnArea);
 
+                // Combine date and time strings
+                String startTimeString = selectedDateFrom + " " + startedTime;
+                String endTimeString = selectedDateUntil + " " + finishedTime;
+
+                // Format for parsing date and time
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+
+                try {
+                    // Parse date and time strings into Date objects
+                    Date startDate = dateFormat.parse(startTimeString);
+                    Date endDate = dateFormat.parse(endTimeString);
+
+                    // Calculate the difference in milliseconds
+                    long durationInMillis = endDate.getTime() - startDate.getTime();
+
+                    // Calculate the difference in days
+                    long durationInDays = TimeUnit.MILLISECONDS.toDays(durationInMillis);
+
+                    // Store the remaining days in a string
+                    remainingDays = String.valueOf(durationInDays);
+
+                    // Print the result
+                    System.out.println("Remaining days: " + remainingDays);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
 
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -172,6 +204,7 @@ public class InquireNowActivity extends AppCompatActivity {
                 requestData.put("Return Location", returnArea);
                 requestData.put("Request Id", randomUid);
                 requestData.put("Car Owner uid", ownerUserUid);
+                requestData.put("Total Time", remainingDays);
 
                 String carPostUids = intent.getStringExtra("CarpostUID");
                 // Set the data to the document
@@ -201,6 +234,8 @@ public class InquireNowActivity extends AppCompatActivity {
                             updateData.put("Pickup Location", pickUpArea);
                             updateData.put("Return Location", returnArea);
                             updateData.put("Car Owner uid", ownerUserUid);
+                            updateData.put("Total Time", remainingDays);
+
 
                             // Update the document with the new data
                             requestDocument.set(updateData)

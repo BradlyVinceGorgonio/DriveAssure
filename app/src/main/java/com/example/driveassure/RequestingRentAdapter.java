@@ -34,7 +34,7 @@ public class RequestingRentAdapter extends RecyclerView.Adapter<RequestingRentAd
     @NonNull
     @Override
     public RequestingRentAdapter.RequestingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.admin_item_user, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.rentrequestingitems, parent, false);
         return new RequestingRentAdapter.RequestingViewHolder(view);
     }
 
@@ -43,8 +43,8 @@ public class RequestingRentAdapter extends RecyclerView.Adapter<RequestingRentAd
         RequestingClass rent = RequestingList.get(position);
         holder.userNameDisplay.setText(rent.getName());
         holder.carTitleDisplay.setText(rent.getCarName());
-        holder.daysDisplay.setText(rent.getDaysAmount());
-        holder.rentingUntilDisplay.setText(rent.getRentDateRange());
+        holder.daysDisplay.setText("Renting for " + rent.getDaysAmount() + " Days");
+        holder.rentingUntilDisplay.setText("Pick up location: "+rent.getRentDateRange());
 
 
         // Load the profile picture using Glide
