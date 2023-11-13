@@ -42,7 +42,8 @@ public class ChatRoomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat_room);
         Intent intent = getIntent();
         String currentUserUid = intent.getStringExtra("currentUserUid");
-        Log.d("ChatRoomActivity", "Received currentUserUid: " + currentUserUid);
+        Log.d("HADUKEN", "hello");
+        Log.d("HADUKEN", "Received currentUserUid: " + currentUserUid);
         messageListView = findViewById(R.id.messageListView);
         messageEditText = findViewById(R.id.messageEditText);
         sendButton = findViewById(R.id.sendButton);
