@@ -23,6 +23,12 @@
         android:theme="@style/Theme.DriveAssure"
         tools:targetApi="31">
         <activity
+            android:name=".ProcessingReservation"
+            android:exported="false" />
+        <activity
+            android:name=".ApprovedReservation"
+            android:exported="false" />
+        <activity
             android:name=".PendingReservation"
             android:exported="false" />
         <activity
