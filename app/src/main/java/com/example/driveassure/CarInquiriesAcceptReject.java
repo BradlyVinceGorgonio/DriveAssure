@@ -28,20 +28,13 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
 
     private List<RequestingClass> RequestingList;
     private RequestingRentAdapter requestingRentAdapter;
-    String requestName;
-    String VehicleTitle;
-    String requestId;
-    String userId;
-    String carPostUid;
-    String pickUpArea;
-    String ownerUserUidResult;
-    String totalTime;
+
+
     ProgressBar progressBarID;
 
     CardView pendingReservation;
     CardView approvedReservation;
     CardView processingReservation;
-    int answer = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +79,7 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
     }
     public void fetchDataFromFirestore(String choice)
     {
-        RequestingList.clear();
+
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
         String uid = currentUser.getUid();
@@ -98,23 +91,24 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
         rentRequestCollection.get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
+                        RequestingList.clear();
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            requestId = document.getString("Request Id");
-                            userId = document.getString("uid ");
-                            carPostUid = document.getString("Car To Request");
-                            pickUpArea = document.getString("Pickup Location");
-                            ownerUserUidResult = document.getString("Car Owner uid");
-                            totalTime = document.getString("Total Time");
+                            String requestId = document.getString("Request Id");
+                            String userId = document.getString("uid ");
+                            String carPostUid = document.getString("Car To Request");
+                            String pickUpArea = document.getString("Pickup Location");
+                            String ownerUserUidResult = document.getString("Car Owner uid");
+                            String totalTime = document.getString("Total Time");
 
                             // Assuming "uid" is the UID you want to fetch data for
-                            DocumentReference userDocument = db.collection("users").document(uid);
+                            DocumentReference userDocument = db.collection("users").document(userId);
 
                             userDocument.get().addOnCompleteListener(tasks -> {
                                 if (tasks.isSuccessful()) {
                                     DocumentSnapshot documente = tasks.getResult();
                                     if (documente.exists()) {
                                         // Access the data here
-                                        requestName = documente.getString("name");
+                                        String requestName = documente.getString("name");
 
                                         // Assuming "uid" is the UID you want to fetch data for
                                         DocumentReference userDocumente = db.collection("car-posts").document(carPostUid);
@@ -124,10 +118,9 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
                                                 DocumentSnapshot documentre = taskse.getResult();
                                                 if (documentre.exists()) {
                                                     // Access the data here
-                                                    VehicleTitle = documentre.getString("Vehicle Title");
+                                                    String VehicleTitle = documentre.getString("Vehicle Title");
 
-                                                    Log.d("MGAINFOS",  requestId+"/"+ userId +"/"+ carPostUid +"/"+ pickUpArea +"/ \n"+ ownerUserUidResult + "/"+ totalTime + "/" + requestName + "/"+ VehicleTitle);
-                                                   fetchProfilePictureUrl(requestName, pickUpArea, totalTime, VehicleTitle, uid, "/" + "face.jpg", carPostUid, requestId);
+                                                   fetchProfilePictureUrl(requestName, pickUpArea, totalTime, VehicleTitle, userId, "/" + "face.jpg", carPostUid, requestId);
                                                     // Use the fetched data as needed
                                                 } else {
                                                     // Document does not exist

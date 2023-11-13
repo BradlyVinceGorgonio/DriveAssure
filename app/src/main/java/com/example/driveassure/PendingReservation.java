@@ -2,6 +2,7 @@ package com.example.driveassure;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -51,11 +52,22 @@ Button acceptBtn;
 
 ImageView renterProfile;
 
+String renterUID;
+String carUID;
+String requestID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pending_reservation);
+
+        // Inside the onCreate() method or wherever you need to retrieve the values
+        Intent intent = getIntent();
+        renterUID = intent.getStringExtra("renterUID");
+        carUID = intent.getStringExtra("carUID");
+        requestID = intent.getStringExtra("requestID");
+        // Now you have the values in the variables renterUID, carUID, and requestID
+
 
         renterName = findViewById(R.id.renterName);
         renterContact = findViewById(R.id.renterContact);
@@ -70,6 +82,22 @@ ImageView renterProfile;
 
         renterProfile = findViewById(R.id.renterProfile);
 
+        rejectBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        acceptBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+
+
 
         fetchDataFromFirestore();
     }
@@ -80,14 +108,16 @@ ImageView renterProfile;
         FirebaseUser currentUser = auth.getCurrentUser();
         String uid = currentUser.getUid();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference rentRequestCollection = db.collection("users")
+        DocumentReference rentRequestDocument = db.collection("users")
                 .document(uid)
-                .collection("owner-view-rent-request");
+                .collection("owner-view-rent-request")
+                .document(requestID);
 
-        rentRequestCollection.get()
+        rentRequestDocument.get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
                             requestId = document.getString("Request Id");
 
                             userId = document.getString("uid ");
@@ -103,7 +133,7 @@ ImageView renterProfile;
                             TimeEnd = document.getString("Time End");
 
                             // Assuming "uid" is the UID you want to fetch data for
-                            DocumentReference userDocument = db.collection("users").document(uid);
+                            DocumentReference userDocument = db.collection("users").document(renterUID);
 
                             userDocument.get().addOnCompleteListener(tasks -> {
                                 if (tasks.isSuccessful()) {
@@ -134,7 +164,7 @@ ImageView renterProfile;
                                                     timeFinishedFrom.setText(TimeEnd);
                                                     returnLocation.setText(returnArea);
 
-                                                    StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("users/" + uid + "/face.jpg");
+                                                    StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("users/" + renterUID + "/face.jpg");
 
                                                     final String[] tempProfilePictureUrl = {"face.jpg"};  // Declare a final temporary variable
 
