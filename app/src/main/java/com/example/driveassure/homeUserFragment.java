@@ -112,7 +112,7 @@ public class homeUserFragment extends Fragment implements HomeListingCarAdapter.
             public void transformPage(@NonNull View page, float position) {
 
                 float r = 1 - Math.abs(position);
-                float scaleFactor = 1.08f + r * 0.15f;
+                float scaleFactor = 0.9f + r * 0.15f;
 
                 // Adjust the scale based on the image dimensions
                 int pageWidth = page.getWidth();
