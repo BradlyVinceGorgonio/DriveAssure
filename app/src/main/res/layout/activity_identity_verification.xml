@@ -27,6 +27,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/back_26"
             android:contentDescription="backtoLogin"
+            tools:ignore="TouchTargetSizeCheck"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="16dp"></ImageButton>
 
@@ -46,7 +47,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView3"
-        android:layout_width="365dp"
+        android:layout_width="350dp"
         android:layout_height="431dp"
         android:backgroundTint="@color/white"
         android:elevation="10dp"
