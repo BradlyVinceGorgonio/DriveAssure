@@ -33,16 +33,16 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView10"
         android:layout_width="350dp"
-        android:layout_height="275dp"
+        android:layout_height="280dp"
         android:layout_gravity="center"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="5dp"
         app:cardElevation="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView5"
-        app:layout_constraintVertical_bias="0.048">
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:layout_width="wrap_content"
@@ -50,43 +50,44 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:text="Waiting to approved:"
-            android:textSize="18dp"
             android:textColor="@color/black"
+            android:textSize="18dp"
             android:textStyle="bold"></TextView>
 
         <LinearLayout
             android:id="@+id/displayNoWaitings"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:background="@color/white"
             android:elevation="3dp"
-            android:visibility="gone"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/bigIconImageView"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/heart_full"
                 android:layout_gravity="center"
-                android:scaleType="fitCenter"  />
+                android:scaleType="fitCenter"
+                android:src="@drawable/heart_full" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="You Have No Inquiries"
-                android:textSize="15dp"
                 android:textColor="@color/black"
-                android:layout_gravity="center"/>
+                android:textSize="15dp" />
 
 
         </LinearLayout>
 
         <ProgressBar
+            android:id="@+id/progressBarID1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:id="@+id/progressBarID1"/>
+            android:layout_gravity="center" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/waitingRenter"
@@ -102,9 +103,10 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView9"
         android:layout_width="350dp"
-        android:layout_height="275dp"
+        android:layout_height="295dp"
         android:layout_gravity="center"
-        app:cardCornerRadius="20dp"
+        android:layout_marginTop="-7dp"
+        app:cardCornerRadius="5dp"
         app:cardElevation="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -119,52 +121,53 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:text="Approved Inquiries:"
-            android:textSize="18dp"
             android:textColor="@color/black"
+            android:textSize="18dp"
             android:textStyle="bold"></TextView>
 
         <LinearLayout
             android:id="@+id/displayNoInquiries"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:background="@color/white"
             android:elevation="3dp"
-            android:visibility="gone"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/bigIconImageView1"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/heart_full"
                 android:layout_gravity="center"
-                android:scaleType="fitCenter"  />
+                android:scaleType="fitCenter"
+                android:src="@drawable/heart_full" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="You Have No Approved Inquiries"
-                android:textSize="15dp"
                 android:textColor="@color/black"
-                android:layout_gravity="center"/>
+                android:textSize="15dp" />
 
 
         </LinearLayout>
 
         <ProgressBar
+            android:id="@+id/progressBarID3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:id="@+id/progressBarID3"/>
+            android:layout_gravity="center" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/approvedRenter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp"
             android:layout_marginTop="40dp"
-            android:layout_marginRight="5dp" />
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp" />
 
 
     </androidx.cardview.widget.CardView>
