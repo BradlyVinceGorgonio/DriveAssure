@@ -4,9 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PendingReservation"
+    tools:context=".ProcessingReservation"
     android:background="@color/backgroundlightblue">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/patuaoneregular"
+            android:text="On Process Reservation"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_gravity="center"></TextView>
+
+    </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView5"
@@ -25,13 +47,14 @@
             android:id="@+id/textView15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:fontFamily="@font/patuaoneregular"
             android:text="Reservation Details"
             android:textColor="@color/white"
-            android:textSize="25dp"></TextView>
+            android:textSize="25dp"
+            android:layout_gravity="center"></TextView>
 
     </androidx.cardview.widget.CardView>
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout14"
@@ -48,22 +71,22 @@
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/datePickerFromButton"
-        app:layout_constraintVertical_bias="0.044"
+        app:layout_constraintVertical_bias="0.017"
         app:startIconDrawable="@drawable/address"
         app:startIconTint="@color/black">
 
         <com.google.android.material.textfield.MaterialAutoCompleteTextView
             android:id="@+id/pickUpLocation"
-            android:background="@color/white"
             android:layout_width="350dp"
-            android:layout_gravity="center"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
-            android:textColor="@color/black"
-            />
+            android:background="@color/white"
+            android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout18"
@@ -78,26 +101,25 @@
         app:helperTextTextColor="@color/red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/datePickerUntilButton"
-        app:layout_constraintVertical_bias="0.141"
+        app:layout_constraintVertical_bias="0.029"
         app:startIconDrawable="@drawable/address"
         app:startIconTint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/returnLocation"
             android:layout_width="350dp"
-            android:background="@color/white"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
+            android:background="@color/white"
             android:textColor="@color/black"
 
             />
     </com.google.android.material.textfield.TextInputLayout>
-
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/datePickerUntilButton"
@@ -113,10 +135,10 @@
         app:helperTextTextColor="@color/red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.147"
+        app:layout_constraintHorizontal_bias="0.119"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView7"
-        app:layout_constraintVertical_bias="0.156"
+        app:layout_constraintVertical_bias="0.049"
         app:startIconDrawable="@drawable/calendar"
         app:startIconTint="@color/black"
         tools:ignore="TextContrastCheck">
@@ -138,10 +160,10 @@
         app:helperTextTextColor="@color/red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.86"
+        app:layout_constraintHorizontal_bias="0.872"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView17"
-        app:layout_constraintVertical_bias="0.059"
+        app:layout_constraintVertical_bias="0.06"
         app:startIconDrawable="@drawable/clock_191"
         app:startIconTint="@color/black"
         tools:ignore="TextContrastCheck">
@@ -154,6 +176,7 @@
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginLeft="50dp"
         android:background="@color/white"
         android:hint=" Return Time"
         android:textColor="@color/black"
@@ -163,10 +186,10 @@
         app:helperTextTextColor="@color/red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.86"
+        app:layout_constraintHorizontal_bias="0.84"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView7"
-        app:layout_constraintVertical_bias="0.156"
+        app:layout_constraintVertical_bias="0.049"
         app:startIconDrawable="@drawable/clock_191"
         app:startIconTint="@color/black"
         tools:ignore="TextContrastCheck">
@@ -237,10 +260,10 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.147"
+        app:layout_constraintHorizontal_bias="0.119"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView17"
-        app:layout_constraintVertical_bias="0.048"
+        app:layout_constraintVertical_bias="0.05"
         app:startIconDrawable="@drawable/calendar"
         app:startIconTint="@color/black">
 
@@ -258,42 +281,67 @@
         app:layout_constraintHorizontal_bias="0.384"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout14"
-        app:layout_constraintVertical_bias="0.089"></androidx.cardview.widget.CardView>
+        app:layout_constraintVertical_bias="0.025"></androidx.cardview.widget.CardView>
 
-
-    <Button
-        android:id="@+id/acceptBtn"
+    <TextView
+        android:id="@+id/textView32"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:backgroundTint="@color/black"
-        android:text="Accept"
-        android:textColor="@color/white"
-        android:textSize="19dp"
+        android:text="Note: Bring your Digital and Physical contract Form"
+        android:textColor="@color/black"
+        android:textSize="15dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.884"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout18"
-        app:layout_constraintVertical_bias="0.283" />
+        app:layout_constraintTop_toBottomOf="@+id/textView31"
+        app:layout_constraintVertical_bias="0.09"></TextView>
 
-    <Button
-        android:id="@+id/rejectBtn"
+    <TextView
+        android:id="@+id/textView31"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:backgroundTint="@color/red"
-        android:text="Reject"
-        android:textColor="@color/white"
-        android:textSize="19dp"
+        android:text="Note:It is mandatory for the car owner to bring \nhis/her vehicle documents."
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="15dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout18"
-        app:layout_constraintVertical_bias="0.283" />
+        app:layout_constraintVertical_bias="0.062"></TextView>
+
+    <Button
+        android:id="@+id/exchangeContracts"
+        android:layout_width="291dp"
+        android:layout_height="49dp"
+        android:backgroundTint="@color/grey"
+        android:text="Exchange contracts now"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView32"
+        app:layout_constraintVertical_bias="0.148" />
+
+
+    <Button
+        android:id="@+id/startTime"
+        android:layout_width="350dp"
+        android:layout_height="51dp"
+        android:backgroundTint="@color/blue"
+        android:text="Start Time"
+        android:textColor="@color/black"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exchangeContracts"></Button>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
