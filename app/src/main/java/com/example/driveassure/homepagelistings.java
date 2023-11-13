@@ -113,18 +113,13 @@ public class homepagelistings extends AppCompatActivity {
         messageCarOwner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String currentUserUid = getCurrentUserUid();
-                String postOwnerUid = getPostOwnerUid();
-
-                if (!TextUtils.isEmpty(currentUserUid) && !TextUtils.isEmpty(postOwnerUid)) {
+                // Retrieve data from the Intent
+                String historyUid = getIntent().getStringExtra("historyUid"); // CAR OWNER UID
                     Intent intent = new Intent(homepagelistings.this, ChatRoomActivity.class);
 
-                    intent.putExtra("currentUserUid", currentUserUid);
-                    intent.putExtra("postOwnerUid", postOwnerUid);
+                    intent.putExtra("currentUserUid", historyUid);
+
                     startActivity(intent);
-                } else {
-                    Log.e("homepagelistings", "currentUserUid or postOwnerUid is empty");
-                }
             }
         });
 

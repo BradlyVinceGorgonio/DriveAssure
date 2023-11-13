@@ -37,7 +37,9 @@ public class ChatRoomActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
-
+        Intent intent = getIntent();
+        String currentUserUid = intent.getStringExtra("currentUserUid");
+        Log.d("ChatRoomActivity", "Received currentUserUid: " + currentUserUid);
         messageListView = findViewById(R.id.messageListView);
         messageEditText = findViewById(R.id.messageEditText);
         sendButton = findViewById(R.id.sendButton);
@@ -46,48 +48,32 @@ public class ChatRoomActivity extends AppCompatActivity {
         messageAdapter = new MessageAdapter(this, messageList, currentUserUid);
         messageListView.setAdapter(messageAdapter);
 
-        Intent intent = getIntent();
-        if (intent != null) {
-            currentUserUid = intent.getStringExtra("currentUserUid");
-            postOwnerUid = intent.getStringExtra("postOwnerUid");
 
-            Log.d("ChatRoomActivity", "Received currentUserUid: " + currentUserUid);
-            Log.d("ChatRoomActivity", "Received postOwnerUid: " + postOwnerUid);
 
-            if (currentUserUid != null && postOwnerUid != null) {
-                firestore = FirebaseFirestore.getInstance();
-                messagesCollection = firestore.collection("messages");
+        firestore = FirebaseFirestore.getInstance();
+        messagesCollection = firestore.collection("messages");
 
-                sendButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String messageText = messageEditText.getText().toString();
-                        if (!messageText.isEmpty()) {
-                            sendMessage(messageText);
-                            messageEditText.setText("");
-                        }
-                    }
-                });
-
-                messageHandler = new Handler();
-                messageRunnable = new Runnable() {
-                    @Override
-                    public void run() {
-                        // Simulate receiving new messages
-                        receiveMessages();
-                        messageHandler.postDelayed(this, 3000);
-                    }
-                };
-            } else {
-                Log.e("ChatRoomActivity", "currentUserUid or postOwnerUid is null");
-                // Handle the case where UIDs are null (e.g., show an error message, log, etc.)
-                finish(); // Finish the activity if UIDs are null
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String messageText = messageEditText.getText().toString();
+                if (!messageText.isEmpty()) {
+                    sendMessage(messageText);
+                    messageEditText.setText("");
+                }
             }
-        } else {
-            Log.e("ChatRoomActivity", "Intent is null");
-            // Handle the case where the intent is null (e.g., show an error message, log, etc.)
-            finish(); // Finish the activity if the intent is null
-        }
+        });
+
+        messageHandler = new Handler();
+        messageRunnable = new Runnable() {
+            @Override
+            public void run() {
+                // Simulate receiving new messages
+                receiveMessages();
+                messageHandler.postDelayed(this, 3000);
+            }
+        };
+
     }
 
     // Simulate receiving new messages
