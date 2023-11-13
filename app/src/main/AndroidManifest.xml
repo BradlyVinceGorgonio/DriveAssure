@@ -23,6 +23,12 @@
         android:theme="@style/Theme.DriveAssure"
         tools:targetApi="31">
         <activity
+            android:name=".VehicleDocuments"
+            android:exported="false" />
+        <activity
+            android:name=".User_Agreement"
+            android:exported="false" />
+        <activity
             android:name=".SuccessfullPayment"
             android:exported="false" />
         <activity
