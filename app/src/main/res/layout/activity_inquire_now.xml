@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".InquireNowActivity"
    >
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ProgressBar
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/loginLoading"
+            android:visibility="gone"
+            android:layout_gravity="center"/>
+    </FrameLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView5"

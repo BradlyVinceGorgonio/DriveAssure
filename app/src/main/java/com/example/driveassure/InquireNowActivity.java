@@ -13,9 +13,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TimePicker;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class InquireNowActivity extends AppCompatActivity {
 
@@ -35,6 +44,8 @@ public class InquireNowActivity extends AppCompatActivity {
 
     EditText pickUpLocation;
     EditText returnLocation;
+
+    ProgressBar loginLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,9 +98,20 @@ public class InquireNowActivity extends AppCompatActivity {
         submitBtn.setEnabled(false);
         submitBtn.setBackgroundColor(getResources().getColor(R.color.disabledGrey));
 
+        loginLoading = findViewById(R.id.loginLoading);
+
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loginLoading.setVisibility(View.VISIBLE);
+                // Receive data from the Intent
+                Intent intent = getIntent();
+                String ownerUserUid = intent.getStringExtra("ownerUserUid");
+                String carPostUid = intent.getStringExtra("CarpostUID");
+
+                // Now you can use ownerUserUid and carPostUid as needed in your activity
+                // For example, you can set them to TextViews or use them for other purposes
+
                 Log.d("ANOORAS", "started: " + startedTime);
                 Log.d("ANOORAS", "finished: " + finishedTime);
                 Log.d("ANOORAS", "selected Date From : " + selectedDateFrom);
@@ -101,15 +123,52 @@ public class InquireNowActivity extends AppCompatActivity {
                 Log.d("ANOORAS", "Pickup Location : " + pickUpArea);
                 Log.d("ANOORAS", "Return Location : " + returnArea);
 
-                Intent intent = new Intent(InquireNowActivity.this, IdVerification.class);
-                // Add the data to the intent
-                intent.putExtra("SELECTED_DATE_FROM", selectedDateFrom);
-                intent.putExtra("SELECTED_DATE_UNTIL", selectedDateUntil);
-                intent.putExtra("STARTED_TIME", startedTime);
-                intent.putExtra("FINISHED_TIME", finishedTime);
-                intent.putExtra("PICK_UP_AREA", pickUpArea);
-                intent.putExtra("RETURN_AREA", returnArea);
-                startActivity(intent);
+
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                FirebaseUser user = auth.getCurrentUser();
+
+
+                String userId = user.getUid();
+
+                // Reference to the "users" collection
+                CollectionReference usersCollection = db.collection("users");
+
+                // Reference to the "tae" document inside the "users" collection
+                DocumentReference taeDocument = usersCollection.document(ownerUserUid);
+
+                // Reference to the "vehicle-request" subcollection inside the "tae" document
+                CollectionReference vehicleRequestCollection = taeDocument.collection("vehicle-request");
+
+                // Create a document with the current user's UID
+                DocumentReference userDocument = vehicleRequestCollection.document(userId);
+
+                // Create a data object with the "name" field using a HashMap
+                Map<String, Object> requestData = new HashMap<>();
+                requestData.put("Car To Request", carPostUid);
+                requestData.put("uid", userId);
+                requestData.put("Time Start", startedTime);
+                requestData.put("Time End", finishedTime);
+                requestData.put("Date Start", selectedDateFrom);
+                requestData.put("Date End", selectedDateUntil);
+
+                // Set the data to the document
+                userDocument.set(requestData)
+                        .addOnSuccessListener(aVoid -> {
+                            loginLoading.setVisibility(View.GONE);
+
+                            showCustomDialog();
+
+
+                        })
+                        .addOnFailureListener(e -> {
+                            // Handle errors here
+                        });
+
+
+
+
+
 
             }
         });
@@ -118,6 +177,11 @@ public class InquireNowActivity extends AppCompatActivity {
         returnLocation.addTextChangedListener(textWatcher);
 
     }
+    private void showCustomDialog() {
+        requestpopup customDialog = new requestpopup(this);
+        customDialog.show();
+    }
+
 
     private TextWatcher textWatcher = new TextWatcher() {
         @Override

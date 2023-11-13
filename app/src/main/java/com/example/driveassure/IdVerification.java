@@ -326,27 +326,9 @@ public class IdVerification extends AppCompatActivity {
                 });
     }
     private void performNextSteps() {
-        // Implement the next steps after both images are uploaded
-        // This can include updating the UI, saving data to Firestore, etc.
-        // Retrieve the intent that started this activity
-        Intent intent = getIntent();
-
-        // Get the data from the intent
-        String selectedDateFrom = intent.getStringExtra("SELECTED_DATE_FROM");
-        String selectedDateUntil = intent.getStringExtra("SELECTED_DATE_UNTIL");
-        String startedTime = intent.getStringExtra("STARTED_TIME");
-        String finishedTime = intent.getStringExtra("FINISHED_TIME");
-        String pickUpArea = intent.getStringExtra("PICK_UP_AREA");
-        String returnArea = intent.getStringExtra("RETURN_AREA");
 
         //LAGAY DITO
         Intent intent2 = new Intent(IdVerification.this, DownloadDocumentContract.class);
-        intent2.putExtra("SELECTED_DATE_FROM", selectedDateFrom);
-        intent2.putExtra("SELECTED_DATE_UNTIL", selectedDateUntil);
-        intent2.putExtra("STARTED_TIME", startedTime);
-        intent2.putExtra("FINISHED_TIME", finishedTime);
-        intent2.putExtra("PICK_UP_AREA", pickUpArea);
-        intent2.putExtra("RETURN_AREA", returnArea);
         startActivity(intent2);
 
     }

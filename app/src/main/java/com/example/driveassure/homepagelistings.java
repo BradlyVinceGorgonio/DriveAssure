@@ -72,8 +72,8 @@ public class homepagelistings extends AppCompatActivity {
         setContentView(R.layout.activity_homepagelistings);
 
         // Retrieve data from the Intent
-        String historyUid = getIntent().getStringExtra("historyUid");
-        String CarpostUID = getIntent().getStringExtra("CarpostUID");
+        String historyUid = getIntent().getStringExtra("historyUid"); // CAR OWNER UID
+        String CarpostUID = getIntent().getStringExtra("CarpostUID"); // CAR POST UID
         Log.d("NOBELATO", "Carpost UID " + CarpostUID);
 
         // Initialize Firebase Storage
@@ -99,6 +99,12 @@ public class homepagelistings extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(homepagelistings.this, InquireNowActivity.class);
+                // Retrieve data from the Intent
+                String historyUid = getIntent().getStringExtra("historyUid"); // CAR OWNER UID
+                String CarpostUID = getIntent().getStringExtra("CarpostUID"); // CAR POST UID
+
+                intent.putExtra("ownerUserUid", historyUid);
+                intent.putExtra("CarpostUID", CarpostUID);
                 startActivity(intent);
             }
         });
