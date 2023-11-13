@@ -27,7 +27,7 @@
             android:fontFamily="@font/patuaoneregular"
             android:text="Reservation Details"
             android:textColor="@color/black"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:layout_gravity="center"></TextView>
 
     </androidx.cardview.widget.CardView>
