@@ -21,8 +21,6 @@ public class ChatListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat_list);
 
         chatItems = new ArrayList<>();
-        chatItems.add(new ChatItem("Hello, how are you?", "John"));
-        chatItems.add(new ChatItem("I'm good, thanks!", "Alice"));
 
         chatRecyclerView = findViewById(R.id.chatRecyclerView);
         chatRecyclerView.setLayoutManager(new LinearLayoutManager(this));

@@ -111,14 +111,13 @@ public class homepagelistings extends AppCompatActivity {
                 String postOwnerUid = getPostOwnerUid();
 
                 if (!TextUtils.isEmpty(currentUserUid) && !TextUtils.isEmpty(postOwnerUid)) {
-                    Intent intent = new Intent(getApplication(), ChatRoomActivity.class);
+                    Intent intent = new Intent(homepagelistings.this, ChatRoomActivity.class);
 
                     intent.putExtra("currentUserUid", currentUserUid);
                     intent.putExtra("postOwnerUid", postOwnerUid);
                     startActivity(intent);
                 } else {
                     Log.e("homepagelistings", "currentUserUid or postOwnerUid is empty");
-                    // Handle the case where UIDs are empty (e.g., show an error message, log, etc.)
                 }
             }
         });
