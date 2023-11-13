@@ -25,6 +25,17 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import com.google.firebase.firestore.FieldValue;
 
 public class InquireNowActivity extends AppCompatActivity {
 
@@ -151,13 +162,37 @@ public class InquireNowActivity extends AppCompatActivity {
                 requestData.put("Time End", finishedTime);
                 requestData.put("Date Start", selectedDateFrom);
                 requestData.put("Date End", selectedDateUntil);
+                requestData.put("Pickup Location", pickUpArea);
+                requestData.put("Return Location", returnArea);
 
+                String carPostUids = intent.getStringExtra("CarpostUID");
                 // Set the data to the document
                 userDocument.set(requestData)
                         .addOnSuccessListener(aVoid -> {
-                            loginLoading.setVisibility(View.GONE);
 
-                            showCustomDialog();
+
+
+                            // Reference to the "users" collection
+                            CollectionReference usersCollections = db.collection("users");
+
+                            // Reference to the current user's document using their UID
+                            DocumentReference userDocuments = usersCollections.document(userId);
+
+                            // Create a data object with the array field update
+                            Map<String, Object> updateData = new HashMap<>();
+                            updateData.put("Rent Requests", FieldValue.arrayUnion(carPostUids));
+
+                            // Update the document with the new data
+                            userDocuments.update(updateData)
+                                    .addOnSuccessListener(aVoids -> {
+                                        loginLoading.setVisibility(View.GONE);
+                                        showCustomDialog();
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        // Handle errors here
+                                    });
+
+
 
 
                         })
