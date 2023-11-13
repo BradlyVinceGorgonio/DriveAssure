@@ -106,31 +106,31 @@ public class homeUserFragment extends Fragment implements HomeListingCarAdapter.
         viewpager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
 
         CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
-        compositePageTransformer.addTransformer(new MarginPageTransformer(30));
+        compositePageTransformer.addTransformer(new MarginPageTransformer(0));
         compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
             @Override
             public void transformPage(@NonNull View page, float position) {
 
                 float r = 1 - Math.abs(position);
-                float scaleFactor = 0.9f + r * 0.15f;
+                float scaleFactor = 0.85f + r * 0.15f;
 
-                // Adjust the scale based on the image dimensions
-                int pageWidth = page.getWidth();
-                int pageHeight = page.getHeight();
-
-                // Assuming 1080x720 dimensions for the images
-                float targetWidth = 1080f;
-                float targetHeight = 720f;
-
-                float scaleX = targetWidth / pageWidth;
-                float scaleY = targetHeight / pageHeight;
-
-                // Limit the scale based on the target width
-                float maxScaleX = targetWidth / pageWidth;
+//                // Adjust the scale based on the image dimensions
+//                int pageWidth = page.getWidth();
+//                int pageHeight = page.getHeight();
+//
+//                // Assuming 1080x720 dimensions for the images
+//                float targetWidth = 1080f;
+//                float targetHeight = 720f;
+//
+//                float scaleX = targetWidth / pageWidth;
+//                float scaleY = targetHeight / pageHeight;
+//
+//                // Limit the scale based on the target width
+//                float maxScaleX = targetWidth / pageWidth;
 
                 // Apply the scale to the page, ensuring it doesn't exceed the maximum width
-                page.setScaleX(Math.min(scaleX * scaleFactor, maxScaleX));
-                page.setScaleY(scaleY * scaleFactor);
+                page.setScaleX(scaleFactor);
+                page.setScaleY(scaleFactor);
             }
         });
 
