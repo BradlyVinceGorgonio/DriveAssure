@@ -1,6 +1,7 @@
 <!-- item_user.xml -->
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ownerListingsItems"
     android:layout_width="160dp"
     android:layout_height="wrap_content"
@@ -33,17 +34,18 @@
             <ToggleButton
                 android:id="@+id/heartToggleButton"
                 android:layout_width="25dp"
-                android:layout_marginRight="2dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="2dp"
                 android:background="@android:color/transparent"
                 android:button="@drawable/heart_icon"
                 android:checked="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:textOff=""
-                android:textOn=""/>
+                android:textOn=""
+                tools:ignore="TouchTargetSizeCheck" />
         </RelativeLayout>
 
 
@@ -58,34 +60,51 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
+                android:layout_gravity="center"
                 android:layout_margin="5dp"
+                android:textAlignment="center"
                 android:textStyle="bold"
+                android:fontFamily="@font/patuaoneregular"
                 android:textColor="@color/black"
                 android:text="TOYOTA HONDA CIVIC"
                 />
 
             <TextView
+                android:id="@+id/carPriceDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="1dp"
                 android:text="₱ 5000 /day"
-                android:layout_margin="5dp"
-                android:id="@+id/carPriceDisplay"
-                android:textColor="#D9512C"></TextView>
+                android:textColor="#ff0000"
+                android:textSize="15dp"
+                tools:ignore="TextSizeCheck"></TextView>
 
             <TextView
+                android:id="@+id/carLocationDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/carLocationDisplay"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="1dp"
                 android:text="Taguig City"
-                android:layout_margin="5dp"
-                android:textSize="16dp"></TextView>
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                tools:ignore="TextSizeCheck"></TextView>
 
             <TextView
                 android:id="@+id/carTransmissionDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Transmission: Manual"
-                android:layout_margin="5dp"
+                android:textColor="@color/black"
+                android:layout_marginTop="1dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="10dp"
                 android:textSize="14sp"></TextView>
 
         </LinearLayout>
