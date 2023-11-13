@@ -92,11 +92,11 @@ public class homeUserFragment extends Fragment implements HomeListingCarAdapter.
 
         viewpager2 = view.findViewById(R.id.viewPager);
         List<SlideItem> sliderItem = new ArrayList<>();
-        sliderItem.add(new SlideItem(R.drawable.slider1));
-        sliderItem.add(new SlideItem(R.drawable.slider2));
-        sliderItem.add(new SlideItem(R.drawable.slider3));
-        sliderItem.add(new SlideItem(R.drawable.slider4));
-        sliderItem.add(new SlideItem(R.drawable.slider5));
+        sliderItem.add(new SlideItem(R.drawable.fin1));
+        sliderItem.add(new SlideItem(R.drawable.fin2));
+        sliderItem.add(new SlideItem(R.drawable.fin3));
+        sliderItem.add(new SlideItem(R.drawable.fin4));
+        sliderItem.add(new SlideItem(R.drawable.fin5));
 
         viewpager2.setAdapter(new SlideAdapter(sliderItem, viewpager2));
 
@@ -110,8 +110,9 @@ public class homeUserFragment extends Fragment implements HomeListingCarAdapter.
         compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
             @Override
             public void transformPage(@NonNull View page, float position) {
+
                 float r = 1 - Math.abs(position);
-                float scaleFactor = 1f + r * 0.15f;
+                float scaleFactor = 1.08f + r * 0.15f;
 
                 // Adjust the scale based on the image dimensions
                 int pageWidth = page.getWidth();
