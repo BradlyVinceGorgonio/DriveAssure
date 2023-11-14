@@ -12,9 +12,12 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ChatRoomActivity extends AppCompatActivity {
@@ -55,8 +58,12 @@ public class ChatRoomActivity extends AppCompatActivity {
             Log.d("ChatRoomActivity", "Received postOwnerUid: " + postOwnerUid);
 
             if (currentUserUid != null && postOwnerUid != null) {
+                // Generate a unique chat room ID based on user UIDs
+                String chatRoomId = generateChatRoomId(currentUserUid, postOwnerUid);
+
+                // Use the generated chat room ID for Firestore collection
                 firestore = FirebaseFirestore.getInstance();
-                messagesCollection = firestore.collection("messages");
+                messagesCollection = firestore.collection("messages").document(chatRoomId).collection("messages");
 
                 sendButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -90,41 +97,14 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
     }
 
-    // Simulate receiving new messages
-    private void receiveMessages() {
-        if (currentUserUid != null && postOwnerUid != null) {
-            // Replace this with actual logic to retrieve messages from Firestore
-            List<Message> receivedMessages = getMessagesFromFirestore();
+    // Generate a unique chat room ID based on user UIDs
+    private String generateChatRoomId(String uid1, String uid2) {
+        // Sort the UIDs to ensure consistency
+        String[] uids = {uid1, uid2};
+        Arrays.sort(uids);
 
-            // Add the received messages to the list if not empty
-            if (receivedMessages != null && !receivedMessages.isEmpty()) {
-                messageList.addAll(receivedMessages);
-
-                // Notify the adapter that the data has changed
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        messageAdapter.notifyDataSetChanged();
-                        scrollToBottom();
-                    }
-                });
-            }
-        }
-    }
-
-    // Replace this with actual logic to retrieve messages from Firestore
-    private List<Message> getMessagesFromFirestore() {
-        // Query Firestore to get messages between currentUserUid and postOwnerUid
-        // Sample code (replace it with actual Firestore query):
-        // messagesCollection.whereEqualTo("senderUid", postOwnerUid)
-        //                   .whereEqualTo("receiverUid", currentUserUid)
-        //                   .get()
-        //                   .addOnSuccessListener(queryDocumentSnapshots -> {
-        //                       // Process the query results and create a list of messages
-        //                   });
-
-        // For simulation purposes, let's return an empty list
-        return new ArrayList<>();
+        // Concatenate sorted UIDs to create a unique ID
+        return uids[0] + "_" + uids[1];
     }
 
     // Send a message
@@ -142,12 +122,9 @@ public class ChatRoomActivity extends AppCompatActivity {
                         messageList.add(message);
 
                         // Notify the adapter that the data has changed
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                messageAdapter.notifyDataSetChanged();
-                                scrollToBottom();
-                            }
+                        runOnUiThread(() -> {
+                            messageAdapter.notifyDataSetChanged();
+                            scrollToBottom();
                         });
                     })
                     .addOnFailureListener(e -> {
@@ -155,6 +132,30 @@ public class ChatRoomActivity extends AppCompatActivity {
                         Log.e("ChatRoomActivity", "Error sending message", e);
                     });
         }
+    }
+
+    // Simulate receiving new messages
+    private void receiveMessages() {
+        messagesCollection.addSnapshotListener((value, error) -> {
+            if (value != null) {
+                for (DocumentChange dc : value.getDocumentChanges()) {
+                    if (dc.getType() == DocumentChange.Type.ADDED) {
+                        Message receivedMessage = dc.getDocument().toObject(Message.class);
+
+                        // Add the received message to the list if not empty
+                        if (receivedMessage != null) {
+                            messageList.add(receivedMessage);
+
+                            // Notify the adapter that the data has changed
+                            runOnUiThread(() -> {
+                                messageAdapter.notifyDataSetChanged();
+                                scrollToBottom();
+                            });
+                        }
+                    }
+                }
+            }
+        });
     }
 
     private void scrollToBottom() {
@@ -178,5 +179,16 @@ public class ChatRoomActivity extends AppCompatActivity {
         super.onResume();
         messageHandler.postDelayed(messageRunnable, 3000);
         receiveMessages(); // Start listening for new messages
+    }
+
+    // Retrieve post owner UID directly from the intent
+    private String getPostOwnerUid() {
+        Intent intent = getIntent();
+        if (intent != null) {
+            return intent.getStringExtra("postOwnerUid");
+        } else {
+            // Handle the case where the intent is null
+            return "";
+        }
     }
 }
