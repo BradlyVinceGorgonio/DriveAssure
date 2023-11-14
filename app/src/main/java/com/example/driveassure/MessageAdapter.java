@@ -5,33 +5,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import java.util.List;
 
 public class MessageAdapter extends BaseAdapter {
-    private Context mContext;
-    private List<Message> mMessageList;
+
+    private Context context;
+    private List<Message> messageList;
 
     public MessageAdapter(Context context, List<Message> messageList) {
-        mContext = context;
-        mMessageList = messageList;
-    }
-
-    public MessageAdapter(ChatRoomActivity context, List<com.example.driveassure.Message> messageList) {
-    }
-
-    public MessageAdapter(ChatRoomOwner chatRoomOwner, List<com.example.driveassure.Message> messageList) {
+        this.context = context;
+        this.messageList = messageList;
     }
 
     @Override
     public int getCount() {
-        return mMessageList.size();
+        return messageList != null ? messageList.size() : 0;
     }
 
     @Override
     public Object getItem(int position) {
-        return mMessageList.get(position);
+        return messageList != null ? messageList.get(position) : null;
     }
 
     @Override
@@ -42,52 +37,13 @@ public class MessageAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            LayoutInflater inflater = LayoutInflater.from(mContext);
-            convertView = inflater.inflate(R.layout.message_bubble, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_message, parent, false);
         }
 
-        TextView senderTextView = convertView.findViewById(R.id.senderTextView);
         TextView messageTextView = convertView.findViewById(R.id.messageTextView);
-
-        Message message = mMessageList.get(position);
-        senderTextView.setText(message.getSenderName());
+        Message message = messageList.get(position);
         messageTextView.setText(message.getMessageText());
 
-        // Change the alignment of the message bubble based on sender
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) messageTextView.getLayoutParams();
-        if (message.isSentByMe()) {
-            params.addRule(RelativeLayout.ALIGN_PARENT_END);
-            messageTextView.setBackgroundResource(R.drawable.message_bubble_sent);
-        } else {
-            params.addRule(RelativeLayout.ALIGN_PARENT_START);
-            messageTextView.setBackgroundResource(R.drawable.message_bubble_received);
-        }
-        messageTextView.setLayoutParams(params);
-
         return convertView;
-    }
-
-    public static class Message {
-        private String senderName;
-        private String messageText;
-        private boolean sentByMe;
-
-        public Message(String senderName, String messageText, String messageContent, boolean sentByMe) {
-            this.senderName = senderName;
-            this.messageText = messageText;
-            this.sentByMe = sentByMe;
-        }
-
-        public String getSenderName() {
-            return senderName;
-        }
-
-        public String getMessageText() {
-            return messageText;
-        }
-
-        public boolean isSentByMe() {
-            return sentByMe;
-        }
     }
 }

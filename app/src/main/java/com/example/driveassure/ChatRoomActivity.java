@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +21,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     private ListView messageListView;
     private EditText messageEditText;
-    private Button sendButton;
+    private ImageButton sendButton;
     private MessageAdapter messageAdapter;
     private List<Message> messageList;
     private Handler messageHandler;
@@ -110,16 +110,12 @@ public class ChatRoomActivity extends AppCompatActivity {
     // Simulate receiving new messages
     private void receiveMessages() {
         if (currentUserUid != null && postOwnerUid != null) {
-            // Simulate receiving a new message
-            String sender = "OtherUser"; // Replace with the actual sender
-            String messageText = "New message from " + sender;
+            // Replace this with actual logic to retrieve messages from Firestore
+            List<Message> receivedMessages = getMessagesFromFirestore();
 
-            // Create a Message object
-            Message message = new Message(currentUserUid, postOwnerUid, messageText);
-
-            // Add the new message to the list
-            if (messageList != null) {
-                messageList.add(message);
+            // Add the received messages to the list
+            if (receivedMessages != null && !receivedMessages.isEmpty()) {
+                messageList.addAll(receivedMessages);
 
                 // Notify the adapter that the data has changed
                 runOnUiThread(new Runnable() {
@@ -131,6 +127,21 @@ public class ChatRoomActivity extends AppCompatActivity {
                 });
             }
         }
+    }
+
+    // Replace this with actual logic to retrieve messages from Firestore
+    private List<Message> getMessagesFromFirestore() {
+        // For simulation purposes, let's create a sample received message
+        String sender = "OtherUser"; // Replace with the actual sender
+        String messageText = "New message from " + sender;
+
+        // Create a Message object
+        Message receivedMessage = new Message(postOwnerUid, currentUserUid, messageText);
+
+        List<Message> receivedMessages = new ArrayList<>();
+        receivedMessages.add(receivedMessage);
+
+        return receivedMessages;
     }
 
     private void scrollToBottom() {
