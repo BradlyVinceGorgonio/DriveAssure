@@ -17,4 +17,6 @@
     <color name="disabledGrey">#D3D3D3</color>
     <color name="lightgreen"> #90EE90</color>
     <color name="backgroundlightblue">#ADD8E6</color>
+    <color name="lighter_gray">#C0C0C0</color>
+
 </resources>

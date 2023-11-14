@@ -4,45 +4,42 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.List;
 
-public class MessageAdapter extends BaseAdapter {
+public class MessageAdapter extends ArrayAdapter<Message> {
 
-    private Context context;
-    private List<Message> messageList;
+    private String currentUserUid; // New variable
 
-    public MessageAdapter(Context context, List<Message> messageList) {
-        this.context = context;
-        this.messageList = messageList;
-    }
-
-    @Override
-    public int getCount() {
-        return messageList != null ? messageList.size() : 0;
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return messageList != null ? messageList.get(position) : null;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
+    public MessageAdapter(Context context, List<Message> messages, String currentUserUid) {
+        super(context, 0, messages);
+        this.currentUserUid = currentUserUid; // Initialize currentUserUid
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        Message message = getItem(position);
+
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_message, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_message, parent, false);
         }
 
-        TextView messageTextView = convertView.findViewById(R.id.messageTextView);
-        Message message = messageList.get(position);
-        messageTextView.setText(message.getMessageText());
+        TextView messageText = convertView.findViewById(R.id.message_text);
+
+        // Check if the message is from the current user or the other user
+        if (message != null) {
+            if (message.getSenderUid().equals(currentUserUid)) {
+                // Message sent by the current user, align to the right
+                messageText.setText(message.getMessageText());
+                // Set layout parameters or background to indicate a message sent by the user
+            } else {
+                // Message received from the other user, align to the left
+                messageText.setText(message.getMessageText());
+                // Set layout parameters or background to indicate a received message
+            }
+        }
 
         return convertView;
     }

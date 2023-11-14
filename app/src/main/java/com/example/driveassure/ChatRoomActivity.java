@@ -43,7 +43,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         sendButton = findViewById(R.id.sendButton);
 
         messageList = new ArrayList<>();
-        messageAdapter = new MessageAdapter(this, messageList);
+        messageAdapter = new MessageAdapter(this, messageList, currentUserUid);
         messageListView.setAdapter(messageAdapter);
 
         Intent intent = getIntent();
@@ -90,30 +90,13 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
     }
 
-    private void sendMessage(String messageText) {
-        if (currentUserUid != null && postOwnerUid != null) {
-            Message message = new Message(currentUserUid, postOwnerUid, messageText);
-
-            // Save the message to Firestore
-            messagesCollection.add(message)
-                    .addOnSuccessListener(documentReference -> {
-                        // Message sent successfully
-                        Log.d("ChatRoomActivity", "Message sent successfully");
-                    })
-                    .addOnFailureListener(e -> {
-                        // Error sending message
-                        Log.e("ChatRoomActivity", "Error sending message", e);
-                    });
-        }
-    }
-
     // Simulate receiving new messages
     private void receiveMessages() {
         if (currentUserUid != null && postOwnerUid != null) {
             // Replace this with actual logic to retrieve messages from Firestore
             List<Message> receivedMessages = getMessagesFromFirestore();
 
-            // Add the received messages to the list
+            // Add the received messages to the list if not empty
             if (receivedMessages != null && !receivedMessages.isEmpty()) {
                 messageList.addAll(receivedMessages);
 
@@ -131,17 +114,47 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     // Replace this with actual logic to retrieve messages from Firestore
     private List<Message> getMessagesFromFirestore() {
-        // For simulation purposes, let's create a sample received message
-        String sender = "OtherUser"; // Replace with the actual sender
-        String messageText = "New message from " + sender;
+        // Query Firestore to get messages between currentUserUid and postOwnerUid
+        // Sample code (replace it with actual Firestore query):
+        // messagesCollection.whereEqualTo("senderUid", postOwnerUid)
+        //                   .whereEqualTo("receiverUid", currentUserUid)
+        //                   .get()
+        //                   .addOnSuccessListener(queryDocumentSnapshots -> {
+        //                       // Process the query results and create a list of messages
+        //                   });
 
-        // Create a Message object
-        Message receivedMessage = new Message(postOwnerUid, currentUserUid, messageText);
+        // For simulation purposes, let's return an empty list
+        return new ArrayList<>();
+    }
 
-        List<Message> receivedMessages = new ArrayList<>();
-        receivedMessages.add(receivedMessage);
+    // Send a message
+    private void sendMessage(String messageText) {
+        if (currentUserUid != null && postOwnerUid != null) {
+            Message message = new Message(currentUserUid, postOwnerUid, messageText);
 
-        return receivedMessages;
+            // Save the message to Firestore
+            messagesCollection.add(message)
+                    .addOnSuccessListener(documentReference -> {
+                        // Message sent successfully
+                        Log.d("ChatRoomActivity", "Message sent successfully");
+
+                        // Add the sent message to the local list
+                        messageList.add(message);
+
+                        // Notify the adapter that the data has changed
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                messageAdapter.notifyDataSetChanged();
+                                scrollToBottom();
+                            }
+                        });
+                    })
+                    .addOnFailureListener(e -> {
+                        // Error sending message
+                        Log.e("ChatRoomActivity", "Error sending message", e);
+                    });
+        }
     }
 
     private void scrollToBottom() {
