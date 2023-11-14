@@ -82,11 +82,11 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
                 fetchDataFromFirestore("processing");
             }
         });
-
+        fetchDataFromFirestore("owner-view-rent-request");
     }
     public void fetchDataFromFirestore(String choice)
     {
-
+        RequestingList.clear();
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
         String uid = currentUser.getUid();
