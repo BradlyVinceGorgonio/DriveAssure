@@ -10,57 +10,6 @@
 >
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="86dp"
-        android:layout_height="83dp"
-        android:background="@drawable/user_circle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.024" />
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView18"
-        android:layout_width="80dp"
-        android:layout_height="70dp"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.16"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.023">
-
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="-10dp"
-            android:background="@drawable/car_key_1"
-            android:clickable="true"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"></ImageView>
-
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="20dp"
-            android:text="Car renting"
-            android:textColor="@color/black"
-            android:textSize="14dp"
-            tools:ignore="TextSizeCheck"></TextView>
-
-    </androidx.cardview.widget.CardView>
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView16"
         android:layout_width="80dp"
@@ -68,11 +17,10 @@
         app:cardCornerRadius="15dp"
         app:cardElevation="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cardView20"
+        app:layout_constraintStart_toEndOf="@+id/cardView18"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.024">
+        app:layout_constraintVertical_bias="0.012">
 
 
         <ImageView
@@ -102,18 +50,190 @@
             tools:ignore="TextSizeCheck"></TextView>
     </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView4"
+        android:layout_width="350dp"
+        android:layout_height="440dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView16"
+        app:layout_constraintVertical_bias="0.07">
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="25dp"
+            android:text="Your Account"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold"></TextView>
+
+
+        <Button
+            android:id="@+id/profileBtn"
+            android:layout_width="370dp"
+            android:layout_height="43dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="-145dp"
+            android:backgroundTint="@color/white"
+            android:drawableLeft="@drawable/user"
+            android:drawableRight="@drawable/forwardarrow"
+            android:gravity="start|center_vertical"
+            android:text="Profile"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
+
+        <Button
+            android:id="@+id/paymentBtn"
+            android:layout_width="370dp"
+            android:layout_height="43dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="-95dp"
+            android:backgroundTint="@color/white"
+            android:drawableLeft="@drawable/payment_8"
+            android:drawableRight="@drawable/forwardarrow"
+            android:gravity="start|center_vertical"
+            android:text="Payments"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
+
+
+        <Button
+            android:id="@+id/rentalHistoryBtn"
+            android:layout_width="370dp"
+            android:layout_height="43dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="-45dp"
+            android:backgroundTint="@color/white"
+            android:drawableLeft="@drawable/history_87"
+            android:drawableRight="@drawable/forwardarrow"
+            android:gravity="start|center_vertical"
+            android:text="Rental History"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            tools:ignore="TextSizeCheck,TouchTargetSizeCheck"></Button>
+
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="-100dp"
+            android:layout_marginTop="20dp"
+            android:text="Contract Details"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold"></TextView>
+
+        <Button
+            android:id="@+id/userAgreementBtn"
+            android:layout_width="370dp"
+            android:layout_height="43dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="110dp"
+            android:backgroundTint="@color/white"
+            android:drawableLeft="@drawable/agreement_1"
+            android:drawableRight="@drawable/forwardarrow"
+            android:gravity="start|center_vertical"
+            android:text="Rental Agreement &amp; Terms of Service"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            tools:ignore="TextSizeCheck,TouchTargetSizeCheck"></Button>
+
+
+        <Button
+            android:id="@+id/vehicleDocumentBtn"
+            android:layout_width="370dp"
+            android:layout_height="43dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="160dp"
+            android:backgroundTint="@color/white"
+            android:drawableLeft="@drawable/vehicledocuments"
+            android:drawableRight="@drawable/forwardarrow"
+            android:gravity="start|center_vertical"
+            android:text="Vehicle Documents"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            tools:ignore="TextSizeCheck,TouchTargetSizeCheck"></Button>
+
+
+        <Button
+            android:id="@+id/contractBtn"
+            android:layout_width="370dp"
+            android:layout_height="43dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"
+            android:backgroundTint="@color/white"
+            android:drawableLeft="@drawable/contract"
+            android:drawableRight="@drawable/forwardarrow"
+            android:gravity="start|center_vertical"
+            android:text="Contract"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            tools:ignore="TextSizeCheck,TouchTargetSizeCheck"></Button>
+
+
+    </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView18"
         android:layout_width="80dp"
         android:layout_height="70dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.83"
+        app:layout_constraintHorizontal_bias="0.163"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.023">
+        app:layout_constraintVertical_bias="0.012">
+
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="-10dp"
+            android:background="@drawable/car_key_1"
+            android:clickable="true"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"></ImageView>
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="20dp"
+            android:text="Car renting"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            tools:ignore="TextSizeCheck"></TextView>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView20"
+        android:layout_width="80dp"
+        android:layout_height="70dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.833"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.012">
 
 
         <ImageView
@@ -138,152 +258,31 @@
 
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView4"
-        android:layout_width="350dp"
-        android:layout_height="440dp"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="25dp"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/user_circle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView16"
-        app:layout_constraintVertical_bias="0.074">
-
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="5dp"
-            android:text="Your Account"
-            android:textColor="@color/black"
-            android:textSize="16dp"
-            android:textStyle="bold"></TextView>
-
-
-        <Button
-            android:id="@+id/profileBtn"
-            android:layout_width="370dp"
-            android:layout_height="43dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="-130dp"
-            android:backgroundTint="@color/white"
-            android:drawableLeft="@drawable/user"
-            android:drawableRight="@drawable/forwardarrow"
-            android:gravity="start|center_vertical"
-            android:text="Profile"
-            android:textColor="@color/black"
-            android:textSize="12dp"
-            tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
-
-        <Button
-            android:id="@+id/paymentBtn"
-            android:layout_width="370dp"
-            android:layout_height="43dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="-80dp"
-            android:backgroundTint="@color/white"
-            android:drawableLeft="@drawable/payment_8"
-            android:drawableRight="@drawable/forwardarrow"
-            android:gravity="start|center_vertical"
-            android:text="Payments"
-            android:textColor="@color/black"
-            android:textSize="12dp"
-            tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
-
-
-        <Button
-            android:id="@+id/rentalHistoryBtn"
-            android:layout_width="370dp"
-            android:layout_height="43dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="-30dp"
-            android:backgroundTint="@color/white"
-            android:drawableLeft="@drawable/history_87"
-            android:drawableRight="@drawable/forwardarrow"
-            android:gravity="start|center_vertical"
-            android:text="Rental History"
-            android:textColor="@color/black"
-            android:textSize="12dp"
-            tools:ignore="TextSizeCheck,TouchTargetSizeCheck"></Button>
-
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="-100dp"
-            android:layout_marginTop="15dp"
-            android:text="Contract Details"
-            android:textColor="@color/black"
-            android:textSize="16dp"
-            android:textStyle="bold"></TextView>
-
-        <Button
-            android:id="@+id/userAgreementBtn"
-            android:layout_width="370dp"
-            android:layout_height="43dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="100dp"
-            android:backgroundTint="@color/white"
-            android:drawableLeft="@drawable/agreement_1"
-            android:drawableRight="@drawable/forwardarrow"
-            android:gravity="start|center_vertical"
-            android:text="User Agreement"
-            android:textColor="@color/black"
-            android:textSize="12dp"
-            tools:ignore="TextSizeCheck,TouchTargetSizeCheck"></Button>
-
-
-        <Button
-            android:id="@+id/vehicleDocumentBtn"
-            android:layout_width="370dp"
-            android:layout_height="43dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="150dp"
-            android:backgroundTint="@color/white"
-            android:drawableLeft="@drawable/vehicledocuments"
-            android:drawableRight="@drawable/forwardarrow"
-            android:gravity="start|center_vertical"
-            android:text="Vehicle Documents"
-            android:textColor="@color/black"
-            android:textSize="12dp"
-            tools:ignore="TextSizeCheck,TouchTargetSizeCheck"></Button>
-
-
-        <Button
-            android:id="@+id/contractBtn"
-            android:layout_width="370dp"
-            android:layout_height="43dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="52dp"
-            android:backgroundTint="@color/white"
-            android:drawableLeft="@drawable/contract"
-            android:drawableRight="@drawable/forwardarrow"
-            android:gravity="start|center_vertical"
-            android:text="Contract"
-            android:textColor="@color/black"
-            android:textSize="12dp"
-            tools:ignore="TextSizeCheck,TouchTargetSizeCheck"></Button>
-
-
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.011" />
 
     <ImageButton
         android:id="@+id/logoutBtn"
         android:layout_width="43dp"
-        android:layout_height="25dp"
+        android:layout_height="28dp"
         android:background="@drawable/loguouticon"
-        android:layout_marginLeft="90dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.919"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.01"></ImageButton>
+        app:layout_constraintVertical_bias="0.01"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"></ImageButton>
 
     <TextView
         android:layout_width="54dp"
@@ -292,11 +291,10 @@
         android:textColor="@color/red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.955"
+        app:layout_constraintHorizontal_bias="0.935"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logoutBtn"
         app:layout_constraintVertical_bias="0.0"></TextView>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

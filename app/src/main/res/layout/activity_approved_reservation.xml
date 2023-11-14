@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -28,147 +29,148 @@
             android:text="Payment and Verification Details"
             android:textColor="@color/white"
             android:textSize="20dp"
-            android:layout_gravity="center"></TextView>
+            android:layout_gravity="center">
+        </TextView>
 
     </androidx.cardview.widget.CardView>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="51dp">
+        android:layout_marginTop="51dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView5">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView17"
+                android:layout_width="300dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="35dp">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView17"
-        android:layout_width="300dp"
-        android:layout_height="80dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="35dp"
-        android:layout_marginTop="15dp"
-        android:layout_gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Renter: "
+                    android:textColor="@color/black"></TextView>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:text="Renter: "
-            android:textColor="@color/black"></TextView>
+                <TextView
+                    android:id="@+id/renterName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="-22dp"
+                    android:fontFamily="@font/patuaoneregular"
+                    android:text="Reservation Details"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
 
-        <TextView
-            android:id="@+id/renterName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="-22dp"
-            android:fontFamily="@font/patuaoneregular"
-            android:text="Reservation Details"
-            android:textColor="@color/black"
-            android:textSize="16dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="45dp"
+                    android:text="Contact: "
+                    android:textColor="@color/black"></TextView>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="45dp"
-            android:text="Contact: "
-            android:textColor="@color/black"></TextView>
-
-        <TextView
-            android:id="@+id/renterContact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/patuaoneregular"
-            android:text="Reservation Details"
-            android:textColor="@color/black"
-            android:textSize="16dp" />
-    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/renterContact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/patuaoneregular"
+                    android:text="Reservation Details"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
                 android:text="Submitted Valid ID"
                 android:textColor="@color/black"
                 android:textSize="18dp"
-                android:textStyle="bold"
+                android:textStyle="bold"></TextView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="300dp"
+                android:layout_height="320dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:layout_gravity="center"
-                ></TextView>
-<androidx.cardview.widget.CardView
-    android:layout_width="300dp"
-    android:layout_height="320dp"
-    android:layout_gravity="center"
-    android:layout_marginTop="20dp"
-    app:cardElevation="35dp"
-    app:cardCornerRadius="10dp">
-            <ImageView
-                android:id="@+id/ValidID"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:background="@color/white">
-            </ImageView>
-</androidx.cardview.widget.CardView>
+                app:cardCornerRadius="10dp"
+                app:cardElevation="35dp">
+
+                <ImageView
+                    android:id="@+id/ValidID"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@color/white"></ImageView>
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
                 android:text="Submitted Payment"
                 android:textColor="@color/black"
                 android:textSize="18dp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                ></TextView>
+                android:textStyle="bold"></TextView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="300dp"
                 android:layout_height="350dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                app:cardElevation="35dp"
-                app:cardCornerRadius="10dp">
+                app:cardCornerRadius="10dp"
+                app:cardElevation="35dp">
+
                 <ImageView
                     android:id="@+id/uploadedPayment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
-                    android:background="@color/white">
-                </ImageView>
+                    android:background="@color/white"></ImageView>
             </androidx.cardview.widget.CardView>
-
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
                 android:text="Contract"
                 android:textColor="@color/black"
                 android:textSize="18dp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                ></TextView>
+                android:textStyle="bold"></TextView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="300dp"
                 android:layout_height="600dp"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="25dp"
-                android:layout_marginTop="20dp"
                 android:layout_gravity="center"
-                >
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="25dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -183,8 +185,7 @@
                         android:text="Step 1: Download the PDF Contract Form"
                         android:textColor="@color/black"
                         android:textSize="16dp"
-                        android:textStyle="bold"
-                      ></TextView>
+                        android:textStyle="bold"></TextView>
 
 
                     <TextView
@@ -219,8 +220,7 @@ which serves as the rental agreement. "></TextView>
                         android:text="Step 2: Fill Out the Contract"
                         android:textColor="@color/black"
                         android:textSize="16dp"
-                        android:textStyle="bold"
-                     />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textView26"
@@ -229,8 +229,7 @@ which serves as the rental agreement. "></TextView>
                         android:text="Take your time to complete the contract by
 providing all the required information accurately.
 Make sure to double-check the details to avoid
-any discrepancies."
-                         />
+any discrepancies." />
 
                     <TextView
                         android:id="@+id/textView24"
@@ -240,8 +239,7 @@ any discrepancies."
                         android:text="Step 3: Print the Physical Contract"
                         android:textColor="@color/black"
                         android:textSize="16dp"
-                        android:textStyle="bold"
-                 />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textView27"
@@ -250,8 +248,7 @@ any discrepancies."
                         android:text="After filling out the digital contract, print a
 physical copy of it. Go through the printed
 document to ensure it matches the digital
-version and contains all necessary information."
-                   ></TextView>
+version and contains all necessary information."></TextView>
 
                     <TextView
                         android:id="@+id/textView28"
@@ -261,8 +258,7 @@ version and contains all necessary information."
                         android:text="Step 4: Sign a Digital Signature"
                         android:textColor="@color/black"
                         android:textSize="16dp"
-                        android:textStyle="bold"
-                         />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textView30"
@@ -270,8 +266,7 @@ version and contains all necessary information."
                         android:layout_height="wrap_content"
                         android:text="This electronic signature will serve as your
 acknowledgment and acceptance of the terms
-and conditions."
-                        ></TextView>
+and conditions."></TextView>
 
                     <TextView
                         android:id="@+id/textView23"
@@ -292,22 +287,21 @@ and conditions."
 and the printed contract with you when you meet
 the car owner. This ensures that you have all the
 necessary documentation for the car rental
-transaction."
-                        ></TextView>
+transaction."></TextView>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <Button
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/black"
                 android:text="Continue"
-                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="20dp"
-                android:layout_marginBottom="20dp"
-                android:layout_gravity="center"
-                android:backgroundTint="@color/black"
-                android:layout_marginTop="30dp"></Button>
+                android:textStyle="bold"></Button>
         </LinearLayout>
     </ScrollView>
 
