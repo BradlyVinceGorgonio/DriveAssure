@@ -200,7 +200,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout14"
         app:layout_constraintVertical_bias="0.094"></androidx.cardview.widget.CardView>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
         android:id="@+id/timeFinishedFrom"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="160dp"
@@ -210,6 +210,7 @@
         android:hint=" Return Time"
         android:textColor="@color/black"
         android:textColorHint="@color/grey"
+        android:textSize="20dp"
         app:endIconMode="clear_text"
         app:helperText="Required"
         app:helperTextTextColor="@color/red"
@@ -218,14 +219,14 @@
         app:layout_constraintHorizontal_bias="0.86"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView7"
-        app:layout_constraintVertical_bias="0.165"
+        app:layout_constraintVertical_bias="0.088"
         app:startIconDrawable="@drawable/clock_191"
         app:startIconTint="@color/black"
-        tools:ignore="TextContrastCheck">
+        tools:ignore="TextContrastCheck,TouchTargetSizeCheck">
 
-    </androidx.appcompat.widget.AppCompatButton>
+    </androidx.appcompat.widget.AppCompatAutoCompleteTextView>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
         android:id="@+id/timeStartedFrom"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
@@ -235,6 +236,7 @@
         android:hint=" Pick-up Time"
         android:textColor="@color/black"
         android:textColorHint="@color/grey"
+        android:textSize="20dp"
         app:endIconMode="clear_text"
         app:helperText="Required"
         app:helperTextTextColor="@color/red"
@@ -246,11 +248,11 @@
         app:layout_constraintVertical_bias="0.065"
         app:startIconDrawable="@drawable/clock_191"
         app:startIconTint="@color/black"
-        tools:ignore="TextContrastCheck">
+        tools:ignore="TextContrastCheck,TouchTargetSizeCheck">
 
-    </androidx.appcompat.widget.AppCompatButton>
+    </androidx.appcompat.widget.AppCompatAutoCompleteTextView>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
         android:id="@+id/datePickerUntilButton"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
@@ -259,6 +261,7 @@
         android:hint=" Return Date"
         android:textColor="@color/black"
         android:textColorHint="@color/grey"
+        android:textSize="20dp"
         app:endIconMode="clear_text"
         app:helperText="Required"
         app:helperTextTextColor="@color/red"
@@ -267,14 +270,14 @@
         app:layout_constraintHorizontal_bias="0.147"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView7"
-        app:layout_constraintVertical_bias="0.165"
+        app:layout_constraintVertical_bias="0.088"
         app:startIconDrawable="@drawable/calendar"
         app:startIconTint="@color/black"
-        tools:ignore="TextContrastCheck">
+        tools:ignore="TextContrastCheck,TouchTargetSizeCheck">
 
-    </androidx.appcompat.widget.AppCompatButton>
+    </androidx.appcompat.widget.AppCompatAutoCompleteTextView>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
         android:id="@+id/datePickerFromButton"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
@@ -282,6 +285,7 @@
         android:background="@color/white"
         android:hint=" Pick-up Date"
         android:textColor="@color/black"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.147"
@@ -289,9 +293,10 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView17"
         app:layout_constraintVertical_bias="0.051"
         app:startIconDrawable="@drawable/calendar"
-        app:startIconTint="@color/black">
+        app:startIconTint="@color/black"
+        tools:ignore="TouchTargetSizeCheck">
 
-    </androidx.appcompat.widget.AppCompatButton>
+    </androidx.appcompat.widget.AppCompatAutoCompleteTextView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
