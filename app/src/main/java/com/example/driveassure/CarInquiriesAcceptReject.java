@@ -1,6 +1,7 @@
 package com.example.driveassure;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,10 +37,19 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
     String ownerUserUidResult;
     String totalTime;
     ProgressBar progressBarID;
+
+    CardView pendingReservation;
+    CardView approvedReservation;
+    CardView processingReservation;
+    int answer = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_inquiries_accept_reject);
+
+        pendingReservation = findViewById(R.id.pendingReservation);
+        approvedReservation = findViewById(R.id.approvedReservation);
+        processingReservation = findViewById(R.id.processingReservation);
 
         progressBarID = findViewById(R.id.progressBarID);
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
@@ -53,17 +63,37 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
 
         // Fetch data from Firestore and populate adminList
         // ...
-        fetchDataFromFirestore();
+
+        pendingReservation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fetchDataFromFirestore("owner-view-rent-request");
+            }
+        });
+        approvedReservation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fetchDataFromFirestore("approved");
+            }
+        });
+        processingReservation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fetchDataFromFirestore("processing");
+            }
+        });
+
     }
-    public void fetchDataFromFirestore()
+    public void fetchDataFromFirestore(String choice)
     {
+
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
         String uid = currentUser.getUid();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference rentRequestCollection = db.collection("users")
                 .document(uid)
-                .collection("owner-view-rent-request");
+                .collection(choice);
 
         rentRequestCollection.get()
                 .addOnCompleteListener(task -> {
