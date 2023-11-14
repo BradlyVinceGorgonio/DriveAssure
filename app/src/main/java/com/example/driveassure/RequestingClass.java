@@ -14,10 +14,11 @@ public class RequestingClass {
 
     private String rentDateRange;
     private String carUID;
+    private String requestID;
 
 
 
-    public RequestingClass(String profilePictureUrl, String name, String uid, String carName, String daysAmount, String rentDateRange, String carUID) {
+    public RequestingClass(String profilePictureUrl, String name, String uid, String carName, String daysAmount, String rentDateRange, String carUID, String requestID) {
         this.profilePictureUrl = profilePictureUrl;
         this.name = name;
         this.uid = uid;
@@ -25,6 +26,7 @@ public class RequestingClass {
         this.daysAmount = daysAmount;
         this.rentDateRange = rentDateRange;
         this.carUID = carUID;
+        this.requestID = requestID;
     }
 
     public String getProfilePictureUrl() {
@@ -52,5 +54,9 @@ public class RequestingClass {
 
     public String getRentDateRange() {
         return rentDateRange;
+    }
+    public String getRequestID()
+    {
+        return requestID;
     }
 }
