@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 
 public class profileUserFragment extends Fragment {
+    CardView carRentingCardView;
     ImageView favoritesImage;
 
     @Override
@@ -59,6 +61,15 @@ public class profileUserFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), BookmarkArea.class);
+                startActivity(intent);
+            }
+        });
+
+        carRentingCardView = view.findViewById(R.id.carRentingCardView);
+        carRentingCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), CarInquiriesAcceptReject.class);
                 startActivity(intent);
             }
         });
