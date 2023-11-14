@@ -18,7 +18,7 @@
         app:cardElevation="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cardView20"
-        app:layout_constraintStart_toEndOf="@+id/cardView18"
+        app:layout_constraintStart_toEndOf="@+id/carRentingCardView"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.012">
 
@@ -30,7 +30,6 @@
             android:layout_gravity="center"
             android:layout_marginTop="-10dp"
             android:background="@drawable/heart"></ImageView>
-
 
         <TextView
             android:id="@+id/textView11"
@@ -185,7 +184,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView18"
+        android:id="@+id/carRentingCardView"
         android:layout_width="80dp"
         android:layout_height="70dp"
         app:cardCornerRadius="15dp"
