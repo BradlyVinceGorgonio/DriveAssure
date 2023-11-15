@@ -13,11 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ChatRoomActivity extends AppCompatActivity {
@@ -40,10 +40,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
-        Intent intent = getIntent();
-        String currentUserUid = intent.getStringExtra("currentUserUid");
-        Log.d("HADUKEN", "hello");
-        Log.d("HADUKEN", "Received currentUserUid: " + currentUserUid);
+
         messageListView = findViewById(R.id.messageListView);
         messageEditText = findViewById(R.id.messageEditText);
         sendButton = findViewById(R.id.sendButton);
@@ -52,32 +49,56 @@ public class ChatRoomActivity extends AppCompatActivity {
         messageAdapter = new MessageAdapter(this, messageList, currentUserUid);
         messageListView.setAdapter(messageAdapter);
 
+        Intent intent = getIntent();
+        if (intent != null) {
+            currentUserUid = intent.getStringExtra("currentUserUid");
+            postOwnerUid = intent.getStringExtra("postOwnerUid");
 
+            Log.d("ChatRoomActivity", "Received currentUserUid: " + currentUserUid);
+            Log.d("ChatRoomActivity", "Received postOwnerUid: " + postOwnerUid);
 
-        firestore = FirebaseFirestore.getInstance();
-        messagesCollection = firestore.collection("messages");
+            // Retrieve the current user UID from the intent
+            currentUserUid = intent.getStringExtra("currentUserUid");
+            Log.d("HADUKEN", "Received currentUserUid: " + currentUserUid);
 
-        sendButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String messageText = messageEditText.getText().toString();
-                if (!messageText.isEmpty()) {
-                    sendMessage(messageText);
-                    messageEditText.setText("");
-                }
+            if (currentUserUid != null && postOwnerUid != null) {
+                // Generate a unique chat room ID based on user UIDs
+                String chatRoomId = generateChatRoomId(currentUserUid, postOwnerUid);
+
+                // Use the generated chat room ID for Firestore collection
+                firestore = FirebaseFirestore.getInstance();
+                messagesCollection = firestore.collection("messages").document(chatRoomId).collection("messages");
+
+                sendButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String messageText = messageEditText.getText().toString();
+                        if (!messageText.isEmpty()) {
+                            sendMessage(messageText);
+                            messageEditText.setText("");
+                        }
+                    }
+                });
+
+                messageHandler = new Handler();
+                messageRunnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        // Simulate receiving new messages
+                        receiveMessages();
+                        messageHandler.postDelayed(this, 3000);
+                    }
+                };
+            } else {
+                Log.e("ChatRoomActivity", "currentUserUid or postOwnerUid is null");
+                // Handle the case where UIDs are null (e.g., show an error message, log, etc.)
+                finish(); // Finish the activity if UIDs are null
             }
-        });
-
-        messageHandler = new Handler();
-        messageRunnable = new Runnable() {
-            @Override
-            public void run() {
-                // Simulate receiving new messages
-                receiveMessages();
-                messageHandler.postDelayed(this, 3000);
-            }
-        };
-
+        } else {
+            Log.e("ChatRoomActivity", "Intent is null");
+            // Handle the case where the intent is null (e.g., show an error message, log, etc.)
+            finish(); // Finish the activity if the intent is null
+        }
     }
 
     // Generate a unique chat room ID based on user UIDs
@@ -101,13 +122,14 @@ public class ChatRoomActivity extends AppCompatActivity {
                         // Message sent successfully
                         Log.d("ChatRoomActivity", "Message sent successfully");
 
-                        // Add the sent message to the local list
-                        messageList.add(message);
+                        // No need to add the sent message to the local list, it will be received through snapshots
 
                         // Notify the adapter that the data has changed
                         runOnUiThread(() -> {
-                            messageAdapter.notifyDataSetChanged();
-                            scrollToBottom();
+                            // Clear the current list and add all messages from the snapshot
+                            messageList.clear();
+                            receiveMessages();
+                            scrollToTop();
                         });
                     })
                     .addOnFailureListener(e -> {
@@ -121,33 +143,36 @@ public class ChatRoomActivity extends AppCompatActivity {
     private void receiveMessages() {
         messagesCollection.addSnapshotListener((value, error) -> {
             if (value != null) {
+                List<Message> receivedMessages = new ArrayList<>();
                 for (DocumentChange dc : value.getDocumentChanges()) {
                     if (dc.getType() == DocumentChange.Type.ADDED) {
                         Message receivedMessage = dc.getDocument().toObject(Message.class);
 
                         // Add the received message to the list if not empty
                         if (receivedMessage != null) {
-                            messageList.add(receivedMessage);
-
-                            // Notify the adapter that the data has changed
-                            runOnUiThread(() -> {
-                                messageAdapter.notifyDataSetChanged();
-                                scrollToBottom();
-                            });
+                            receivedMessages.add(receivedMessage);
                         }
                     }
                 }
+
+                // Reverse the order of received messages to display the newest at the bottom
+                Collections.reverse(receivedMessages);
+
+                // Add all received messages to the local list
+                messageList.addAll(receivedMessages);
+
+                // Notify the adapter that the data has changed
+                runOnUiThread(() -> {
+                    messageAdapter.notifyDataSetChanged();
+                    scrollToTop();
+                });
             }
         });
     }
 
-    private void scrollToBottom() {
-        if (messageAdapter != null) {
-            int count = messageAdapter.getCount();
-
-            if (count > 0) {
-                messageListView.setSelection(count - 1);
-            }
+    private void scrollToTop() {
+        if (messageAdapter != null && messageList.size() > 0) {
+            messageListView.smoothScrollToPosition(0);
         }
     }
 
@@ -162,16 +187,5 @@ public class ChatRoomActivity extends AppCompatActivity {
         super.onResume();
         messageHandler.postDelayed(messageRunnable, 3000);
         receiveMessages(); // Start listening for new messages
-    }
-
-    // Retrieve post owner UID directly from the intent
-    private String getPostOwnerUid() {
-        Intent intent = getIntent();
-        if (intent != null) {
-            return intent.getStringExtra("postOwnerUid");
-        } else {
-            // Handle the case where the intent is null
-            return "";
-        }
     }
 }
