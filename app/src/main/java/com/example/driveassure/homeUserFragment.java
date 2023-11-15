@@ -92,11 +92,11 @@ public class homeUserFragment extends Fragment implements HomeListingCarAdapter.
 
         viewpager2 = view.findViewById(R.id.viewPager);
         List<SlideItem> sliderItem = new ArrayList<>();
-        sliderItem.add(new SlideItem(R.drawable.fin1));
-        sliderItem.add(new SlideItem(R.drawable.fin2));
-        sliderItem.add(new SlideItem(R.drawable.fin3));
-        sliderItem.add(new SlideItem(R.drawable.fin4));
-        sliderItem.add(new SlideItem(R.drawable.fin5));
+        sliderItem.add(new SlideItem(R.drawable.finv5));
+        sliderItem.add(new SlideItem(R.drawable.finv21));
+        sliderItem.add(new SlideItem(R.drawable.finv22));
+        sliderItem.add(new SlideItem(R.drawable.finv23));
+        sliderItem.add(new SlideItem(R.drawable.finv24));
 
         viewpager2.setAdapter(new SlideAdapter(sliderItem, viewpager2));
 
