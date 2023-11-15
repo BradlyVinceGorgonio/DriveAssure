@@ -9,14 +9,14 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -57,15 +57,12 @@ public class ChatRoomActivity extends AppCompatActivity {
             Log.d("ChatRoomActivity", "Received currentUserUid: " + currentUserUid);
             Log.d("ChatRoomActivity", "Received postOwnerUid: " + postOwnerUid);
 
-            // Retrieve the current user UID from the intent
             currentUserUid = intent.getStringExtra("currentUserUid");
             Log.d("HADUKEN", "Received currentUserUid: " + currentUserUid);
 
             if (currentUserUid != null && postOwnerUid != null) {
-                // Generate a unique chat room ID based on user UIDs
                 String chatRoomId = generateChatRoomId(currentUserUid, postOwnerUid);
 
-                // Use the generated chat room ID for Firestore collection
                 firestore = FirebaseFirestore.getInstance();
                 messagesCollection = firestore.collection("messages").document(chatRoomId).collection("messages");
 
@@ -84,90 +81,70 @@ public class ChatRoomActivity extends AppCompatActivity {
                 messageRunnable = new Runnable() {
                     @Override
                     public void run() {
-                        // Simulate receiving new messages
                         receiveMessages();
                         messageHandler.postDelayed(this, 3000);
                     }
                 };
             } else {
                 Log.e("ChatRoomActivity", "currentUserUid or postOwnerUid is null");
-                // Handle the case where UIDs are null (e.g., show an error message, log, etc.)
-                finish(); // Finish the activity if UIDs are null
+                finish();
             }
         } else {
             Log.e("ChatRoomActivity", "Intent is null");
-            // Handle the case where the intent is null (e.g., show an error message, log, etc.)
-            finish(); // Finish the activity if the intent is null
+            finish();
         }
     }
 
-    // Generate a unique chat room ID based on user UIDs
     private String generateChatRoomId(String uid1, String uid2) {
-        // Sort the UIDs to ensure consistency
         String[] uids = {uid1, uid2};
-        Arrays.sort(uids);
-
-        // Concatenate sorted UIDs to create a unique ID
+        java.util.Arrays.sort(uids);
         return uids[0] + "_" + uids[1];
     }
 
-    // Send a message
     private void sendMessage(String messageText) {
         if (currentUserUid != null && postOwnerUid != null) {
             Message message = new Message(currentUserUid, postOwnerUid, messageText);
 
-            // Save the message to Firestore
             messagesCollection.add(message)
                     .addOnSuccessListener(documentReference -> {
-                        // Message sent successfully
                         Log.d("ChatRoomActivity", "Message sent successfully");
-
-                        // No need to add the sent message to the local list, it will be received through snapshots
-
-                        // Notify the adapter that the data has changed
-                        runOnUiThread(() -> {
-                            // Clear the current list and add all messages from the snapshot
-                            messageList.clear();
-                            receiveMessages();
-                            scrollToTop();
-                        });
                     })
                     .addOnFailureListener(e -> {
-                        // Error sending message
                         Log.e("ChatRoomActivity", "Error sending message", e);
                     });
         }
     }
 
-    // Simulate receiving new messages
     private void receiveMessages() {
-        messagesCollection.addSnapshotListener((value, error) -> {
-            if (value != null) {
-                List<Message> receivedMessages = new ArrayList<>();
-                for (DocumentChange dc : value.getDocumentChanges()) {
-                    if (dc.getType() == DocumentChange.Type.ADDED) {
-                        Message receivedMessage = dc.getDocument().toObject(Message.class);
-
-                        // Add the received message to the list if not empty
-                        if (receivedMessage != null) {
-                            receivedMessages.add(receivedMessage);
-                        }
-                    }
+        messagesCollection.get().addOnSuccessListener(queryDocumentSnapshots -> {
+            List<Message> receivedMessages = new ArrayList<>();
+            for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                Message receivedMessage = documentSnapshot.toObject(Message.class);
+                if (receivedMessage != null && !isMessageAlreadyReceived(receivedMessage)) {
+                    receivedMessages.add(receivedMessage);
                 }
-
-                // Reverse the order of received messages to display the newest at the bottom
-                Collections.reverse(receivedMessages);
-
-                // Add all received messages to the local list
-                messageList.addAll(receivedMessages);
-
-                // Notify the adapter that the data has changed
-                runOnUiThread(() -> {
-                    messageAdapter.notifyDataSetChanged();
-                    scrollToTop();
-                });
             }
+
+            Collections.reverse(receivedMessages);
+
+            messageList.addAll(receivedMessages);
+
+            runOnUiThread(() -> {
+                messageAdapter.notifyDataSetChanged();
+                scrollToTop();
+            });
+        }).addOnFailureListener(e -> {
+            Log.e("ChatRoomActivity", "Error receiving messages", e);
         });
+    }
+
+    private boolean isMessageAlreadyReceived(Message message) {
+        for (Message existingMessage : messageList) {
+            if (existingMessage.equals(message)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void scrollToTop() {
@@ -186,6 +163,6 @@ public class ChatRoomActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         messageHandler.postDelayed(messageRunnable, 3000);
-        receiveMessages(); // Start listening for new messages
+        receiveMessages();
     }
 }
