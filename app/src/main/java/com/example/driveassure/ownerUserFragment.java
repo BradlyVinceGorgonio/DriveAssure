@@ -16,8 +16,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
+import com.google.android.gms.vision.text.Line;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -35,7 +37,10 @@ public class ownerUserFragment extends Fragment implements OwnerListingCarAdapte
     private List<OwnerListingsClass> HistoryList;
     private OwnerListingCarAdapter ownerListingCarAdapter;
 
-    ProgressBar progressBarID;
+    ProgressBar progressBarIDListing;
+    ProgressBar progressBarIDInUse;
+    LinearLayout displayNoUsing;
+    LinearLayout displayNoListings;
 
     Button addCarBtn;
     @Override
@@ -43,7 +48,13 @@ public class ownerUserFragment extends Fragment implements OwnerListingCarAdapte
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_owner_user, container, false);
 
-        progressBarID = view.findViewById(R.id.progressBarID);
+        progressBarIDListing = view.findViewById(R.id.progressBarID);
+        displayNoListings = view.findViewById(R.id.displayNoListings);
+        progressBarIDInUse = view.findViewById(R.id.progressBarIDInUse);
+        displayNoUsing = view.findViewById(R.id.displayNoUsing);
+
+
+
 
         addCarBtn = view.findViewById(R.id.addCarBtn);
 
@@ -105,26 +116,33 @@ public class ownerUserFragment extends Fragment implements OwnerListingCarAdapte
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         HistoryList.clear();
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            // Process data from the "history" subcollection
-                            String name = document.getString("Vehicle Title");
-                            // Retrieve the "description" field as a List of Strings
-                            String carPostUID = document.getString("Vehicle post-id");
-                            String uid = document.getString("uid");
-                            String Address = document.getString("Vehicle Address");
-                            String Price = document.getString("Vehicle Price");
-                            String Transmission = document.getString("Vehicle Transmission");
+                        if (task.getResult().isEmpty()) {
+                            // Collection is empty, perform action here
+                            progressBarIDListing.setVisibility(View.GONE);
+                            displayNoListings.setVisibility(View.VISIBLE);
+                        } else {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                // Process data from the "history" subcollection
+                                String name = document.getString("Vehicle Title");
+                                // Retrieve the "description" field as a List of Strings
+                                String carPostUID = document.getString("Vehicle post-id");
+                                String uid = document.getString("uid");
+                                String Address = document.getString("Vehicle Address");
+                                String Price = document.getString("Vehicle Price");
+                                String Transmission = document.getString("Vehicle Transmission");
 
-
-                            // Fetch the profile picture URL from Firebase Storage
-                            Log.d("BITCHNIGGA", "BITCHNIGGA: " + name + carPostUID + "uid: "+ uid + Address + Price + Transmission );
-                            fetchProfilePictureUrl(name, Price, Address, uid, "/carpic1.jpg", Transmission, carPostUID);
+                                // Fetch the profile picture URL from Firebase Storage
+                                Log.d("BITCHNIGGA", "BITCHNIGGA: " + name + carPostUID + "uid: "+ uid + Address + Price + Transmission );
+                                fetchProfilePictureUrl(name, Price, Address, uid, "/carpic1.jpg", Transmission, carPostUID);
+                            }
                         }
                     } else {
                         // Handle the failure scenario
+                        Log.e("BITCHNIGGA", "BITCHNIGGA: Error getting documents.", task.getException());
                     }
                 });
     }
+
     private void fetchProfilePictureUrl(String name, String Price, String Address, String uid, String profilePictureUrl, String Transmission, String carPostUID) {
         StorageReference storageRef= FirebaseStorage.getInstance().getReference().child( "carposts/"+ carPostUID+ "/" +"carpic1.jpg");
 
@@ -145,7 +163,7 @@ public class ownerUserFragment extends Fragment implements OwnerListingCarAdapte
             ownerListingCarAdapter.notifyDataSetChanged();
 
 
-            progressBarID.setVisibility(View.GONE);
+            progressBarIDListing.setVisibility(View.GONE);
 
         }).addOnFailureListener(e -> {
             // Handle any errors that occur while fetching the profile picture URL
