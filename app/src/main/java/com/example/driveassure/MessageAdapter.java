@@ -40,7 +40,7 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         TextView timestampTextView = view.findViewById(R.id.timestamp);
 
         if (message != null) {
-            messageTextView.setText(message.getMessage());
+            messageTextView.setText(message.getMessageText());
             timestampTextView.setText(formatTimestamp(message.getTimestamp()));
 
             // Check if the message is sent by the current user
