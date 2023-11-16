@@ -50,7 +50,6 @@ public class IdVerification extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_id_verification);
 
-        showCustomDialog();
 
 
         deleteLicenseDirectory();
@@ -88,10 +87,7 @@ public class IdVerification extends AppCompatActivity {
 
 
     }
-    private void showCustomDialog() {
-        acceptedreceivedbyrenter customDialog = new acceptedreceivedbyrenter(this);
-        customDialog.show();
-    }
+
     private void openImageDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Select Image Source");
