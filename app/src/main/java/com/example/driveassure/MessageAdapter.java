@@ -9,9 +9,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MessageAdapter extends ArrayAdapter<Message> {
 
@@ -24,7 +27,7 @@ public class MessageAdapter extends ArrayAdapter<Message> {
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         View view = convertView;
         if (view == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
@@ -34,11 +37,15 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         Message message = getItem(position);
 
         TextView messageTextView = view.findViewById(R.id.message_text);
+        TextView timestampTextView = view.findViewById(R.id.timestamp);
 
         if (message != null) {
             messageTextView.setText(message.getMessageText());
+            timestampTextView.setText(formatTimestamp(message.getTimestamp()));
 
+            // Check if the message is sent by the current user
             if (message.getSenderUid().equals(currentUserUid)) {
+                // Sent message, align to the right
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                         RelativeLayout.LayoutParams.WRAP_CONTENT,
                         RelativeLayout.LayoutParams.WRAP_CONTENT
@@ -46,8 +53,10 @@ public class MessageAdapter extends ArrayAdapter<Message> {
                 params.addRule(RelativeLayout.ALIGN_PARENT_END);
                 messageTextView.setLayoutParams(params);
 
+                // Change the background color for sent messages (blue)
                 messageTextView.setBackgroundResource(R.drawable.bubble_right);
             } else {
+                // Received message, align to the left
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                         RelativeLayout.LayoutParams.WRAP_CONTENT,
                         RelativeLayout.LayoutParams.WRAP_CONTENT
@@ -55,10 +64,20 @@ public class MessageAdapter extends ArrayAdapter<Message> {
                 params.addRule(RelativeLayout.ALIGN_PARENT_START);
                 messageTextView.setLayoutParams(params);
 
+                // Change the background color for received messages (grey)
                 messageTextView.setBackgroundResource(R.drawable.bubble_left);
             }
         }
 
         return view;
+    }
+
+    private String formatTimestamp(Date timestamp) {
+        if (timestamp != null) {
+            DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault());
+            return dateFormat.format(timestamp);
+        } else {
+            return ""; // or return a default value
+        }
     }
 }

@@ -1,9 +1,14 @@
 package com.example.driveassure;
 
+import com.google.firebase.firestore.ServerTimestamp;
+
+import java.util.Date;
+
 public class Message {
     private String senderUid;
     private String receiverUid;
     private String messageText;
+    private @ServerTimestamp Date timestamp;
 
     // Default constructor needed for Firestore deserialization
     public Message() {
@@ -13,6 +18,7 @@ public class Message {
         this.senderUid = senderUid;
         this.receiverUid = receiverUid;
         this.messageText = messageText;
+        this.timestamp = new Date(); // Initialize timestamp with the current date
     }
 
     public String getSenderUid() {
@@ -27,23 +33,7 @@ public class Message {
         return messageText;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-
-        Message message = (Message) obj;
-
-        return senderUid.equals(message.senderUid) &&
-                receiverUid.equals(message.receiverUid) &&
-                messageText.equals(message.messageText);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = senderUid.hashCode();
-        result = 31 * result + receiverUid.hashCode();
-        result = 31 * result + messageText.hashCode();
-        return result;
+    public Date getTimestamp() {
+        return timestamp;
     }
 }
