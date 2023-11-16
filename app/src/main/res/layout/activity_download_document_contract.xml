@@ -54,6 +54,7 @@ which serves as the rental agreement. "></TextView>
                 android:drawableRight="@drawable/download_112"
                 android:text="DOWNLOAD "
                 android:textColor="@color/darkblue"
+                android:clickable="true"
                 android:textSize="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
