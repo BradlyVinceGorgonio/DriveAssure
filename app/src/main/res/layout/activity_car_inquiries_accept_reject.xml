@@ -52,7 +52,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/pendingReservation"
         android:layout_width="105dp"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -76,7 +76,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/approvedReservation"
         android:layout_width="105dp"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -99,7 +99,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/processingReservation"
         android:layout_width="105dp"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
