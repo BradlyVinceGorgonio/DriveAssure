@@ -125,13 +125,12 @@ public class ChatRoomActivity extends AppCompatActivity {
                 }
             }
 
-            Collections.reverse(receivedMessages);
-
+            // Add new messages at the bottom of the list
             messageList.addAll(receivedMessages);
 
             runOnUiThread(() -> {
                 messageAdapter.notifyDataSetChanged();
-                scrollToTop();
+                scrollToBottom(); // Scroll to the bottom to display the latest message
             });
         }).addOnFailureListener(e -> {
             Log.e("ChatRoomActivity", "Error receiving messages", e);
@@ -147,9 +146,10 @@ public class ChatRoomActivity extends AppCompatActivity {
         return false;
     }
 
-    private void scrollToTop() {
+    private void scrollToBottom() {
         if (messageAdapter != null && messageList.size() > 0) {
-            messageListView.smoothScrollToPosition(0);
+            int lastItemIndex = messageList.size() - 1;
+            messageListView.smoothScrollToPosition(lastItemIndex);
         }
     }
 

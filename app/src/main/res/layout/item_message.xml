@@ -13,5 +13,12 @@
         android:textSize="16sp"
         android:background="@drawable/bubble_right" />
 
+    <TextView
+        android:id="@+id/timestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/message_text"
+        android:padding="8dp"
+        android:textColor="#aaaaaa"
+        android:textSize="12sp"/>
 </RelativeLayout>
-
