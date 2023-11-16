@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="0dp"
     tools:context=".ChatRoomActivity">
-
+    
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -55,7 +55,6 @@
                 android:textColor="@color/white"
                 android:textSize="14sp" />
         </LinearLayout>
-
     </RelativeLayout>
 
     <ListView
@@ -74,6 +73,8 @@
         android:stackFromBottom="true"
         android:transcriptMode="alwaysScroll"></ListView>
 
+    <!-- Your existing message input layout... -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -89,7 +90,6 @@
             android:hint="Enter message"
             android:inputType="text" />
 
-        <!-- Upload Image Button -->
         <ImageButton
             android:id="@+id/uploadButton"
             android:layout_width="wrap_content"
@@ -103,8 +103,6 @@
             android:layout_width="39dp"
             android:layout_height="wrap_content"
             android:src="@android:drawable/ic_menu_send" />
-
     </LinearLayout>
-
 
 </RelativeLayout>
