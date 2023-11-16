@@ -7,17 +7,24 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ChatRoomActivity extends AppCompatActivity {
 
@@ -28,12 +35,15 @@ public class ChatRoomActivity extends AppCompatActivity {
     private List<Message> messageList;
     private Handler messageHandler;
     private Runnable messageRunnable;
+    private Set<String> receivedMessageIds;
 
     private String currentUserUid;
     private String postOwnerUid;
 
     private FirebaseFirestore firestore;
     private CollectionReference messagesCollection;
+
+    private ImageView carOwnerProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +53,12 @@ public class ChatRoomActivity extends AppCompatActivity {
         messageListView = findViewById(R.id.messageListView);
         messageEditText = findViewById(R.id.messageEditText);
         sendButton = findViewById(R.id.sendButton);
+        carOwnerProfile = findViewById(R.id.userPhoto); // Replace with your ImageView ID
 
         messageList = new ArrayList<>();
         messageAdapter = new MessageAdapter(this, messageList, currentUserUid);
         messageListView.setAdapter(messageAdapter);
+        receivedMessageIds = new HashSet<>();
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -55,9 +67,6 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             Log.d("ChatRoomActivity", "Received currentUserUid: " + currentUserUid);
             Log.d("ChatRoomActivity", "Received postOwnerUid: " + postOwnerUid);
-
-            currentUserUid = intent.getStringExtra("currentUserUid");
-            Log.d("HADUKEN", "Received currentUserUid: " + currentUserUid);
 
             if (currentUserUid != null && postOwnerUid != null) {
                 String chatRoomId = generateChatRoomId(currentUserUid, postOwnerUid);
@@ -84,6 +93,9 @@ public class ChatRoomActivity extends AppCompatActivity {
                         messageHandler.postDelayed(this, 3000);
                     }
                 };
+
+                // Fetch the car owner's profile photo
+                fetchCarOwnerProfilePhoto(postOwnerUid);
             } else {
                 Log.e("ChatRoomActivity", "currentUserUid or postOwnerUid is null");
                 finish();
@@ -119,13 +131,22 @@ public class ChatRoomActivity extends AppCompatActivity {
             List<Message> receivedMessages = new ArrayList<>();
             for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                 Message receivedMessage = documentSnapshot.toObject(Message.class);
-                if (receivedMessage != null && !isMessageAlreadyReceived(receivedMessage)) {
+                if (receivedMessage != null && !receivedMessageIds.contains(documentSnapshot.getId())) {
                     receivedMessages.add(receivedMessage);
+                    receivedMessageIds.add(documentSnapshot.getId());
                 }
             }
 
             // Add new messages at the bottom of the list
             messageList.addAll(receivedMessages);
+
+            // Sort the messages based on timestamp
+            Collections.sort(messageList, (message1, message2) -> {
+                if (message1.getTimestamp() == null || message2.getTimestamp() == null) {
+                    return 0;
+                }
+                return message1.getTimestamp().compareTo(message2.getTimestamp());
+            });
 
             runOnUiThread(() -> {
                 messageAdapter.notifyDataSetChanged();
@@ -136,20 +157,30 @@ public class ChatRoomActivity extends AppCompatActivity {
         });
     }
 
-    private boolean isMessageAlreadyReceived(Message message) {
-        for (Message existingMessage : messageList) {
-            if (existingMessage.equals(message)) {
-                return true;
-            }
-        }
-        return false;
-    }
+
 
     private void scrollToBottom() {
         if (messageAdapter != null && messageList.size() > 0) {
             int lastItemIndex = messageList.size() - 1;
             messageListView.smoothScrollToPosition(lastItemIndex);
         }
+    }
+
+    private void fetchCarOwnerProfilePhoto(String carOwnerUid) {
+        // Construct the path to the car owner's profile photo in Firebase Storage
+        String imagePath = "users/" + carOwnerUid + "/face.jpg";
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(imagePath);
+
+        storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+            String imageUrl = uri.toString();
+
+            // Load the image into the ImageView in the ChatRoomActivity layout
+            Glide.with(this).load(imageUrl).into(carOwnerProfile);
+
+        }).addOnFailureListener(exception -> {
+            // Handle the failure scenario
+            Log.e("ChatRoomActivity", "Error fetching car owner's profile photo", exception);
+        });
     }
 
     @Override

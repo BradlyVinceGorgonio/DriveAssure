@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="0dp"
     tools:context=".ChatRoomActivity">
-    
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
