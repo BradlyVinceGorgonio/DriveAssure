@@ -88,7 +88,7 @@ public class renterUserFragment extends Fragment implements OwnerListingCarAdapt
 
 
 
-            Intent intent2 = new Intent(getContext(), IdVerification.class);
+            Intent intent2 = new Intent(getContext(), rentalTermsandCondition.class);
             // Pass data as extras in the intent
             intent2.putExtra("historyUid", historyUid);
             intent2.putExtra("CarpostUID", carpostUID);
