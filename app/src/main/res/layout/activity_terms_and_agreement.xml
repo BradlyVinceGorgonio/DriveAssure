@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Car Rental Terms and Conditions"
+                    android:text="Drive Assure Car Owner Rental and Liability Agreements"
                     android:textColor="@color/black"
                     android:textSize="18dp"></TextView>
 
@@ -61,15 +61,14 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:text="These Terms and Conditions (Agreement) govern the use of the car rental services provided by [Your Company Name] (Service Provider). By using our car rental app, you (Renter) agree to the terms and conditions outlined herein."></TextView>
-
+                    android:text="This combined agreement (Agreement) is entered into by and between the undersigned Car Owner (Owner) and Car Renter on the date of acceptance, facilitated through the Drive Assure platform."></TextView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Rental Agreement"
+                    android:text="1. Vehicle Information:"
                     android:textColor="@color/black"
                     android:textSize="18dp"></TextView>
 
@@ -79,19 +78,21 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:text="2.1. The Renter agrees to rent the vehicle specified in the rental agreement, including make, model, year, and license plate details.\n\n
+                    android:text="1. Vehicle Information:
 
-2.2. The rental period begins on the agreed-upon start date and time and ends on the return date and time specified in the rental agreement.\n\n
-
-2.3. The Renter must possess a valid driver's license and be at least [Minimum Age] years old to rent a vehicle."></TextView>
-
+Make: __________________\n
+Model: _________________\n
+Year: ___________________\n
+License Plate Number: ___________________\n
+Vehicle Identification Number (VIN): ___________________
+"></TextView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Vehicle Usage"
+                    android:text="2. Vehicle Condition:"
                     android:textColor="@color/black"
                     android:textSize="18dp"></TextView>
 
@@ -101,16 +102,12 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:text="3.1. The Renter agrees to use the rented vehicle only for lawful purposes and in compliance with all relevant laws and regulations.\n\n
-
-3.2. The Renter is responsible for returning the vehicle in the same condition as received, with normal wear and tear excepted.\n\n
-
-3.3. The Renter is responsible for any damage to the vehicle, including accidents, and is liable for any associated repair costs."></TextView>
-
+                   android:text="Owner agrees to provide the vehicle to the Renter in a well-maintained condition, both mechanically and aesthetically, as described in the Drive Assure platform.
+"></TextView>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Payment"
+                    android:text="3. Maintenance Records:"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:textColor="@color/black"
@@ -122,14 +119,12 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:text="4.1. The Renter agrees to pay the rental fees as specified in the rental agreement, including the base rental fee, additional charges, and any applicable taxes.\n\n
-
-4.2. Payment shall be made by the payment method agreed upon at the time of booking."></TextView>
-
+                    android:text="Owner agrees to provide Renter access to the maintenance records of the vehicle, including but not limited to regular servicing, repairs, and inspections.
+"></TextView>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Insurance"
+                    android:text="4. Pre-Rental Inspection:"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:textColor="@color/black"
@@ -143,14 +138,12 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:text="5.1. The Service Provider carries insurance covering the rented vehicle and third-party liability, as required by law.\n\n
-
-5.2. The Renter is encouraged to obtain their own insurance coverage, such as personal auto insurance, to protect against personal liability."></TextView>
-
+                    android:text="Both parties agree to conduct a pre-rental inspection to document the current condition of the vehicle, including existing damages, mileage, and fuel level.
+"></TextView>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Maintenance and Reporting"
+                    android:text="5. Reporting Damages:"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:textColor="@color/black"
@@ -162,15 +155,13 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:text="6.1. The Renter is responsible for reporting any mechanical issues, damages, or accidents promptly to the Service Provider.\n\n
-
-6.2. Regular maintenance, including checking oil, tires, and fluids, should be performed by the Renter as instructed by the Service Provider."></TextView>
-
+                    android:text="Renter agrees to report any damages not documented in the pre-rental inspection promptly. Owner and Renter will discuss and agree on the resolution of any reported damages.">
+                </TextView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cancellation and Refund"
+                    android:text="6. Mechanical Issues:"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:textColor="@color/black"
@@ -181,33 +172,13 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:text="7.1. Cancellations must be made within [Cancellation Period] to be eligible for a refund.\n\n
-
-7.2. Refunds, if applicable, will be processed within [Refund Period]."></TextView>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Return Vehicle"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:textColor="@color/black"
-                    android:textSize="18dp"></TextView>
+                    android:text="In the event of mechanical issues during the rental period that are not a result of Renter's negligence, Owner agrees to either provide a replacement vehicle or reimburse Renter for any necessary repairs.
+"></TextView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
-                    android:text="8.1. The Renter agrees to return the vehicle on or before the agreed-upon return date and time.\n\n
-
-8.2. Late returns may be subject to additional fees."></TextView>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Governing Law"
+                    android:text="7. Fuel Level:"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:textColor="@color/black"
@@ -219,13 +190,30 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:text="This Agreement shall be governed by and construed in accordance with the laws of [Governing Jurisdiction]."></TextView>
-
+                    android:text="Renter agrees to return the vehicle with a fuel level equal to or higher than the level at the start of the rental period."></TextView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Entire Agreement"
+                    android:text="8. Prohibited Uses:"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:text="Renter agrees not to use the vehicle for any prohibited purposes, including but not limited to illegal activities, racing, off-road driving, or towing without explicit permission from the Owner.
+"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10. Swap Agreement:"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:textColor="@color/black"
@@ -238,8 +226,124 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:text="This Agreement constitutes the entire agreement between the parties and supersedes all prior agreements and understandings.\n"></TextView>
+                    android:text="This agreement serves as a mutual understanding between Owner and Renter. Both parties agree to resolve any issues or disputes arising from the condition or use of the vehicle through direct communication and negotiation.
+"></TextView>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11. Governing Law:"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"></TextView>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:text="This Agreement shall be governed by and construed in accordance with the laws of [Jurisdiction], without regard to its conflict of law principles.
+"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12. Disclaimer of Liability for Damages:"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"></TextView>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:text="Owner acknowledges and agrees that Drive Assure is not liable for any damages, charges, or losses incurred to the vehicle during the rental period. Drive Assure is a platform that facilitates connections between car owners and renters and does not assume responsibility for the condition or safety of the rented vehicle.
+"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="13. Insurance Responsibility:"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"></TextView>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:text="Owner is solely responsible for obtaining and maintaining insurance coverage for their vehicle. Drive Assure does not provide insurance coverage for any damages or losses incurred during the rental period.
+"></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="14. Indemnification:"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"></TextView>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:text="Owner agrees to indemnify and hold Drive Assure, its officers, employees, and affiliates harmless from any claims, liabilities, damages, or expenses arising out of or in connection with the rental of their vehicle through the Drive Assure platform.
+"></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="15. Acknowledgment:
+"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"></TextView>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:text="By accepting this Agreement, both Owner and Renter acknowledge that they have read, understood, and agreed to the terms and conditions outlined herein.\n\nCar Owner Signature (Over Printed Name) Car Renter Signature (Over Printed Name) Drive Assure Representative Signature
+"></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="________________________\n
+    Car Owner Signature\n
+    Over Printed Name \n\n ________________________\n
+    Car Renter Signature\n
+    Over Printed Name"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"></TextView>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:text="\nDate:____________________.\n
+"></TextView>
             </LinearLayout>
         </ScrollView>
     </androidx.cardview.widget.CardView>
