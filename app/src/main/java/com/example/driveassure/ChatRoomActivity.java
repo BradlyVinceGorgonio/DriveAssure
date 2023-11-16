@@ -119,12 +119,15 @@ public class ChatRoomActivity extends AppCompatActivity {
             messagesCollection.add(message)
                     .addOnSuccessListener(documentReference -> {
                         Log.d("ChatRoomActivity", "Message sent successfully");
+
+                        messageEditText.setText("");
                     })
                     .addOnFailureListener(e -> {
                         Log.e("ChatRoomActivity", "Error sending message", e);
                     });
         }
     }
+
 
     private void receiveMessages() {
         messagesCollection.get().addOnSuccessListener(queryDocumentSnapshots -> {
@@ -137,10 +140,8 @@ public class ChatRoomActivity extends AppCompatActivity {
                 }
             }
 
-            // Add new messages at the bottom of the list
             messageList.addAll(receivedMessages);
 
-            // Sort the messages based on timestamp
             Collections.sort(messageList, (message1, message2) -> {
                 if (message1.getTimestamp() == null || message2.getTimestamp() == null) {
                     return 0;
@@ -150,12 +151,13 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             runOnUiThread(() -> {
                 messageAdapter.notifyDataSetChanged();
-                scrollToBottom(); // Scroll to the bottom to display the latest message
+                scrollToBottom();
             });
         }).addOnFailureListener(e -> {
             Log.e("ChatRoomActivity", "Error receiving messages", e);
         });
     }
+
 
 
 
@@ -167,7 +169,6 @@ public class ChatRoomActivity extends AppCompatActivity {
     }
 
     private void fetchCarOwnerProfilePhoto(String carOwnerUid) {
-        // Construct the path to the car owner's profile photo in Firebase Storage
         String imagePath = "users/" + carOwnerUid + "/face.jpg";
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(imagePath);
 
