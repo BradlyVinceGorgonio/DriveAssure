@@ -81,7 +81,8 @@ public class IdVerification extends AppCompatActivity {
         NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(IdVerification.this,DownloadDocumentContract.class);
+
+                Intent intent = new Intent(IdVerification.this, PaymentAndSignature.class);
                 startActivity(intent);
             }
         });
