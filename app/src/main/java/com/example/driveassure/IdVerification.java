@@ -81,11 +81,10 @@ public class IdVerification extends AppCompatActivity {
         NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(IdVerification.this,DownloadDocumentContract.class);
+                startActivity(intent);
             }
         });
-
-
     }
 
     private void openImageDialog() {
@@ -220,12 +219,9 @@ public class IdVerification extends AppCompatActivity {
         }
     }
     private void updateSubmitButtonState() {
-       if(isButton1Clicked && isButton2Clicked)
-       {
            NextButton.setEnabled(true);
            NextButton.setBackgroundColor(getResources().getColor(R.color.blue));
 
-       }
 
     }
     private void saveImageToDownloads(Bitmap imageBitmap, String fileName) {

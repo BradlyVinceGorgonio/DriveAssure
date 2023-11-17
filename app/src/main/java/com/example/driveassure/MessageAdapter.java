@@ -43,7 +43,6 @@ public class MessageAdapter extends ArrayAdapter<Message> {
             messageTextView.setText(message.getMessageText());
             timestampTextView.setText(formatTimestamp(message.getTimestamp()));
 
-            // Check if the message is sent by the current user
             if (message.getSenderUid().equals(currentUserUid)) {
                 // Sent message, align to the right
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
@@ -77,7 +76,7 @@ public class MessageAdapter extends ArrayAdapter<Message> {
             DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault());
             return dateFormat.format(timestamp);
         } else {
-            return ""; // or return a default value
+            return "";
         }
     }
 }
