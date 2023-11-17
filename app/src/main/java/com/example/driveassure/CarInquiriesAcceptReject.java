@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,6 +37,8 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
     CardView approvedReservation;
     CardView processingReservation;
 
+    LinearLayout displayNoView;
+
     int mycondition = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,8 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
         pendingReservation = findViewById(R.id.pendingReservation);
         approvedReservation = findViewById(R.id.approvedReservation);
         processingReservation = findViewById(R.id.processingReservation);
+
+        displayNoView = findViewById(R.id.displayNoView);
 
         progressBarID = findViewById(R.id.progressBarID);
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
@@ -62,6 +67,7 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
         pendingReservation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                displayNoView.setVisibility(View.GONE);
                 fetchDataFromFirestore("owner-view-rent-request");
                 mycondition = 0;
             }
@@ -69,6 +75,7 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
         approvedReservation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                displayNoView.setVisibility(View.GONE);
                 fetchDataFromFirestore1("renter-processing");
                 mycondition = 1;
             }
@@ -79,10 +86,10 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
                 fetchDataFromFirestore("processing");
             }
         });
-        //fetchDataFromFirestore("owner-view-rent-request");
+        fetchDataFromFirestore("owner-view-rent-request");
     }
-    public void fetchDataFromFirestore(String choice)
-    {
+
+    public void fetchDataFromFirestore(String choice) {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
@@ -94,60 +101,69 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
 
         rentRequestCollection.get()
                 .addOnCompleteListener(task -> {
+
                     if (task.isSuccessful()) {
                         RequestingList.clear();
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            String requestId = document.getString("Request Id");
-                            String userId = document.getString("uid ");
-                            String carPostUid = document.getString("Car To Request");
-                            String pickUpArea = document.getString("Pickup Location");
-                            String ownerUserUidResult = document.getString("Car Owner uid");
-                            String totalTime = document.getString("Total Time");
 
-                            // Assuming "uid" is the UID you want to fetch data for
-                            DocumentReference userDocument = db.collection("users").document(userId);
+                        // Check if the result set is empty
+                        if (task.getResult().isEmpty()) {
+                            // Handle the case where the document is empty
+                            displayNoView.setVisibility(View.VISIBLE);
+                        } else {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String requestId = document.getString("Request Id");
+                                String userId = document.getString("uid ");
+                                String carPostUid = document.getString("Car To Request");
+                                String pickUpArea = document.getString("Pickup Location");
+                                String ownerUserUidResult = document.getString("Car Owner uid");
+                                String totalTime = document.getString("Total Time");
 
-                            userDocument.get().addOnCompleteListener(tasks -> {
-                                if (tasks.isSuccessful()) {
-                                    DocumentSnapshot documente = tasks.getResult();
-                                    if (documente.exists()) {
-                                        // Access the data here
-                                        String requestName = documente.getString("name");
+                                // Assuming "uid" is the UID you want to fetch data for
+                                DocumentReference userDocument = db.collection("users").document(userId);
 
-                                        // Assuming "uid" is the UID you want to fetch data for
-                                        DocumentReference userDocumente = db.collection("car-posts").document(carPostUid);
+                                userDocument.get().addOnCompleteListener(tasks -> {
+                                    if (tasks.isSuccessful()) {
+                                        DocumentSnapshot documente = tasks.getResult();
+                                        if (documente.exists()) {
+                                            // Access the data here
+                                            String requestName = documente.getString("name");
 
-                                        userDocumente.get().addOnCompleteListener(taskse -> {
-                                            if (taskse.isSuccessful()) {
-                                                DocumentSnapshot documentre = taskse.getResult();
-                                                if (documentre.exists()) {
-                                                    // Access the data here
-                                                    String VehicleTitle = documentre.getString("Vehicle Title");
+                                            // Assuming "uid" is the UID you want to fetch data for
+                                            DocumentReference userDocumente = db.collection("car-posts").document(carPostUid);
 
-                                                   fetchProfilePictureUrl(requestName, pickUpArea, totalTime, VehicleTitle, userId, "/" + "face.jpg", carPostUid, requestId);
-                                                    // Use the fetched data as needed
+                                            userDocumente.get().addOnCompleteListener(taskse -> {
+                                                if (taskse.isSuccessful()) {
+                                                    DocumentSnapshot documentre = taskse.getResult();
+                                                    if (documentre.exists()) {
+                                                        // Access the data here
+                                                        String VehicleTitle = documentre.getString("Vehicle Title");
+
+                                                        fetchProfilePictureUrl(requestName, pickUpArea, totalTime, VehicleTitle, userId, "/" + "face.jpg", carPostUid, requestId);
+                                                        // Use the fetched data as needed
+                                                    } else {
+                                                        // Document does not exist
+                                                        // Handle this case as needed
+                                                    }
                                                 } else {
-                                                    // Document does not exist
-                                                    // Handle this case as needed
+                                                    // Handle the failure scenario
+                                                    // For example, log an error message
                                                 }
-                                            } else {
-                                                // Handle the failure scenario
-                                                // For example, log an error message
-                                            }
-                                        });
+                                            });
 
-                                        // Use the fetched data as needed
+                                            // Use the fetched data as needed
+                                        } else {
+                                            // Document does not exist
+                                            // Handle this case as needed
+
+                                        }
                                     } else {
-                                        // Document does not exist
-                                        // Handle this case as needed
+                                        // Handle the failure scenario
+                                        // For example, log an error message
                                     }
-                                } else {
-                                    // Handle the failure scenario
-                                    // For example, log an error message
-                                }
-                            });
+                                });
 
 
+                            }
                         }
                     } else {
                         // Handle the failure scenario
@@ -155,8 +171,8 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
                     }
                 });
     }
-    public void fetchDataFromFirestore1(String choice)
-    {
+
+    public void fetchDataFromFirestore1(String choice) {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
@@ -168,59 +184,66 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
 
         rentRequestCollection.get()
                 .addOnCompleteListener(task -> {
+
                     if (task.isSuccessful()) {
                         RequestingList.clear();
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            String requestId = document.getString("Approved Id");
-                            String userId = document.getString("renter uid");
-                            String carPostUid = document.getString("Car To Request");
-                            String pickUpArea = document.getString("Pickup Location");
-                            String totalTime = document.getString("Total Time");
 
-                            // Assuming "uid" is the UID you want to fetch data for
-                            DocumentReference userDocument = db.collection("users").document(userId);
+                        // Check if the result set is empty
+                        if (task.getResult().isEmpty()) {
+                            // Handle the case where the document is empty
+                            displayNoView.setVisibility(View.VISIBLE);
+                        } else {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String requestId = document.getString("Approved Id");
+                                String userId = document.getString("renter uid");
+                                String carPostUid = document.getString("Car To Request");
+                                String pickUpArea = document.getString("Pickup Location");
+                                String totalTime = document.getString("Total Time");
 
-                            userDocument.get().addOnCompleteListener(tasks -> {
-                                if (tasks.isSuccessful()) {
-                                    DocumentSnapshot documente = tasks.getResult();
-                                    if (documente.exists()) {
-                                        // Access the data here
-                                        String requestName = documente.getString("name");
+                                // Assuming "uid" is the UID you want to fetch data for
+                                DocumentReference userDocument = db.collection("users").document(userId);
 
-                                        // Assuming "uid" is the UID you want to fetch data for
-                                        DocumentReference userDocumente = db.collection("car-posts").document(carPostUid);
+                                userDocument.get().addOnCompleteListener(tasks -> {
+                                    if (tasks.isSuccessful()) {
+                                        DocumentSnapshot documente = tasks.getResult();
+                                        if (documente.exists()) {
+                                            // Access the data here
+                                            String requestName = documente.getString("name");
 
-                                        userDocumente.get().addOnCompleteListener(taskse -> {
-                                            if (taskse.isSuccessful()) {
-                                                DocumentSnapshot documentre = taskse.getResult();
-                                                if (documentre.exists()) {
-                                                    // Access the data here
-                                                    String VehicleTitle = documentre.getString("Vehicle Title");
+                                            // Assuming "uid" is the UID you want to fetch data for
+                                            DocumentReference userDocumente = db.collection("car-posts").document(carPostUid);
 
-                                                    fetchProfilePictureUrl(requestName, pickUpArea, totalTime, VehicleTitle, userId, "/" + "face.jpg", carPostUid, requestId);
-                                                    // Use the fetched data as needed
+                                            userDocumente.get().addOnCompleteListener(taskse -> {
+                                                if (taskse.isSuccessful()) {
+                                                    DocumentSnapshot documentre = taskse.getResult();
+                                                    if (documentre.exists()) {
+                                                        // Access the data here
+                                                        String VehicleTitle = documentre.getString("Vehicle Title");
+
+                                                        fetchProfilePictureUrl(requestName, pickUpArea, totalTime, VehicleTitle, userId, "/" + "face.jpg", carPostUid, requestId);
+                                                        // Use the fetched data as needed
+                                                    } else {
+                                                        // Document does not exist
+                                                        // Handle this case as needed
+                                                    }
                                                 } else {
-                                                    // Document does not exist
-                                                    // Handle this case as needed
+                                                    // Handle the failure scenario
+                                                    // For example, log an error message
                                                 }
-                                            } else {
-                                                // Handle the failure scenario
-                                                // For example, log an error message
-                                            }
-                                        });
+                                            });
 
-                                        // Use the fetched data as needed
+                                            // Use the fetched data as needed
+                                        } else {
+
+                                        }
                                     } else {
-                                        // Document does not exist
-                                        // Handle this case as needed
+                                        // Handle the failure scenario
+                                        // For example, log an error message
                                     }
-                                } else {
-                                    // Handle the failure scenario
-                                    // For example, log an error message
-                                }
-                            });
+                                });
 
 
+                            }
                         }
                     } else {
                         // Handle the failure scenario
@@ -228,6 +251,7 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
                     }
                 });
     }
+
     private void fetchProfilePictureUrl(String name, String pickUpArea, String totalTime, String vehicleTitle, String uid, String profilePictureUrl, String carPostUid, String requestId) {
         Log.d("taeka", uid + " weird " + profilePictureUrl);
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("users/" + uid + profilePictureUrl);

@@ -134,6 +134,34 @@
         app:layout_constraintTop_toBottomOf="@+id/approvedReservation"
         app:layout_constraintVertical_bias="0.555">
 
+        <LinearLayout
+            android:id="@+id/displayNoView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:elevation="3dp"
+            android:visibility="gone"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/bigIconImageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/heart_full"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"  />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nothing to see here"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:layout_gravity="center"/>
+
+
+        </LinearLayout>
+
         <ProgressBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
