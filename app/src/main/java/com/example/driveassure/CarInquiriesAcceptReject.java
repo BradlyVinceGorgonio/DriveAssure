@@ -35,6 +35,8 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
     CardView pendingReservation;
     CardView approvedReservation;
     CardView processingReservation;
+
+    int mycondition = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,12 +63,14 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
             @Override
             public void onClick(View view) {
                 fetchDataFromFirestore("owner-view-rent-request");
+                mycondition = 0;
             }
         });
         approvedReservation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fetchDataFromFirestore("approved");
+                fetchDataFromFirestore1("renters-approved");
+                mycondition = 1;
             }
         });
         processingReservation.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +79,7 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
                 fetchDataFromFirestore("processing");
             }
         });
-        fetchDataFromFirestore("owner-view-rent-request");
+        //fetchDataFromFirestore("owner-view-rent-request");
     }
     public void fetchDataFromFirestore(String choice)
     {
@@ -151,6 +155,79 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
                     }
                 });
     }
+    public void fetchDataFromFirestore1(String choice)
+    {
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        String uid = currentUser.getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference rentRequestCollection = db.collection("users")
+                .document(uid)
+                .collection(choice);
+
+        rentRequestCollection.get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        RequestingList.clear();
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            String requestId = document.getString("Approved Id");
+                            String userId = document.getString("renter uid");
+                            String carPostUid = document.getString("Car To Request");
+                            String pickUpArea = document.getString("Pickup Location");
+                            String totalTime = document.getString("Total Time");
+
+                            // Assuming "uid" is the UID you want to fetch data for
+                            DocumentReference userDocument = db.collection("users").document(userId);
+
+                            userDocument.get().addOnCompleteListener(tasks -> {
+                                if (tasks.isSuccessful()) {
+                                    DocumentSnapshot documente = tasks.getResult();
+                                    if (documente.exists()) {
+                                        // Access the data here
+                                        String requestName = documente.getString("name");
+
+                                        // Assuming "uid" is the UID you want to fetch data for
+                                        DocumentReference userDocumente = db.collection("car-posts").document(carPostUid);
+
+                                        userDocumente.get().addOnCompleteListener(taskse -> {
+                                            if (taskse.isSuccessful()) {
+                                                DocumentSnapshot documentre = taskse.getResult();
+                                                if (documentre.exists()) {
+                                                    // Access the data here
+                                                    String VehicleTitle = documentre.getString("Vehicle Title");
+
+                                                    fetchProfilePictureUrl(requestName, pickUpArea, totalTime, VehicleTitle, userId, "/" + "face.jpg", carPostUid, requestId);
+                                                    // Use the fetched data as needed
+                                                } else {
+                                                    // Document does not exist
+                                                    // Handle this case as needed
+                                                }
+                                            } else {
+                                                // Handle the failure scenario
+                                                // For example, log an error message
+                                            }
+                                        });
+
+                                        // Use the fetched data as needed
+                                    } else {
+                                        // Document does not exist
+                                        // Handle this case as needed
+                                    }
+                                } else {
+                                    // Handle the failure scenario
+                                    // For example, log an error message
+                                }
+                            });
+
+
+                        }
+                    } else {
+                        // Handle the failure scenario
+                        // For example, log an error message
+                    }
+                });
+    }
     private void fetchProfilePictureUrl(String name, String pickUpArea, String totalTime, String vehicleTitle, String uid, String profilePictureUrl, String carPostUid, String requestId) {
         Log.d("taeka", uid + " weird " + profilePictureUrl);
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("users/" + uid + profilePictureUrl);
@@ -175,14 +252,26 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
 
     @Override
     public void onItemClick(RequestingClass rent) {
-        String renterUID = rent.getUid(); // Assuming AdminClass has a getUid() method to retrieve the admin ID
+        String renterUID = rent.getUid();
         String carUID = rent.getCarUID();
         String requestID = rent.getRequestID();
-        Intent intent = new Intent(CarInquiriesAcceptReject.this, PendingReservation.class);
-        intent.putExtra("renterUID", renterUID); // Pass the admin ID to the AcceptRejectAdminActivity
-        intent.putExtra("carUID", carUID);
-        intent.putExtra("requestID", requestID);
 
-        startActivity(intent);
+        // Add your condition here
+        if (mycondition == 0) {
+            // Condition 1: Execute this block of code if the condition is true
+            Intent intent = new Intent(CarInquiriesAcceptReject.this, PendingReservation.class);
+            intent.putExtra("renterUID", renterUID);
+            intent.putExtra("carUID", carUID);
+            intent.putExtra("requestID", requestID);
+            startActivity(intent);
+        } else if(mycondition == 1) {
+            // Condition 2: Execute this block of code if the condition is false
+            Intent intent = new Intent(CarInquiriesAcceptReject.this, DriverSignature.class);
+            intent.putExtra("renterUID", renterUID);
+            intent.putExtra("carUID", carUID);
+            intent.putExtra("requestID", requestID);
+            startActivity(intent);
+        }
     }
+
 }
