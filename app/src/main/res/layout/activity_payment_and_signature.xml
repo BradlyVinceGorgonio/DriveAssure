@@ -101,23 +101,32 @@
                     android:textSize="20dp"
                     android:textStyle="bold"></TextView>
 
-                <RadioButton
-                    android:id="@+id/gcashPayment"
+                <RadioGroup
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="-50dp"
-                    android:layout_marginRight="65dp"
-                    android:drawableLeft="@drawable/gcash"></RadioButton>
+                    android:layout_marginRight="65dp">
 
+                <RadioButton
+                    android:id="@+id/gcashPayment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/gcash"></RadioButton>
+                </RadioGroup>
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="53dp"
+                    android:textSize="18dp">
                 <RadioButton
                     android:id="@+id/mayaPayment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="39dp"
-                    android:textSize="18dp"
                     android:text="Onsite Payment"></RadioButton>
+                </RadioGroup>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
