@@ -21,25 +21,24 @@
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true" />
 
-        <ImageView
-            android:id="@+id/userPhoto"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/carOwnerProfile"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_centerInParent="true"
             android:layout_marginEnd="10dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:scaleType="centerCrop"
-            android:src="@drawable/user_circle" />
+            android:background="@drawable/user_circle"
+            android:contentDescription="owner profile"></de.hdodenhof.circleimageview.CircleImageView>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/userPhoto"
+            android:layout_toEndOf="@id/carOwnerProfile"
             android:layout_centerVertical="true"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/userName"
+                android:id="@+id/carOwnerName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="User Name"
@@ -48,7 +47,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/contactNumber"
+                android:id="@+id/ownerContactNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Contact Number"
@@ -57,6 +56,8 @@
         </LinearLayout>
     </RelativeLayout>
 
+    <!-- Your existing message input layout... -->
+
     <ListView
         android:id="@+id/messageListView"
         android:layout_width="match_parent"
@@ -64,16 +65,14 @@
         android:layout_below="@+id/toolbar"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="-9dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="53dp"
+        android:layout_marginEnd="-10dp"
+        android:layout_marginBottom="91dp"
         android:divider="@null"
         android:dividerHeight="0dp"
         android:stackFromBottom="true"
         android:transcriptMode="alwaysScroll"></ListView>
-
-    <!-- Your existing message input layout... -->
 
     <LinearLayout
         android:layout_width="match_parent"

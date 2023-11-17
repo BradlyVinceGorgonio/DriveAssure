@@ -1,5 +1,6 @@
 package com.example.driveassure;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,16 +8,20 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -25,6 +30,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ChatRoomActivity extends AppCompatActivity {
 
@@ -36,14 +43,14 @@ public class ChatRoomActivity extends AppCompatActivity {
     private Handler messageHandler;
     private Runnable messageRunnable;
     private Set<String> receivedMessageIds;
-
+    CircleImageView carOwnerProfile;
+    TextView ownerContactNumber;
+    TextView carOwnerName;
     private String currentUserUid;
     private String postOwnerUid;
 
     private FirebaseFirestore firestore;
     private CollectionReference messagesCollection;
-
-    private ImageView carOwnerProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +60,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         messageListView = findViewById(R.id.messageListView);
         messageEditText = findViewById(R.id.messageEditText);
         sendButton = findViewById(R.id.sendButton);
-        carOwnerProfile = findViewById(R.id.userPhoto); // Replace with your ImageView ID
+        carOwnerProfile = findViewById(R.id.carOwnerProfile);
 
         messageList = new ArrayList<>();
         messageAdapter = new MessageAdapter(this, messageList, currentUserUid);
@@ -94,8 +101,8 @@ public class ChatRoomActivity extends AppCompatActivity {
                     }
                 };
 
-                // Fetch the car owner's profile photo
-                fetchCarOwnerProfilePhoto(postOwnerUid);
+                fetchDataFromFirestore1(currentUserUid);
+
             } else {
                 Log.e("ChatRoomActivity", "currentUserUid or postOwnerUid is null");
                 finish();
@@ -119,8 +126,6 @@ public class ChatRoomActivity extends AppCompatActivity {
             messagesCollection.add(message)
                     .addOnSuccessListener(documentReference -> {
                         Log.d("ChatRoomActivity", "Message sent successfully");
-
-                        messageEditText.setText("");
                     })
                     .addOnFailureListener(e -> {
                         Log.e("ChatRoomActivity", "Error sending message", e);
@@ -128,11 +133,10 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
     }
 
-
     private void receiveMessages() {
         messagesCollection.get().addOnSuccessListener(queryDocumentSnapshots -> {
             List<Message> receivedMessages = new ArrayList<>();
-            for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+            for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                 Message receivedMessage = documentSnapshot.toObject(Message.class);
                 if (receivedMessage != null && !receivedMessageIds.contains(documentSnapshot.getId())) {
                     receivedMessages.add(receivedMessage);
@@ -158,9 +162,6 @@ public class ChatRoomActivity extends AppCompatActivity {
         });
     }
 
-
-
-
     private void scrollToBottom() {
         if (messageAdapter != null && messageList.size() > 0) {
             int lastItemIndex = messageList.size() - 1;
@@ -168,20 +169,43 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
     }
 
-    private void fetchCarOwnerProfilePhoto(String carOwnerUid) {
-        String imagePath = "users/" + carOwnerUid + "/face.jpg";
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(imagePath);
+    private void fetchDataFromFirestore1(String UID) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("users")
+                .document(UID)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            String ownerName = document.getString("name");
+                            String ownerNumber = document.getString("contact number");
 
-        storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
-            String imageUrl = uri.toString();
+                            carOwnerName = findViewById(R.id.carOwnerName);
+                            ownerContactNumber = findViewById(R.id.ownerContactNumber);
 
-            // Load the image into the ImageView in the ChatRoomActivity layout
-            Glide.with(this).load(imageUrl).into(carOwnerProfile);
+                            carOwnerName.setText(ownerName);
+                            ownerContactNumber.setText(ownerNumber);
 
-        }).addOnFailureListener(exception -> {
-            // Handle the failure scenario
-            Log.e("ChatRoomActivity", "Error fetching car owner's profile photo", exception);
-        });
+                            String imagePath = "users/" + UID + "/" + "face.jpg";
+                            StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(imagePath);
+
+                            storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                                String imageUrl = uri.toString();
+
+                                carOwnerProfile = findViewById(R.id.carOwnerProfile);
+                                Glide.with(this).load(imageUrl).into(carOwnerProfile);
+
+                            }).addOnFailureListener(exception -> {
+                                // Handle the failure scenario
+                            });
+                        } else {
+                            // Handle the case where the document does not exist
+                        }
+                    } else {
+                        // Handle the failure scenario
+                    }
+                });
     }
 
     @Override
