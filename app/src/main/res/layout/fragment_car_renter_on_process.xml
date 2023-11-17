@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/backgroundlightblue"
     tools:context=".CarRenterOnProcess">
     <androidx.cardview.widget.CardView
@@ -67,146 +68,139 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView17"
-        android:layout_width="300dp"
-        android:layout_height="80dp"
+        android:layout_width="340dp"
+        android:layout_height="200dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="25dp"
         >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pick-Up Details"
+            android:textStyle="bold"
+            android:textSize="22dp"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:layout_marginTop="-80dp"></TextView>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="-100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="-40dp"
             android:text="Car Owner: "
             android:textColor="@color/black"></TextView>
 
         <TextView
-            android:id="@+id/renterName"
+            android:id="@+id/carOwnerName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="-22dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="-40dp"
             android:fontFamily="@font/patuaoneregular"
-            android:text="Reservation Details"
+            android:text="Bradly Vince Gorgonio"
             android:textColor="@color/black"
             android:textSize="16dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="45dp"
+            android:layout_marginLeft="-100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="-10dp"
             android:text="Contact: "
             android:textColor="@color/black"></TextView>
 
         <TextView
-            android:id="@+id/renterContact"
+            android:id="@+id/carOwnerrContact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="-10dp"
             android:fontFamily="@font/patuaoneregular"
-            android:text="Reservation Details"
+            android:text="09476114003"
             android:textColor="@color/black"
             android:textSize="16dp" />
+
+
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pic-up Date:"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="-100dp"
+            />
+
+        <TextView
+            android:id="@+id/pickUpDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/patuaoneregular"
+            android:text="07/06/45"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pic-up Time:"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="-100dp"
+            />
+
+
+        <TextView
+            android:id="@+id/PickupDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/patuaoneregular"
+            android:text="2:00PM"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pic-up Location:"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:layout_marginTop="80dp"
+            android:layout_marginLeft="-100dp"
+            />
+
+
+        <TextView
+            android:id="@+id/PickupLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="80dp"
+            android:fontFamily="@font/patuaoneregular"
+            android:text="Taguig"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+
+
     </androidx.cardview.widget.CardView>
-
-
-
-
-
-            <TextView
-                android:id="@+id/textView33"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pic-up Date:"
-                android:textColor="@color/black"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="-70dp"
-       />
-
-            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                android:id="@+id/datePickerFromButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="-25dp"
-                android:layout_marginLeft="50dp"
-                android:background="@color/white"
-                android:hint=" Pick-up Date"
-                android:focusable="false"
-                android:inputType="none"
-                android:clickable="false"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                tools:ignore="TouchTargetSizeCheck">
-
-            </androidx.appcompat.widget.AppCompatAutoCompleteTextView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pic-up Time:"
-                android:textColor="@color/black"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="-70dp"
-                />
-
-
-            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                android:id="@+id/timeStartedFrom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="-25dp"
-                android:background="@color/white"
-                android:hint=" Pick-up Time"
-                android:layout_marginLeft="50dp"
-                android:focusable="false"
-                android:inputType="none"
-                android:clickable="false"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textColorHint="@color/grey"
-                android:textSize="20dp"
-                tools:ignore="TextContrastCheck,TouchTargetSizeCheck">
-
-            </androidx.appcompat.widget.AppCompatAutoCompleteTextView>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout14"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="340dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:hint=" Pick-up Location"
-                android:textColor="@color/black"
-                android:textColorHint="@color/grey"
-                android:background="@color/white"
-                android:layout_marginTop="20dp"
-               >
-
-                <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                    android:id="@+id/pickUpLocation"
-                    android:layout_width="330dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:inputType="none"
-                    android:textColor="@color/black"
-                    tools:ignore="TouchTargetSizeCheck" />
-
-            </com.google.android.material.textfield.TextInputLayout>
 
 
             <androidx.cardview.widget.CardView
@@ -219,117 +213,197 @@
                 android:backgroundTint="@color/black"
                 ></androidx.cardview.widget.CardView>
 
-            <TextView
 
-                android:id="@+id/textView34"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Return Date:"
-                android:textColor="@color/black"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="-70dp"
-            ></TextView>
-
-            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                android:id="@+id/datePickerUntilButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@color/white"
-                android:hint=" Return Date"
-                android:layout_marginLeft="50dp"
-                android:focusable="false"
-                android:inputType="none"
-                android:clickable="false"
-                android:layout_marginTop="-25dp"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textColorHint="@color/grey"
-                android:textSize="20dp"
-                tools:ignore="TextContrastCheck,TouchTargetSizeCheck">
-
-            </androidx.appcompat.widget.AppCompatAutoCompleteTextView>
-
-
-
-
-
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Return Time:"
-                android:textColor="@color/black"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="-70dp"></TextView>
-
-            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                android:id="@+id/timeFinishedFrom"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@color/white"
-                android:hint=" Return Time"
-                android:focusable="false"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="-25dp"
-                android:inputType="none"
-                android:clickable="false"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textColorHint="@color/grey"
-                android:textSize="20dp"
-                tools:ignore="TextContrastCheck,TouchTargetSizeCheck">
-
-            </androidx.appcompat.widget.AppCompatAutoCompleteTextView>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout18"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <androidx.cardview.widget.CardView
                 android:layout_width="340dp"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 android:layout_gravity="center"
-                android:background="@color/white"
-                android:hint=" Return Location"
-                android:textColor="@color/black"
-                android:textColorHint="@color/grey"
-                android:layout_marginTop="20dp"
-                android:helperTextTextColor="@color/red"
-                android:startIconDrawable="@drawable/address"
-                android:startIconTint="@color/black">
+                android:layout_marginTop="0dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="25dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Return Details"
+                    android:textStyle="bold"
+                    android:textSize="22dp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="-80dp"></TextView>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/returnLocation"
-                    android:layout_width="330dp"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="-40dp"
+                    android:text="Renter: "
+                    android:textColor="@color/black"></TextView>
+
+                <TextView
+                    android:id="@+id/renterName"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:focusable="false"
-                    android:inputType="none"
-                    android:clickable="false"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="-40dp"
+                    android:fontFamily="@font/patuaoneregular"
+                    android:text="Paul Authhors"
                     android:textColor="@color/black"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:textSize="16dp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="-10dp"
+                    android:text="Contact: "
+                    android:textColor="@color/black"></TextView>
+
+                <TextView
+                    android:id="@+id/renterContact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="-10dp"
+                    android:fontFamily="@font/patuaoneregular"
+                    android:text="09343545611"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pic-up Date:"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="-100dp"
+                    />
+
+                <TextView
+                    android:id="@+id/returnDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/patuaoneregular"
+                    android:text="01/12/32"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pic-up Time:"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginLeft="-100dp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/returnTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="50dp"
+                    android:fontFamily="@font/patuaoneregular"
+                    android:text="1:00PM"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pic-up Location:"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="80dp"
+                    android:layout_marginLeft="-100dp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/returnLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="80dp"
+                    android:fontFamily="@font/patuaoneregular"
+                    android:text="Taguig"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+
+
+            </androidx.cardview.widget.CardView>
+
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Note: it is necessary to bring your driver's License upon Meetup"
+    android:textColor="@color/black"
+    android:textSize="18dp"
+    android:textStyle="bold"
+    android:textAlignment="center"
+    android:layout_gravity="center"
+    android:layout_marginTop="20dp"
+    android:layout_marginLeft="40dp"
+    android:layout_marginRight="40dp"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Note: Bring your Digital and Physical contract Form"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"></TextView>
 
 
             <Button
+                android:id="@+id/exchangeContracts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Exchange Contracts now"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/grey"
+                android:layout_marginBottom="5dp">
+            </Button>
+
+            <Button
+                android:id="@+id/timeRemaining"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Time Remaining: 5days"
                 android:layout_gravity="center"
                 android:layout_marginTop="25dp"
+                android:layout_marginBottom="105dp"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
-                android:backgroundTint="@color/blue"
-                android:layout_marginBottom="25dp">
+                android:textColor="@color/white"
+                android:backgroundTint="@color/black"
+            >
             </Button>
 
 
