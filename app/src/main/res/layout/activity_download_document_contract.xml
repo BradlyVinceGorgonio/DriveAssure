@@ -8,14 +8,17 @@
     android:background="@color/blue">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:id="@+id/cardView18"
+        android:layout_width="350dp"
         android:layout_height="505dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.331">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,10 +54,10 @@ which serves as the rental agreement. "></TextView>
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
+                android:clickable="true"
                 android:drawableRight="@drawable/download_112"
                 android:text="DOWNLOAD "
                 android:textColor="@color/darkblue"
-                android:clickable="true"
                 android:textSize="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +65,7 @@ which serves as the rental agreement. "></TextView>
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView20"
                 app:layout_constraintVertical_bias="0.017"
-                tools:ignore="TextSizeCheck"></TextView>
+                tools:ignore="TextSizeCheck,TouchTargetSizeCheck"></TextView>
 
             <TextView
                 android:id="@+id/textView22"
@@ -190,4 +193,20 @@ transaction."
                 app:layout_constraintVertical_bias="0.0"></TextView>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/nextBtn"
+        android:layout_width="206dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="@color/black"
+        android:gravity="center"
+        android:text="Next"
+        android:textColor="@color/white"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView18" />
 </androidx.constraintlayout.widget.ConstraintLayout>
