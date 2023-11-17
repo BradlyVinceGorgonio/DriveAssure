@@ -18,7 +18,7 @@ public class PaymentAndSignature extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PaymentAndSignature.this, DriverSignature.class);
+                Intent intent = new Intent(PaymentAndSignature.this, DownloadDocumentContract.class);
                 startActivity(intent);
             }
         });

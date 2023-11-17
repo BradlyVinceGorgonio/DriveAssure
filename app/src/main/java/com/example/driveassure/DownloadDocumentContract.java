@@ -52,7 +52,7 @@ public class DownloadDocumentContract extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DownloadDocumentContract.this,PaymentAndSignature.class);
+                Intent intent = new Intent(DownloadDocumentContract.this,DriverSignature.class);
                 startActivity(intent);
             }
         });
