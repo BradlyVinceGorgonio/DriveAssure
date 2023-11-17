@@ -69,7 +69,7 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
         approvedReservation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fetchDataFromFirestore1("renters-approved");
+                fetchDataFromFirestore1("renter-processing");
                 mycondition = 1;
             }
         });

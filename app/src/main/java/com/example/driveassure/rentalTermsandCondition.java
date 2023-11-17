@@ -46,20 +46,19 @@ public class rentalTermsandCondition extends AppCompatActivity {
         confirmAgreeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Retrieve the string from the intent
+
+                // Retrieve data from the intent
                 Intent intent = getIntent();
-                String message = intent.getStringExtra("EXTRA_MESSAGE");
-                // Vehicle Type
-                Log.d("POWERPOWER", "onClick Pag pindot ng confirm sa terms : " + message);
+                String historyUid = intent.getStringExtra("historyUid");
+                String carpostUID = intent.getStringExtra("CarpostUID");
+                String ApprovedId = intent.getStringExtra("ApprovedId");
+                String carOwnerId = intent.getStringExtra("CarOwnerId");
 
-
-
-
-                // Add the string as an extra
                 Intent intents = new Intent(rentalTermsandCondition.this, IdVerification.class);
-                intents.putExtra("EXTRA_MESSAGE", message);
-                Log.d("POWERPOWER", "onClick: 2" + message);
-                // Start the receiver activity
+                intents.putExtra("historyUid", historyUid);
+                intents.putExtra("CarpostUID", carpostUID);
+                intents.putExtra("ApprovedId", ApprovedId);
+                intents.putExtra("CarOwnerId", carOwnerId);
                 startActivity(intents);
             }
         });

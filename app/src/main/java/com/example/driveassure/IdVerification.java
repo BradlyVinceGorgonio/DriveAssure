@@ -82,8 +82,18 @@ public class IdVerification extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(IdVerification.this, PaymentAndSignature.class);
-                startActivity(intent);
+                Intent intent = getIntent();
+                String historyUid = intent.getStringExtra("historyUid");
+                String carpostUID = intent.getStringExtra("CarpostUID");
+                String ApprovedId = intent.getStringExtra("ApprovedId");
+                String carOwnerId = intent.getStringExtra("CarOwnerId");
+
+                Intent intents = new Intent(IdVerification.this, PaymentAndSignature.class);
+                intents.putExtra("historyUid", historyUid);
+                intents.putExtra("CarpostUID", carpostUID);
+                intents.putExtra("ApprovedId", ApprovedId);
+                intents.putExtra("CarOwnerId", carOwnerId);
+                startActivity(intents);
             }
         });
     }

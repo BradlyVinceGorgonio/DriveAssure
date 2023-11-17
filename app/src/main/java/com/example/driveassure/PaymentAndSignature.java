@@ -18,8 +18,21 @@ public class PaymentAndSignature extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PaymentAndSignature.this, DownloadDocumentContract.class);
-                startActivity(intent);
+
+                // Pass data as extras in the intent
+                Intent intent = getIntent();
+                String historyUid = intent.getStringExtra("historyUid");
+                String carpostUID = intent.getStringExtra("CarpostUID");
+                String ApprovedId = intent.getStringExtra("ApprovedId");
+                String carOwnerId = intent.getStringExtra("CarOwnerId");
+
+
+                Intent intents = new Intent(PaymentAndSignature.this, DownloadDocumentContract.class);
+                intents.putExtra("historyUid", historyUid);
+                intents.putExtra("CarpostUID", carpostUID);
+                intents.putExtra("ApprovedId", ApprovedId);
+                intents.putExtra("CarOwnerId", carOwnerId);
+                startActivity(intents);
             }
         });
     }

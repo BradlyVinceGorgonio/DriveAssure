@@ -45,6 +45,8 @@ public class renterUserFragment extends Fragment implements OwnerListingCarAdapt
 
     private FirebaseFirestore db;
     private FirebaseAuth auth;
+    String ApprovedId;
+    String carOwnerId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -92,6 +94,8 @@ public class renterUserFragment extends Fragment implements OwnerListingCarAdapt
             // Pass data as extras in the intent
             intent2.putExtra("historyUid", historyUid);
             intent2.putExtra("CarpostUID", carpostUID);
+            intent2.putExtra("ApprovedId", ApprovedId);
+        intent2.putExtra("CarOwnerId", carOwnerId);
             startActivity(intent2);
     }
     public void fetchVehicleLikes() {
@@ -178,7 +182,8 @@ public class renterUserFragment extends Fragment implements OwnerListingCarAdapt
                             for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                                 // Get the "Car To Request" field value from the subcollection document
                                 String vehicleLike = documentSnapshot.getString("Car To Request");
-
+                                ApprovedId = documentSnapshot.getString("Approved Id");
+                                carOwnerId = documentSnapshot.getString("Car Owner uid");
                                 // Log "Car To Request" value being fetched
                                 Log.d("FETCH_VEHICLE_LIKE", "Fetching document with Car To Request: " + vehicleLike);
 
