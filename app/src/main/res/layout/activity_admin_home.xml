@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
+    android:background="@color/backgroundlightblue"
     tools:context=".AdminHome">
+
     <TextView
+        android:id="@+id/textView36"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Drive Assure"
@@ -37,31 +39,32 @@
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="398dp"
+        android:layout_width="370dp"
         android:layout_height="600dp"
-        android:layout_margin="5dp"
+        android:layout_margin="15dp"
+        android:backgroundTint="@color/blue"
         app:cardCornerRadius="15dp"
-        android:backgroundTint="@color/dirtywhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.609"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.954">
 
 
         <androidx.cardview.widget.CardView
             android:layout_width="110dp"
             android:layout_height="130dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="-120dp"
             android:backgroundTint="@color/white"
             android:clickable="true"
             android:contentDescription="payment history"
             android:elevation="20dp"
             app:cardBackgroundColor="@android:color/white"
             app:cardCornerRadius="15dp"
-            app:cardElevation="80dp"
-            android:layout_marginTop="-120dp"
-            android:layout_marginLeft="120dp"
-            android:layout_gravity="center"
->
+            app:cardElevation="80dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -76,13 +79,13 @@
         <androidx.cardview.widget.CardView
             android:layout_width="110dp"
             android:layout_height="130dp"
-           android:layout_marginTop="-120dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="-120dp"
             android:clickable="true"
             android:contentDescription="user support service"
             android:elevation="20dp"
             app:cardCornerRadius="15dp"
-            app:cardElevation="80dp"
-            android:layout_gravity="center">
+            app:cardElevation="80dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -97,16 +100,16 @@
             android:id="@+id/cardView12"
             android:layout_width="110dp"
             android:layout_height="130dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="-120dp"
+            android:layout_marginRight="120dp"
             android:backgroundTint="@color/white"
             android:clickable="true"
             android:contentDescription="activity logs"
             android:elevation="20dp"
             app:cardBackgroundColor="@android:color/white"
             app:cardCornerRadius="15dp"
-            app:cardElevation="80dp"
-            android:layout_marginTop="-120dp"
-            android:layout_marginRight="120dp"
-            android:layout_gravity="center">
+            app:cardElevation="80dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -115,56 +118,103 @@
                 android:background="@drawable/activitylogs"></LinearLayout>
         </androidx.cardview.widget.CardView>
 
-
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="300dp"
+        <androidx.cardview.widget.CardView
+            android:layout_width="70dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="280dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/message_more"
-            android:contentDescription="message"
-            tools:ignore="TouchTargetSizeCheck"></ImageButton>
+            app:cardCornerRadius="10dp"
+            app:cardElevation="25dp">
 
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="180dp"
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="-10dp"
+                android:background="@drawable/message_more"
+                android:contentDescription="message"
+                tools:ignore="TouchTargetSizeCheck"></ImageButton>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="Message"></TextView>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="75dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="150dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/notification_3"
-            android:contentDescription="notification"
-            tools:ignore="TouchTargetSizeCheck" />
+            app:cardCornerRadius="10dp"
+            app:cardElevation="25dp">
 
-        <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="50dp"
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="-10dp"
+                android:background="@drawable/notification_3"
+                android:contentDescription="notification"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="Notification"></TextView>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="70dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/contract"
-            android:contentDescription="contract"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="25dp">
 
-            tools:ignore="TouchTargetSizeCheck" />
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="-10dp"
+                android:background="@drawable/contract"
+                android:contentDescription="contract"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="Contracts"></TextView>
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="-20dp"
             android:text="Pending Users "
             android:textSize="25dp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:layout_marginTop="-20dp"/>
+            android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView13"
             android:layout_width="340dp"
             android:layout_height="274dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="140dp"
             android:backgroundTint="@color/white"
             android:elevation="25dp"
-            app:cardCornerRadius="20dp"
-            android:layout_marginTop="140dp"
-            android:layout_gravity="center">
+            app:cardCornerRadius="20dp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -173,8 +223,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
-                />
+                android:layout_marginBottom="20dp" />
 
         </androidx.cardview.widget.CardView>
 
