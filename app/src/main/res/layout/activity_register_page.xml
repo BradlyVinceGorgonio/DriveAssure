@@ -7,47 +7,31 @@
     tools:context=".RegisterPage"
     android:background="@color/white">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DriveAssure"
-        android:textColor="@color/black"
-        android:textSize="35dp"
+
+    <ImageView
+        android:layout_width="280dp"
+        android:layout_height="145dp"
+        android:background="@drawable/logodrive"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"></TextView>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="Bridging the Gap Between Car Owners \nand Renters"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.016">
-
-    </TextView>
+        app:layout_constraintVertical_bias="0.179"></ImageView>
 
     <ImageButton
         android:id="@+id/backbutton"
-        android:layout_width="50dp"
+        android:layout_width="40dp"
         android:layout_height="45dp"
         android:background="@drawable/back_26"
         android:contentDescription="next button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintHorizontal_bias="0.018"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
+        app:layout_constraintVertical_bias="0.002"
         tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
@@ -62,8 +46,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.198" />
-
+        app:layout_constraintVertical_bias="0.225" />
 
     <Button
         android:id="@+id/button4"
@@ -118,7 +101,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="356dp"
+        android:layout_marginBottom="349dp"
         android:hint=" Email"
         android:textColor="@color/black"
         android:textColorHint="@color/grey"
@@ -148,7 +131,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="272dp"
+        android:layout_marginBottom="260dp"
         android:hint=" Phone number"
         android:textColor="@color/black"
         android:textColorHint="@color/grey"
@@ -162,7 +145,7 @@
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-        app:layout_constraintVertical_bias="0.8"
+        app:layout_constraintVertical_bias="0.625"
         app:prefixText="+63 "
         app:prefixTextColor="@color/blue"
         app:startIconDrawable="@drawable/phone"
@@ -226,7 +209,7 @@
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout5"
-        app:layout_constraintVertical_bias="0.163"
+        app:layout_constraintVertical_bias="0.111"
         app:startIconDrawable="@drawable/password_152"
         app:startIconTint="@color/blue">
 
