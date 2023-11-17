@@ -6,9 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".PaymentAndSignature"
     android:background="@color/blue">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView5"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/darkblue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/patuaoneregular"
+            android:text="Payment"
+            android:textColor="@color/white"
+            android:textSize="25dp"></TextView>
+
+    </androidx.cardview.widget.CardView>
 
     <HorizontalScrollView
+        android:id="@+id/horizontalScrollView2"
         android:layout_width="330dp"
         android:layout_height="400dp"
         android:scrollbars="none"
@@ -91,9 +115,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginRight="65dp"
-                    android:drawableLeft="@drawable/maya"></RadioButton>
-
+                    android:layout_marginRight="39dp"
+                    android:textSize="18dp"
+                    android:text="Onsite Payment"></RadioButton>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -250,5 +274,22 @@
 
         </LinearLayout>
     </HorizontalScrollView>
+
+    <Button
+        android:id="@+id/continueBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
+        android:backgroundTint="@color/black"
+        android:text="Continue"
+        android:textColor="@color/white"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2"
+        app:layout_constraintVertical_bias="0.784" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
