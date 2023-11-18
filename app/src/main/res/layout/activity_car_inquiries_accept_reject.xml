@@ -55,6 +55,7 @@
         android:layout_height="70dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="35dp"
+        android:backgroundTint="@color/grey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.098"
@@ -70,6 +71,8 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="18dp"
+            android:clickable="false"
+            android:longClickable="false"
             android:textStyle="bold"></TextView>
     </androidx.cardview.widget.CardView>
 
@@ -79,6 +82,7 @@
         android:layout_height="70dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="35dp"
+        android:backgroundTint="@color/dirtywhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/processingReservation"
         app:layout_constraintStart_toEndOf="@+id/pendingReservation"
@@ -93,6 +97,8 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="18dp"
+            android:clickable="false"
+            android:longClickable="false"
             android:textStyle="bold"></TextView>
     </androidx.cardview.widget.CardView>
 
@@ -102,6 +108,7 @@
         android:layout_height="70dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="35dp"
+        android:backgroundTint="@color/lightgreen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.898"
@@ -117,6 +124,8 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="18dp"
+            android:clickable="false"
+            android:longClickable="false"
             android:textStyle="bold"></TextView>
     </androidx.cardview.widget.CardView>
 

@@ -119,7 +119,7 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
                 displayNoView.setVisibility(View.GONE);
                 fetchDataFromFirestore1("renter-processing");
                 mycondition = 1;
-                animateCardViewColorChange(mainCardView, getResources().getColor(R.color.blue));
+                animateCardViewColorChange(mainCardView, getResources().getColor(R.color.dirtywhite));
             }
         });
         processingReservation.setOnClickListener(new View.OnClickListener() {
