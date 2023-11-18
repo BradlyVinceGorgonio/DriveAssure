@@ -290,7 +290,7 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
             startActivity(intent);
         } else if(mycondition == 1) {
             // Condition 2: Execute this block of code if the condition is false
-            Intent intent = new Intent(CarInquiriesAcceptReject.this, DriverSignature.class);
+            Intent intent = new Intent(CarInquiriesAcceptReject.this, ApprovedReservation.class);
             intent.putExtra("renterUID", renterUID);
             intent.putExtra("carUID", carUID);
             intent.putExtra("requestID", requestID);
