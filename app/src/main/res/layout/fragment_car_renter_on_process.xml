@@ -132,7 +132,7 @@
             android:id="@+id/textView33"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pic-up Date:"
+            android:text="Pick-up Date:"
             android:textColor="@color/black"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
@@ -154,7 +154,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pic-up Time:"
+            android:text="Pick-up Time:"
             android:textColor="@color/black"
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
@@ -178,7 +178,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pic-up Location:"
+            android:text="Pick-up Location:"
             android:textColor="@color/black"
             android:layout_gravity="center"
             android:layout_marginTop="80dp"
@@ -204,14 +204,12 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView7"
                 android:layout_width="385dp"
                 android:layout_height="1dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:backgroundTint="@color/black"
-                ></androidx.cardview.widget.CardView>
+                android:backgroundTint="@color/black"></androidx.cardview.widget.CardView>
 
 
             <androidx.cardview.widget.CardView
@@ -279,7 +277,7 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pic-up Date:"
+                    android:text="Return Date:"
                     android:textColor="@color/black"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
@@ -301,7 +299,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pic-up Time:"
+                    android:text="Return Time:"
                     android:textColor="@color/black"
                     android:layout_gravity="center"
                     android:layout_marginTop="50dp"
@@ -325,7 +323,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pic-up Location:"
+                    android:text="Return Location:"
                     android:textColor="@color/black"
                     android:layout_gravity="center"
                     android:layout_marginTop="80dp"
@@ -349,6 +347,149 @@
 
             </androidx.cardview.widget.CardView>
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="385dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
+                android:backgroundTint="@color/black"
+                ></androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="340dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="0dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="25dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Car Details"
+                    android:textStyle="bold"
+                    android:textSize="22dp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="-80dp"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="-40dp"
+                    android:text="Model: "
+                    android:textColor="@color/black"></TextView>
+
+                <TextView
+                    android:id="@+id/vehicleModel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="-40dp"
+                    android:fontFamily="@font/patuaoneregular"
+                    android:text="BMW 5 Series"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="-10dp"
+                    android:text="Price: "
+                    android:textColor="@color/black"></TextView>
+
+                <TextView
+                    android:id="@+id/vehiclePrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="-10dp"
+                    android:fontFamily="@font/patuaoneregular"
+                    android:text="6000/day"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Transmission:"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="-100dp"
+                    />
+
+                <TextView
+                    android:id="@+id/vehicleTransmission"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/patuaoneregular"
+                    android:text="Automatic"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fuel Type:"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginLeft="-100dp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/fuelType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="50dp"
+                    android:fontFamily="@font/patuaoneregular"
+                    android:text="Diesel"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Brand:"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="80dp"
+                    android:layout_marginLeft="-100dp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/vehicBrand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="80dp"
+                    android:fontFamily="@font/patuaoneregular"
+                    android:text="BMW"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+
+
+            </androidx.cardview.widget.CardView>
 
 <TextView
     android:layout_width="wrap_content"
@@ -398,7 +539,7 @@
                 android:text="Time Remaining: 5days"
                 android:layout_gravity="center"
                 android:layout_marginTop="25dp"
-                android:layout_marginBottom="105dp"
+                android:layout_marginBottom="100dp"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:textColor="@color/white"

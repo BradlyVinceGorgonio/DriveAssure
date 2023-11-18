@@ -5,6 +5,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +31,12 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
 
     private List<RequestingClass> RequestingList;
     private RequestingRentAdapter requestingRentAdapter;
+
+//
+//    private CardView pendingReservationCardView;
+//    private CardView approvedReservationCardView;
+//    private CardView processingReservationCardView;
+    private CardView mainCardView;
 
 
     ProgressBar progressBarID;
@@ -64,29 +72,71 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
         // Fetch data from Firestore and populate adminList
         // ...
 
+//        pendingReservationCardView = findViewById(R.id.pendingReservation);
+//        approvedReservationCardView = findViewById(R.id.approvedReservation);
+//        processingReservationCardView = findViewById(R.id.processingReservation);
+        mainCardView = findViewById(R.id.cardView22);
+//
+//        pendingReservationCardView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // Change the background color of mainCardView to light green
+//                mainCardView.setCardBackgroundColor(getResources().getColor(R.color.grey));
+//            }
+//        });
+//
+//        approvedReservationCardView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // Change the background color of mainCardView to blue
+//                mainCardView.setCardBackgroundColor(getResources().getColor(R.color.blue));
+//            }
+//        });
+//
+//        processingReservationCardView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // Change the background color of mainCardView to yellow
+//                mainCardView.setCardBackgroundColor(getResources().getColor(R.color.lightgreen));
+//            }
+//        });
+
+
         pendingReservation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 displayNoView.setVisibility(View.GONE);
                 fetchDataFromFirestore("owner-view-rent-request");
                 mycondition = 0;
+                animateCardViewColorChange(mainCardView, getResources().getColor(R.color.grey));
+
             }
         });
+
         approvedReservation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 displayNoView.setVisibility(View.GONE);
                 fetchDataFromFirestore1("renter-processing");
                 mycondition = 1;
+                animateCardViewColorChange(mainCardView, getResources().getColor(R.color.blue));
             }
         });
         processingReservation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 fetchDataFromFirestore("processing");
+                animateCardViewColorChange(mainCardView, getResources().getColor(R.color.lightgreen));
             }
         });
         fetchDataFromFirestore("owner-view-rent-request");
+    }
+
+    private void animateCardViewColorChange(CardView cardView, int targetColor) {
+        ObjectAnimator colorAnimator = ObjectAnimator.ofObject(cardView, "cardBackgroundColor",
+                new ArgbEvaluator(), ((CardView) cardView).getCardBackgroundColor().getDefaultColor(), targetColor);
+        colorAnimator.setDuration(500);
+        colorAnimator.start();
     }
 
     public void fetchDataFromFirestore(String choice) {
