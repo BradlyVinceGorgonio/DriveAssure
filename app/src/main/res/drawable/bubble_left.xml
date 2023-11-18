@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!-- bubble_left.xml -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#B0BEC5" /> <!-- Light grey color, you can adjust as needed -->
     <corners android:radius="8dp" />
-    <solid android:color="#D3D3D3" />
 </shape>

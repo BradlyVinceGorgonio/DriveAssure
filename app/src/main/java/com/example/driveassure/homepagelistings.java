@@ -115,13 +115,14 @@ public class homepagelistings extends AppCompatActivity {
             public void onClick(View view) {
                 // Retrieve data from the Intent
                 String historyUid = getIntent().getStringExtra("historyUid"); // CAR OWNER UID
+                String CarpostUID = getIntent().getStringExtra("CarpostUID"); // CAR POST UID
 
                 Intent intent = new Intent(homepagelistings.this, ChatRoomActivity.class);
                 intent.putExtra("currentUserUid", historyUid);
-                intent.putExtra("postOwnerUid", "post_owner_uid_placeholder"); // Replace with the actual post owner UID
+                intent.putExtra("postOwnerUid", CarpostUID); // Pass the post owner's UID
                 startActivity(intent);
             }
-            });
+        });
 
 
     }
