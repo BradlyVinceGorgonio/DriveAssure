@@ -57,12 +57,14 @@ public class DownloadDocumentContract extends AppCompatActivity {
                 String carpostUID = intent.getStringExtra("CarpostUID");
                 String ApprovedId = intent.getStringExtra("ApprovedId");
                 String carOwnerId = intent.getStringExtra("CarOwnerId");
+                String PaymentMethod = intent.getStringExtra("PaymentMethod");
 
                 Intent intents = new Intent(DownloadDocumentContract.this,DriverSignature.class);
                 intents.putExtra("historyUid", historyUid);
                 intents.putExtra("CarpostUID", carpostUID);
                 intents.putExtra("ApprovedId", ApprovedId);
                 intents.putExtra("CarOwnerId", carOwnerId);
+                intents.putExtra("PaymentMethod", PaymentMethod);
                 startActivity(intents);
             }
         });

@@ -25,6 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -57,6 +58,7 @@ public class DriverSignature extends AppCompatActivity {
                 driverSignatureView.clear();
             }
         });
+
 
 
 
@@ -141,12 +143,10 @@ public class DriverSignature extends AppCompatActivity {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
-
+                        Intent intent = getIntent();
                         String approvedId = document.getString("Approved Id");
                         String carOwnerId = document.getString("Car Owner uid");
-                        Log.d("ANOLAMANMOUGOK", "approved Id " +approvedId);
-                        Log.d("ANOLAMANMOUGOK", "car owner "+carOwnerId);
-                        Log.d("ANOLAMANMOUGOK", "HANGGANG DITO NAANDAR");
+                        String PaymentMethod = intent.getStringExtra("PaymentMethod");
 
                         TransferToProcessingAndDeleteApprovedRenters(approvedId, carOwnerId);
 
@@ -158,6 +158,46 @@ public class DriverSignature extends AppCompatActivity {
                 }
             }
         });
+
+    }
+
+    private void addPaymentMethod(String approvedId, String PaymentMethod, String carOwnerId)
+    {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
+
+        // Assuming yourBooleanFieldName is the name of the boolean field you want to add
+        String yourBooleanFieldName = "isGcash";
+
+        // Assuming yourBooleanFieldValue is the boolean value you want to set
+
+
+        // Reference to the "renters-processing" subcollection document
+        DocumentReference rentersProcessingDocument = db.collection("users")
+                .document(carOwnerId)
+                .collection("renter-processing")
+                .document(approvedId);
+
+        // Create a Map to store the field and its value
+        Map<String, Object> fieldMap = new HashMap<>();
+        fieldMap.put("isGcash", PaymentMethod);
+
+        // Set the new fields in the document
+        rentersProcessingDocument.set(fieldMap, SetOptions.merge())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Document successfully updated with the new field
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Handle failure to update the document
+                    }
+                });
+
 
     }
 
@@ -202,6 +242,12 @@ public class DriverSignature extends AppCompatActivity {
 
                                                 String uid = currentUser.getUid();
                                                 uploadPicturesToStorage(uid);
+
+                                                Intent intent = getIntent();
+                                                String PaymentMethod = intent.getStringExtra("PaymentMethod");
+
+
+                                                addPaymentMethod(approvedId,PaymentMethod, carOwnerId);
                                             }
                                         }).addOnFailureListener(new OnFailureListener() {
                                             @Override

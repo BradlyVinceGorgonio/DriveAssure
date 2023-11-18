@@ -11,7 +11,7 @@ import android.widget.RadioGroup;
 
 public class PaymentAndSignature extends AppCompatActivity {
 
-    private boolean answer = false;
+    String answer = "false";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,10 +34,10 @@ public class PaymentAndSignature extends AppCompatActivity {
                 // Check which radio button was clicked
                 if (checkedId == R.id.gcashPayment) {
                     // gcashPayment is selected, set answer to true
-                    answer = true;
+                    answer = "true";
                 } else if (checkedId == R.id.onSitePayment) {
                     // onSitePayment is selected, set answer to false
-                    answer = false;
+                    answer = "false";
                 }
             }
         });
