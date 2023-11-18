@@ -329,6 +329,8 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
         String renterUID = rent.getUid();
         String carUID = rent.getCarUID();
         String requestID = rent.getRequestID();
+        String name = rent.getName();
+        String carName = rent.getCarName();
 
         // Add your condition here
         if (mycondition == 0) {
@@ -344,6 +346,8 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
             intent.putExtra("renterUID", renterUID);
             intent.putExtra("carUID", carUID);
             intent.putExtra("requestID", requestID);
+            intent.putExtra("renterName", name);
+            intent.putExtra("carName", carName);
             startActivity(intent);
         }
     }
