@@ -12,15 +12,14 @@
         android:padding="8dp"
         android:textColor="@android:color/white"
         android:textSize="16sp"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/bubble_right" />
+        android:layout_marginStart="50dp"
+        android:background="@drawable/bubble_left" />
 
     <TextView
         android:id="@+id/timestamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/message_text"
-        android:layout_marginTop="4dp"
         android:padding="8dp"
         android:textColor="#aaaaaa"
         android:textSize="12sp"/>

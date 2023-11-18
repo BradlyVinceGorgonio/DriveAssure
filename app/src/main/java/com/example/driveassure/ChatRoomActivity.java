@@ -1,6 +1,5 @@
 package com.example.driveassure;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,17 +8,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -63,7 +57,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         carOwnerProfile = findViewById(R.id.carOwnerProfile);
 
         messageList = new ArrayList<>();
-        messageAdapter = new MessageAdapter(this, messageList, currentUserUid);
+        messageAdapter = new MessageAdapter(this, messageList, getCurrentUserUid());
         messageListView.setAdapter(messageAdapter);
         receivedMessageIds = new HashSet<>();
 
@@ -219,5 +213,9 @@ public class ChatRoomActivity extends AppCompatActivity {
         super.onResume();
         messageHandler.postDelayed(messageRunnable, 3000);
         receiveMessages();
+    }
+
+    private String getCurrentUserUid() {
+        return currentUserUid;
     }
 }
