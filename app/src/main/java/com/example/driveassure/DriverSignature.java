@@ -20,7 +20,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
@@ -74,7 +76,6 @@ public class DriverSignature extends AppCompatActivity {
 
         String uid = currentUser.getUid();
 
-
         if (uid != null) {
             // Get a reference to the Firebase Storage root folder
             StorageReference storageRef = FirebaseStorage.getInstance().getReference();
@@ -95,8 +96,8 @@ public class DriverSignature extends AppCompatActivity {
 
             uploadTask.addOnSuccessListener(taskSnapshot -> {
 
-                insertMeToo();
-                uploadPicturesToStorage(uid);
+                insertmeReal();
+
 
 
             }).addOnFailureListener(e -> {
@@ -107,58 +108,127 @@ public class DriverSignature extends AppCompatActivity {
         }
     }
 
-    public void insertMeToo() {
+
+
+    private void insertmeReal()
+    {
         Intent intent = getIntent();
-        String carOwnerId = intent.getStringExtra("CarOwnerId");
-        Log.d("ANOLAMANMOUGOK", "insertMeToo: " + carOwnerId);
+        String carOwnerId = intent.getStringExtra("historyUid");
+        String carpostUID = intent.getStringExtra("CarpostUID");
 
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = auth.getCurrentUser();
+        Log.d("ANOLAMANMOUGOK", "car owner: " + carOwnerId);
+        Log.d("ANOLAMANMOUGOK", "carpost: " + carpostUID);
 
-        if (currentUser != null) {
-            // Get the UID of the current user
-            String uid = currentUser.getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-            // Reference to Firestore
-            FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+        // Assuming your collection path is "users"
+        CollectionReference usersCollection = db.collection("users");
 
-            // Reference to the "users" collection
-            CollectionReference usersCollectionRef = firestore.collection("users");
 
-            // Reference to the source "vehicle approved" subcollection
-            CollectionReference sourceCollectionRef = usersCollectionRef
-                    .document(carOwnerId)
-                    .collection("renters-approved");
+        // Assuming carOwnerId and carpostUID are variables containing the values you want to match
 
-            // Reference to the target "renter-processing" subcollection
-            CollectionReference targetCollectionRef = usersCollectionRef
-                    .document(carOwnerId)
-                    .collection("renter-processing");
+        // Assuming "renters-approved" is the subcollection
+        CollectionReference rentersApprovedCollection = usersCollection.document(carOwnerId).collection("renters-approved");
 
-            // Query and copy documents
-            sourceCollectionRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(Task<QuerySnapshot> task) {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            // Get the data from the source document
-                            Object data = document.getData();
+        // Query the subcollection with the conditions on "Car Owner uid" and "Car to Request"
+        Query query = rentersApprovedCollection
+                .whereEqualTo("Car Owner uid", carOwnerId)
+                .whereEqualTo("Car To Request", carpostUID);
 
-                            // Set the document ID in the target collection to match the source document ID
-                            targetCollectionRef.document(document.getId()).set(data);
+        // Execute the query
+        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
 
-                            // Delete the source document
-                            sourceCollectionRef.document(document.getId()).delete();
-                        }
-                    } else {
-                        // Handle errors
+                        String approvedId = document.getString("Approved Id");
+                        String carOwnerId = document.getString("Car Owner uid");
+                        Log.d("ANOLAMANMOUGOK", "approved Id " +approvedId);
+                        Log.d("ANOLAMANMOUGOK", "car owner "+carOwnerId);
+                        Log.d("ANOLAMANMOUGOK", "HANGGANG DITO NAANDAR");
+
+                        TransferToProcessingAndDeleteApprovedRenters(approvedId, carOwnerId);
+
+
                     }
+                } else {
+                    // Handle errors
+                    Log.e("BAKITDIUMAANDAR", "Error getting documents: ", task.getException());
                 }
-            });
-        } else {
-            // Handle the case where the user is not signed in
-        }
+            }
+        });
+
     }
+
+    private void TransferToProcessingAndDeleteApprovedRenters(String approvedId, String carOwnerId)
+    {
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
+// Reference to the "renters-approved" subcollection document
+        DocumentReference rentersApprovedDocument = db.collection("users")
+                .document(carOwnerId)
+                .collection("renters-approved")
+                .document(approvedId);
+
+// Get the data from the "renters-approved" document
+        rentersApprovedDocument.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        // Get the data from the document
+                        Map<String, Object> data = document.getData();
+
+                        // Reference to the "renter-processing" subcollection document
+                        CollectionReference renterProcessingCollection = db.collection("users")
+                                .document(carOwnerId)
+                                .collection("renter-processing");
+
+                        // Add the data to the "renter-processing" subcollection
+                        renterProcessingCollection.document(approvedId).set(data)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        // Document successfully moved to "renter-processing"
+                                        // Now, delete the document from "renters-approved"
+                                        rentersApprovedDocument.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+                                                String uid = currentUser.getUid();
+                                                uploadPicturesToStorage(uid);
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                // Handle failure to delete document from "renters-approved"
+                                            }
+                                        });
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        // Handle failure to add document to "renter-processing"
+                                    }
+                                });
+                    } else {
+                        // Document does not exist in "renters-approved"
+                    }
+                } else {
+                    // Handle errors in getting the document from "renters-approved"
+                    Log.e("Firestore", "Error getting document: ", task.getException());
+                }
+            }
+        });
+    }
+
+
 
 
 
