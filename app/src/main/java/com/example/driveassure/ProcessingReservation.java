@@ -19,7 +19,6 @@ public class ProcessingReservation extends AppCompatActivity {
         // Image uploaded successfully
         Dialog dialog = new Dialog(ProcessingReservation.this);
         dialog.setContentView(R.layout.gobackhome);
-        dialog.setCanceledOnTouchOutside(false);
         dialog.show();
         // Find the 'YES' button in the dialog layout
         Button yesButton = dialog.findViewById(R.id.OKayButton);
