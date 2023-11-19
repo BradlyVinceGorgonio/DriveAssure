@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -139,9 +140,9 @@ public class ApprovedReservation extends AppCompatActivity {
         approvedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
-                Intent intent = new Intent(ApprovedReservation.this, ProcessingReservation.class);
-                startActivity(intent);
+
+                transferDocuments();
+
             }
         });
 
@@ -175,6 +176,92 @@ public class ApprovedReservation extends AppCompatActivity {
 
         GetItClean();
     }
+
+    public void transferDocuments()
+    {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        String uid = currentUser.getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // Reference to the "renter-processing" document
+        DocumentReference renterProcessingDocument = db.collection("users")
+                .document(uid)
+                .collection("renter-processing")
+                .document(requestID);
+            // Reference to the "renter-ready" subcollection
+        CollectionReference renterReadyCollection = db.collection("users")
+                .document(uid)
+                .collection("renter-ready");
+
+        // Get the data from "renter-processing" document
+        renterProcessingDocument.get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        // Transfer the data to "renter-ready" subcollection
+                        renterReadyCollection.document(requestID).set(documentSnapshot.getData())
+                                .addOnSuccessListener(aVoid -> {
+                                    // Document successfully transferred to "renter-ready" subcollection
+                                    // Now, delete the document from "renter-processing"
+                                    renterProcessingDocument.delete()
+                                            .addOnSuccessListener(aVoid1 -> {
+                                                transferDocumentsrenter();
+                                            })
+                                            .addOnFailureListener(e -> {
+                                                // Handle errors in deleting the document
+                                            });
+                                })
+                                .addOnFailureListener(e -> {
+                                    // Handle errors in transferring the document to "renter-ready"
+                                });
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    // Handle errors in getting the document from "renter-processing"
+                });
+
+
+    }
+
+    public void transferDocumentsrenter()
+    {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        String uid = currentUser.getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // Reference to the "renter-processing" document
+        DocumentReference renterProcessingDocument = db.collection("users")
+                .document(uid)
+                .collection("renter-ready")
+                .document(requestID);
+        // Reference to the "renter-ready" subcollection
+        CollectionReference renterReadyCollection = db.collection("users")
+                .document(renterUID)
+                .collection("vehicle-ready");
+
+        // Get the data from "renter-processing" document
+        renterProcessingDocument.get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        // Transfer the data to "renter-ready" subcollection
+                        renterReadyCollection.document(requestID).set(documentSnapshot.getData())
+                                .addOnSuccessListener(aVoid -> {
+                                    Intent intent = new Intent(ApprovedReservation.this, ProcessingReservation.class);
+                                    startActivity(intent);
+                                })
+                                .addOnFailureListener(e -> {
+                                    // Handle errors in transferring the document to "renter-ready"
+                                });
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    // Handle errors in getting the document from "renter-processing"
+                });
+
+
+    }
+
     public void GetItClean()
     {
 
