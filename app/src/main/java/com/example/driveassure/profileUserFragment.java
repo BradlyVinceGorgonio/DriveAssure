@@ -54,6 +54,34 @@ public class profileUserFragment extends Fragment {
             }
         });
 
+
+        Button profile = view.findViewById(R.id.profileBtn);
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Profile.class);
+                startActivity(intent);
+            }
+        });
+
+        Button payment = view.findViewById(R.id.paymentBtn);
+        payment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Payments.class);
+                startActivity(intent);
+            }
+        });
+
+        Button rentalhistory = view.findViewById(R.id.rentalHistoryBtn);
+        rentalhistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), RentalHistory.class);
+                startActivity(intent);
+            }
+        });
+
         Button VehicleDocuments = view.findViewById(R.id.vehicleDocumentBtn);
 
         VehicleDocuments.setOnClickListener(new View.OnClickListener() {

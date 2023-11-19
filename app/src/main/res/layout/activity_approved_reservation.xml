@@ -297,10 +297,17 @@
                     android:background="@color/white"/>
                 <TextView
                     android:id="@+id/onTheDayPayment"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="30dp"
+                    android:textAlignment="center"
                     android:text="The user will pay on the said date"
                     android:visibility="gone"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+
                     />
             </androidx.cardview.widget.CardView>
 
@@ -450,7 +457,7 @@ transaction."></TextView>
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/black"
-                android:text="Continue"
+                android:text="Okay"
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold"></Button>

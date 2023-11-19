@@ -20,9 +20,10 @@
             <ImageButton
                 android:id="@+id/logoutBtn"
                 android:layout_width="45dp"
-                android:layout_height="32dp"
-                android:layout_marginLeft="310dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="140dp"
                 android:layout_marginTop="15dp"
+                android:layout_gravity="center"
                 android:background="@drawable/loguouticon"
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"></ImageButton>
 
@@ -30,8 +31,9 @@
                 android:layout_width="54dp"
                 android:layout_height="18dp"
                 android:text="Sign out"
+                android:layout_gravity="center"
                 android:textColor="@color/red"
-                android:layout_marginLeft="307dp"></TextView>
+                android:layout_marginLeft="140dp"></TextView>
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imageView"
                 android:layout_width="145dp"
@@ -59,7 +61,8 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="-10dp"
                     android:background="@drawable/car_key_1"
-                    android:clickable="true"
+                    android:clickable="false"
+                    android:longClickable="false"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"></ImageView>
 
                 <TextView
@@ -70,6 +73,8 @@
                     android:layout_marginLeft="3dp"
                     android:layout_marginTop="20dp"
                     android:text="Car renting"
+                    android:clickable="false"
+                    android:longClickable="false"
                     android:textColor="@color/black"
                     android:textSize="14dp"
                     tools:ignore="TextSizeCheck"></TextView>
@@ -93,6 +98,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="-10dp"
+                    android:clickable="false"
+                    android:longClickable="false"
                     android:background="@drawable/heart"></ImageView>
 
                 <TextView
@@ -105,6 +112,8 @@
                     android:text="Favorites"
                     android:textColor="@color/black"
                     android:textSize="14dp"
+                    android:clickable="false"
+                    android:longClickable="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -130,6 +139,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:clickable="false"
+                    android:longClickable="false"
                     android:layout_marginTop="-10dp"
                     android:background="@drawable/message_more"></ImageView>
 
@@ -141,6 +152,8 @@
                     android:layout_marginLeft="1dp"
                     android:layout_marginTop="20dp"
                     android:text="Message"
+                    android:clickable="false"
+                    android:longClickable="false"
                     android:textColor="@color/black"
                     android:textSize="15dp"
                     tools:ignore="TextSizeCheck"></TextView>

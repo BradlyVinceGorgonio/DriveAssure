@@ -23,6 +23,15 @@
         android:theme="@style/Theme.DriveAssure"
         tools:targetApi="31">
         <activity
+            android:name=".RentalHistory"
+            android:exported="false" />
+        <activity
+            android:name=".Payments"
+            android:exported="false" />
+        <activity
+            android:name=".Profile"
+            android:exported="false" />
+        <activity
             android:name=".DriverSignature"
             android:exported="false" />
         <activity
