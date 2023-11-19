@@ -143,11 +143,11 @@
                     android:layout_marginLeft="-100dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="-40dp"
-                    android:text="Model: "
+                    android:text="Vehicle: "
                     android:textColor="@color/black"></TextView>
 
                 <TextView
-                    android:id="@+id/vehicleModel"
+                    android:id="@+id/vehicleTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -359,7 +359,7 @@
 
 
                 <TextView
-                    android:id="@+id/PickupDate"
+                    android:id="@+id/PickupTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

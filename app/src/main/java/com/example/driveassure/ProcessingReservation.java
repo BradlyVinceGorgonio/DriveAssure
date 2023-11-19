@@ -25,6 +25,7 @@ public class ProcessingReservation extends AppCompatActivity {
     String carUID;
     String requestID;
     String renterName;
+    String contactNumber;
     String carName;
     String ApprovedId;
     String isGcash;
@@ -35,6 +36,25 @@ public class ProcessingReservation extends AppCompatActivity {
     String vehiclePrice;
     String VehicleTitle;
     ImageView renterProfile;
+    TextView renterNames;
+    TextView renterContact;
+    TextView vehicleTitle;
+    TextView vehiclePrices;
+    TextView vehicleTransmission;
+    TextView fuelType;
+    TextView vehicBrand;
+    TextView carOwnerName;
+    TextView carOwnerrContact;
+    TextView pickUpDate;
+    TextView PickupTime;
+    TextView PickupLocation;
+    TextView returningRenterName;
+    TextView returnrenterContact;
+    TextView returnDate;
+    TextView returnTime;
+    TextView returnLocation;
+    Button exchangeContracts;
+    Button startTime;
 
 
     @Override
@@ -52,6 +72,24 @@ public class ProcessingReservation extends AppCompatActivity {
 
 
         renterProfile = findViewById(R.id.renterProfile);
+        renterNames = findViewById(R.id.renterName);
+        renterContact = findViewById(R.id.renterContact);
+        vehicleTitle = findViewById(R.id.vehicleTitle);
+        vehiclePrices = findViewById(R.id.vehiclePrice);
+        vehicleTransmission = findViewById(R.id.vehicleTransmission);
+        fuelType = findViewById(R.id.fuelType);
+        vehicBrand = findViewById(R.id.vehicBrand);
+        carOwnerName = findViewById(R.id.carOwnerName);
+        pickUpDate = findViewById(R.id.pickUpDate);
+        PickupTime = findViewById(R.id.PickupTime);
+        PickupLocation = findViewById(R.id.PickupLocation);
+        returningRenterName = findViewById(R.id.returningRenterName);
+        returnrenterContact = findViewById(R.id.returnrenterContact);
+        returnDate = findViewById(R.id.returnDate);
+        returnTime = findViewById(R.id.returnTime);
+        returnLocation = findViewById(R.id.returnLocation);
+        exchangeContracts = findViewById(R.id.exchangeContracts);
+        startTime = findViewById(R.id.startTime);
 
         // Image uploaded successfully
         Dialog dialog = new Dialog(ProcessingReservation.this);
@@ -94,10 +132,11 @@ public class ProcessingReservation extends AppCompatActivity {
                             isGcash = document.getString("isGcash");
                             renterUid = document.getString("renter uid");
                             carUID = document.getString("Car To Request");
-
                             DateStart = document.getString("Date Start");
                             DateEnd = document.getString("Date End");
                             totalDays= document.getString("Total Time");
+
+
 
 
                             StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("users/" + renterUID + "/face.jpg");
@@ -159,6 +198,8 @@ public class ProcessingReservation extends AppCompatActivity {
                                             DocumentSnapshot documents = tasks.getResult();
                                             if (documents.exists()) {
                                                 renterName = documents.getString("name");
+                                                contactNumber = documents.getString("contact number");
+
 
                                             }
                                         }
