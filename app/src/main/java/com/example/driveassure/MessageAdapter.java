@@ -22,7 +22,7 @@ public class MessageAdapter extends ArrayAdapter<Message> {
     private String currentUserUid;
 
     public MessageAdapter(@NonNull Context context, int sentLayout, int receivedLayout, @NonNull List<Message> messages, String currentUserUid) {
-        super(context, R.layout.item_message_sent, messages);
+        super(context, sentLayout, messages);
         this.context = context;
         this.sentLayout = sentLayout;
         this.receivedLayout = receivedLayout;

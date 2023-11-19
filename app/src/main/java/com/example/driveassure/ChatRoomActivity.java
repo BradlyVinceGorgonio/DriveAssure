@@ -20,7 +20,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -63,6 +62,10 @@ public class ChatRoomActivity extends AppCompatActivity {
         // Initialize receivedMessageIds with a set to keep track of received messages
         receivedMessageIds = new HashSet<>();
 
+        // Initialize messageAdapter
+        messageAdapter = new MessageAdapter(this, R.layout.item_message_sent, R.layout.item_message_received, messageList, getCurrentUserUid());
+        messageListView.setAdapter(messageAdapter);
+
         // Retrieve saved state if available
         if (savedInstanceState != null) {
             messageList = savedInstanceState.getParcelableArrayList("messageList");
@@ -82,10 +85,6 @@ public class ChatRoomActivity extends AppCompatActivity {
 
                 firestore = FirebaseFirestore.getInstance();
                 messagesCollection = firestore.collection("messages").document(chatRoomId).collection("messages");
-
-                // Initialize messageAdapter with the updated constructor
-                messageAdapter = new MessageAdapter(this, R.layout.item_message_sent, R.layout.item_message_received, messageList, currentUserUid);
-                messageListView.setAdapter(messageAdapter);
 
                 sendButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -129,14 +128,13 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     private String generateChatRoomId(String uid1, String uid2) {
         String[] uids = {uid1, uid2};
-        Arrays.sort(uids);
+        java.util.Arrays.sort(uids);
         return uids[0] + "_" + uids[1];
     }
 
-
     private void sendMessage(String messageText) {
         if (currentUserUid != null && postOwnerUid != null) {
-            Message message = new Message(currentUserUid, postOwnerUid, messageText, new Date());
+            Message message = new Message(currentUserUid, postOwnerUid, messageText);
 
             messagesCollection.add(message)
                     .addOnSuccessListener(documentReference -> {
@@ -176,6 +174,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             Log.e("ChatRoomActivity", "Error receiving messages", e);
         });
     }
+
     private void fetchDataFromFirestore1(String UID) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("users")

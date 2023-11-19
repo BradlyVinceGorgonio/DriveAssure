@@ -13,7 +13,6 @@ public class Message implements Parcelable {
     private String messageText;
     private @ServerTimestamp Date timestamp;
 
-
     // Default constructor needed for Firestore deserialization
     public Message() {
     }
