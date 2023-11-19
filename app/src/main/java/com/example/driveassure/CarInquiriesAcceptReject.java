@@ -125,7 +125,9 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
         processingReservation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fetchDataFromFirestore("processing");
+                displayNoView.setVisibility(View.GONE);
+                fetchDataFromFirestore2("renter-ready");
+                mycondition = 2;
                 animateCardViewColorChange(mainCardView, getResources().getColor(R.color.lightgreen));
             }
         });
@@ -302,6 +304,87 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
                 });
     }
 
+    public void fetchDataFromFirestore2(String choice) {
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        String uid = currentUser.getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference rentRequestCollection = db.collection("users")
+                .document(uid)
+                .collection(choice);
+
+        rentRequestCollection.get()
+                .addOnCompleteListener(task -> {
+
+                    if (task.isSuccessful()) {
+                        RequestingList.clear();
+
+                        // Check if the result set is empty
+                        if (task.getResult().isEmpty()) {
+                            // Handle the case where the document is empty
+                            displayNoView.setVisibility(View.VISIBLE);
+                        } else {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String requestId = document.getString("Approved Id");
+                                String userId = document.getString("renter uid");
+                                String carPostUid = document.getString("Car To Request");
+                                String pickUpArea = document.getString("Pickup Location");
+                                String totalTime = document.getString("Total Time");
+
+                                // Assuming "uid" is the UID you want to fetch data for
+                                DocumentReference userDocument = db.collection("users").document(userId);
+
+                                userDocument.get().addOnCompleteListener(tasks -> {
+                                    if (tasks.isSuccessful()) {
+                                        DocumentSnapshot documente = tasks.getResult();
+                                        if (documente.exists()) {
+                                            // Access the data here
+                                            String requestName = documente.getString("name");
+
+                                            // Assuming "uid" is the UID you want to fetch data for
+                                            DocumentReference userDocumente = db.collection("car-posts").document(carPostUid);
+
+                                            userDocumente.get().addOnCompleteListener(taskse -> {
+                                                if (taskse.isSuccessful()) {
+                                                    DocumentSnapshot documentre = taskse.getResult();
+                                                    if (documentre.exists()) {
+                                                        // Access the data here
+                                                        String VehicleTitle = documentre.getString("Vehicle Title");
+
+                                                        fetchProfilePictureUrl(requestName, pickUpArea, totalTime, VehicleTitle, userId, "/" + "face.jpg", carPostUid, requestId);
+                                                        // Use the fetched data as needed
+                                                    } else {
+                                                        // Document does not exist
+                                                        // Handle this case as needed
+                                                    }
+                                                } else {
+                                                    // Handle the failure scenario
+                                                    // For example, log an error message
+                                                }
+                                            });
+
+                                            // Use the fetched data as needed
+                                        } else {
+
+                                        }
+                                    } else {
+                                        // Handle the failure scenario
+                                        // For example, log an error message
+                                    }
+                                });
+
+
+                            }
+                        }
+                    } else {
+                        // Handle the failure scenario
+                        // For example, log an error message
+                    }
+                });
+    }
+
+
     private void fetchProfilePictureUrl(String name, String pickUpArea, String totalTime, String vehicleTitle, String uid, String profilePictureUrl, String carPostUid, String requestId) {
         Log.d("taeka", uid + " weird " + profilePictureUrl);
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("users/" + uid + profilePictureUrl);
@@ -343,6 +426,16 @@ public class CarInquiriesAcceptReject extends AppCompatActivity implements Reque
         } else if(mycondition == 1) {
             // Condition 2: Execute this block of code if the condition is false
             Intent intent = new Intent(CarInquiriesAcceptReject.this, ApprovedReservation.class);
+            intent.putExtra("renterUID", renterUID);
+            intent.putExtra("carUID", carUID);
+            intent.putExtra("requestID", requestID);
+            intent.putExtra("renterName", name);
+            intent.putExtra("carName", carName);
+            startActivity(intent);
+        }
+        else if(mycondition == 2) {
+            // Condition 2: Execute this block of code if the condition is false
+            Intent intent = new Intent(CarInquiriesAcceptReject.this, ProcessingReservation.class);
             intent.putExtra("renterUID", renterUID);
             intent.putExtra("carUID", carUID);
             intent.putExtra("requestID", requestID);
