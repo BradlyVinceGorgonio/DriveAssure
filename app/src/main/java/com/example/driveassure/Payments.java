@@ -14,13 +14,13 @@ public class Payments extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payments);
 
-        ImageButton backbtn = findViewById(R.id.backBtn);
-        backbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), profileUserFragment.class);
-                startActivity(intent);
-            }
-        });
+//        ImageButton backbtn = findViewById(R.id.backBtn);
+//        backbtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), profileUserFragment.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 }

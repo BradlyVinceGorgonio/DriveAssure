@@ -18,13 +18,13 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        ImageButton backbtn = findViewById(R.id.backBtn);
-        backbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Profile.this, profileUserFragment.class);
-                startActivity(intent);
-            }
-        });
+//        ImageButton backbtn = findViewById(R.id.backBtn);
+//        backbtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Profile.this, profileUserFragment.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 }

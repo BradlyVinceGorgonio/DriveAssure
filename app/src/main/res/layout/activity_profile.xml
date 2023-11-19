@@ -41,15 +41,6 @@
                     android:textStyle="bold|italic"></TextView>
 
 
-                <ImageButton
-                    android:id="@+id/backBtn"
-                    android:layout_width="45dp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="-155dp"
-                    android:layout_marginTop="-85dp"
-                    android:background="@drawable/back_26"
-                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"></ImageButton>
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profileavatar"

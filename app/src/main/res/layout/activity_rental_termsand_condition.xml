@@ -67,7 +67,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:text="These Terms and Conditions (Agreement) govern the use of the car rental services provided by [Your Company Name] (Service Provider). By using our car rental app, you (Renter) agree to the terms and conditions outlined herein."></TextView>
+                    android:text="These Terms and Conditions (Agreement) govern the use of the car rental services provided by [Drive Assure] (Service Provider). By using our car rental app, you (Renter) agree to the terms and conditions outlined herein."></TextView>
 
 
                 <TextView

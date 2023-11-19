@@ -18,15 +18,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <ImageButton
-            android:id="@+id/backBtns"
-            android:layout_width="45dp"
-            android:layout_height="32dp"
-            android:layout_gravity="center"
-            android:background="@drawable/back_26"
-            android:layout_marginLeft="-150dp"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"></ImageButton>
-
 
         <TextView
             android:id="@+id/textView15"

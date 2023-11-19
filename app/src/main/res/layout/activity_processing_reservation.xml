@@ -121,7 +121,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="340dp"
-                android:layout_height="200dp"
+                android:layout_height="270dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 app:cardCornerRadius="10dp"
@@ -135,14 +135,14 @@
                     android:textSize="22dp"
                     android:textColor="@color/black"
                     android:layout_gravity="center"
-                    android:layout_marginTop="-80dp"></TextView>
+                    android:layout_marginTop="-110dp"></TextView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="-100dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="-40dp"
+                    android:layout_marginTop="-70dp"
                     android:text="Vehicle: "
                     android:textColor="@color/black"></TextView>
 
@@ -152,7 +152,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="50dp"
-                    android:layout_marginTop="-40dp"
+                    android:layout_marginTop="-70dp"
                     android:fontFamily="@font/patuaoneregular"
                     android:text="BMW 5 Series"
                     android:textColor="@color/black"
@@ -163,7 +163,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="-100dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="-10dp"
+                    android:layout_marginTop="-40dp"
                     android:text="Price: "
                     android:textColor="@color/black"></TextView>
 
@@ -173,7 +173,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="50dp"
-                    android:layout_marginTop="-10dp"
+                    android:layout_marginTop="-40dp"
                     android:fontFamily="@font/patuaoneregular"
                     android:text="6000/day"
                     android:textColor="@color/black"
@@ -187,7 +187,7 @@
                     android:text="Transmission:"
                     android:textColor="@color/black"
                     android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="-10dp"
                     android:layout_marginLeft="-100dp"
                     />
 
@@ -197,7 +197,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="50dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="-10dp"
                     android:fontFamily="@font/patuaoneregular"
                     android:text="Automatic"
                     android:textColor="@color/black"
@@ -209,7 +209,7 @@
                     android:text="Fuel Type:"
                     android:textColor="@color/black"
                     android:layout_gravity="center"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginLeft="-100dp"
                     />
 
@@ -220,7 +220,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="50dp"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="20dp"
                     android:fontFamily="@font/patuaoneregular"
                     android:text="Diesel"
                     android:textColor="@color/black"
@@ -233,7 +233,7 @@
                     android:text="Brand:"
                     android:textColor="@color/black"
                     android:layout_gravity="center"
-                    android:layout_marginTop="80dp"
+                    android:layout_marginTop="50dp"
                     android:layout_marginLeft="-100dp"
                     />
 
@@ -244,11 +244,60 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="50dp"
-                    android:layout_marginTop="80dp"
+                    android:layout_marginTop="50dp"
                     android:fontFamily="@font/patuaoneregular"
                     android:text="BMW"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Renting Days:"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="80dp"
+                    android:layout_marginLeft="-100dp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/rentingDays"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="80dp"
+                    android:fontFamily="@font/patuaoneregular"
+                    android:text="5 Day"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Payment:"
+                    android:textColor="@color/black"
+                    android:textSize="22dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="115dp"
+                    android:layout_marginLeft="-80dp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/totalPayment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="115dp"
+                    android:fontFamily="@font/patuaoneregular"
+                    android:text="12000"
+                    android:textColor="@color/red"
+                    android:textSize="20dp" />
 
 
 
@@ -581,9 +630,9 @@
         android:id="@+id/exchangeContracts"
         android:layout_width="291dp"
         android:layout_height="49dp"
-        android:backgroundTint="@color/grey"
+        android:backgroundTint="@color/black"
         android:text="Exchange contracts now"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="18dp"
         android:textStyle="bold"
         android:layout_gravity="center"

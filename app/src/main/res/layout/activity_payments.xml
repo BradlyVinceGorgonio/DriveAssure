@@ -28,14 +28,6 @@
             android:textStyle="bold"
             android:layout_gravity="center"></TextView>
 
-        <ImageButton
-            android:id="@+id/backBtn"
-            android:layout_width="45dp"
-            android:layout_height="32dp"
-            android:layout_gravity="center"
-            android:background="@drawable/back_26"
-            android:layout_marginLeft="-150dp"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"></ImageButton>
 
     </androidx.cardview.widget.CardView>
 
