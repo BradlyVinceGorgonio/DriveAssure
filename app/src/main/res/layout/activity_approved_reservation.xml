@@ -443,6 +443,7 @@ transaction."></TextView>
             </androidx.cardview.widget.CardView>
 
             <Button
+                android:id="@+id/approvedBtn"
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
