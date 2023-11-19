@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -34,6 +35,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -42,6 +44,7 @@ public class DriverSignature extends AppCompatActivity {
     signatureView driverSignatureView;
     ImageView clearButtonD;
     Button saveButton;
+    ProgressBar ProgressBarDriverSignature;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,7 @@ public class DriverSignature extends AppCompatActivity {
         driverSignatureView = findViewById(R.id.driverSignatureView);
         clearButtonD = findViewById(R.id.clearButtonD);
         saveButton = findViewById(R.id.saveButton);
+        ProgressBarDriverSignature =findViewById(R.id.ProgressBarDriverSignature);
 
         clearButtonD.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +68,9 @@ public class DriverSignature extends AppCompatActivity {
 
 
         saveButton.setOnClickListener(v -> {
+
+            ProgressBarDriverSignature.setVisibility(View.VISIBLE);
+
             // Get the signature bitmaps
             Bitmap driverSign = driverSignatureView.getSignatureBitmap();
 
@@ -108,6 +115,46 @@ public class DriverSignature extends AppCompatActivity {
         } else {
             // Handle the case where documentId is not available
         }
+    }
+
+    private void deleteVehicleApproved(String approvedID) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+        String userId = user.getUid();
+
+        Intent intent = getIntent();
+        String carOwnerId = intent.getStringExtra("historyUid");
+
+        Log.d("YIKERSEWEW", "vehicle approved: " + approvedID);
+
+        // Reference to the "users" collection
+        CollectionReference usersCollection = db.collection("users");
+
+        // Reference to the user's document
+        DocumentReference userDocument = usersCollection.document(userId);
+
+        // Reference to the "vehicle-approved" subcollection inside the user's document
+        CollectionReference vehicleApprovedCollection = userDocument.collection("vehicle-approved");
+
+        // Reference to the specific document in the "vehicle-approved" subcollection
+        DocumentReference vehicleDocument = vehicleApprovedCollection.document(approvedID);
+
+        // Delete the document
+        vehicleDocument.delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Document successfully deleted
+                        // You can add any additional logic here if needed
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Handle errors here
+                    }
+                });
     }
 
 
@@ -248,6 +295,7 @@ public class DriverSignature extends AppCompatActivity {
 
 
                                                 addPaymentMethod(approvedId,PaymentMethod, carOwnerId);
+                                                deleteVehicleApproved(approvedId);
                                             }
                                         }).addOnFailureListener(new OnFailureListener() {
                                             @Override
@@ -356,7 +404,7 @@ public class DriverSignature extends AppCompatActivity {
                 });
     }
     private void performNextSteps() {
-
+        ProgressBarDriverSignature.setVisibility(View.GONE);
         // Image uploaded successfully
         Dialog dialog = new Dialog(DriverSignature.this);
         dialog.setContentView(R.layout.signaturesuccess);
