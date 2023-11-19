@@ -1,23 +1,26 @@
-<LinearLayout
+<!-- res/layout/item_message_received.xml -->
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="start">
+    android:padding="8dp">
 
     <TextView
-        android:id="@+id/message_text_received"
+        android:id="@+id/message_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="8dp"
         android:textColor="@android:color/white"
-        android:background="@color/lighter_gray"
         android:textSize="16sp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/timestamp_received"
-        android:textIsSelectable="true"/>
+        android:layout_marginStart="5dp"
+        android:background="@drawable/bubble_received" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/timestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/message_text"
+        android:padding="8dp"
+        android:textColor="#aaaaaa"
+        android:textSize="12sp"/>
+</RelativeLayout>

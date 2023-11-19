@@ -56,10 +56,21 @@ public class ChatRoomActivity extends AppCompatActivity {
         sendButton = findViewById(R.id.sendButton);
         carOwnerProfile = findViewById(R.id.carOwnerProfile);
 
+        // Initialize messageList with an empty list
         messageList = new ArrayList<>();
-        messageAdapter = new MessageAdapter(this, messageList, getCurrentUserUid());
-        messageListView.setAdapter(messageAdapter);
+
+        // Initialize receivedMessageIds with a set to keep track of received messages
         receivedMessageIds = new HashSet<>();
+
+        // Initialize messageAdapter
+        messageAdapter = new MessageAdapter(this, R.layout.item_message_sent, R.layout.item_message_received, messageList, getCurrentUserUid());
+        messageListView.setAdapter(messageAdapter);
+
+        // Retrieve saved state if available
+        if (savedInstanceState != null) {
+            messageList = savedInstanceState.getParcelableArrayList("messageList");
+            receivedMessageIds = new HashSet<>(savedInstanceState.getStringArrayList("receivedMessageIds"));
+        }
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -105,6 +116,14 @@ public class ChatRoomActivity extends AppCompatActivity {
             Log.e("ChatRoomActivity", "Intent is null");
             finish();
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Save relevant data to outState bundle
+        outState.putParcelableArrayList("messageList", new ArrayList<>(messageList));
+        outState.putStringArrayList("receivedMessageIds", new ArrayList<>(receivedMessageIds));
     }
 
     private String generateChatRoomId(String uid1, String uid2) {
@@ -156,13 +175,6 @@ public class ChatRoomActivity extends AppCompatActivity {
         });
     }
 
-    private void scrollToBottom() {
-        if (messageAdapter != null && messageList.size() > 0) {
-            int lastItemIndex = messageList.size() - 1;
-            messageListView.smoothScrollToPosition(lastItemIndex);
-        }
-    }
-
     private void fetchDataFromFirestore1(String UID) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("users")
@@ -172,50 +184,53 @@ public class ChatRoomActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
-                            String ownerName = document.getString("name");
-                            String ownerNumber = document.getString("contact number");
+                            String OwnerName = document.getString("name");
+                            String OwnerNumber = document.getString("contact number");
+                            String OwnerEmail = document.getString("email");
 
                             carOwnerName = findViewById(R.id.carOwnerName);
                             ownerContactNumber = findViewById(R.id.ownerContactNumber);
 
-                            carOwnerName.setText(ownerName);
-                            ownerContactNumber.setText(ownerNumber);
+                            carOwnerName.setText(OwnerName);
+                            ownerContactNumber.setText(OwnerNumber);
 
+                            // Fetch the profile picture URL from Firebase Storage
                             String imagePath = "users/" + UID + "/" + "face.jpg";
                             StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(imagePath);
 
                             storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
                                 String imageUrl = uri.toString();
-
-                                carOwnerProfile = findViewById(R.id.carOwnerProfile);
                                 Glide.with(this).load(imageUrl).into(carOwnerProfile);
-
+                                // Start receiving messages after fetching user data
+                                messageHandler.post(messageRunnable);
                             }).addOnFailureListener(exception -> {
                                 // Handle the failure scenario
+                                Log.e("ChatRoomActivity", "Error fetching profile picture", exception);
                             });
+
                         } else {
-                            // Handle the case where the document does not exist
+                            Log.e("ChatRoomActivity", "Document does not exist");
                         }
                     } else {
-                        // Handle the failure scenario
+                        Log.e("ChatRoomActivity", "Error fetching user data", task.getException());
                     }
                 });
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        messageHandler.removeCallbacks(messageRunnable);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        messageHandler.postDelayed(messageRunnable, 3000);
-        receiveMessages();
-    }
-
     private String getCurrentUserUid() {
         return currentUserUid;
+    }
+
+    private void scrollToBottom() {
+        messageListView.setSelection(messageAdapter.getCount() - 1);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Remove the message handler callbacks to prevent memory leaks
+        if (messageHandler != null) {
+            messageHandler.removeCallbacks(messageRunnable);
+        }
     }
 }
