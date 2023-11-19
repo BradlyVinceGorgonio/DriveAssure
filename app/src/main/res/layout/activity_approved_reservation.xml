@@ -67,14 +67,14 @@
                     android:textColor="@color/black"></TextView>
 
                 <TextView
-                    android:id="@+id/renterName"
+                    android:id="@+id/renterNamed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="-22dp"
                     android:fontFamily="@font/patuaoneregular"
-                    android:text="Reservation Details"
+                    android:text="Bradly Vince Gorgonio"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
 
@@ -87,14 +87,14 @@
                     android:textColor="@color/black"></TextView>
 
                 <TextView
-                    android:id="@+id/renterContact"
+                    android:id="@+id/CarName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/patuaoneregular"
-                    android:text="Reservation Details"
+                    android:text="Honda Civic"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
             </androidx.cardview.widget.CardView>
@@ -111,7 +111,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Car Details"
+                    android:text="Rent Details"
                     android:textStyle="bold"
                     android:textSize="22dp"
                     android:textColor="@color/black"
@@ -124,18 +124,18 @@
                     android:layout_marginLeft="-100dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="-40dp"
-                    android:text="Model: "
+                    android:text="Start of Rent: "
                     android:textColor="@color/black"></TextView>
 
                 <TextView
-                    android:id="@+id/vehicleModel"
+                    android:id="@+id/dateStart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="50dp"
                     android:layout_marginTop="-40dp"
                     android:fontFamily="@font/patuaoneregular"
-                    android:text="BMW 5 Series"
+                    android:text="10/12/23"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
 
@@ -145,18 +145,18 @@
                     android:layout_marginLeft="-100dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="-10dp"
-                    android:text="Price: "
+                    android:text="End of Rent: "
                     android:textColor="@color/black"></TextView>
 
                 <TextView
-                    android:id="@+id/vehiclePrice"
+                    android:id="@+id/dateEnd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="50dp"
                     android:layout_marginTop="-10dp"
                     android:fontFamily="@font/patuaoneregular"
-                    android:text="6000/day"
+                    android:text="10/15/23"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
 
@@ -165,7 +165,7 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Transmission:"
+                    android:text="Car Price /day:"
                     android:textColor="@color/black"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
@@ -173,21 +173,21 @@
                     />
 
                 <TextView
-                    android:id="@+id/vehicleTransmission"
+                    android:id="@+id/paymentmethod"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="50dp"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/patuaoneregular"
-                    android:text="Automatic"
+                    android:text="On Site Payment"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fuel Type:"
+                    android:text="Total Days:"
                     android:textColor="@color/black"
                     android:layout_gravity="center"
                     android:layout_marginTop="50dp"
@@ -196,14 +196,14 @@
 
 
                 <TextView
-                    android:id="@+id/fuelType"
+                    android:id="@+id/totalDays"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="50dp"
                     android:layout_marginTop="50dp"
                     android:fontFamily="@font/patuaoneregular"
-                    android:text="Diesel"
+                    android:text="5 Days"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
 
@@ -211,7 +211,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Brand:"
+                    android:text="Total Price:"
                     android:textColor="@color/black"
                     android:layout_gravity="center"
                     android:layout_marginTop="80dp"
@@ -220,14 +220,14 @@
 
 
                 <TextView
-                    android:id="@+id/vehicBrand"
+                    android:id="@+id/totalPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="50dp"
                     android:layout_marginTop="80dp"
                     android:fontFamily="@font/patuaoneregular"
-                    android:text="BMW"
+                    android:text="P 13000"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
 

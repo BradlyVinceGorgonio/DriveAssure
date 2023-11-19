@@ -79,6 +79,19 @@ public class ApprovedReservation extends AppCompatActivity {
     TextView onTheDayPayment;
     Button approvedButton;
     TextView textView25;
+    String VehicleTitle;
+    String renterName;
+    String VehiclePrice;
+    String DateStart;
+    String DateEnd;
+    String totalDays;
+    TextView renterNamed;
+    TextView CarName;
+    TextView dateStart;
+    TextView dateEnd;
+    TextView paymentmethod;
+    TextView totalDay;
+    TextView totalPrice;
 
     private static final String CHANNEL_ID = "DownloadChannel";
     @Override
@@ -92,6 +105,13 @@ public class ApprovedReservation extends AppCompatActivity {
         requestID = intent.getStringExtra("requestID");
         Log.d("ANOAPPROVEDID", "onCreate: " + requestID + " \n " + carUID + " \n " + renterUID);
 
+        renterNamed =findViewById(R.id.renterNamed);
+        CarName = findViewById(R.id.CarName);
+        dateStart = findViewById(R.id.dateStart);
+        dateEnd =findViewById(R.id.dateEnd);
+        paymentmethod =findViewById(R.id.paymentmethod);
+        totalDay = findViewById(R.id.totalDays);
+        totalPrice = findViewById(R.id.totalPrice);
 
 
         ValidID = findViewById(R.id.ValidID);
@@ -100,6 +120,9 @@ public class ApprovedReservation extends AppCompatActivity {
         onTheDayPayment = findViewById(R.id.onTheDayPayment);
         approvedButton = findViewById(R.id.approvedBtn);
         textView25 = findViewById(R.id.textView25);
+
+
+
 
         createNotificationChannel();
         textView25.setOnClickListener(new View.OnClickListener() {
@@ -116,6 +139,7 @@ public class ApprovedReservation extends AppCompatActivity {
         approvedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                
                 Intent intent = new Intent(ApprovedReservation.this, ProcessingReservation.class);
                 startActivity(intent);
             }
@@ -171,9 +195,17 @@ public class ApprovedReservation extends AppCompatActivity {
                             ApprovedId = document.getString("Approved id");
                             isGcash = document.getString("isGcash");
                             renterUid = document.getString("renter uid");
+                            carUID = document.getString("Car To Request");
+
+                            DateStart = document.getString("Date Start");
+                            DateEnd = document.getString("Date End");
+                            totalDays= document.getString("Total Time");
+
+
 
                             if(isGcash.equals("true"))
                             {
+
                                 StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("users-valid-id/" + renterUID + "/gcash.jpg");
 
                                 final String[] tempProfilePictureUrl = {"front.jpg"};  // Declare a final temporary variable
@@ -199,6 +231,68 @@ public class ApprovedReservation extends AppCompatActivity {
                                 onTheDayPayment.setVisibility(View.VISIBLE);
 
                             }
+
+                            FirebaseFirestore dbs = FirebaseFirestore.getInstance();
+                            DocumentReference rentRequestDocuments = dbs.collection("car-posts").document(carUID);
+
+                            rentRequestDocuments.get()
+                                    .addOnCompleteListener(tasks -> {
+                                        if (tasks.isSuccessful()) {
+                                            DocumentSnapshot documents = tasks.getResult();
+                                            if (documents.exists()) {
+                                                // DocumentSnapshot data is available here
+                                                String VehicleTitle = documents.getString("Vehicle Title");
+                                                String vehiclePrice = documents.getString("Vehicle Price");
+
+                                                paymentmethod.setText("₱ "+vehiclePrice);
+
+                                                CarName.setText(VehicleTitle);
+
+                                                int daysInt = Integer.parseInt(totalDays);
+                                                int priceInt = Integer.parseInt(vehiclePrice);
+                                                int totalPriceInt = daysInt * priceInt;
+                                                String displayme = String.valueOf(totalPriceInt);
+                                                totalPrice.setText("₱ " + displayme );
+
+
+                                                // Now you can use the retrieved data as needed
+                                                // For example, update UI elements with the data
+                                            } else {
+                                                // The document does not exist
+                                                // Handle accordingly
+                                            }
+                                        } else {
+                                            // An error occurred while fetching the document
+                                            // Handle accordingly
+                                        }
+                                    });
+
+                            FirebaseFirestore dbss = FirebaseFirestore.getInstance();
+                            DocumentReference rentRequestDocumentss = dbss.collection("users").document(renterUid);
+                            rentRequestDocumentss.get()
+                                    .addOnCompleteListener(tasks -> {
+                                        if (tasks.isSuccessful()) {
+                                            DocumentSnapshot documents = tasks.getResult();
+                                            if (documents.exists()) {
+                                                renterName = documents.getString("name");
+                                                renterNamed.setText(renterName);
+                                            }
+                                        }
+                                    });
+
+
+
+
+
+                            dateStart.setText(DateStart);
+                            dateEnd.setText(DateEnd);
+                            totalDay.setText(totalDays);
+
+
+
+
+
+
                         }
                     } else {
                         // Handle the failure scenario
