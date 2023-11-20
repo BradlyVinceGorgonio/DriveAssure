@@ -68,8 +68,9 @@ public class DriverSignature extends AppCompatActivity {
 
 
         saveButton.setOnClickListener(v -> {
-
+            saveButton.setEnabled(false);
             ProgressBarDriverSignature.setVisibility(View.VISIBLE);
+            saveButton.setBackgroundColor(getResources().getColor(R.color.disabledGrey));
 
             // Get the signature bitmaps
             Bitmap driverSign = driverSignatureView.getSignatureBitmap();

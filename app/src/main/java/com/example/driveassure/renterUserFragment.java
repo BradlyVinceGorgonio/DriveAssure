@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,6 +22,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -47,6 +49,8 @@ public class renterUserFragment extends Fragment implements OwnerListingCarAdapt
     private FirebaseAuth auth;
     String ApprovedId;
     String carOwnerId;
+    RelativeLayout noReady;
+    RelativeLayout Ready;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,13 +80,51 @@ public class renterUserFragment extends Fragment implements OwnerListingCarAdapt
         ownerListingCarAdapter1 = new OwnerListingCarAdapter(getContext(), HistoryList1, this);
         approvedRenter.setAdapter(ownerListingCarAdapter1);
 
+        noReady = view.findViewById(R.id.noReady);
+        Ready = view.findViewById(R.id.Ready);
 
+        checkReady();
 
-        fetchVehicleLikes();
-        fetchVehicleLikes1();
 
         return view;
     }
+    public void checkReady()
+    {
+        // Get the current user
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser users = auth.getCurrentUser();
+
+        // Get the Firestore instance
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // Check if the "users" collection, current auth uid document, "vehicle-ready" subcollection contains any document
+        if (users != null) {
+            String userId = users.getUid();
+            CollectionReference vehicleReadyCollection = db.collection("users").document(userId).collection("vehicle-ready");
+
+            vehicleReadyCollection.get().addOnCompleteListener(tasks -> {
+                if (tasks.isSuccessful()) {
+                    QuerySnapshot querySnapshot = tasks.getResult();
+                    if (querySnapshot != null && !querySnapshot.isEmpty()) {
+                        // Subcollection contains at least one document, set your boolean variable to true
+                        Ready.setVisibility(View.VISIBLE);
+
+                    }
+                    else {
+                        noReady.setVisibility(View.VISIBLE);
+                        fetchVehicleLikes();
+                        fetchVehicleLikes1();
+                    }
+                } else {
+
+                }
+            });
+        }
+
+
+    }
+
+
     @Override
     public void onItemClick(OwnerListingsClass history) {
         String historyUid = history.getUid(); // Assuming HomeListingClass has a getUid() method

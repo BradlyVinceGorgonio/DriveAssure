@@ -19,6 +19,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.Date;
+
 public class ProcessingReservation extends AppCompatActivity {
 
     String renterUID;
@@ -32,9 +34,16 @@ public class ProcessingReservation extends AppCompatActivity {
     String renterUid;
     String DateStart;
     String DateEnd;
+    String timeStart;
+    String timeEnd;
     String totalDays;
     String vehiclePrice;
     String VehicleTitle;
+    String transmission;
+    String fuel;
+    String brand;
+    String pickupLocation;
+    String ReturnLocation;
     ImageView renterProfile;
     TextView renterNames;
     TextView renterContact;
@@ -53,6 +62,8 @@ public class ProcessingReservation extends AppCompatActivity {
     TextView returnDate;
     TextView returnTime;
     TextView returnLocation;
+    TextView rentingDays;
+    TextView totalPayment;
     Button exchangeContracts;
     Button startTime;
 
@@ -90,6 +101,10 @@ public class ProcessingReservation extends AppCompatActivity {
         returnLocation = findViewById(R.id.returnLocation);
         exchangeContracts = findViewById(R.id.exchangeContracts);
         startTime = findViewById(R.id.startTime);
+        carOwnerrContact =findViewById(R.id.carOwnerrContact);
+        rentingDays = findViewById(R.id.rentingDays);
+        totalPayment = findViewById(R.id.totalPayment);
+
 
         // Image uploaded successfully
         Dialog dialog = new Dialog(ProcessingReservation.this);
@@ -135,6 +150,19 @@ public class ProcessingReservation extends AppCompatActivity {
                             DateStart = document.getString("Date Start");
                             DateEnd = document.getString("Date End");
                             totalDays= document.getString("Total Time");
+                            timeStart = document.getString("Time Start");
+                            timeEnd = document.getString("Time End");
+                            pickupLocation = document.getString("Pickup Location");
+                            ReturnLocation = document.getString("Return Location");
+
+
+                            pickUpDate.setText(DateStart);
+                            PickupTime.setText(timeStart);
+                            PickupLocation.setText(pickupLocation);
+                            returnDate.setText(DateEnd);
+                            returnTime.setText(timeEnd);
+                            returnLocation.setText(ReturnLocation);
+                            rentingDays.setText(totalDays);
 
 
 
@@ -169,13 +197,24 @@ public class ProcessingReservation extends AppCompatActivity {
                                                 // DocumentSnapshot data is available here
                                                 VehicleTitle = documents.getString("Vehicle Title");
                                                 vehiclePrice = documents.getString("Vehicle Price");
+                                                transmission = documents.getString("Vehicle Transmission");
+                                                fuel = documents.getString("Vehicle Fuel Type");
+                                                brand = documents.getString("Vehicle Brand");
+
+                                                vehicleTitle.setText(VehicleTitle);
+                                                vehiclePrices.setText(vehiclePrice);
+                                                vehicleTransmission.setText(transmission);
+                                                fuelType.setText(fuel);
+                                                vehicBrand.setText(brand);
+
+
 
 
                                                 int daysInt = Integer.parseInt(totalDays);
                                                 int priceInt = Integer.parseInt(vehiclePrice);
                                                 int totalPriceInt = daysInt * priceInt;
                                                 String displayme = String.valueOf(totalPriceInt);
-                                                //totalPrice.setText("₱ " + displayme );
+                                                totalPayment.setText("₱ " + displayme);
 
 
                                                 // Now you can use the retrieved data as needed
@@ -200,6 +239,11 @@ public class ProcessingReservation extends AppCompatActivity {
                                                 renterName = documents.getString("name");
                                                 contactNumber = documents.getString("contact number");
 
+                                                renterNames.setText(renterName);
+                                                renterContact.setText(contactNumber);
+                                                carOwnerName.setText("Michael Afton");
+                                                carOwnerrContact.setText(contactNumber);
+                                                returningRenterName.setText(renterName);
 
                                             }
                                         }
