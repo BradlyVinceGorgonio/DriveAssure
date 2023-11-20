@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -68,6 +70,9 @@ public class ProcessingReservation extends AppCompatActivity {
     TextView totalPayment;
     Button exchangeContracts;
     Button startTime;
+    String result;
+
+    private CountDownTimer countDownTimer;
 
 
     @Override
@@ -114,6 +119,7 @@ public class ProcessingReservation extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startTime.setBackgroundColor(getResources().getColor(R.color.blue));
+                startTime.setEnabled(true);
             }
         });
         startTime.setBackgroundColor(getResources().getColor(R.color.disabledGrey));
@@ -122,12 +128,72 @@ public class ProcessingReservation extends AppCompatActivity {
         startTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String totalTime = calculateTotalTime(DateStart, timeStart, DateEnd, timeEnd);
+                Log.d("POWERBIGLA", "total T " + totalTime);
+                startCountdown(totalTime);
+                startTime.setBackgroundColor(getResources().getColor(R.color.disabledGrey));
+                startTime.setEnabled(false);
 
             }
         });
         GetItClean();
     }
+    private void startCountdown(String totalTime) {
+        long millisInFuture = getTimeDifference(totalTime);
 
+        countDownTimer = new CountDownTimer(millisInFuture, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                updateTimerText(millisUntilFinished);
+            }
+
+            @Override
+            public void onFinish() {
+                handleTimerDone();
+            }
+        };
+
+        countDownTimer.start();
+    }
+
+    private void updateTimerText(long millisUntilFinished) {
+        long days = millisUntilFinished / (24 * 60 * 60 * 1000);
+        long hours = (millisUntilFinished % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000);
+        long minutes = (millisUntilFinished % (60 * 60 * 1000)) / (60 * 1000);
+        long seconds = (millisUntilFinished % (60 * 1000)) / 1000;
+
+        String timeLeft = String.format("%02d:%02d:%02d:%02d", days, hours, minutes, seconds);
+        startTime.setText("Time Left: " + timeLeft);
+    }
+
+    private long getTimeDifference(String totalTime) {
+        try {
+            String[] parts = totalTime.split(",");
+            long days = 0;
+            long minutes = 0;
+
+            for (String part : parts) {
+                String trimmedPart = part.trim();
+                if (trimmedPart.endsWith("days")) {
+                    days = Long.parseLong(trimmedPart.split("\\s+")[0]);
+                } else if (trimmedPart.endsWith("minutes")) {
+                    minutes = Long.parseLong(trimmedPart.split("\\s+")[0]);
+                }
+            }
+
+            return days * (24 * 60 * 60 * 1000) + minutes * (60 * 1000);
+
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+
+    private void handleTimerDone() {
+        startTime.setText("Time's up!");
+        // Perform actions when the timer is done
+    }
 
     public void GetItClean()
     {
@@ -167,17 +233,19 @@ public class ProcessingReservation extends AppCompatActivity {
                             returnLocation.setText(ReturnLocation);
                             rentingDays.setText(totalDays);
 
+                            result = calculateTotalTime(DateStart, timeStart, DateEnd, timeEnd);
+
                             int daysConverted = Integer.parseInt(totalDays);
                             String remaining = calculateTimeLeft(timeStart,timeEnd);
 
                             if(daysConverted <= 1)
                             {
-                                startTime.setText("Start " + remaining);
+                                startTime.setText("Start " + result);
 
                             }
                             else
                             {
-                                startTime.setText("Start " + totalDays + " Days");
+                                startTime.setText("Start " + result);
 
                             }
 
@@ -290,6 +358,33 @@ public class ProcessingReservation extends AppCompatActivity {
                     }
                 });
     }
+    private static String calculateTotalTime(String dateStart, String timeStart, String dateEnd, String timeEnd) {
+        try {
+            SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+
+            // Combine date and time strings into Date objects
+            Date startDateTime = dateTimeFormat.parse(dateStart + " " + timeStart);
+            Date endDateTime = dateTimeFormat.parse(dateEnd + " " + timeEnd);
+
+            // Calculate the time difference in minutes
+            long timeDifference = endDateTime.getTime() - startDateTime.getTime();
+            long minutesDifference = timeDifference / (60 * 1000);
+
+            if (minutesDifference < 1440) { // If less than a day
+                return minutesDifference + " minutes";
+            } else {
+                long days = minutesDifference / 1440;
+                long remainingMinutes = minutesDifference % 1440;
+                return days + " days, " + remainingMinutes + " minutes";
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+            // Handle the exception or return an appropriate value
+            return "Error"; // or throw an exception
+        }
+    }
+
     private static String calculateTimeLeft(String startTime, String endTime) {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
