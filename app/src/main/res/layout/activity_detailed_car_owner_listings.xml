@@ -408,6 +408,23 @@
                 android:textSize="20dp"
                 android:textStyle="bold"></Button>
 
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/baseline_delete_forever_24"
+                android:layout_marginLeft="155dp"
+                android:layout_marginTop="-80dp"
+                android:layout_gravity="center"></ImageButton>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete\nListings"
+                android:layout_marginLeft="155dp"
+                android:layout_marginTop="-8dp"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:textColor="@color/red"></TextView>
+
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

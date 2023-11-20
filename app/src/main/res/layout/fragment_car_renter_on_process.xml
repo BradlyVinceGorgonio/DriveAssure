@@ -494,7 +494,7 @@
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Note: it is necessary to bring your driver's License upon Meetup"
+    android:text="Note: it is necessary to bring your driver's License and valid ID  upon Meetup"
     android:textColor="@color/black"
     android:textSize="18dp"
     android:textStyle="bold"
@@ -543,8 +543,7 @@
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:textColor="@color/white"
-                android:backgroundTint="@color/black"
-            >
+                android:backgroundTint="@color/black">
             </Button>
 
 
