@@ -19,6 +19,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ProcessingReservation extends AppCompatActivity {
@@ -106,20 +108,21 @@ public class ProcessingReservation extends AppCompatActivity {
         totalPayment = findViewById(R.id.totalPayment);
 
 
-        // Image uploaded successfully
-        Dialog dialog = new Dialog(ProcessingReservation.this);
-        dialog.setContentView(R.layout.gobackhome);
-        dialog.show();
-        // Find the 'YES' button in the dialog layout
-        Button yesButton = dialog.findViewById(R.id.OKayButton);
-        TextView messageText  = dialog.findViewById(R.id.messageText);
-        messageText.setText("Not yet time to start the timer! Rental day begins on [Event Date]. Please wait for the event day to commence the renting period. Thank you!");
-        yesButton.setOnClickListener(new View.OnClickListener() {
+
+
+        exchangeContracts.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                dialog.dismiss(); // Close the dialog if needed
-                Intent newActivityIntent = new Intent(ProcessingReservation.this, userHome.class);
-                startActivity(newActivityIntent);
+            public void onClick(View view) {
+                startTime.setBackgroundColor(getResources().getColor(R.color.blue));
+            }
+        });
+        startTime.setBackgroundColor(getResources().getColor(R.color.disabledGrey));
+        startTime.setEnabled(false);
+
+        startTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
         GetItClean();
@@ -164,6 +167,37 @@ public class ProcessingReservation extends AppCompatActivity {
                             returnLocation.setText(ReturnLocation);
                             rentingDays.setText(totalDays);
 
+                            int daysConverted = Integer.parseInt(totalDays);
+                            String remaining = calculateTimeLeft(timeStart,timeEnd);
+
+                            if(daysConverted <= 1)
+                            {
+                                startTime.setText("Start " + remaining);
+
+                            }
+                            else
+                            {
+                                startTime.setText("Start " + totalDays + " Days");
+
+                            }
+
+
+                            // Image uploaded successfully
+                            Dialog dialog = new Dialog(ProcessingReservation.this);
+                            dialog.setContentView(R.layout.gobackhome);
+                            dialog.show();
+                            // Find the 'YES' button in the dialog layout
+                            Button yesButton = dialog.findViewById(R.id.OKayButton);
+                            TextView messageText  = dialog.findViewById(R.id.messageText);
+                            messageText.setText("Not yet time to start the timer! Rental day begins on " +DateStart + " at " + timeStart + ". Please wait for the event day to commence the renting period. Thank you!");
+                            yesButton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialog.dismiss(); // Close the dialog if needed
+                                    Intent newActivityIntent = new Intent(ProcessingReservation.this, userHome.class);
+                                    startActivity(newActivityIntent);
+                                }
+                            });
 
 
 
@@ -255,5 +289,35 @@ public class ProcessingReservation extends AppCompatActivity {
                         // For example, log an error message
                     }
                 });
+    }
+    private static String calculateTimeLeft(String startTime, String endTime) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+
+            // Parse the time strings into Date objects
+            Date startDate = sdf.parse(startTime);
+            Date endDate = sdf.parse(endTime);
+
+            // Calculate the time difference in seconds
+            long timeDifference = (endDate.getTime() - startDate.getTime()) / 1000;
+
+            if (timeDifference >= 60 * 60) {
+                // If the time difference is 1 hour or more, return hours
+                long hoursLeft = timeDifference / (60 * 60);
+                return hoursLeft + " hours";
+            } else if (timeDifference >= 60) {
+                // If the time difference is 1 minute or more, return minutes
+                long minutesLeft = timeDifference / 60;
+                return minutesLeft + " minutes";
+            } else {
+                // If the time difference is less than 1 minute, return seconds
+                return timeDifference + " seconds";
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+            // Handle the exception or return an appropriate value
+            return "Error"; // or throw an exception
+        }
     }
 }
