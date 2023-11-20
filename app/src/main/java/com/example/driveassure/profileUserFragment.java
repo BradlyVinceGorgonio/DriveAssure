@@ -82,6 +82,15 @@ public class profileUserFragment extends Fragment {
             }
         });
 
+        Button contracts = view.findViewById(R.id.contractBtn);
+        contracts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Contracts.class);
+                startActivity(intent);
+            }
+        });
+
         Button VehicleDocuments = view.findViewById(R.id.vehicleDocumentBtn);
 
         VehicleDocuments.setOnClickListener(new View.OnClickListener() {

@@ -100,7 +100,8 @@
                     android:layout_marginTop="-10dp"
                     android:clickable="false"
                     android:longClickable="false"
-                    android:background="@drawable/heart"></ImageView>
+                    android:background="@drawable/bookmark"
+                    ></ImageView>
 
                 <TextView
                     android:id="@+id/textView11"
@@ -109,7 +110,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="0dp"
                     android:layout_marginTop="20dp"
-                    android:text="Favorites"
+                    android:text="Bookmark"
                     android:textColor="@color/black"
                     android:textSize="14dp"
                     android:clickable="false"

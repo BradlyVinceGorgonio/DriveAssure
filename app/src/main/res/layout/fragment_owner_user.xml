@@ -52,7 +52,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView9"
                 android:layout_width="350dp"
-                android:layout_height="380dp"
+                android:layout_height="390dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 app:cardCornerRadius="5dp"
@@ -113,7 +113,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/addcarListingsRecyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="265dp"
+                    android:layout_height="275dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="35dp"
                     android:layout_marginRight="5dp" />
@@ -123,7 +123,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="150dp"
+                    android:layout_marginTop="160dp"
                     android:backgroundTint="@color/blue"
                     android:drawableLeft="@drawable/plussign"
                     android:text="Create new listings"
