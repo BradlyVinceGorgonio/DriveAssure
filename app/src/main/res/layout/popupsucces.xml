@@ -1,25 +1,65 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="350dp"
     android:layout_height="350dp"
-    android:background="@drawable/cercle"
+    android:background="@color/backgroundlightblue"
     android:layout_gravity="center">
+
+
+    <TextView
+        android:id="@+id/editText"
+        android:layout_width="253dp"
+        android:layout_height="42dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/imageView"
+        android:gravity="center"
+        android:hint="Enter text"
+        android:text="SUCCESS"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.824"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.152" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/carfast"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.187"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.123" />
 
     <TextView
         android:id="@+id/are_you_suur"
-        android:layout_width="0dp"
-        android:layout_height="70dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="140dp"
         android:gravity="center_horizontal|top"
         android:lineHeight="30sp"
-        android:textSize="30dp"
-        android:text="Reservation Settled  \n Successfully"
-        app:layout_constraintTop_toTopOf="parent"
+        android:text="Great job! You made a fantastic vehicle listing, and now it's ready to grab attention\n on the homepage."
+        android:textColor="@color/black"
+        android:textSize="18dp"
         app:layout_constraintBottom_toTopOf="@+id/guideeline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.192" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideeline"
