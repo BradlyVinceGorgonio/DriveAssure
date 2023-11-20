@@ -6,54 +6,69 @@
     tools:context=".ChatRoomActivity">
 
     <RelativeLayout
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@color/my_primary"
-        android:padding="10dp"
-        android:id="@+id/toolbar">
+        android:padding="10dp">
 
         <ImageButton
             android:id="@+id/backButton"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:src="@drawable/icon_back"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_alignParentStart="true" />
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/icon_back" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="-1dp"
+            android:layout_marginTop="2dp"
+            android:layout_toEndOf="@id/carOwnerProfile"
+            android:orientation="vertical">
+
+        </LinearLayout>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/carOwnerProfile"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_centerInParent="true"
-            android:layout_marginEnd="10dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="321dp"
+            android:layout_marginTop="-2dp"
             android:background="@drawable/user_circle"
             android:contentDescription="owner profile"></de.hdodenhof.circleimageview.CircleImageView>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/carOwnerName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/carOwnerProfile"
-            android:layout_centerVertical="true"
-            android:orientation="vertical">
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="15dp"
+            android:text="User Name"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/carOwnerName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="User Name"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/ownerContactNumber"
+            android:layout_width="114dp"
+            android:layout_height="33dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="-16dp"
+            android:text="Contact Number"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/ownerContactNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Contact Number"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-        </LinearLayout>
     </RelativeLayout>
 
     <!-- Your existing message input layout... -->

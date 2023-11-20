@@ -2,7 +2,7 @@ package com.example.driveassure;
 
 public class ChatItem {
     private String message;
-    private String sender;
+    private String senderUid;  // Updated variable name
     private String currentUserUid;
     private String postOwnerUid;
 
@@ -10,15 +10,19 @@ public class ChatItem {
         this.currentUserUid = currentUserUid;
         this.postOwnerUid = postOwnerUid;
         this.message = message;
-        this.sender = currentUserUid; // Set sender to the current user for simplicity
+        this.senderUid = currentUserUid; // Set sender UID to the current user for simplicity
     }
 
     public String getMessage() {
         return message;
     }
 
-    public String getSender() {
-        return sender;
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getSenderUid() {  // Updated method name
+        return senderUid;
     }
 
     public String getCurrentUserUid() {
@@ -31,11 +35,12 @@ public class ChatItem {
 
     public boolean isReceiver() {
         // Replace this with the logic to determine if the current user is the receiver
-        return false;
+        return currentUserUid.equals(postOwnerUid);
     }
 
     public boolean isUsername() {
         // Replace this with the logic to determine if it's a username
-        return false;
+        // For example, you can check if the message starts with "@username"
+        return message.startsWith("@username");
     }
 }

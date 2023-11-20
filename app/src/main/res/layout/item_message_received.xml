@@ -3,24 +3,26 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:layoutDirection="rtl"
+    android:layout_alignParentEnd="true"> <!-- Align the entire RelativeLayout to the right -->
 
-    <TextView
-        android:id="@+id/message_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"
-        android:layout_marginStart="5dp"
-        android:background="@drawable/bubble_received" />
+<TextView
+android:id="@+id/message_text"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:padding="8dp"
+android:textColor="@android:color/white"
+android:textSize="16sp"
+android:layout_marginStart="5dp"
+android:background="@drawable/bubble_sent" />
 
-    <TextView
-        android:id="@+id/timestamp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/message_text"
-        android:padding="8dp"
-        android:textColor="#aaaaaa"
-        android:textSize="12sp"/>
-</RelativeLayout>
+<TextView
+android:id="@+id/timestamp"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_below="@id/message_text"
+android:padding="8dp"
+android:textColor="#aaaaaa"
+android:textSize="12sp"/>
+    </RelativeLayout>
