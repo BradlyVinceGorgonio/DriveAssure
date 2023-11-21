@@ -8,6 +8,7 @@
     android:background="@android:color/white"
     tools:context=".ChatListActivity">
 
+    <!-- Toolbar -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -15,6 +16,7 @@
         android:padding="10dp"
         android:id="@+id/toolbar">
 
+        <!-- Back Button -->
         <ImageButton
             android:layout_width="32dp"
             android:layout_height="32dp"
@@ -24,6 +26,7 @@
             android:layout_centerVertical="true"
             android:id="@+id/backButton" />
 
+        <!-- User Image -->
         <ImageView
             android:id="@+id/userImage"
             android:layout_width="100dp"
@@ -35,10 +38,22 @@
 
     </RelativeLayout>
 
+    <!-- RecyclerView for Chat List -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar"/>
+
+    <TextView
+        android:id="@+id/emptyView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="No messages yet"
+        android:textSize="35sp"
+        android:textColor="@android:color/darker_gray"
+        android:visibility="gone" />
 
 </RelativeLayout>

@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +21,7 @@ public class ChatListActivity extends AppCompatActivity {
     private RecyclerView chatRecyclerView;
     private ChatListAdapter chatListAdapter;
     private List<ChatItem> chatItemList;
+    private TextView emptyView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,7 @@ public class ChatListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat_list);
 
         chatRecyclerView = findViewById(R.id.chatRecyclerView);
+        emptyView = findViewById(R.id.emptyView); // Add this line to initialize emptyView
         chatItemList = new ArrayList<>();
         chatListAdapter = new ChatListAdapter(chatItemList);
 
@@ -65,6 +69,9 @@ public class ChatListActivity extends AppCompatActivity {
 
         IntentFilter intentFilter = new IntentFilter("new-message");
         registerReceiver(receiver, intentFilter);
+
+        // Check if the chat list is empty and update visibility of emptyView
+        updateEmptyViewVisibility();
     }
 
     private void updateChatList(String currentUserUid, String postOwnerUid, String lastMessage) {
@@ -73,6 +80,7 @@ public class ChatListActivity extends AppCompatActivity {
                 // Update the last message for the existing chat item
                 chatItem.setMessage(lastMessage);
                 chatListAdapter.notifyDataSetChanged();
+                updateEmptyViewVisibility(); // Update visibility after modifying the chat list
                 return;
             }
         }
@@ -81,5 +89,15 @@ public class ChatListActivity extends AppCompatActivity {
         ChatItem chatItem = new ChatItem(currentUserUid, postOwnerUid, lastMessage);
         chatItemList.add(chatItem);
         chatListAdapter.notifyDataSetChanged();
+        updateEmptyViewVisibility(); // Update visibility after modifying the chat list
+    }
+
+    // Method to check if the chat list is empty and update visibility of emptyView
+    private void updateEmptyViewVisibility() {
+        if (chatItemList.isEmpty()) {
+            emptyView.setVisibility(View.VISIBLE);
+        } else {
+            emptyView.setVisibility(View.GONE);
+        }
     }
 }
