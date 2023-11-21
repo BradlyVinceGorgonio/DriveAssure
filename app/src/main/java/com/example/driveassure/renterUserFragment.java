@@ -133,7 +133,12 @@ public class renterUserFragment extends Fragment implements OwnerListingCarAdapt
         //totalPayment = view.findViewById(R.id.totalPayment);
         timeRemaining = view.findViewById(R.id.timeRemaining);
 
-        timeRemaining.setEnabled(false);
+        timeRemaining.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                
+            }
+        });
 
 
 
