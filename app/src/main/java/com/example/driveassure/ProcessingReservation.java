@@ -132,16 +132,34 @@ public class ProcessingReservation extends AppCompatActivity {
 
                 if (buttonText.equals("Time's up!")) {
                     Dialog dialog = new Dialog(ProcessingReservation.this);
-                    dialog.setContentView(R.layout.onprocessdone);
+                    dialog.setContentView(R.layout.confirmcar);
                     dialog.show();
                     // Find the 'YES' button in the dialog layout
                     Button yesButton = dialog.findViewById(R.id.OKayButton);
+                    Button noButton = dialog.findViewById(R.id.NotYetButton);
+                    noButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    });
                     yesButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             dialog.dismiss(); // Close the dialog if needed
-                            Intent newActivityIntent = new Intent(ProcessingReservation.this, userHome.class);
-                            startActivity(newActivityIntent);
+                            Dialog dialogs = new Dialog(ProcessingReservation.this);
+                            dialogs.setContentView(R.layout.onprocessdone);
+                            dialogs.show();
+                            // Find the 'YES' button in the dialog layout
+                            Button yesButton = dialogs.findViewById(R.id.OKayButton);
+                            yesButton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialogs.dismiss(); // Close the dialog if needed
+                                    Intent newActivityIntent = new Intent(ProcessingReservation.this, userHome.class);
+                                    startActivity(newActivityIntent);
+                                }
+                            });
                         }
                     });
 
