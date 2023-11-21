@@ -128,11 +128,32 @@ public class ProcessingReservation extends AppCompatActivity {
         startTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String totalTime = calculateTotalTime(DateStart, timeStart, DateEnd, timeEnd);
-                Log.d("POWERBIGLA", "total T " + totalTime);
-                startCountdown(totalTime);
-                startTime.setBackgroundColor(getResources().getColor(R.color.disabledGrey));
-                startTime.setEnabled(false);
+                String buttonText = ((Button) view).getText().toString();
+
+                if (buttonText.equals("Time's up!")) {
+                    Dialog dialog = new Dialog(ProcessingReservation.this);
+                    dialog.setContentView(R.layout.onprocessdone);
+                    dialog.show();
+                    // Find the 'YES' button in the dialog layout
+                    Button yesButton = dialog.findViewById(R.id.OKayButton);
+                    yesButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss(); // Close the dialog if needed
+                            Intent newActivityIntent = new Intent(ProcessingReservation.this, userHome.class);
+                            startActivity(newActivityIntent);
+                        }
+                    });
+
+                } else {
+                    String totalTime = calculateTotalTime(DateStart, timeStart, DateEnd, timeEnd);
+                    Log.d("POWERBIGLA", "total T " + totalTime);
+                    startCountdown(totalTime);
+                    startTime.setBackgroundColor(getResources().getColor(R.color.disabledGrey));
+                    startTime.setEnabled(false);
+
+                }
+
 
             }
         });
@@ -193,6 +214,7 @@ public class ProcessingReservation extends AppCompatActivity {
     private void handleTimerDone() {
         startTime.setText("Time's up!");
         // Perform actions when the timer is done
+        startTime.setEnabled(true);
     }
 
     public void GetItClean()

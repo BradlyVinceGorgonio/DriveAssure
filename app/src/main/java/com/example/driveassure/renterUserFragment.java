@@ -136,7 +136,7 @@ public class renterUserFragment extends Fragment implements OwnerListingCarAdapt
         timeRemaining.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+
             }
         });
 
