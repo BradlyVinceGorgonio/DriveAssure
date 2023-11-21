@@ -231,6 +231,20 @@
             android:textSize="15dp"
             tools:ignore="TextSizeCheck,TouchTargetSizeCheck"></Button>
 
+        <Button
+            android:layout_width="370dp"
+            android:layout_height="43dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/white"
+            android:drawableLeft="@drawable/report_5"
+            android:drawableRight="@drawable/forwardarrow"
+            android:gravity="start|center_vertical"
+            android:text="Report Issue"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            tools:ignore="TextSizeCheck,TouchTargetSizeCheck"></Button>
+
 
         <TextView
             android:id="@+id/textView9"
@@ -238,7 +252,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="-100dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="55dp"
             android:text="Contract Details"
             android:textColor="@color/black"
             android:textSize="16dp"
@@ -249,7 +263,7 @@
             android:layout_width="370dp"
             android:layout_height="43dp"
             android:layout_gravity="center"
-            android:layout_marginTop="110dp"
+            android:layout_marginTop="145dp"
             android:backgroundTint="@color/white"
             android:drawableLeft="@drawable/agreement_1"
             android:drawableRight="@drawable/forwardarrow"
@@ -265,7 +279,7 @@
             android:layout_width="370dp"
             android:layout_height="43dp"
             android:layout_gravity="center"
-            android:layout_marginTop="160dp"
+            android:layout_marginTop="195dp"
             android:backgroundTint="@color/white"
             android:drawableLeft="@drawable/vehicledocuments"
             android:drawableRight="@drawable/forwardarrow"
@@ -281,7 +295,7 @@
             android:layout_width="370dp"
             android:layout_height="43dp"
             android:layout_gravity="center"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="95dp"
             android:backgroundTint="@color/white"
             android:drawableLeft="@drawable/contract"
             android:drawableRight="@drawable/forwardarrow"
