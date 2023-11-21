@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    android:orientation="vertical"
+    android:background="#92D7FF">
+
+    <!-- Add your custom content here -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/editText"
+            android:layout_width="217dp"
+            android:layout_height="72dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginRight="-26dp"
+            android:layout_toLeftOf="@+id/imageView"
+            android:gravity="center"
+            android:hint="Enter text"
+            android:text="Return Vehicle"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="19dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/carfast" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="Have you returned the vehicle to the owner? If so, could you please confirm whether you have received the surrendered ID submitted to the car owner back to you?"
+            android:textColor="@color/black"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/OKayButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="26dp"
+            android:backgroundTint="@color/lightgreen"
+            android:text="Confirm"
+            android:layout_marginStart="160dp"
+            android:textColor="@color/black"
+            android:textSize="20dp">
+
+        </Button>
+
+        <Button
+            android:id="@+id/NotYetButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="26dp"
+            android:backgroundTint="@color/white"
+            android:text="Not yet"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/black"
+            android:textSize="20dp">
+
+        </Button>
+    </RelativeLayout>
+
+</LinearLayout>
