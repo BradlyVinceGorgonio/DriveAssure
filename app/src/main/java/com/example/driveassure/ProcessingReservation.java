@@ -140,7 +140,7 @@ public class ProcessingReservation extends AppCompatActivity {
                     noButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-
+                            dialog.dismiss();
                         }
                     });
                     yesButton.setOnClickListener(new View.OnClickListener() {
@@ -155,6 +155,7 @@ public class ProcessingReservation extends AppCompatActivity {
                             yesButton.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
+                                    deleteDocument(requestID);
                                     dialogs.dismiss(); // Close the dialog if needed
                                     Intent newActivityIntent = new Intent(ProcessingReservation.this, userHome.class);
                                     startActivity(newActivityIntent);
@@ -232,7 +233,42 @@ public class ProcessingReservation extends AppCompatActivity {
     private void handleTimerDone() {
         startTime.setText("Time's up!");
         // Perform actions when the timer is done
+        startTime.setBackgroundColor(getResources().getColor(R.color.blue));
         startTime.setEnabled(true);
+    }
+
+    private void deleteDocument(String requestID) {
+        // Get the current user
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
+
+        if (currentUser != null) {
+            // Get the user's UID
+            String uid = currentUser.getUid();
+
+            // Access Firestore
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+            // Reference to the document to be deleted
+            DocumentReference rentRequestDocument = db.collection("users")
+                    .document(uid)
+                    .collection("renter-ready")
+                    .document(requestID);
+
+            // Delete the document
+            rentRequestDocument.delete()
+                    .addOnSuccessListener(aVoid -> {
+                        // Document successfully deleted
+                        System.out.println("DocumentSnapshot successfully deleted!");
+                    })
+                    .addOnFailureListener(e -> {
+                        // Handle any errors
+                        System.err.println("Error deleting document: " + e.getMessage());
+                    });
+        } else {
+            // Handle the case where the current user is null (not authenticated)
+            System.err.println("User not authenticated");
+        }
     }
 
     public void GetItClean()

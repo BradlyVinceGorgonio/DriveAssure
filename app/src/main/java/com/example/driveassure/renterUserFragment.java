@@ -161,6 +161,7 @@ public class renterUserFragment extends Fragment implements OwnerListingCarAdapt
                         yesButton.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                deleteAllVehicleReadyDocuments();
                                 dialogs.dismiss(); // Close the dialog if needed
                                 Intent newActivityIntent = new Intent(getContext(), userHome.class);
                                 startActivity(newActivityIntent);
@@ -179,6 +180,46 @@ public class renterUserFragment extends Fragment implements OwnerListingCarAdapt
 
 
         return view;
+    }
+
+    // Function to delete all documents in "vehicle-ready" collection
+    private void deleteAllVehicleReadyDocuments() {
+        // Get the current user
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
+
+        if (currentUser != null) {
+            // Get the UID of the current user
+            String uid = currentUser.getUid();
+
+            // Reference to the "vehicle-ready" collection for the current user
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            db.collection("users").document(uid)
+                    .collection("vehicle-ready")
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            // Iterate through the documents and delete each one
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                document.getReference().delete()
+                                        .addOnSuccessListener(aVoid -> {
+                                            // Document successfully deleted
+                                            System.out.println("Document successfully deleted!");
+                                        })
+                                        .addOnFailureListener(e -> {
+                                            // Handle any errors
+                                            System.err.println("Error deleting document: " + e.getMessage());
+                                        });
+                            }
+                        } else {
+                            // Handle errors in getting documents
+                            System.err.println("Error getting documents: " + task.getException().getMessage());
+                        }
+                    });
+        } else {
+            // Handle the case where the current user is null (not authenticated)
+            System.err.println("User not authenticated");
+        }
     }
     public void getDatas()
     {
