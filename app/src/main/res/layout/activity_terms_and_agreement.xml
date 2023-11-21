@@ -85,13 +85,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:text="1. Vehicle Information:
-
-Make: __________________\n
-Model: _________________\n
-Year: ___________________\n
-License Plate Number: ___________________\n
-Vehicle Identification Number (VIN): ___________________
+                    android:text="1. Vehicle Information:\nMake:\nModel:\nYear:\nLicense Plate Number:\nVehicle Identification Number (VIN):
 "></TextView>
 
                 <TextView

@@ -14,7 +14,7 @@
         android:gravity="center_horizontal|top"
         android:lineHeight="30sp"
         android:textSize="30dp"
-        android:text="Image Upload  \n Successful"
+        android:text="Reservation Settled  \n Successfully"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/guideeline"
         app:layout_constraintStart_toStartOf="parent"
