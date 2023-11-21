@@ -1,5 +1,6 @@
 package com.example.driveassure;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -136,7 +137,38 @@ public class renterUserFragment extends Fragment implements OwnerListingCarAdapt
         timeRemaining.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Dialog dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.carreturned);
+                dialog.show();
+                // Find the 'YES' button in the dialog layout
+                Button yesButton = dialog.findViewById(R.id.OKayButton);
+                Button noButton = dialog.findViewById(R.id.NotYetButton);
+                noButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss(); // Close the dialog if needed
+                    }
+                });
+                yesButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        Dialog dialogs = new Dialog(getContext());
+                        dialogs.setContentView(R.layout.congratulations);
+                        dialogs.show();
+                        // Find the 'YES' button in the dialog layout
+                        Button yesButton = dialogs.findViewById(R.id.OKayButton);
+                        yesButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialogs.dismiss(); // Close the dialog if needed
+                                Intent newActivityIntent = new Intent(getContext(), userHome.class);
+                                startActivity(newActivityIntent);
+                            }
+                        });
 
+                    }
+                });
             }
         });
 
