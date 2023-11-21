@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:backgroundTint="@color/darkblue"
-     >
+        >
 
 
         <TextView
@@ -46,161 +46,161 @@
                 android:background="@drawable/message_more"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"></ImageButton>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Message"
-        android:layout_gravity="center"
-        android:layout_marginLeft="155dp"
-       ></TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Message"
+                android:layout_gravity="center"
+                android:layout_marginLeft="155dp"
+                ></TextView>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/renterProfile"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:background="@drawable/user_circle"
-        android:layout_gravity="center"
-        android:layout_marginTop="-50dp"
-        ></de.hdodenhof.circleimageview.CircleImageView>
-
-
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView17"
-        android:layout_width="340dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="25dp"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pick-Up Details"
-            android:textStyle="bold"
-            android:textSize="22dp"
-            android:textColor="@color/black"
-            android:layout_gravity="center"
-            android:layout_marginTop="-80dp"></TextView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="-100dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="-40dp"
-            android:text="Car Owner: "
-            android:textColor="@color/black"></TextView>
-
-        <TextView
-            android:id="@+id/carOwnerName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="-40dp"
-            android:fontFamily="@font/patuaoneregular"
-            android:text="Bradly Vince Gorgonio"
-            android:textColor="@color/black"
-            android:textSize="16dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="-100dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="-10dp"
-            android:text="Contact: "
-            android:textColor="@color/black"></TextView>
-
-        <TextView
-            android:id="@+id/carOwnerrContact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="-10dp"
-            android:fontFamily="@font/patuaoneregular"
-            android:text="09476114003"
-            android:textColor="@color/black"
-            android:textSize="16dp" />
-
-
-        <TextView
-            android:id="@+id/textView33"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pick-up Date:"
-            android:textColor="@color/black"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="-100dp"
-            />
-
-        <TextView
-            android:id="@+id/pickUpDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/patuaoneregular"
-            android:text="07/06/45"
-            android:textColor="@color/black"
-            android:textSize="16dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pick-up Time:"
-            android:textColor="@color/black"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="-100dp"
-            />
-
-
-        <TextView
-            android:id="@+id/PickupDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="50dp"
-            android:fontFamily="@font/patuaoneregular"
-            android:text="2:00PM"
-            android:textColor="@color/black"
-            android:textSize="16dp" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pick-up Location:"
-            android:textColor="@color/black"
-            android:layout_gravity="center"
-            android:layout_marginTop="80dp"
-            android:layout_marginLeft="-100dp"
-            />
-
-
-        <TextView
-            android:id="@+id/PickupLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="80dp"
-            android:fontFamily="@font/patuaoneregular"
-            android:text="Taguig"
-            android:textColor="@color/black"
-            android:textSize="16dp" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/renterProfile"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:background="@drawable/user_circle"
+                android:layout_gravity="center"
+                android:layout_marginTop="-50dp"
+                ></de.hdodenhof.circleimageview.CircleImageView>
 
 
 
-    </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView17"
+                android:layout_width="340dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="25dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pick-Up Details"
+                    android:textStyle="bold"
+                    android:textSize="22dp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="-80dp"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="-40dp"
+                    android:text="Car Owner: "
+                    android:textColor="@color/black"></TextView>
+
+                <TextView
+                    android:id="@+id/carOwnerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="-40dp"
+                    android:fontFamily="@font/patuaoneregular"
+                    android:text="Bradly Vince Gorgonio"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="-10dp"
+                    android:text="Contact: "
+                    android:textColor="@color/black"></TextView>
+
+                <TextView
+                    android:id="@+id/carOwnerrContact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="-10dp"
+                    android:fontFamily="@font/patuaoneregular"
+                    android:text="09476114003"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+
+                <TextView
+                    android:id="@+id/textView33"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pick-up Date:"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="-100dp"
+                    />
+
+                <TextView
+                    android:id="@+id/pickUpDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/patuaoneregular"
+                    android:text="07/06/45"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pick-up Time:"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginLeft="-100dp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/PickupTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="50dp"
+                    android:fontFamily="@font/patuaoneregular"
+                    android:text="2:00PM"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pick-up Location:"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="80dp"
+                    android:layout_marginLeft="-100dp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/PickupLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="80dp"
+                    android:fontFamily="@font/patuaoneregular"
+                    android:text="Taguig"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+
+
+            </androidx.cardview.widget.CardView>
 
 
             <androidx.cardview.widget.CardView
@@ -491,18 +491,18 @@
 
             </androidx.cardview.widget.CardView>
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Note: it is necessary to bring your driver's License and valid ID  upon Meetup"
-    android:textColor="@color/black"
-    android:textSize="18dp"
-    android:textStyle="bold"
-    android:textAlignment="center"
-    android:layout_gravity="center"
-    android:layout_marginTop="20dp"
-    android:layout_marginLeft="40dp"
-    android:layout_marginRight="40dp"></TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Note: it is necessary to bring your driver's License and valid ID  upon Meetup"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"></TextView>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -519,24 +519,10 @@
 
 
             <Button
-                android:id="@+id/exchangeContracts"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Exchange Contracts now"
-                android:layout_gravity="center"
-                android:layout_marginTop="25dp"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/grey"
-                android:layout_marginBottom="5dp">
-            </Button>
-
-            <Button
                 android:id="@+id/timeRemaining"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Time Remaining: 5days"
+                android:text="Ends on November 25, 2023"
                 android:layout_gravity="center"
                 android:layout_marginTop="25dp"
                 android:layout_marginBottom="100dp"
