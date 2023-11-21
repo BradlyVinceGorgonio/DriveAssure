@@ -28,12 +28,12 @@
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"></ImageButton>
 
             <TextView
-                android:layout_width="54dp"
-                android:layout_height="18dp"
+                android:layout_width="70dp"
+                android:layout_height="25dp"
                 android:text="Sign out"
                 android:layout_gravity="center"
                 android:textColor="@color/red"
-                android:layout_marginLeft="140dp"></TextView>
+                android:layout_marginLeft="145dp"></TextView>
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imageView"
                 android:layout_width="145dp"
