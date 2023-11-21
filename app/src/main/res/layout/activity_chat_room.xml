@@ -42,7 +42,6 @@
             android:layout_marginEnd="210dp"
             android:layout_marginStart="50dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/user_circle"
             android:contentDescription="owner profile"></de.hdodenhof.circleimageview.CircleImageView>
 
         <TextView
